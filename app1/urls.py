@@ -27,5 +27,13 @@ urlpatterns = [
     path('c_create',views.c_create,name='c_create'),
 
     path('c_alter',views.c_alter,name='c_alter'),
+
+    path('cost',views.cost,name='cost'),
+    
+    path('rates',views.rates,name='rates'),
+
+    path('cmpny_list',views.cmpny_list,name='cmpny_list'),
+
+    path('create_cmpny',views.create_cmpny,name='create_cmpny'),
     
 ]

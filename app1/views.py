@@ -50,3 +50,15 @@ def c_create(request):
 
 def c_alter(request):
     return render(request, 'jisha/c_alter.html')
+
+def cost(request):
+    return render(request, 'jisha/cost.html')
+
+def rates(request):
+    return render(request, 'jisha/rates.html')
+
+def cmpny_list(request):
+    return render(request, 'jisha/cmpny_list.html')
+
+def create_cmpny(request):
+    return render(request, 'jisha/create_cmpny.html')
