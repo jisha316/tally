@@ -1,0 +1,135 @@
+{% extends 'base.html' %}
+    {% block body %}
+    {% load static %}
+    <style>
+        .enter{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            
+        }
+    </style>
+
+  <div class="m-0">
+        <h6  class="bg-info text-light p-2 m-0 text-center">Ledger Creation</h6>
+        <form class="p-5" style="background-color:rgba(0,0,0,.4);">
+            <div class="p-3">
+                <div class="row container-fluid  p-2 m-0">
+                    <div class="col-sm-2 m-0 p-0"> <label for="a">Company</label></div>
+                    <div class="col-sm-3 m-0 p-0"><input type="text" class="form-control" id="a" placeholder=""></div>
+                    <div class="col-sm-7 m-0 p-0"></div>
+                </div>
+                <hr>
+                <div class="row container-fluid  p-2 m-0">
+                    <div class="col-sm-2 m-0 p-0"> <label for="b">Alias</label></div>
+                    <div class="col-sm-3 m-0 p-0"> 
+                    <input type="text" class="form-control" id="b" placeholder=""></div>
+                    <div class="col-sm-7 m-0 p-0"></div>
+                </div>
+            </div> 
+            <div class="row container-fluid  p-0 m-0" style=" border: 1px solid rgba(128, 128, 128, 0.6);">
+                <div class="col-sm-6 m-0 p-4" style=" border-right: 1px solid rgba(128, 128, 128, 0.6);">
+                    <div class="row container-fluid  p-2">
+                        <div class="col-sm-6 m-0 p-0"> <label for="c">Under</label></div>
+                        <div class="col-sm-6 m-0 p-0">
+                            <select name="optional" id="i" class="form-control">
+                                <option value="">Bank Accounts</option>
+                                <option value="">Bank OCC A/C</option> 
+                                <option value="">Bank OD A/C</option>
+                                <option value="">Branch / Divisions</option>
+                                <option value="" selected>Capital Account</option> 
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 m-0 p-4" style=" border-right: 1px solid rgba(128, 128, 128, 0.6);">
+                    <h5 class="text-center">Mailing Details</h5>
+                    <div class="row container-fluid  p-0">
+                        <div class="col-sm-6 m-0 p-0"></div>
+                        <div class="col-sm-6 m-0 p-0"></div>
+                    </div>
+                    <div class="row container-fluid  p-2">
+                        <div class="col-sm-6 m-0 p-0"> <label for="d">Name</label></div>
+                        <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" id="c" placeholder=""></div>
+                    </div>
+                    <div class="row container-fluid  p-2">
+                        <div class="col-sm-6 m-0 p-0"> <label for="d">Address</label></div>
+                        <div class="col-sm-6 m-0 p-0"><input type="textarea" class="form-control" id="d" placeholder=""></div>
+                    </div>
+                    <div class="row container-fluid  p-2">
+                        <div class="col-sm-6 m-0 p-0"> <label for="d">State</label></div>
+                        <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" id="d" placeholder=""></div>
+                    </div>
+                    <div class="row container-fluid  p-2">
+                        <div class="col-sm-6 m-0 p-0"> <label for="d">Country</label></div>
+                        <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" id="d" placeholder=""></div>
+                    </div>
+                    <div class="row container-fluid  p-2">
+                        <div class="col-sm-6 m-0 p-0"> <label for="d">Pin Code</label></div>
+                        <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" id="d" placeholder=""></div>
+                    </div>
+                    <h5 class="text-center">Banking Details</h5>
+                    <div class="row container-fluid  p-0">
+                        <div class="col-sm-6 m-0 p-0"></div>
+                        <div class="col-sm-6 m-0 p-0"></div>
+                    </div>
+                    <div class="row container-fluid  p-2">
+                        <div class="col-sm-6 m-0 p-0"> <label for="e">Provide Bank details</label></div>
+                        <div class="col-sm-6 m-0 p-0">
+                            <script type="text/javascript">
+                                function text(x){
+                                    if (x == 0)
+                                        document.getElementById(code).style="display: block;"
+                                    else
+                                        document.getElementById(code).style="display: none;"
+                                }
+
+                            </script>
+                            <select  class="form-control">
+                                <option value="no" onclick="text(0).checked">No</option> 
+                                <option value="yes" onclick="text(1)">Yes</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row container-fluid  p-2" id="code" >
+                        <div class="col-sm-6 m-0 p-0"> <label for="yes">Pin Code</label></div>
+                        <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" id="yes" placeholder=""></div>
+                    </div>
+                    <h5 class="text-center">Tax Registration Details</h5>
+                    <div class="row container-fluid  p-2">
+                        <div class="col-sm-6 m-0 p-0"> <label for="e">PAN / IT No.</label></div>
+                        <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" id="c" placeholder=""></div>
+                    </div>
+                    <div class="row container-fluid  p-2">
+                        <div class="col-sm-6 m-0 p-0"> <label for="e">Registration Type</label></div>
+                        <div class="col-sm-6 m-0 p-0">
+                            <select name="Activate" id="e" class="form-control">
+                                <option value="">Unknown</option> 
+                                <option value="">Composition</option>
+                                <option value="">Consumer</option>
+                                <option value="" selected>Regular</option>
+                                <option value="">Unregistred</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row container-fluid  p-2">
+                        <div class="col-sm-6 m-0 p-0"> <label for="e">GSTIN / UIN</label></div>
+                            <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" id="c" placeholder=""></div>
+                    </div>
+                </div>
+            </div> 
+            <div class="row container-fluid  p-0 m-0" style=" border: 1px solid rgba(128, 128, 128, 0.6);">
+                <div class="col-sm-4 m-0 p-4"></div>
+                <div class="col-sm-5 m-0 p-4">
+                    <div class="row container-fluid  p-2">
+                        <div class="col-sm-6 m-0 p-0"> <label for="d"></label>Opening Balance (On 1-Apr-22)</div>
+                        <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" id="d" placeholder=""></div>
+                    </div>
+                </div>
+                <div class="col-sm-4 m-0 p-4"></div>
+            </div>
+
+            <div class="enter w-100 py-4"><button class="btn btn-info w-15">CREATE</button></div>       
+        </form>
+    </div>     
+{% endblock %}

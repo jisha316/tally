@@ -35,5 +35,11 @@ urlpatterns = [
     path('cmpny_list',views.cmpny_list,name='cmpny_list'),
 
     path('create_cmpny',views.create_cmpny,name='create_cmpny'),
+
+    path('gst',views.gst,name='gst'),
+
+    path('select_c',views.select_c,name='select_c'),
+
+    path('cn',views.cn,name='cn'),
     
 ]

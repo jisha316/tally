@@ -62,3 +62,12 @@ def cmpny_list(request):
 
 def create_cmpny(request):
     return render(request, 'jisha/create_cmpny.html')
+
+def gst(request):
+    return render(request, 'jisha/gst.html')
+
+def select_c(request):
+    return render(request, 'jisha/select_c.html')
+
+def cn(request):
+    return render(request, 'jisha/cn.html')
