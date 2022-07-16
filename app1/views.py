@@ -26,6 +26,7 @@ def costcat(request):
 def costcentr(request):
     return render(request, 'costcentr.html')
 
+
 def voucher(request):
     return render(request, 'voucher.html')
 
@@ -66,8 +67,21 @@ def create_cmpny(request):
 def gst(request):
     return render(request, 'jisha/gst.html')
 
+def gst_details(request):
+    return render(request, 'jisha/gst_details.html')
+
 def select_c(request):
     return render(request, 'jisha/select_c.html')
+
+def features(request):
+    return render(request, 'jisha/features.html')
+
+def tds(request):
+    return render(request, 'jisha/tds.html')
+
+def tds_details(request):
+    return render(request, 'jisha/tds_details.html')
+
 
 def cn(request):
     return render(request, 'jisha/cn.html')

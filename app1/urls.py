@@ -39,7 +39,16 @@ urlpatterns = [
     path('gst',views.gst,name='gst'),
 
     path('select_c',views.select_c,name='select_c'),
+    
+    path('features',views.features,name='features'),
+
+    path('gst_details',views.gst_details,name='gst_details'),
+
+    path('tds',views.tds,name='tds'),
+
+    path('tds_details',views.tds_details,name='tds_details'),
 
     path('cn',views.cn,name='cn'),
+
     
 ]

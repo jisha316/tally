@@ -11,125 +11,265 @@
     </style>
 
   <div class="m-0">
-        <h6  class="bg-info text-light p-2 m-0 text-center">Ledger Creation</h6>
+        <h6  class="bg-info text-light p-2 m-0 text-left">Company Features Alteration</h6>
         <form class="p-5" style="background-color:rgba(0,0,0,.4);">
             <div class="p-3">
-                <div class="row container-fluid  p-2 m-0">
-                    <div class="col-sm-2 m-0 p-0"> <label for="a">Company</label></div>
-                    <div class="col-sm-3 m-0 p-0"><input type="text" class="form-control" id="a" placeholder=""></div>
-                    <div class="col-sm-7 m-0 p-0"></div>
-                </div>
+                <h6  class="bg-transparent text-light p-2 m-0 text-left">Company : </h6>
                 <hr>
                 <div class="row container-fluid  p-2 m-0">
-                    <div class="col-sm-2 m-0 p-0"> <label for="b">Alias</label></div>
+                    <div class="col-sm-2 m-0 p-0"> <label for="a">Show more features</label></div>
+                    <div class="col-sm-3 m-0 p-0">
+                        <select  class="form-control">
+                            <option value="">Yes</option> 
+                            <option value="">No</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-7 m-0 p-0"></div>
+                </div>
+        
+                <div class="row container-fluid  p-2 m-0">
+                    <div class="col-sm-2 m-0 p-0"> <label for="b">Show all features</label></div>
                     <div class="col-sm-3 m-0 p-0"> 
-                    <input type="text" class="form-control" id="b" placeholder=""></div>
+                        <select  class="form-control">
+                            <option value="">Yes</option> 
+                            <option value="">No</option>
+                        </select>
+                    </div>
                     <div class="col-sm-7 m-0 p-0"></div>
                 </div>
             </div> 
             <div class="row container-fluid  p-0 m-0" style=" border: 1px solid rgba(128, 128, 128, 0.6);">
                 <div class="col-sm-6 m-0 p-4" style=" border-right: 1px solid rgba(128, 128, 128, 0.6);">
+                    <h5  class="bg-trasparent text-light p-2 m-0 text-left">Accounting</h5>
                     <div class="row container-fluid  p-2">
-                        <div class="col-sm-6 m-0 p-0"> <label for="c">Under</label></div>
+                        <div class="col-sm-6 m-0 p-0"> <label for=""></label>Maintain Accounts</div>
                         <div class="col-sm-6 m-0 p-0">
                             <select name="optional" id="i" class="form-control">
-                                <option value="">Bank Accounts</option>
-                                <option value="">Bank OCC A/C</option> 
-                                <option value="">Bank OD A/C</option>
-                                <option value="">Branch / Divisions</option>
-                                <option value="" selected>Capital Account</option> 
+                                <option value="">Yes</option>
+                                <option value="">No</option> 
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row container-fluid  p-2">
+                        <div class="col-sm-6 m-0 p-0"> <label for=""></label>&nbsp;&nbsp;&nbsp;&nbsp;Enable Bill-wise entry</div>
+                        <div class="col-sm-6 m-0 p-0">
+                            <select name="optional" id="i" class="form-control">
+                                <option value="">No</option>
+                                <option value="">Yes</option> 
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row container-fluid  p-2">
+                        <div class="col-sm-6 m-0 p-0"> <label for=""></label>&nbsp;&nbsp;&nbsp;&nbsp;Enable Cost Centres</div>
+                        <div class="col-sm-6 m-0 p-0">
+                            <select name="optional" id="i" class="form-control">
+                                <option value="">No</option>
+                                <option value="">Yes</option> 
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row container-fluid  p-2">
+                        <div class="col-sm-6 m-0 p-0"> <label for=""></label>&nbsp;&nbsp;&nbsp;&nbsp;Enable Interest Calculation</div>
+                        <div class="col-sm-6 m-0 p-0">
+                            <select name="optional" id="i" class="form-control">
+                                <option value="">No</option>
+                                <option value="">Yes</option> 
+                            </select>
+                        </div>
+                    </div>
+                    <h5  class="bg-trasparent text-light p-2 m-0 text-left">Inventory</h5>
+                    <div class="row container-fluid  p-2">
+                        <div class="col-sm-6 m-0 p-0"> <label for=""></label>Maintain Inventory</div>
+                        <div class="col-sm-6 m-0 p-0">
+                            <select name="optional" id="i" class="form-control">
+                                <option value="">Yes</option>
+                                <option value="">No</option> 
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row container-fluid  p-2">
+                        <div class="col-sm-6 m-0 p-0"> <label for=""></label>&nbsp;&nbsp;&nbsp;&nbsp;Integrate account with inventory</div>
+                        <div class="col-sm-6 m-0 p-0">
+                            <select name="optional" id="i" class="form-control">
+                                <option value="">No</option>
+                                <option value="">Yes</option> 
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row container-fluid  p-2">
+                        <div class="col-sm-6 m-0 p-0"> <label for=""></label>&nbsp;&nbsp;&nbsp;&nbsp;Enable multitle price leves</div>
+                        <div class="col-sm-6 m-0 p-0">
+                            <select name="optional" id="i" class="form-control">
+                                <option value="">No</option>
+                                <option value="">Yes</option> 
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row container-fluid  p-2">
+                        <div class="col-sm-6 m-0 p-0"> <label for=""></label>&nbsp;&nbsp;&nbsp;&nbsp;Enable Batches</div>
+                        <div class="col-sm-6 m-0 p-0">
+                            <select name="optional" id="i" class="form-control">
+                                <option value="">No</option>
+                                <option value="">Yes</option> 
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row container-fluid  p-2">
+                        <div class="col-sm-6 m-0 p-0"> <label for=""></label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            Maintain Expiry Date of Batches</div>
+                        <div class="col-sm-6 m-0 p-0">
+                            <select name="optional" id="i" class="form-control">
+                                <option value="">No</option>
+                                <option value="">Yes</option> 
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row container-fluid  p-2">
+                        <div class="col-sm-6 m-0 p-0"> <label for=""></label>&nbsp;&nbsp;&nbsp;&nbsp;Enable Job Order Proccessing</div>
+                        <div class="col-sm-6 m-0 p-0">
+                            <select name="optional" id="i" class="form-control">
+                                <option value="">No</option>
+                                <option value="">Yes</option> 
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row container-fluid  p-2">
+                        <div class="col-sm-6 m-0 p-0"> <label for=""></label>&nbsp;&nbsp;&nbsp;&nbsp;Enable Cost Tracking</div>
+                        <div class="col-sm-6 m-0 p-0">
+                            <select name="optional" id="i" class="form-control">
+                                <option value="">No</option>
+                                <option value="">Yes</option> 
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row container-fluid  p-2">
+                        <div class="col-sm-6 m-0 p-0"> <label for=""></label>&nbsp;&nbsp;&nbsp;&nbsp;Enable Job Costing</div>
+                        <div class="col-sm-6 m-0 p-0">
+                            <select name="optional" id="i" class="form-control">
+                                <option value="">No</option>
+                                <option value="">Yes</option> 
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row container-fluid  p-2">
+                        <div class="col-sm-6 m-0 p-0"> <label for=""></label>&nbsp;&nbsp;&nbsp;&nbsp;Use Discount column in invoices</div>
+                        <div class="col-sm-6 m-0 p-0">
+                            <select name="optional" id="i" class="form-control">
+                                <option value="">No</option>
+                                <option value="">Yes</option> 
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row container-fluid  p-2">
+                        <div class="col-sm-6 m-0 p-0"> <label for=""></label>&nbsp;&nbsp;&nbsp;&nbsp;Use seperate Actual and Billed Quantity column in invoice</div>
+                        <div class="col-sm-6 m-0 p-0">
+                            <select name="optional" id="i" class="form-control">
+                                <option value="">No</option>
+                                <option value="">Yes</option> 
                             </select>
                         </div>
                     </div>
                 </div>
                 <div class="col-sm-6 m-0 p-4" style=" border-right: 1px solid rgba(128, 128, 128, 0.6);">
-                    <h5 class="text-center">Mailing Details</h5>
+                    <h5 class="text-left">Taxation</h5>
                     <div class="row container-fluid  p-0">
                         <div class="col-sm-6 m-0 p-0"></div>
                         <div class="col-sm-6 m-0 p-0"></div>
                     </div>
                     <div class="row container-fluid  p-2">
-                        <div class="col-sm-6 m-0 p-0"> <label for="d">Name</label></div>
-                        <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" id="c" placeholder=""></div>
-                    </div>
-                    <div class="row container-fluid  p-2">
-                        <div class="col-sm-6 m-0 p-0"> <label for="d">Address</label></div>
-                        <div class="col-sm-6 m-0 p-0"><input type="textarea" class="form-control" id="d" placeholder=""></div>
-                    </div>
-                    <div class="row container-fluid  p-2">
-                        <div class="col-sm-6 m-0 p-0"> <label for="d">State</label></div>
-                        <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" id="d" placeholder=""></div>
-                    </div>
-                    <div class="row container-fluid  p-2">
-                        <div class="col-sm-6 m-0 p-0"> <label for="d">Country</label></div>
-                        <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" id="d" placeholder=""></div>
-                    </div>
-                    <div class="row container-fluid  p-2">
-                        <div class="col-sm-6 m-0 p-0"> <label for="d">Pin Code</label></div>
-                        <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" id="d" placeholder=""></div>
-                    </div>
-                    <h5 class="text-center">Banking Details</h5>
-                    <div class="row container-fluid  p-0">
-                        <div class="col-sm-6 m-0 p-0"></div>
-                        <div class="col-sm-6 m-0 p-0"></div>
-                    </div>
-                    <div class="row container-fluid  p-2">
-                        <div class="col-sm-6 m-0 p-0"> <label for="e">Provide Bank details</label></div>
+                        <div class="col-sm-6 m-0 p-0"> <label for="d">Enable Goods and Service Tax (GST)</label></div>
                         <div class="col-sm-6 m-0 p-0">
-                            <script type="text/javascript">
-                                function text(x){
-                                    if (x == 0)
-                                        document.getElementById(code).style="display: block;"
-                                    else
-                                        document.getElementById(code).style="display: none;"
-                                }
-
-                            </script>
+                            <select name="optional" id="i" class="form-control">
+                                <option value=""><a href="gst">Yes</a></option>
+                                <option value="">No</option> 
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row container-fluid  p-2">
+                        <div class="col-sm-6 m-0 p-0"> <label for="d">Enable Tax Deducted at Source (TDS)</label></div>
+                        <div class="col-sm-6 m-0 p-0">
+                            <select name="optional" id="i" class="form-control">
+                                <option value="">No</option>
+                                <option value="">Yes</option> 
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row container-fluid  p-2">
+                        <div class="col-sm-6 m-0 p-0"> <label for="d">Enable Tax Collected at Source (TCS)</label></div>
+                        <div class="col-sm-6 m-0 p-0">
+                            <select name="optional" id="i" class="form-control">
+                                <option value="">No</option>
+                                <option value="">Yes</option> 
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row container-fluid  p-2">
+                        <div class="col-sm-6 m-0 p-0"> <label for="d">Enable Value Added Tax (VAT)</label></div>
+                        <div class="col-sm-6 m-0 p-0">
+                            <select name="optional" id="i" class="form-control">
+                                <option value="">No</option>
+                                <option value="">Yes</option> 
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row container-fluid  p-2">
+                        <div class="col-sm-6 m-0 p-0"> <label for="d">Enable Excise</label></div>
+                        <div class="col-sm-6 m-0 p-0">
+                            <select name="optional" id="i" class="form-control">
+                                <option value="">No</option>
+                                <option value="">Yes</option> 
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row container-fluid  p-2">
+                        <div class="col-sm-6 m-0 p-0"> <label for="d">Enable Srvice Tax</label></div>
+                        <div class="col-sm-6 m-0 p-0">
+                            <select name="optional" id="i" class="form-control">
+                                <option value="">No</option>
+                                <option value="">Yes</option> 
+                            </select>
+                        </div>
+                    </div>
+                    <h5 class="text-left">Payroll</h5>
+                    <div class="row container-fluid  p-0">
+                        <div class="col-sm-6 m-0 p-0"></div>
+                        <div class="col-sm-6 m-0 p-0"></div>
+                    </div>
+                    <div class="row container-fluid  p-2">
+                        <div class="col-sm-6 m-0 p-0"> <label for="e">Maintain Payroll</label></div>
+                        <div class="col-sm-6 m-0 p-0">
                             <select  class="form-control">
-                                <option value="no" onclick="text(0).checked">No</option> 
-                                <option value="yes" onclick="text(1)">Yes</option>
+                                <option value="">Yes</option> 
+                                <option value="">No</option>
                             </select>
                         </div>
                     </div>
-                    <div class="row container-fluid  p-2" id="code" >
-                        <div class="col-sm-6 m-0 p-0"> <label for="yes">Pin Code</label></div>
-                        <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" id="yes" placeholder=""></div>
-                    </div>
-                    <h5 class="text-center">Tax Registration Details</h5>
-                    <div class="row container-fluid  p-2">
-                        <div class="col-sm-6 m-0 p-0"> <label for="e">PAN / IT No.</label></div>
-                        <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" id="c" placeholder=""></div>
+                    <h5 class="text-left">Others</h5>
+                    <div class="row container-fluid  p-0">
+                        <div class="col-sm-6 m-0 p-0"></div>
+                        <div class="col-sm-6 m-0 p-0"></div>
                     </div>
                     <div class="row container-fluid  p-2">
-                        <div class="col-sm-6 m-0 p-0"> <label for="e">Registration Type</label></div>
+                        <div class="col-sm-6 m-0 p-0"> <label for="e">Enable Multiple Addressess</label></div>
                         <div class="col-sm-6 m-0 p-0">
-                            <select name="Activate" id="e" class="form-control">
-                                <option value="">Unknown</option> 
-                                <option value="">Composition</option>
-                                <option value="">Consumer</option>
-                                <option value="" selected>Regular</option>
-                                <option value="">Unregistred</option>
+                            <select  class="form-control">
+                                <option value="">No</option> 
+                                <option value="">Yes</option>
                             </select>
                         </div>
                     </div>
                     <div class="row container-fluid  p-2">
-                        <div class="col-sm-6 m-0 p-0"> <label for="e">GSTIN / UIN</label></div>
-                            <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" id="c" placeholder=""></div>
+                        <div class="col-sm-6 m-0 p-0"> <label for="e">Mark Modified vouchers</label></div>
+                        <div class="col-sm-6 m-0 p-0">
+                            <select  class="form-control">
+                                <option value="">No</option> 
+                                <option value="">Yes</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
             </div> 
-            <div class="row container-fluid  p-0 m-0" style=" border: 1px solid rgba(128, 128, 128, 0.6);">
-                <div class="col-sm-4 m-0 p-4"></div>
-                <div class="col-sm-5 m-0 p-4">
-                    <div class="row container-fluid  p-2">
-                        <div class="col-sm-6 m-0 p-0"> <label for="d"></label>Opening Balance (On 1-Apr-22)</div>
-                        <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" id="d" placeholder=""></div>
-                    </div>
-                </div>
-                <div class="col-sm-4 m-0 p-4"></div>
-            </div>
-
-            <div class="enter w-100 py-4"><button class="btn btn-info w-15">CREATE</button></div>       
+            <div class="enter w-100 py-4"><button class="btn btn-info w-15">ACCEPT</button></div>       
         </form>
     </div>     
 {% endblock %}

@@ -93,15 +93,6 @@
                         </div>
                     </div>
                     <div class="row container-fluid  p-2">
-                        <div class="col-sm-6 m-0 p-0"> <label for="d">Assessee of Other Territory</label></div>
-                        <div class="col-sm-6 m-0 p-0">
-                            <select name="Activate" id="e" class="form-control">
-                                <option value="">No</option>
-                                <option value="">Yes</option> 
-                            </select>
-                        </div>
-                    </div>
-                    <div class="row container-fluid  p-2">
                         <div class="col-sm-6 m-0 p-0"> <label for="d">GST Application From</label></div>
                         <div class="col-sm-6 m-0 p-0"><input type="date" value="01-12-2022" class="form-control"></div>
                     </div>
@@ -119,6 +110,19 @@
                         </div>
                     </div><br>
                     <h5 class="text-left">Additional Features</h5>
+                    <div class="row container-fluid  p-2">
+                        <div class="col-sm-6 m-0 p-0"> <label for="c">Kerala Flood Cess Application</label></div>
+                        <div class="col-sm-6 m-0 p-0">
+                            <select name="Activate" id="e" class="form-control" onchange="showDiv('hidden_div', this)">
+                                <option value="0">No</option>
+                                <option value="1">Yes</option> 
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row container-fluid  p-2" id="hidden_div">
+                        <div class="col-sm-6 m-0 p-0"> <label for="">&nbsp;&nbsp;&nbsp;&nbsp;Applicable Form</label></div>
+                        <div class="col-sm-6 m-0 p-0"><input type="date" class="form-control" id="" placeholder=""></div> 
+                    </div>
                     <div class="row container-fluid  p-2">
                         <div class="col-sm-6 m-0 p-0"> <label for="c">Set / Alter GST rate details</label></div>
                         <div class="col-sm-6 m-0 p-0">
@@ -225,13 +229,13 @@
                     <div class="row container-fluid  p-2" >
                         <div class="col-sm-6 m-0 p-0"> <label for="d">e-Invoice applicable</label></div>
                         <div class="col-sm-6 m-0 p-0">
-                            <select name="" id="test" class="form-control" onchange="showDiv('hidden_div', this)">
-                                <option value="0">No</option>
-                                <option value="1">Yes</option> 
+                            <select name="" id="test" class="form-control" >
+                                <option value="">No</option>
+                                <option value="">Yes</option> 
                             </select>
                         </div>
                     </div>
-                    <div class="row container-fluid  p-2" id="hidden_div">
+                    <div class="row container-fluid  p-2">
                         <div class="col-sm-6 m-0 p-0"> <label for="">&nbsp;&nbsp;&nbsp;&nbsp;Applicable Form</label></div>
                         <div class="col-sm-6 m-0 p-0"><input type="date" class="form-control" id="" placeholder=""></div> 
                     </div>
