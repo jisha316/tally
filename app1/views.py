@@ -82,6 +82,9 @@ def tds(request):
 def tds_details(request):
     return render(request, 'jisha/tds_details.html')
 
+def c_rates(request):
+    return render(request, 'jisha/c_rates.html')
+
 
 def cn(request):
     return render(request, 'jisha/cn.html')

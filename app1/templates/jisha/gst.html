@@ -7,30 +7,32 @@
             align-items: center;
             justify-content: center;   
         }
-        #hidden_div {
-            display: none;
-        }
     </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script>
-        function showDiv(divId, element)
-        {
-            document.getElementById(divId).style.display = element.value == 1 ? 'block' : 'none';
-        }
-       
-        // function changeStatus() 
-        // {
-        //     var status = document.getElementById("e-invoice");
-        //     if (status.value == "n")
-        //     {
-        //         document.getElementById("e-ia").style.visibility = "hidden";
-        //     }
-        //     else
-        //     {
-        //         document.getElementById("e-ia").style.visibility = "visible";   
-        //     }
-        // }
+        $(document).ready(function() {
+            $("#id_e_invoice").change(function() {
+            if ($(this).val() === "No") {
+                $('#e-Invoice_applicable').hide();
+            } else {
+                $('#e-Invoice_applicable').show();
+            }
+            });
+            $("#id_e_invoice").trigger("change")
+        })
+
+        $(document).ready(function() {
+            $("#id_e_way").change(function() {
+            if ($(this).val() === "No") {
+                $('#e-way_bill').hide();
+            } else {
+                $('#e-way_bill').show();
+            }
+            });
+            $("#id_e_way").trigger("change")
+        })
     </script>
-  <div class="m-0">
+    <div class="m-3">
         <h6  class="bg-info text-light p-2 m-0 text-left">Company GST Details</h6>
         <form class="p-5" style="background-color:rgba(0,0,0,.4);">
             <div class="p-3">
@@ -177,87 +179,108 @@
                         <div class="col-sm-6 m-0 p-0"></div>
                         <div class="col-sm-6 m-0 p-0"></div>
                     </div>
-                    <div class="row container-fluid  p-2">
+                    <div class="row container-fluid  p-2" id="e-way">
                         <div class="col-sm-6 m-0 p-0"> <label for="d">e-Way bill applicable</label></div>
                         <div class="col-sm-6 m-0 p-0">
-                            <select name="Activate" id="e" class="form-control">
-                                <option value="">Yes</option>
-                                <option value="">No</option> 
+                            <select name="Activate" id="id_e_way" class="form-control">
+                                <option value="Yes" selected="true">Yes</option>
+                                <option value="No">No</option> 
                             </select>
                         </div>
                     </div>
-                    <div class="row container-fluid  p-2">
-                        <div class="col-sm-6 m-0 p-0"> <label for="d">&nbsp;&nbsp;&nbsp;&nbsp;Applicable Form</label></div>
-                        <div class="col-sm-6 m-0 p-0"><input type="date" class="form-control" id="d" placeholder=""></div>
-                    </div>
-                    <div class="row container-fluid  p-2">
-                        <div class="col-sm-6 m-0 p-0"> <label for="d">&nbsp;&nbsp;&nbsp;&nbsp;Threshold limit include</label></div>
-                        <div class="col-sm-6 m-0 p-0">
-                            <select name="Activate" id="e" class="form-control">
-                                <option value="">Invoice Value</option>
-                                <option value="">Taxable and exempt goods value</option> 
-                                <option value="">Taxable goods value</option> 
-                            </select>
+                    
+                    <div class="container-fluid  p-0" id="e-way_bill">
+                        <div class="row container-fluid  p-2">
+                            <div class="col-sm-6 m-0 p-0"> <label for="d">&nbsp;&nbsp;&nbsp;&nbsp;Applicable Form</label></div>
+                            <div class="col-sm-6 m-0 p-0"><input type="date" class="form-control" id="d" placeholder=""></div>
                         </div>
-                    </div>
-                    <div class="row container-fluid  p-2">
-                        <div class="col-sm-6 m-0 p-0"> <label for="d">&nbsp;&nbsp;&nbsp;&nbsp;Threshold limit</label></div>
-                        <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" id="d" placeholder="" value="50,000"></div>
-                    </div>
-                    <div class="row container-fluid  p-2">
-                        <div class="col-sm-6 m-0 p-0"> <label for="d">&nbsp;&nbsp;&nbsp;&nbsp;Applicable for intrastate</label></div>
-                        <div class="col-sm-6 m-0 p-0">
-                            <select name="Activate" id="e" class="form-control">
-                                <option value="">Yes</option>
-                                <option value="">No</option> 
-                            </select>
+                        
+
+                        <div class="row container-fluid  p-2">
+                            <div class="col-sm-6 m-0 p-0"> <label for="d">&nbsp;&nbsp;&nbsp;&nbsp;Threshold limit include</label></div>
+                            <div class="col-sm-6 m-0 p-0">
+                                <select name="Activate" id="e" class="form-control">
+                                    <option value="">Invoice Value</option>
+                                    <option value="">Taxable and exempt goods value</option> 
+                                    <option value="">Taxable goods value</option> 
+                                </select>
+                            </div>
                         </div>
-                    </div>
-                    <div class="row container-fluid  p-2">
-                        <div class="col-sm-6 m-0 p-0"> <label for="d">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Threshold Limit</label></div>
-                        <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" id="d" placeholder="" value="50,000"></div>
-                    </div>
-                    <div class="row container-fluid  p-2">
-                        <div class="col-sm-6 m-0 p-0"> <label for="d">&nbsp;&nbsp;&nbsp;&nbsp;Print e-Way Bill with invoice</label></div>
-                        <div class="col-sm-6 m-0 p-0">
-                            <select name="Activate" id="e" class="form-control">
-                                <option value="">No</option>
-                                <option value="">Yes</option> 
-                            </select>
+
+                        <div class="row container-fluid  p-2">
+                            <div class="col-sm-6 m-0 p-0"> <label for="d">&nbsp;&nbsp;&nbsp;&nbsp;Threshold limit</label></div>
+                            <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" id="d" placeholder="" value="50,000"></div>
                         </div>
+
+                        <div class="row container-fluid  p-2">
+                            <div class="col-sm-6 m-0 p-0"> <label for="d">&nbsp;&nbsp;&nbsp;&nbsp;Applicable for intrastate</label></div>
+                            <div class="col-sm-6 m-0 p-0">
+                                <select name="Activate" id="e" class="form-control">
+                                    <option value="">Yes</option>
+                                    <option value="">No</option> 
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row container-fluid  p-2">
+                            <div class="col-sm-6 m-0 p-0"> <label for="d">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Threshold Limit</label></div>
+                            <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" id="d" placeholder="" value="50,000"></div>
+                        </div>
+
+                        <div class="row container-fluid  p-2">
+                            <div class="col-sm-6 m-0 p-0"> <label for="d">&nbsp;&nbsp;&nbsp;&nbsp;Print e-Way Bill with invoice</label></div>
+                            <div class="col-sm-6 m-0 p-0">
+                                <select name="Activate" id="e" class="form-control">
+                                    <option value="">No</option>
+                                    <option value="">Yes</option> 
+                                </select>
+                            </div>
+                        </div>
+
                     </div>
-                    <div class="row container-fluid  p-2" >
+                    
+                    <div class="row container-fluid  p-2" id="e_invoice">
                         <div class="col-sm-6 m-0 p-0"> <label for="d">e-Invoice applicable</label></div>
                         <div class="col-sm-6 m-0 p-0">
-                            <select name="" id="test" class="form-control" >
-                                <option value="">No</option>
-                                <option value="">Yes</option> 
+                            <select name="" id="id_e_invoice" class="form-control" >
+                                <option value="No" selected="true">No</option>
+                                <option value="Yes">Yes</option> 
                             </select>
                         </div>
                     </div>
-                    <div class="row container-fluid  p-2">
-                        <div class="col-sm-6 m-0 p-0"> <label for="">&nbsp;&nbsp;&nbsp;&nbsp;Applicable Form</label></div>
-                        <div class="col-sm-6 m-0 p-0"><input type="date" class="form-control" id="" placeholder=""></div> 
-                    </div>
-                    <div class="row container-fluid  p-2" >
-                        <div class="col-sm-6 m-0 p-0"> <label for="d">&nbsp;&nbsp;&nbsp;&nbsp;Bill From Place</label></div>
-                        <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" id="d" placeholder=""></div>
-                    </div>
-                    <div class="row container-fluid  p-2">
-                        <div class="col-sm-6 m-0 p-0"> <label for="d">&nbsp;&nbsp;&nbsp;&nbsp;Default period for the e-Invoice report</label></div>
-                        <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" id="d" placeholder="" value="3 days"></div>
-                    </div>
-                    <div class="row container-fluid  p-2">
-                        <div class="col-sm-6 m-0 p-0"> <label for="c">&nbsp;&nbsp;&nbsp;&nbsp;Send e-Way bill details with e-invoice
-                            <br><p><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(Applicable for sales transactions)</i></p></label>
+
+                    
+                    <div class="container-fluid p-0" id="e-Invoice_applicable">
+                        <div class="row container-fluid  p-2" id="">
+                            <div class="col-sm-6 m-0 p-0"> <label for="">&nbsp;&nbsp;&nbsp;&nbsp;Applicable Form</label></div>
+                            <div class="col-sm-6 m-0 p-0"><input type="date" class="form-control" id="" placeholder=""></div> <br><br>
                         </div>
-                        <div class="col-sm-6 m-0 p-0">
-                            <select name="Activate" id="e" class="form-control">
-                                <option value="">Yes</option>
-                                <option value="">No</option> 
-                            </select>
+                        <div class="row container-fluid  p-2" id="">
+                            <div class="col-sm-6 m-0 p-0"> <label for="d">&nbsp;&nbsp;&nbsp;&nbsp;Bill From Place</label></div>
+                            <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" id="d" placeholder=""></div>
                         </div>
+
+                        <div class="row container-fluid  p-2" id="">
+                            <div class="col-sm-6 m-0 p-0"> <label for="d">&nbsp;&nbsp;&nbsp;&nbsp;Default period for the e-Invoice report</label></div>
+                            <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" id="d" placeholder="" value="3 days"></div>
+                        </div>
+
+                        <div class="row container-fluid  p-2" id="">
+                            <div class="col-sm-6 m-0 p-0"> <label for="c">&nbsp;&nbsp;&nbsp;&nbsp;Send e-Way bill details with e-invoice
+                                <br><p><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(Applicable for sales transactions)</i></p></label>
+                            </div>
+                            <div class="col-sm-6 m-0 p-0" id="">
+                                <select name="Activate" id="e" class="form-control">
+                                    <option value="">Yes</option>
+                                    <option value="">No</option> 
+                                </select>
+                            </div>
+                        </div>
+                        
                     </div>
+                    
+                    
+                    
                 </div>
             </div>
             <div class="enter w-100 py-4"><button class="btn btn-info w-15">CREATE</button></div>       

@@ -8,6 +8,21 @@
             justify-content: center;        
         }
     </style>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $("#id_under").change(function() {
+            if ($(this).val() === "primary") {
+                $('#nature_group').hide();
+            } else {
+                $('#nature_group').show();
+            }
+            });
+            $("#id_under").trigger("change")
+        })
+    </script>
+
     <div class="m-0">
         <div class="row container-fluid  p-2 m-0">
             <div class="col-sm-3 m-0 p-0"></div>  
@@ -25,16 +40,45 @@
                             <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" id="b" placeholder=""></div> 
                             <div class="col-sm-7 m-0 p-0"></div>
                         </div>
-                        <div class="row container-fluid  p-2 m-0">
-                            <div class="col-sm-4 m-0 p-0"> <label for="b">Under</label></div>
+                        <div class="row container-fluid  p-2 m-0" id="under">
+                            <div class="col-sm-4 m-0 p-0"><label for="b">Under</label></div>
                             <div class="col-sm-6 m-0 p-0"> 
-                                <select name="optional" id="i" class="form-control">
+                                <select name="optional" id="id_under" class="form-control">
                                     <option value="">Primary</option>
                                     <option value="">Bank Accounts</option>
                                     <option value="">Bank OCC A/C</option> 
                                     <option value="">Bank OD A/C</option>
                                     <option value="">Branch / Divisions</option>
-                                    <option value="" selected>Capital Account</option> 
+                                    <option value="" selected="true">Capital Account</option> 
+                                    <option value="">Cash-in-Hand</option>
+                                    <option value="">Current Assets</option>
+                                    <option value="">Current Liabilities</option>
+                                    <option value="">Deposits (Asset)</option>
+                                    <option value="">Direct Expenses</option>
+                                    <option value="">Direct Incomes</option>
+                                    <option value="">Duties & Taxes</option>
+                                    <option value="">Expenses (Direct)</option>
+                                    <option value="">Expenses (Indirect)</option>
+                                    <option value="">Fixed Assets</option>
+                                    <option value="">Income (Direct)</option>
+                                    <option value="">Income (Indirect)</option>
+                                    <option value="">Indirect Expenses</option>
+                                    <option value="">Indirect Incomes</option>
+                                    <option value="">Investments</option>
+                                    <option value="">Loans & Advances (Asset)</option>
+                                    <option value="">Loans (Liability)</option>
+                                    <option value="">Misc. Expenses (ASSET)</option>
+                                    <option value="">Provisions</option>
+                                    <option value="">Purchase Accounts</option>
+                                    <option value="">Reserves & Surplus</option>
+                                    <option value="">Retained Earnings</option>
+                                    <option value="">Sales Accounts</option>
+                                    <option value="">Secured Loans</option>
+                                    <option value="">Stock-in-Hand</option>
+                                    <option value="">Sundry Creditors</option>
+                                    <option value="">Sundry Debtors</option>
+                                    <option value="">Suspense A/c</option>
+                                    <option value="">Unsecured Loans</option>
                                 </select>
                             </div>
                             <div class="col-sm-7 m-0 p-0"></div>
@@ -42,7 +86,7 @@
                     </div>
                     <div class="row container-fluid  p-0 m-0" style=" border: 1px solid rgba(128, 128, 128, 0.6);">
                         <div class="col-sm-12 m-0 p-4">
-                            <div class="row container-fluid  p-2">
+                            <div class="row container-fluid  p-2" id="nature_group">
                                 <div class="col-sm-8 m-0 p-0"> <label for="c">Nature of Group</label></div>
                                 <div class="col-sm-4 m-0 p-0">
                                     <select name="optional" id="i" class="form-control">

@@ -5,86 +5,50 @@
         .enter{
             display: flex;
             align-items: center;
-            justify-content: center;
-            
-        }
-        /* @media only screen and (max-width: 800px) {
-            #no-more-tables table, 
-            #no-more-tables thead, 
-            #no-more-tables tbody, 
-            #no-more-tables th, 
-            #no-more-tables td, 
-            #no-more-tables tr { 
-                display: block; 
-            }
-            #no-more-tables thead tr { 
-                position: absolute;
-                top: -9999px;
-                left: -9999px;
-            }
-            #no-more-tables tr { border: 1px solid #ccc; }
-            #no-more-tables td { 
-                border: none;
-                border-bottom: 1px solid #eee; 
-                position: relative;
-                padding-left: 50%; 
-                white-space: normal;
-                text-align:left;
-            }
-            #no-more-tables td:before { 
-                position: absolute;
-                top: 6px;
-                left: 6px;
-                width: 45%; 
-                padding-right: 10px; 
-                white-space: nowrap;
-                text-align:left;
-                font-weight: bold;
-            }
-            #no-more-tables td:before { content: attr(data-title); }
-        } */
-        th{
-            text-align: center;
-        }
+            justify-content: center;   
+        }  
     </style>
 
-    <div class="m-0">
-        <h6  class="bg-info text-light p-2 m-0 text-center">Multi-Currency Alteration</h6>
+    <div class="m-3">
+        <h6  class="bg-info text-light p-2 m-0 text-left">Multi-Currency Alteration</h6>
         <form class="p-5" style="background-color:rgba(0,0,0,.4);">
             <div class="p-3">
                 <div class="row container-fluid  p-2 m-0">
-                    <div class="col-sm-2 m-0 p-0"> <label for="a">Date for rate of exchange</label></div>
-                    <div class="col-sm-3 m-0 p-0"><p>1-Apr-22<input type="date" class="form-control" id="a" placeholder=""></p></div>
+                    <div class="col-sm-2 m-0 p-0"> <label for="a">Date for rate of exchange : </label></div>
+                    <div class="col-sm-3 m-0 p-0"><p>1-Apr-22</p></div>
                     <div class="col-sm-7 m-0 p-0"></div>
                 </div>
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-12"></div>
-                        <div id="no-more-tables"> 
-                            <table class="col-md-6 table-bordered table-striped table-condensed cf" >
-                                <thead class="cf">
-                                    <tr>
-                                        <th rowspan="2">S.No</th>
-                                        <th rowspan="2" class="numeric">Currency</th>
-                                        <th rowspan="2" class="numeric">Std Rate</th>
-                                        <th colspan="2" class="numeric">Selling Rate</th>
-                                        <th colspan="2">Buying Rate</th>
-                                        <tr>
-                                            <th class="numeric">Last Voucher Rate</th>
-                                            <th class="numeric">Specified Rate</th>
-                                            <th class="numeric">Last Voucher Rate</th>
-                                            <th class="numeric">Specified Rate</th>
-                                        </tr>
-                                    </tr>
-                                </thead>
-                                <!-- <tbody>
-                                    <tr>
-                                        <td data-title="Name"></td>
-                                    </tr>      
-                                </tbody> -->
-                            </table>
-                        </div>
-                    </div>
+
+                <div style="overflow: scroll ;max-height: 70vh; width: 100%;background-color:rgba(0,0,0,0.4); ">
+                    <Table class="w-100 table text-center" border="1">
+                        <tr>
+                            <th rowspan="2">Sl.no</th>
+                            <th rowspan="2">currency</th>
+                            <th rowspan="2">Std.rate</th>
+                            <th colspan="2">Selling rate</th>
+                            <th colspan="2">Buying rate</th>
+                            <th rowspan="2">Action</th>
+                        </tr>
+                        <tr>
+                            <th>last voucher rate</th>
+                            <th>Specified rate</th>
+                            <th>last voucher rate</th>
+                            <th>Specified rate</th>
+                        </tr>
+                        <tr>
+                            <form action="save_currency_data" method="post">
+                                {% csrf_token %}
+                                <td><input type="text" class="w-50 from-control" name="slno"></td>
+                                <td><input type="text" class="from-control" name="curname" style="width: 500px;"></td></td>
+                                <td><input type="text" class="w-100 from-control" name="stdr"></td>
+                                <td><input type="text" class="w-100 from-control" name="lvr"></td>
+                                <td><input type="text" class="w-100 from-control" name="sr"></td>
+                                <td><input type="text" class="w-100 from-control" name="lvr2"></td>
+                                <td><input type="text" class="w-100 from-control" name="sr2"></td>
+                                <td><button class="btn btn-info">Enter</button></td> 
+                            </form>
+                        </tr>   
+                    </Table>
                 </div>
             </div>
         </form>
