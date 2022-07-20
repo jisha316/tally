@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+    {% block body %}
+    {% load static %}
+    <style>
+        .enter{
+            display: flex;
+            align-items: center;
+            justify-content: center;        
+        }
+    </style>
+    <div class="m-0">
+        <div class="row container-fluid  p-2 m-0">
+            <div class="col-sm-3 m-0 p-0"></div>  
+            <div class="col-sm-6 m-0 p-0">
+                <h6  class="bg-info text-light p-2 m-0 text-left">Bank Details</h6>
+                
+                <form class="p-5" style="background-color:rgba(0,0,0,.4);">
+                    <h6  class=" text-light p-2 m-0 text-center">Bank Details For : ledger name</h6>
+                    <div class="p-3">
+                        <div class="row container-fluid  p-2 m-0">
+                            <div class="col-sm-4 m-0 p-0"> <label for="a">Transaction Type</label></div>
+                            <div class="col-sm-6 m-0 p-0">
+                                <!-- <input type="text" class="form-control" id="a" placeholder="">-->
+                            </div>
+                            <div class="col-sm-4 m-0 p-0"></div>
+                        </div>
+                        <div class="row container-fluid  p-2 m-0">
+                            <div class="col-sm-4 m-0 p-0"><select name="optional" id="i" class="form-control">
+                                <option value="">End of List</option>
+                                <option value="">Cheque</option>
+                                <option value="">e - Fund Trasfer</option>
+                                <option value="" selected>Others</option>
+                            </select>
+                            <div class="col-sm-6 m-0 p-0"></div>
+                            <div class="col-sm-7 m-0 p-0"></div>
+                        </div>
+                    </div>
+                    <div class="enter w-100 py-4"><button class="btn btn-info w-15">CREATE</button></div>  
+                </form>
+            </div>
+        <div class="col-sm-5 m-0 p-0"></div>
+    </div>  
+{% endblock %}

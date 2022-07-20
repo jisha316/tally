@@ -5,65 +5,80 @@
         .enter{
             display: flex;
             align-items: center;
-            justify-content: center;
-            
+            justify-content: center;   
         }
     </style>
-    <script src="{% static 'js/country-states.js' %}"></script>
+    
     <script>
-        // user country code for selected option
-        let user_country_code = "IN";
+        window.CountryChange = function () {
+            var countryState = [
+                [
+                    'US', [
+                        ['', 'State/Province'],
+                        ['AL', 'Alabama'],
+                        ['AK', 'Alaska'],
+                        ['AZ', 'Arizona'],
+                        ['AR', 'Arkansas'],
+                    ],
+                ],
+                [
+                    'CA', [
+                        ['', 'State/Province'],
+                        ['AB', 'Alberta'],
+                        ['BC', 'British Columbia'],
+                        ['MB', 'Manitoba'],
+                        ['NB', 'New Brunswick'],
+                    ]
+                ]
+                // [
+                //     'IN', [
+                //         ['', 'State/Province'],
+                //         ['KL', 'Kerala'],
+                //         ['BR', 'Bihar'],
+                //         ['GA', 'Goa'],
+                //         ['AS', 'Assam'],
+                //     ]
+                // ]
+            ];
 
-        (function () {
-            // script https://www.html-code-generator.com/html/drop-down/country-region
+            var countryElement = document.getElementById('countryId');
+            var stateElement = document.getElementById('stateId');
+            var stateLabelElement = document.getElementById('stateLabel');
+            var stateFieldElement = document.getElementById('stateField');
 
-            // Get the country name and state name from the imported script.
-            let country_list = country_and_states['country'];
-            let states_list = country_and_states['states'];
+            if (countryElement && stateElement) {
+                var listOfState = [
+                    ['XX', 'None']
+                ];
 
-            // creating country name drop-down
-            let option =  '';
-            option += '<option>select country</option>';
-            for(let country_code in country_list){
-                // set selected option user country
-                let selected = (country_code == user_country_code) ? ' selected' : '';
-                option += '<option value="'+country_code+'"'+selected+'>'+country_list[country_code]+'</option>';
-            }
-            document.getElementById('country').innerHTML = option;
-
-            // creating states name drop-down
-            let text_box = '<input type="text" class="input-text" id="state">';
-            let state_code_id = document.getElementById("state-code");
-
-            function create_states_dropdown() {
-                // get selected country code
-                let country_code = document.getElementById("country").value;
-                let states = states_list[country_code];
-                // invalid country code or no states add textbox
-                if(!states){
-                    state_code_id.innerHTML = text_box;
-                    return;
-                }
-                let option = '';
-                if (states.length > 0) {
-                    option = '<select id="state">\n';
-                    for (let i = 0; i < states.length; i++) {
-                        option += '<option value="'+states[i].code+'">'+states[i].name+'</option>';
+                var currentCountry = countryElement.options[countryElement.selectedIndex].value;
+                    for (var i = 0; i < countryState.length; i++) {
+                    if (currentCountry == countryState[i][0]) {
+                        listOfState = countryState[i][1];
                     }
-                    option += '</select>';
-                } else {
-                    // create input textbox if no states 
-                    option = text_box
                 }
-                state_code_id.innerHTML = option;
+
+                if (listOfState.length < 2) {
+                    stateFieldElement.style.display = "none";
+                } 
+                else {
+                    stateFieldElement.style.display = "inline-block";
+                }
+                var selectedState;
+                for (var i = 0; i < stateElement.length; i++) {
+                    if (stateElement.options[i].selected === true) {
+                        selectedState = stateElement.options[i].value;
+                    }
+                }
+                stateElement.options.length = 0;
+                for (var i = 0; i < listOfState.length; i++) {
+                    stateElement.options[i] = new Option(listOfState[i][1], listOfState[i][0]);
+                    if (listOfState[i][0] == selectedState) {
+                        stateElement.options[i].selected = true;
+                    }
+                }
             }
-
-            // country select change event
-            const country_select = document.getElementById("country");
-            country_select.addEventListener('change', create_states_dropdown);
-
-            create_states_dropdown();
-        })();
+        }
     </script>
 
   <div class="m-0">
@@ -140,16 +155,27 @@
                         <div class="col-sm-6 m-0 p-0"> <label for="d">Address</label></div>
                         <div class="col-sm-6 m-0 p-0"><input type="textarea" class="form-control" id="d" placeholder=""></div>
                     </div>
-                    <div class="row container-fluid  p-2">
-                        <div class="col-sm-6 m-0 p-0"> <label for="state">State</label></div>
-                        <div class="col-sm-6 m-0 p-0"><span id="state-code"><input type="text" id="state"></span></div>
+                    <div class="container-fluid  p-0" id="stateField">
+                        <div class="row container-fluid  p-2">
+                            <div class="col-sm-6 m-0 p-0"> <label  for="" id="stateLabel">State</label></div>
+                            <div class="col-sm-6 m-0 p-0" >
+                                <select class="form-control" name="portlet:namespace/>State" id="stateId">
+                                    <option value="">State/Province</option>
+                                </select>
+                            </div>
+                        </div>
                     </div>
+                    
                     <div class="row container-fluid  p-2">
                         <div class="col-sm-6 m-0 p-0"> <label for="country">Country</label></div>
                         <div class="col-sm-6 m-0 p-0">
-                            <select name="" id="country">
-                                <option>select country</option>
+                            <select class="form-control" name=" portlet:namespace/>Country" id="countryId" onchange="window.CountryChange()">
+                                <option value="0">Select Country</option>
+                                <option value='US'>United States</option>
+                                <option value='CA'>Canada</option>
+                                <option value='IN'>India</option>
                             </select>
+                            
                         </div>
                     </div>
                     <div class="row container-fluid  p-2">
@@ -164,18 +190,9 @@
                     <div class="row container-fluid  p-2">
                         <div class="col-sm-6 m-0 p-0"> <label for="e">Provide Bank details</label></div>
                         <div class="col-sm-6 m-0 p-0">
-                            <script type="text/javascript">
-                                function text(x){
-                                    if (x == 0)
-                                        document.getElementById(code).style="display: block;"
-                                    else
-                                        document.getElementById(code).style="display: none;"
-                                }
-
-                            </script>
                             <select  class="form-control">
-                                <option value="no" onclick="text(0).checked">No</option> 
-                                <option value="yes" onclick="text(1)">Yes</option>
+                                <option value="">No</option> 
+                                <option value="">Yes</option>
                             </select>
                         </div>
                     </div>

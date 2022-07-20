@@ -48,6 +48,12 @@ urlpatterns = [
 
     path('tds_details',views.tds_details,name='tds_details'),
 
+    path('bank_details',views.bank_details,name='bank_details'),
+
+    path('shut_cmpny',views.shut_cmpny,name='shut_cmpny'),
+
+    path('shut_msg',views.shut_msg,name='shut_msg'),
+
     path('c_rates',views.c_rates,name='c_rates'),
 
     path('cn',views.cn,name='cn'),

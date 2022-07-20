@@ -1,19 +1,14 @@
+
+
+
+
 {% extends 'base.html' %}
     {% block body %}
     {% load static %}
     <style>
-        .enter{
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        
-        }
-        #h{
-            background-color:rgba(0,0,0,.4);
-        }
         .card {
           box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-          max-width: 668px;
+          max-width: 500px;
           margin: auto;
           text-align: right;
           font-family: arial;
@@ -37,47 +32,53 @@
             background-color:orange;
             color: rgb(15, 14, 14);
         }
-    </style>
-    <div class="m-0">
-        <div class="row container-fluid  p-2 m-0">
-            <div class="col-sm-4 m-0 p-0">
-                <h6  class="bg-info text-light p-2 m-0 text-left">List of companies</h6>
-            </div>  
-            <div class="col-sm-4 m-0 p-0">
-                <h6  class="bg-info text-light p-2 m-0 text-center">List of companies</h6>
-            </div>
-            <div class="col-sm-4 m-0 p-0">
-                <h6  class="bg-info text-light p-2 m-0 text-right">List of companies</h6>
-            </div>
-                
-                
-                
-                <!-- <div class="row container-fluid  p-0 m-0">
-                    <div class="col-sm-4 m-0 p-0"><h6 id="h" class="text-light p-1 m-0 text-left">Date Path/Name</h6></div>  
-                    <div class="col-sm-4 m-0 p-0"><h6  id="h"class="text-light p-1 m-0 text-center">Number</h6></div>
-                    <div class="col-sm-4 m-0 p-0"><h6  id="h"class="text-light p-1 m-0 text-right">Period</h6></div>    -->
-                    
-                            <div class="row container-fluid  p-0 m-0">
-                                <h6 id="h" class="text-light p-1 m-30px text-left">Date Path/Name</h6>
-                                <h6  id="h"class="text-light p-1 m-0px text-center">Number</h6>
-                                <h6  id="h"class="text-light p-1 m-0 text-right">Period</h6>
-                            </div>  
-                            <!-- <div class="col-sm-4 m-0 p-0"><h6  id="h"class="text-light p-1 m-0 text-center">Number</h6></div>
-                            <div class="col-sm-4 m-0 p-0"><h6  id="h"class="text-light p-1 m-0 text-right">Period</h6></div>  -->
-                         
-                        <div class="card">
-                            <a href="create_cmpny"><button  class="btns_prnt" id="create"><h6>Create Company</h6></button></a>
-                        <a href=""><button  class="btns_prnt" id="create"><h6>Select Company</h6></button></a>
-                        <a href=""><button  class="btns_prnt" id="create"><h6>Shut Company</h6></button></a>
-                        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-                        </div>
-                        
-                    </div>
-                </div>  
-            </div>
-            
-        </div>  
-         
-    </div>
+    </style> 
     
+    <div class="m-3">
+        <h6  class="bg-info text-light p-0 m-0 text-left">Select Company</h6>
+        <form class="p-5" style="background-color:rgba(0,0,0,.4);">
+            <div class="p-3">
+                
+                <div class="card">
+                    <h6  class="bg-info text-light p-1 m-0 text-left">List of companies</h6>
+                    
+                    <div class="row" style="width: 100%;text-align:left;background-color: rgba(240, 248, 255, 0);border: none;">
+                        <div class="col-md-5">Data Path/Name</div>
+                        <div class="col-md-4">Number</div>
+                        <div class="col-md-3">Period</div>
+                    </div>
+                    
+                        <br>
+                        <a href="create_cmpny"><button  class="btns_prnt" id="create"><h6>Create Company</h6></button></a>
+                        <a href="select_c"><button  class="btns_prnt" id="create"><h6>Select Remote Company</h6></button></a>
+                        <a href=""><button  class="btns_prnt" id="create"><h6>Specify Path</h6></button></a>
+                        <a href=""><button  class="btns_prnt" id="create"><h6>Select From Drive</h6></button></a>
+                    
+                
+                    <br>
+                    <a href="">
+                        <button  class="btns_prnt" id="create">
+                        <div class="row">
+                            <div class="col-md-3" style="color: white;">ABC pvt ltd</div>
+                            <div class="col-md-3" style="color: white;">(10000)</div>
+                            <div class="col-md-6" style="color: white;">1-Apr-22 to 31-Mar-23</div>
+                        </div>
+                        </button>
+                        </a>
+                        
+                        <a href="">
+                            <button  class="btns_prnt" id="create">
+                            <div class="row">
+                                <div class="col-md-3" style="color: white;">def pvt ltd</div>
+                                <div class="col-md-3" style="color: white;">(10001)</div>
+                                <div class="col-md-6" style="color: white;">1-Apr-22 to 31-Mar-23</div>
+                            </div>
+                            </button>
+                            </a>
+                            <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>
+                </div>    
+                </div>
+            </div>   
+        </form>
+    </div>      
 {% endblock %}

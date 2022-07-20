@@ -85,6 +85,15 @@ def tds_details(request):
 def c_rates(request):
     return render(request, 'jisha/c_rates.html')
 
+def bank_details(request):
+    return render(request, 'jisha/bank_details.html')
+
+def shut_cmpny(request):
+    return render(request, 'jisha/shut_cmpny.html')
+
+def shut_msg(request):
+    return render(request, 'jisha/shut_msg.html')
+
 
 def cn(request):
     return render(request, 'jisha/cn.html')
