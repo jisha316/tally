@@ -8,20 +8,7 @@
             justify-content: center;        
         }
     </style>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            $("#id_under").change(function() {
-            if ($(this).val() === "primary") {
-                $('#nature_group').hide();
-            } else {
-                $('#nature_group').show();
-            }
-            });
-            $("#id_under").trigger("change")
-        })
-    </script>
+    
 
     <div class="m-0">
         <div class="row container-fluid  p-2 m-0">
@@ -40,16 +27,16 @@
                             <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" id="b" placeholder=""></div> 
                             <div class="col-sm-7 m-0 p-0"></div>
                         </div>
-                        <div class="row container-fluid  p-2 m-0" id="under">
+                        <div class="row container-fluid  p-2 m-0" id="form1">
                             <div class="col-sm-4 m-0 p-0"><label for="b">Under</label></div>
-                            <div class="col-sm-6 m-0 p-0"> 
-                                <select name="optional" id="id_under" class="form-control">
+                            <div class="col-sm-6 m-0 p-0" > 
+                                <select name="" id="under" class="form-control" onchange="showunder()" required>
                                     <option value="">Primary</option>
                                     <option value="">Bank Accounts</option>
                                     <option value="">Bank OCC A/C</option> 
                                     <option value="">Bank OD A/C</option>
                                     <option value="">Branch / Divisions</option>
-                                    <option value="" selected="true">Capital Account</option> 
+                                    <option value="" selected>Capital Account</option> 
                                     <option value="">Cash-in-Hand</option>
                                     <option value="">Current Assets</option>
                                     <option value="">Current Liabilities</option>
@@ -86,7 +73,7 @@
                     </div>
                     <div class="row container-fluid  p-0 m-0" style=" border: 1px solid rgba(128, 128, 128, 0.6);">
                         <div class="col-sm-12 m-0 p-4">
-                            <div class="row container-fluid  p-2" id="nature_group">
+                            <div class="row container-fluid  p-2" id="form2">
                                 <div class="col-sm-8 m-0 p-0"> <label for="c">Nature of Group</label></div>
                                 <div class="col-sm-4 m-0 p-0">
                                     <select name="optional" id="i" class="form-control">
