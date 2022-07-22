@@ -1261,3 +1261,321 @@ function bill(){
   
         
     {% endblock %}
+
+
+
+<!-- <option value="">Bank Accounts</option>
+<option value="">Bank OCC A/C</option> 
+<option value="">Bank OD A/C</option>
+<option value="">Branch / Divisions</option>
+<option value="" selected>Capital Account</option> 
+<option value="">Cash-in-Hand</option>
+<option value="">Current Assets</option>
+<option value="">Current Liabilities</option>
+<option value="">Deposits (Asset)</option>
+<option value="">Direct Expenses</option>
+<option value="">Direct Incomes</option>                              
+<option value="">Duties & Taxes</option>   
+<option value="">Expenses (Direct)</option>
+<option value="">Expenses (Indirect)</option>
+<option value="">Fixed Assets</option>
+<option value="">Income (Direct)</option>
+<option value="">Income (Indirect)</option>
+<option value="">Indirect Expenses</option>
+<option value="">Indirect Incomes</option>
+<option value="">Investments</option>
+<option value="">Loans & Advances (Asset)</option>
+<option value="">Loans (Liability)</option>
+<option value="">Misc. Expenses (ASSET)</option>
+<option value="">Provisions</option>
+<option value="">Purchase Accounts</option>
+<option value="">Reserves & Surplus</option>
+<option value="">Retained Earnings</option>
+<option value="">Sales Accounts</option>
+<option value="">Secured Loans</option>
+<option value="">Stock-in-Hand</option>
+<option value="">Sundry Creditors</option>
+<option value="">Sundry Debtors</option>
+<option value="">Suspense A/c</option>
+<option value="">Unsecured Loans</option> -->
+
+
+
+<!-- if( a == "Primary" ){
+    console.log(a);
+
+    document.getElementById('primary').style.display = "flex";
+    document.getElementById('gorss_profit').style.display = "none";
+    document.getElementById('assets').style.display = "none";
+    document.getElementById('bankocc').style.display = "none";
+    document.getElementById('liabilities').style.display = "none";
+    document.getElementById('account').style.display = "none";
+    
+}
+else if( a == "BankAccount1" ) {
+    document.getElementById('assets').style.display = "flex";
+    document.getElementById('primary').style.display = "none";
+    document.getElementById('gorss_profit').style.display = "none";
+    document.getElementById('bankocc').style.display = "none";
+    document.getElementById('liabilities').style.display = "none";
+    document.getElementById('account').style.display = "none";
+    
+}
+else if( a == "Bank_OCC_AC" ) {
+    document.getElementById('bankocc').style.display = "flex";
+    document.getElementById('primary').style.display = "none";
+    document.getElementById('gorss_profit').style.display = "none";
+    document.getElementById('assets').style.display = "none";
+    document.getElementById('liabilities').style.display = "none";
+    document.getElementById('account').style.display = "none";
+}
+else if( a == "Bankod1" ) {
+    document.getElementById('bankocc').style.display = "flex";
+    document.getElementById('primary').style.display = "none";
+    document.getElementById('gorss_profit').style.display = "none";
+    document.getElementById('assets').style.display = "none";
+    document.getElementById('liabilities').style.display = "none";
+    document.getElementById('account').style.display = "none";
+}
+// else if( a == "Branch_divisions" ) {
+//     document.getElementById('primary').style.display = "none";
+//     document.getElementById('gorss_profit').style.display = "none";
+//     document.getElementById('assets').style.display = "none";
+//     document.getElementById('bankocc').style.display = "none";
+//     document.getElementById('liabilities').style.display = "none";
+//     document.getElementById('account').style.display = "none";
+// }
+// else if( a == "Capital_amount" ) {
+//     document.getElementById('primary').style.display = "none";
+//     document.getElementById('gorss_profit').style.display = "none";
+//     document.getElementById('bankocc').style.display = "none";
+//     document.getElementById('assets').style.display = "none";
+//     document.getElementById('liabilities').style.display = "none";
+//     document.getElementById('account').style.display = "none";   
+// }
+else if( a == "Cash_in_hand" ) {
+    document.getElementById('assets').style.display = "flex";
+    document.getElementById('primary').style.display = "none";
+    document.getElementById('gorss_profit').style.display = "none";
+    document.getElementById('bankocc').style.display = "none";
+    document.getElementById('liabilities').style.display = "none"; 
+    document.getElementById('account').style.display = "none"; 
+}
+// else if( a == "Current_Assets" ) {
+//     document.getElementById('primary').style.display = "none";
+//     document.getElementById('gorss_profit').style.display = "none";
+//     document.getElementById('assets').style.display = "none";
+//     document.getElementById('bankocc').style.display = "none";
+//     document.getElementById('liabilities').style.display = "none";
+//     document.getElementById('account').style.display = "none";
+// }
+// else if( a == "Current_Liabilities" ) {
+//     document.getElementById('primary').style.display = "none";
+//     document.getElementById('gorss_profit').style.display = "none";
+//     document.getElementById('assets').style.display = "none";
+//     document.getElementById('bankocc').style.display = "none";
+//     document.getElementById('liabilities').style.display = "none";
+//     document.getElementById('account').style.display = "none";
+// }
+else if( a == "Deposits" ) {
+    document.getElementById('assets').style.display = "flex";
+    document.getElementById('primary').style.display = "none";
+    document.getElementById('gorss_profit').style.display = "none";
+    document.getElementById('bankocc').style.display = "none";
+    document.getElementById('liabilities').style.display = "none";
+    document.getElementById('account').style.display = "none";
+}
+// else if( a == "Direct_Expenses" ) {
+//     document.getElementById('primary').style.display = "none";
+//     document.getElementById('gorss_profit').style.display = "none";
+//     document.getElementById('assets').style.display = "none";
+//     document.getElementById('bankocc').style.display = "none";
+//     document.getElementById('liabilities').style.display = "none";
+//     document.getElementById('account').style.display = "none";
+
+// }
+// else if( a == "Dirct_Income" ) {
+//     document.getElementById('primary').style.display = "none";
+//     document.getElementById('gorss_profit').style.display = "none";
+//     document.getElementById('assets').style.display = "none";
+//     document.getElementById('bankocc').style.display = "none";
+//     document.getElementById('liabilities').style.display = "none";
+//     document.getElementById('account').style.display = "none";
+// }
+else if( a == "Duties_And_Tax" ) {
+    document.getElementById('liabilities').style.display = "flex";
+    document.getElementById('primary').style.display = "none";
+    document.getElementById('gorss_profit').style.display = "none";
+    document.getElementById('assets').style.display = "none";
+    document.getElementById('bankocc').style.display = "none";
+    document.getElementById('account').style.display = "none";
+}
+// else if( a == "Expences_Direct" ) {
+//     document.getElementById('primary').style.display = "none";
+//     document.getElementById('gorss_profit').style.display = "none";
+//     document.getElementById('assets').style.display = "none";
+//     document.getElementById('bankocc').style.display = "none";
+//     document.getElementById('liabilities').style.display = "none";
+//     document.getElementById('account').style.display = "none";
+// }
+// else if( a == "Expences_Indirect" ) {
+//     document.getElementById('primary').style.display = "none";
+//     document.getElementById('gorss_profit').style.display = "none";
+//     document.getElementById('assets').style.display = "none";
+//     document.getElementById('bankocc').style.display = "none";
+//     document.getElementById('liabilities').style.display = "none";
+//     document.getElementById('account').style.display = "none";
+// }
+// else if( a == "Fixed_Assets" ) {
+//     document.getElementById('primary').style.display = "none";
+//     document.getElementById('gorss_profit').style.display = "none";
+//     document.getElementById('assets').style.display = "none";
+//     document.getElementById('bankocc').style.display = "none";
+//     document.getElementById('liabilities').style.display = "none";
+//     document.getElementById('account').style.display = "none";
+// }
+// else if( a == "Income_Direct" ) {
+//     document.getElementById('primary').style.display = "none";
+//     document.getElementById('gorss_profit').style.display = "none";
+//     document.getElementById('assets').style.display = "none";
+//     document.getElementById('bankocc').style.display = "none";
+//     document.getElementById('liabilities').style.display = "none";
+//     document.getElementById('account').style.display = "none";
+// }
+// else if( a == "Income_Indirect" ) {
+//     document.getElementById('primary').style.display = "none";
+//     document.getElementById('gorss_profit').style.display = "none";
+//     document.getElementById('assets').style.display = "none";
+//     document.getElementById('bankocc').style.display = "none";
+//     document.getElementById('liabilities').style.display = "none";
+//     document.getElementById('account').style.display = "none";
+// }
+// else if( a == "Investments" ) {
+//     document.getElementById('primary').style.display = "none";
+//     document.getElementById('gorss_profit').style.display = "none";
+//     document.getElementById('assets').style.display = "none";
+//     document.getElementById('bankocc').style.display = "none";
+//     document.getElementById('liabilities').style.display = "none";
+//     document.getElementById('account').style.display = "none";
+// }
+else if( a == "Loans_Advance" ) {
+    document.getElementById('assets').style.display = "flex";
+    document.getElementById('primary').style.display = "none";
+    document.getElementById('gorss_profit').style.display = "none";
+    document.getElementById('bankocc').style.display = "none";
+    document.getElementById('liabilities').style.display = "none";
+    document.getElementById('account').style.display = "none";
+}
+// else if( a == "Loans_liability" ) {
+//     document.getElementById('primary').style.display = "none";
+//     document.getElementById('gorss_profit').style.display = "none";
+//     document.getElementById('assets').style.display = "none";
+//     document.getElementById('bankocc').style.display = "none";
+//     document.getElementById('liabilities').style.display = "none";
+//     document.getElementById('account').style.display = "none";
+// }
+// else if( a == "Mis_Expenses" ) {
+//     document.getElementById('primary').style.display = "none";
+//     document.getElementById('gorss_profit').style.display = "none";
+//     document.getElementById('assets').style.display = "none";
+//     document.getElementById('bankocc').style.display = "none";
+//     document.getElementById('liabilities').style.display = "none";
+//     document.getElementById('account').style.display = "none";
+// }
+else if( a == "Provisions" ) {
+    document.getElementById('liabilities').style.display = "flex";
+    document.getElementById('primary').style.display = "none";
+    document.getElementById('gorss_profit').style.display = "none";
+    document.getElementById('assets').style.display = "none";
+    document.getElementById('bankocc').style.display = "none";
+    document.getElementById('account').style.display = "none";
+}
+// else if( a == "Purchase_Account" ) {
+//     document.getElementById('primary').style.display = "none";
+//     document.getElementById('gorss_profit').style.display = "none";
+//     document.getElementById('assets').style.display = "none";
+//     document.getElementById('bankocc').style.display = "none";
+//     document.getElementById('liabilities').style.display = "none";
+//     document.getElementById('account').style.display = "none";
+// }
+else if( a == "Reserves_Surplus" ) {
+    document.getElementById('account').style.display = "flex";
+    document.getElementById('primary').style.display = "none";
+    document.getElementById('gorss_profit').style.display = "none";
+    document.getElementById('assets').style.display = "none";
+    document.getElementById('bankocc').style.display = "none";
+    document.getElementById('liabilities').style.display = "none";
+}
+else if( a == "Retained" ) {
+    document.getElementById('account').style.display = "flex";
+    document.getElementById('primary').style.display = "none";
+    document.getElementById('gorss_profit').style.display = "none";
+    document.getElementById('assets').style.display = "none";
+    document.getElementById('bankocc').style.display = "none";
+    document.getElementById('liabilities').style.display = "none";
+}
+// else if( a == "Sales_Account" ) {
+//     document.getElementById('primary').style.display = "none";
+//     document.getElementById('gorss_profit').style.display = "none";
+//     document.getElementById('assets').style.display = "none";
+//     document.getElementById('bankocc').style.display = "none";
+//     document.getElementById('liabilities').style.display = "none";
+//     document.getElementById('account').style.display = "none";
+// }
+else if( a == "Secured_loans" ) {
+    document.getElementById('bankocc').style.display = "flex";
+    document.getElementById('primary').style.display = "none";
+    document.getElementById('gorss_profit').style.display = "none";
+    document.getElementById('assets').style.display = "none";
+    document.getElementById('liabilities').style.display = "none";
+    document.getElementById('account').style.display = "none";
+}
+else if( a == "Stock" ) {
+    document.getElementById('assets').style.display = "flex";
+    document.getElementById('primary').style.display = "none";
+    document.getElementById('gorss_profit').style.display = "none";
+    document.getElementById('bankocc').style.display = "none";
+    document.getElementById('liabilities').style.display = "none";
+    document.getElementById('account').style.display = "none";
+}
+else if( a == "Sundry_Creditors" ) {
+    document.getElementById('liabilities').style.display = "flex";
+    document.getElementById('primary').style.display = "none";
+    document.getElementById('gorss_profit').style.display = "none";
+    document.getElementById('assets').style.display = "none";
+    document.getElementById('bankocc').style.display = "none";
+    document.getElementById('account').style.display = "none";
+}
+else if( a == "Sundry_Debtors" ) {
+    document.getElementById('assets').style.display = "flex";
+    document.getElementById('primary').style.display = "none";
+    document.getElementById('gorss_profit').style.display = "none";
+    document.getElementById('bankocc').style.display = "none";
+    document.getElementById('liabilities').style.display = "none";
+    document.getElementById('account').style.display = "none";
+}
+// else if( a == "Suspence" ) {
+//     document.getElementById('primary').style.display = "none";
+//     document.getElementById('gorss_profit').style.display = "none";
+//     document.getElementById('assets').style.display = "none";
+//     document.getElementById('bankocc').style.display = "none";
+//     document.getElementById('liabilities').style.display = "none";
+//     document.getElementById('account').style.display = "none";
+// }
+else if( a == "Unsecured_loans" ) {
+    document.getElementById('bankocc').style.display = "flex";
+    document.getElementById('primary').style.display = "none";
+    document.getElementById('gorss_profit').style.display = "none";
+    document.getElementById('assets').style.display = "none";
+    document.getElementById('liabilities').style.display = "none";
+    document.getElementById('account').style.display = "none";
+}
+else{
+    document.getElementById('bankocc').style.display = "none";
+    document.getElementById('primary').style.display = "none";
+    document.getElementById('gorss_profit').style.display = "none";
+    document.getElementById('assets').style.display = "none";
+    document.getElementById('liabilities').style.display = "none";
+    document.getElementById('account').style.display = "none";
+}
+} -->
