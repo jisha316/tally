@@ -11,9 +11,10 @@
             display: none;
         }
     </style>
-    <div class="m-0">
+    <script src="{% static 'js/vouchers.js' %}"></script>
+    <div class="m-2">
     <h6  class="bg-info text-light p-2 m-0 text-center">Voucher Type Creation</h6>
-            <form class="p-5" style="background-color:rgba(0,0,0,.4);">
+            <form class="p-5" style="background-color:rgba(0,0,0,.4);" autocomplete="off">
                 <div class="p-3">
                     <div class="row container-fluid  p-2 m-0">
                         <div class="col-sm-2 m-0 p-0"> <label for="a">Name</label></div>
@@ -39,8 +40,8 @@
                         <div class="row container-fluid  p-2">
                             <div class="col-sm-6 m-0 p-0"> <label for="c">Select type of voucher</label></div>
                             <div class="col-sm-6 m-0 p-0">
-                                <select name="" id="voucher_type" class="form-control" onchange="showVoucherType()" required>
-                                    <option></option>
+                                <select name="" id="voucher_type" class="form-control" onchange="showVoucherType()" required >
+                                    <option value="Abr"></option>
                                     <option value="Attendance">Attendance</option>  
                                     <option value="Contra">Contra</option> 
                                     <option value="Credit_Note">Credit Note</option>
@@ -69,11 +70,11 @@
                             </div>
                         </div>
 
-                        <!-- <div class="row container-fluid  p-2" id="">
+                        <div class="row container-fluid  p-2" id="abr">
                             <div class="col-sm-6 m-0 p-0"> <label for="d">Abbreviation</label></div>
-                            <div class="col-sm-6 m-0 p-0" ><input type="text" class="form-control" id="vouch_type" placeholder=""></div>
-                        </div> -->
-                        <div class="row container-fluid hide p-2" id="attd">
+                            <div class="col-sm-6 m-0 p-0" ><input type="text" class="form-control" id="" placeholder=""></div>
+                        </div>
+                        <!-- <div class="row container-fluid hide p-2" id="attd">
                             <div class="col-sm-6 m-0 p-0"> <label for="d">Abbreviation</label></div>
                             <div class="col-sm-6 m-0 p-0" ><input type="text" class="form-control" id="" value="attd"></div>
                         </div>
@@ -97,6 +98,78 @@
                             <div class="col-sm-6 m-0 p-0"> <label for="d">Abbreviation</label></div>
                             <div class="col-sm-6 m-0 p-0" ><input type="text" class="form-control" id="" value="Job Wrk In Ordr"></div>
                         </div>
+                        <div class="row container-fluid hide p-2" id="job_work_out">
+                            <div class="col-sm-6 m-0 p-0"> <label for="d">Abbreviation</label></div>
+                            <div class="col-sm-6 m-0 p-0" ><input type="text" class="form-control" id="" value="Job Wrk Out Ordr"></div>
+                        </div>
+                        <div class="row container-fluid hide p-2" id="journal">
+                            <div class="col-sm-6 m-0 p-0"> <label for="d">Abbreviation</label></div>
+                            <div class="col-sm-6 m-0 p-0" ><input type="text" class="form-control" id="" value="Jrnl"></div>
+                        </div>
+                        <div class="row container-fluid hide p-2" id="material_in">
+                            <div class="col-sm-6 m-0 p-0"> <label for="d">Abbreviation</label></div>
+                            <div class="col-sm-6 m-0 p-0" ><input type="text" class="form-control" id="" value="Mat In"></div>
+                        </div>
+                        <div class="row container-fluid hide p-2" id="material_out">
+                            <div class="col-sm-6 m-0 p-0"> <label for="d">Abbreviation</label></div>
+                            <div class="col-sm-6 m-0 p-0" ><input type="text" class="form-control" id="" value="Mat Out"></div>
+                        </div>
+                        <div class="row container-fluid hide p-2" id="memorandum">
+                            <div class="col-sm-6 m-0 p-0"> <label for="d">Abbreviation</label></div>
+                            <div class="col-sm-6 m-0 p-0" ><input type="text" class="form-control" id="" value="Memo"></div>
+                        </div>
+                        <div class="row container-fluid hide p-2" id="payment">
+                            <div class="col-sm-6 m-0 p-0"> <label for="d">Abbreviation</label></div>
+                            <div class="col-sm-6 m-0 p-0" ><input type="text" class="form-control" id="" value="Pymt"></div>
+                        </div>
+                        <div class="row container-fluid hide p-2" id="payroll">
+                            <div class="col-sm-6 m-0 p-0"> <label for="d">Abbreviation</label></div>
+                            <div class="col-sm-6 m-0 p-0" ><input type="text" class="form-control" id="" value="Pyrl"></div>
+                        </div>
+                        <div class="row container-fluid hide p-2" id="Physical_Stock">
+                            <div class="col-sm-6 m-0 p-0"> <label for="d">Abbreviation</label></div>
+                            <div class="col-sm-6 m-0 p-0" ><input type="text" class="form-control" id="" value="Phy Stk"></div>
+                        </div>
+                        <div class="row container-fluid hide p-2" id="purchase">
+                            <div class="col-sm-6 m-0 p-0"> <label for="d">Abbreviation</label></div>
+                            <div class="col-sm-6 m-0 p-0" ><input type="text" class="form-control" id="" value="Purc"></div>
+                        </div>
+                        <div class="row container-fluid hide p-2" id="purchase_order">
+                            <div class="col-sm-6 m-0 p-0"> <label for="d">Abbreviation</label></div>
+                            <div class="col-sm-6 m-0 p-0" ><input type="text" class="form-control" id="" value="Purc Order"></div>
+                        </div>
+                        <div class="row container-fluid hide p-2" id="receipt">
+                            <div class="col-sm-6 m-0 p-0"> <label for="d">Abbreviation</label></div>
+                            <div class="col-sm-6 m-0 p-0" ><input type="text" class="form-control" id="" value="Rcpt"></div>
+                        </div>
+                        <div class="row container-fluid hide p-2" id="receipt_note">
+                            <div class="col-sm-6 m-0 p-0"> <label for="d">Abbreviation</label></div>
+                            <div class="col-sm-6 m-0 p-0" ><input type="text" class="form-control" id="" value="Rcpt Note"></div>
+                        </div>
+                        <div class="row container-fluid hide p-2" id="rejections_in">
+                            <div class="col-sm-6 m-0 p-0"> <label for="d">Abbreviation</label></div>
+                            <div class="col-sm-6 m-0 p-0" ><input type="text" class="form-control" id="" value="Rej In"></div>
+                        </div>
+                        <div class="row container-fluid hide p-2" id="rejections_out">
+                            <div class="col-sm-6 m-0 p-0"> <label for="d">Abbreviation</label></div>
+                            <div class="col-sm-6 m-0 p-0" ><input type="text" class="form-control" id="" value="Rej Out"></div>
+                        </div>
+                        <div class="row container-fluid hide p-2" id="reversing_journal">
+                            <div class="col-sm-6 m-0 p-0"> <label for="d">Abbreviation</label></div>
+                            <div class="col-sm-6 m-0 p-0" ><input type="text" class="form-control" id="" value="Rev Jrnl"></div>
+                        </div>
+                        <div class="row container-fluid hide p-2" id="sales">
+                            <div class="col-sm-6 m-0 p-0"> <label for="d">Abbreviation</label></div>
+                            <div class="col-sm-6 m-0 p-0" ><input type="text" class="form-control" id="" value="Sale"></div>
+                        </div>
+                        <div class="row container-fluid hide p-2" id="sales_order">
+                            <div class="col-sm-6 m-0 p-0"> <label for="d">Abbreviation</label></div>
+                            <div class="col-sm-6 m-0 p-0" ><input type="text" class="form-control" id="" value="Sales Ordr"></div>
+                        </div>
+                        <div class="row container-fluid hide p-2" id="Stock Journal">
+                            <div class="col-sm-6 m-0 p-0"> <label for="d">Abbreviation</label></div>
+                            <div class="col-sm-6 m-0 p-0" ><input type="text" class="form-control" id="" value="Stk Jrnl"></div>
+                        </div> -->
 
                         <div class="row container-fluid  p-2">
                             <div class="col-sm-6 m-0 p-0"> <label for="e">Activate this voucher type</label></div>
@@ -139,7 +212,7 @@
                             </div>
                         </div>
 
-                        <div class="row container-fluid  p-2">
+                        <div class="row container-fluid  p-2" id="optional">
                             <div class="col-sm-6 m-0 p-0"> <label for="i">Make voucher type as 'Optional' by default</label></div>
                             <div class="col-sm-6 m-0 p-0">
                                 <select name="optional" id="i" class="form-control">
@@ -150,7 +223,7 @@
                         </div>
 
                         <div class="row container-fluid  p-2">
-                            <div class="col-sm-6 m-0 p-0"> <label for="j">Allow narration in voucher</label></div>
+                            <div class="col-sm-6 m-0 p-0"> <label for="">Allow narration in voucher</label></div>
                             <div class="col-sm-6 m-0 p-0">
                                 <select name="allownr" id="j" class="form-control">
                                     <option value="yes">Yes</option> 
@@ -159,7 +232,7 @@
                             </div>
                         </div>
 
-                        <div class="row container-fluid hide p-2" id="provide">
+                        <div class="row container-fluid  p-2" id="provide">
                             <div class="col-sm-6 m-0 p-0"> <label for="k">Provide narration for each leadger voucher</label></div>
                             <div class="col-sm-6 m-0 p-0">
                                 <select name="providenr" id="k" class="form-control">
@@ -169,11 +242,11 @@
                             </div>
                         </div><br>
 
-                        <div class="row container-fluid hide p-2" id="debit_note1">
+                        <div class="row container-fluid hide p-2" id="track">
                             <div class="col-sm-6 m-0 p-0"> <label for="">Track Additional Cost for Purchases</label></div>
                             <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" id="" value=""> </div>
                         </div>
-                        <div class="row container-fluid hide p-2" id="contra1">
+                        <div class="row container-fluid hide p-2" id="enable">
                             <div class="col-sm-6 m-0 p-0"> <label for="">Enable default accounting allocations</label></div>
                             <div class="col-sm-6 m-0 p-0">
                                 <select name="" id="" class="form-control">
@@ -181,10 +254,7 @@
                                     <option value="yes">Yes</option> 
                                 </select>
                             </div>
-                        </div>
-
-                        
-                        
+                        </div>       
                     </div>
                     <div class="col-sm-4 m-0 p-4" style=" border-right: 1px solid rgba(128, 128, 128, 0.6);">
                         <h5 class="text-center">Printing</h5>
@@ -224,90 +294,4 @@
                 <div class="enter w-100 py-4"><button class="btn btn-info w-15">CREATE</button></div>    
             </form>
     </div>  
-    
-    
-    <script>
-        function showVoucherType(){
-            var status = document.getElementById("voucher_type");
-            var a = status.value;
-            console.log(a);
-            if( a == "Attendance" ){
-                console.log(a);
-
-                document.getElementById('attd').style.display = "flex";
-                document.getElementById('contra').style.display = "none";
-                document.getElementById('contra1').style.display = "none";
-                document.getElementById('credit_note').style.display = "none";
-                document.getElementById('debit_note').style.display = "none";
-                document.getElementById('debit_note1').style.display = "none";
-                document.getElementById('jurisdiction').style.display = "none";
-                document.getElementById('title_print').style.display = "none";
-                document.getElementById('delivery_note').style.display = "none";
-                document.getElementById('provide').style.display = "flex";
-            }
-            else if( a == "Contra" ){
-                document.getElementById('contra').style.display = "flex";
-                document.getElementById('contra1').style.display = "flex";
-                document.getElementById('attd').style.display = "none";
-                document.getElementById('credit_note').style.display = "none";
-                document.getElementById('debit_note1').style.display = "none";
-                document.getElementById('jurisdiction').style.display = "none";
-                document.getElementById('title_print').style.display = "none";
-                document.getElementById('delivery_note').style.display = "none";
-                document.getElementById('provide').style.display = "flex";
-            }
-            else if( a == "Credit_Note" ){
-                document.getElementById('contra1').style.display = "flex";
-                document.getElementById('credit_note').style.display = "flex";
-                document.getElementById('jurisdiction').style.display = "flex";
-                document.getElementById('title_print').style.display = "flex";
-                document.getElementById('contra').style.display = "none";
-                document.getElementById('attd').style.display = "none";
-                document.getElementById('debit_note').style.display = "none";
-                document.getElementById('debit_note1').style.display = "none";
-                document.getElementById('delivery_note').style.display = "none";
-                document.getElementById('provide').style.display = "flex";
-            }
-            else if( a == "Debit_Note" ){
-                document.getElementById('contra1').style.display = "flex";
-                document.getElementById('debit_note1').style.display = "flex";
-                document.getElementById('debit_note').style.display = "flex";
-                document.getElementById('title_print').style.display = "flex";
-                document.getElementById('jurisdiction').style.display = "none";
-                document.getElementById('credit_note').style.display = "none";
-                document.getElementById('contra').style.display = "none";
-                document.getElementById('attd').style.display = "none"; 
-                document.getElementById('delivery_note').style.display = "none";   
-                document.getElementById('provide').style.display = "flex"; 
-            }
-            else if( a == "Delivery_Note" ){
-                document.getElementById('contra1').style.display = "flex";
-                document.getElementById('jurisdiction').style.display = "flex";
-                document.getElementById('title_print').style.display = "flex";
-                document.getElementById('delivery_note').style.display = "flex";
-                document.getElementById('credit_note').style.display = "none";
-                document.getElementById('contra').style.display = "none";
-                document.getElementById('attd').style.display = "none";
-                document.getElementById('debit_note').style.display = "none";
-                document.getElementById('debit_note1').style.display = "none";
-                document.getElementById('provide').style.display = "flex";
-                
-            }
-            else if( a == "Job_Work_In_Order" ){
-                document.getElementById('contra1').style.display = "none";
-                document.getElementById('jurisdiction').style.display = "none";
-                document.getElementById('title_print').style.display = "flex";
-                document.getElementById('provide').style.display = "none";  
-                document.getElementById('provide').style.display = "flex";
-                document.getElementById('delivery_note').style.display = "flex";
-                document.getElementById('set/alter').style.display = "flex";
-                document.getElementById('credit_note').style.display = "none";
-                document.getElementById('contra').style.display = "none";
-                document.getElementById('attd').style.display = "none";
-                document.getElementById('debit_note').style.display = "none";
-                document.getElementById('debit_note1').style.display = "none";
-                
-            }
-        }
-    </script>
 {% endblock %}

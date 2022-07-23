@@ -17,22 +17,23 @@
             <div class="col-sm-3 m-0 p-0"></div>  
             <div class="col-sm-6 m-0 p-0">
                 <h6  class="bg-info text-light p-2 m-0 text-center">Group Creation</h6>
-                <form class="p-5" style="background-color:rgba(0,0,0,.4);">
+                <form class="p-5" style="background-color:rgba(0,0,0,.4);" method="post" action="{% url 'add_group' %}" autocomplete="off">
+                    {% csrf_token %}
                     <div class="p-3">
                         <div class="row container-fluid  p-2 m-0">
                             <div class="col-sm-4 m-0 p-0"> <label for="a">Name</label></div>
-                            <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" id="a" placeholder=""></div>
+                            <div class="col-sm-6 m-0 p-0"><input type="text" name="gname" class="form-control" id="a" placeholder=""></div>
                             <div class="col-sm-4 m-0 p-0"></div>
                         </div>
                         <div class="row container-fluid  p-2 m-0">
                             <div class="col-sm-4 m-0 p-0"> <label for="b">Alias</label></div>
-                            <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" id="b" placeholder=""></div> 
+                            <div class="col-sm-6 m-0 p-0"><input type="text" name="alias" class="form-control" id="b" placeholder=""></div> 
                             <div class="col-sm-7 m-0 p-0"></div>
                         </div>
                         <div class="row container-fluid  p-2 m-0" id="form1">
                             <div class="col-sm-4 m-0 p-0"><label for="b">Under</label></div>
                             <div class="col-sm-6 m-0 p-0" > 
-                                <select name="" id="under" class="form-control" onchange="showunder()" required>
+                                <select name="group" id="under" class="form-control" onchange="showunder()" required>
                                     <option value="Primary">Primary</option>
                                     <option value="BankAccount1">BankAccounts</option>
                                     <option value="Bank_OCC_AC">Bank OCC A/c</option>
@@ -96,7 +97,7 @@
                             <div class="row container-fluid hide p-2" id="primary">
                                 <div class="col-sm-8 m-0 p-0"> <label for="c">Nature of Group</label></div>
                                 <div class="col-sm-4 m-0 p-0">
-                                    <select name="optional" id="nature_of_group" class="form-control" onchange="showNature()">
+                                    <select name="group_nature" id="nature_of_group" class="form-control" onchange="showNature()">
                                         <option value="Assets">Assets</option>
                                         <option value="Expenses">Expenses</option>
                                         <option value="Income">Income</option>
@@ -108,16 +109,20 @@
                             <div class="row container-fluid hide p-2" id="gorss_profit">
                                 <div class="col-sm-8 m-0 p-0"> <label for="c">Does it affect gross profit</label></div>
                                 <div class="col-sm-4 m-0 p-0">
-                                    <input type="text" class="form-control" id="a" placeholder="">
+                                    <select name="gorss_profit" id="" class="form-control">
+                                        <option value="no">No</option>
+                                        <option value="yes">Yes</option>  
+                                    </select>
+                                    <!-- <input type="text" name="gorss_profit" class="form-control" id="a" placeholder=""> -->
                                 </div>
                                 <div class="col-sm-0 m-0 p-0"></div>
                             </div>
                             <div class="row container-fluid  p-2">
                                 <div class="col-sm-8 m-0 p-0"> <label for="c">Group behaves like sub-ledger</label></div>
                                 <div class="col-sm-4 m-0 p-0">
-                                    <select name="optional" id="i" class="form-control">
-                                        <option value="">No</option>
-                                        <option value="">Yes</option>  
+                                    <select name="ledger" id="i" class="form-control">
+                                        <option value="no">No</option>
+                                        <option value="yes">Yes</option>  
                                     </select>
                                 </div>
                                 <div class="col-sm-0 m-0 p-0"></div>
@@ -125,9 +130,9 @@
                             <div class="row container-fluid  p-2">
                                 <div class="col-sm-8 m-0 p-0"> <label for="c">Net Debit/Credit Balances for reporting</label></div>
                                 <div class="col-sm-4 m-0 p-0">
-                                    <select name="optional" id="i" class="form-control">
-                                        <option value="">No</option>
-                                        <option value="">Yes</option>  
+                                    <select name="debit/credit" id="i" class="form-control">
+                                        <option value="no">No</option>
+                                        <option value="yes">Yes</option>  
                                     </select>
                                 </div>
                                 <div class="col-sm-0 m-0 p-0"></div>
@@ -137,9 +142,9 @@
                                     <br><p><i>&nbsp;&nbsp;&nbsp;&nbsp;(For sale invoice entries)</i></p></label>
                                 </div>
                                 <div class="col-sm-4 m-0 p-0">
-                                    <select name="optional" id="i" class="form-control">
-                                        <option value="">No</option>
-                                        <option value="">Yes</option>  
+                                    <select name="calculation" id="i" class="form-control">
+                                        <option value="no">No</option>
+                                        <option value="yes">Yes</option>  
                                     </select>
                                 </div>
                                 <div class="col-sm-0 m-0 p-0"></div>
@@ -147,10 +152,10 @@
                             <div class="row container-fluid  p-2">
                                 <div class="col-sm-8 m-0 p-0"> <label for="c">Method to Allocate when used in purchase invoice</label></div>
                                 <div class="col-sm-4 m-0 p-0">
-                                    <select name="optional" id="i" class="form-control">
-                                        <option value="">Not Applicable</option>
-                                        <option value="">Appropriate by Qty</option>
-                                        <option value="">Appropriate by value</option>    
+                                    <select name="invoice" id="i" class="form-control">
+                                        <option value="not_applicable">Not Applicable</option>
+                                        <option value="Appropriate_by_Qty">Appropriate by Qty</option>
+                                        <option value="Appropriate_by_value">Appropriate by value</option>    
                                     </select>
                                 </div>
                                 <div class="col-sm-0 m-0 p-0"></div>

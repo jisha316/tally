@@ -1,4 +1,5 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
+from .models import tally_group
 
 # Create your views here.
 
@@ -97,3 +98,28 @@ def shut_msg(request):
 
 def cn(request):
     return render(request, 'jisha/cn.html')
+
+def add_group(request):
+	if request.method=='POST':
+		gname=request.POST['gname']
+		galias=request.POST['alias']
+		under=request.POST['group']
+		nature=request.POST['group_nature']
+		gross=request.POST['gorss_profit']
+		ledg=request.POST['ledger']
+		cred=request.POST['debit/credit']
+		calc=request.POST['calculation']
+		invc=request.POST['invoice']
+		grp=tally_group(group_name=gname,
+                group_alias=galias,
+                group_under=under,
+                nature=nature,
+                gross_profit=gross,
+                sub_ledger=ledg,
+                debit_credit=cred,
+                calculation=calc,
+                invoice=invc,
+                )          
+		grp.save()
+		print("added")
+		return redirect('/')

@@ -58,5 +58,7 @@ urlpatterns = [
 
     path('cn',views.cn,name='cn'),
 
+    path('add_group',views.add_group,name='add_group'),
+
     
 ]
