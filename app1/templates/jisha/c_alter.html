@@ -14,35 +14,36 @@
             <div class="col-sm-3 m-0 p-0"></div>  
             <div class="col-sm-6 m-0 p-0">
                 <h6  class="bg-info text-light p-2 m-0 text-center">Currency Alteration</h6>
-                <form class="p-5" style="background-color:rgba(0,0,0,.4);">
+                <form class="p-5" style="background-color:rgba(0,0,0,.4);" method="post" action="{% url 'alter_currency' %}" autocomplete="off">
+                    {% csrf_token %}
                     <div class="p-3">
                         <div class="row container-fluid  p-2 m-0">
                             <div class="col-sm-4 m-0 p-0"> <label for="a">Symbol</label></div>
-                            <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" id="a" value="₹" placeholder=""></div>
+                            <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" id="a" name="c_symbl" value="₹" placeholder=""></div>
                             <div class="col-sm-4 m-0 p-0"></div>
                         </div><br>
                         <div class="row container-fluid  p-2 m-0">
                             <div class="col-sm-4 m-0 p-0"> <label for="a">Formal Name</label></div>
-                            <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" id="a" value="INR" placeholder=""></div>
+                            <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" id="a" name="fname" value="INR" placeholder=""></div>
                             <div class="col-sm-4 m-0 p-0"></div>
                         </div>
                         <div class="row container-fluid  p-2 m-0">
                             <div class="col-sm-4 m-0 p-0"> <label for="a">ISO Currency Code</label></div>
-                            <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" id="a" placeholder=""></div>
+                            <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" name="isocode"  id="a" placeholder=""></div>
                             <div class="col-sm-4 m-0 p-0"></div>
                         </div>
                         <hr>
                         <div class="row container-fluid  p-2 m-0">
                             <div class="col-sm-8 m-0 p-0"> <label for="a"><b>Number of decimel places</b></label></div>
-                            <div class="col-sm-4 m-0 p-0"><input type="text" class="form-control" id="a" value="2" placeholder=""></div>
+                            <div class="col-sm-4 m-0 p-0"><input type="text" class="form-control" id="a" name="decimal_p"  value="2" placeholder=""></div>
                             <div class="col-sm-4 m-0 p-0"></div>
                         </div>
                         <div class="row container-fluid  p-2 m-0">
                             <div class="col-sm-8 m-0 p-0"> <label for="a"><b>Show amount in millions</b></label></div>
                             <div class="col-sm-4 m-0 p-0">
-                                <select name="optional" id="i" class="form-control">
-                                    <option value="">No</option>
-                                    <option value="">Yes</option>  
+                                <select name="show_amt" id="i" class="form-control">
+                                    <option value="No">No</option>
+                                    <option value="Yes">Yes</option>  
                                 </select>
                             </div>
                             <div class="col-sm-4 m-0 p-0"></div>
@@ -50,9 +51,9 @@
                         <div class="row container-fluid  p-2 m-0">
                             <div class="col-sm-8 m-0 p-0"> <label for="a"><b>Suffix symbol to amount</b></label></div>
                             <div class="col-sm-4 m-0 p-0">
-                                <select name="optional" id="i" class="form-control">
-                                    <option value="">No</option>
-                                    <option value="">Yes</option>  
+                                <select name="suffix" id="i" class="form-control">
+                                    <option value="No">No</option>
+                                    <option value="Yes">Yes</option>  
                                 </select>
                             </div>
                             <div class="col-sm-4 m-0 p-0"></div>
@@ -60,21 +61,21 @@
                         <div class="row container-fluid  p-2 m-0">
                             <div class="col-sm-8 m-0 p-0"> <label for="a"><b>Add space between amount and symbol</b></label></div>
                             <div class="col-sm-4 m-0 p-0">
-                                <select name="optional" id="i" class="form-control">
-                                    <option value="">Yes</option>
-                                    <option value="">No</option>  
+                                <select name="add_space" id="i" class="form-control">
+                                    <option value="Yes">Yes</option>
+                                    <option value="No">No</option>  
                                 </select>
                             </div>
                             <div class="col-sm-4 m-0 p-0"></div>
                         </div><br>
                         <div class="row container-fluid  p-2 m-0">
                             <div class="col-sm-8 m-0 p-0"> <label for="a"><b>Word representing amount after decimal</b></label></div>
-                            <div class="col-sm-4 m-0 p-0"><input type="text" class="form-control" id="a" value="paise" placeholder=""></div>
+                            <div class="col-sm-4 m-0 p-0"><input type="text" class="form-control" id="a" name="word_rep" value="paise" placeholder=""></div>
                             <div class="col-sm-4 m-0 p-0"></div>
                         </div>
                         <div class="row container-fluid  p-2 m-0">
                             <div class="col-sm-8 m-0 p-0"> <label for="a"><b>No: of decimal places for amount in words</b></label></div>
-                            <div class="col-sm-4 m-0 p-0"><input type="text" class="form-control" id="a" value="2" placeholder=""></div>
+                            <div class="col-sm-4 m-0 p-0"><input type="text" class="form-control" id="a" name="no_decimal" value="2" placeholder=""></div>
                             <div class="col-sm-4 m-0 p-0"></div>
                         </div>
                     </div>

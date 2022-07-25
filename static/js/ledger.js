@@ -313,9 +313,7 @@ function rounding(){
     }
 }    
 
-//  <=====================================================>
-//                     
-//  <=====================================================>
+
 
 function showdirctexp2(){
     var status = document.getElementById("typldr");
@@ -397,9 +395,7 @@ function showAssets2(){
 }
                     
                     
-// <============================================================>
 
-// <=============================================================>
 
 
 function showdutiesandtax2(){
@@ -500,9 +496,7 @@ function showdutiesandtax4(){
     }
 }
 
-// <=======================================================>
 
-// <=======================================================>
                 
 function showdirctexp4(){
     var status = document.getElementById("applicablegst2");

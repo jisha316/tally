@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from .models import tally_group
+from .models import tally_group,tally_currency,alt_currency,cost_centre
 
 # Create your views here.
 
@@ -99,7 +99,7 @@ def shut_msg(request):
 def cn(request):
     return render(request, 'jisha/cn.html')
 
-def add_group(request):
+def create_group(request):
 	if request.method=='POST':
 		gname=request.POST['gname']
 		galias=request.POST['alias']
@@ -121,5 +121,65 @@ def add_group(request):
                 invoice=invc,
                 )          
 		grp.save()
+		print("added")
+		return redirect('/')
+
+def create_currency(request):
+	if request.method=='POST':
+		smbl=request.POST['c_symbl']
+		fname=request.POST['fname']
+		isoc=request.POST['isocode']
+		dcml=request.POST['decimal_p']
+		amt=request.POST['show_amt']
+		sfx=request.POST['suffix']
+		spc=request.POST['add_space']
+		wrd=request.POST['word_rep']
+		ndcml=request.POST['no_decimal']
+		crny=tally_currency(c_symbol=smbl,
+                        formal_name = fname,
+                        iso_Ccode = isoc,
+                        decimal_place = dcml,
+                        show_amtM = amt,
+                        suffix_smblA = sfx,
+                        add_space = spc,
+                        word_rep = wrd,
+                        no_decimal = ndcml)          
+		crny.save()
+		print("added")
+		return redirect('/')
+
+def alter_currency(request):
+	if request.method=='POST':
+		smbl=request.POST['c_symbl']
+		fname=request.POST['fname']
+		isoc=request.POST['isocode']
+		dcml=request.POST['decimal_p']
+		amt=request.POST['show_amt']
+		sfx=request.POST['suffix']
+		spc=request.POST['add_space']
+		wrd=request.POST['word_rep']
+		ndcml=request.POST['no_decimal']
+		crny=alt_currency(c_symbol=smbl,
+                        formal_name = fname,
+                        iso_Ccode = isoc,
+                        decimal_place = dcml,
+                        show_amtM = amt,
+                        suffix_smblA = sfx,
+                        add_space = spc,
+                        word_rep = wrd,
+                        no_decimal = ndcml)          
+		crny.save()
+		print("added")
+		return redirect('/')
+
+def load_centre(request):
+	if request.method=='POST':
+		nm=request.POST['cst_name']
+		als=request.POST['alias']
+		unr=request.POST['c_under']
+		cost=cost_centre(centre_name=nm,
+                        centre_alias = als,
+                        centre_under = unr)          
+		cost.save()
 		print("added")
 		return redirect('/')

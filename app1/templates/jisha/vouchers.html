@@ -12,286 +12,254 @@
         }
     </style>
     <script src="{% static 'js/vouchers.js' %}"></script>
+    
     <div class="m-2">
-    <h6  class="bg-info text-light p-2 m-0 text-center">Voucher Type Creation</h6>
-            <form class="p-5" style="background-color:rgba(0,0,0,.4);" autocomplete="off">
-                <div class="p-3">
-                    <div class="row container-fluid  p-2 m-0">
-                        <div class="col-sm-2 m-0 p-0"> <label for="a">Name</label></div>
-                        <div class="col-sm-3 m-0 p-0"><input type="text" class="form-control" id="a" placeholder=""></div>
-                        <div class="col-sm-7 m-0 p-0"></div>
-                    </div>
-                    <div class="row container-fluid  p-2 m-0">
-                        <div class="col-sm-2 m-0 p-0"> <label for="b">Alias</label></div>
-                        <div class="col-sm-3 m-0 p-0"> 
-                        <input type="text" class="form-control" id="b" placeholder=""></div>
-                        <div class="col-sm-7 m-0 p-0"></div>
-                    </div>
+        <h6  class="bg-info text-light p-2 m-0 text-center">Voucher Type Creation</h6>
+        <form class="p-5" style="background-color:rgba(0,0,0,.4);" autocomplete="off">
+            <div class="p-3">
+                <div class="row container-fluid  p-2 m-0">
+                    <div class="col-sm-2 m-0 p-0"> <label for="a">Name</label></div>
+                    <div class="col-sm-3 m-0 p-0"><input type="text" class="form-control" id="a" placeholder=""></div>
+                    <div class="col-sm-7 m-0 p-0"></div>
                 </div>
+                <div class="row container-fluid  p-2 m-0">
+                    <div class="col-sm-2 m-0 p-0"> <label for="b">Alias</label></div>
+                    <div class="col-sm-3 m-0 p-0"> 
+                    <input type="text" class="form-control" id="b" placeholder=""></div>
+                    <div class="col-sm-7 m-0 p-0"></div>
+                </div>
+            </div>
 
-                <div class="row container-fluid  p-0 m-0" style=" border: 1px solid rgba(128, 128, 128, 0.6);">
-                    <div class="col-sm-5 m-0 p-4" style=" border-right: 1px solid rgba(128, 128, 128, 0.6);">
-                        <h5 class="text-center">General</h5>
-                        <div class="row container-fluid  p-0">
-                            <div class="col-sm-6 m-0 p-0"></div>
-                            <div class="col-sm-6 m-0 p-0"></div>
-                        </div>
+            <div class="row container-fluid  p-0 m-0" style=" border: 1px solid rgba(128, 128, 128, 0.6);">
+                <div class="col-sm-5 m-0 p-4" style=" border-right: 1px solid rgba(128, 128, 128, 0.6);">
+                    <h5 class="text-center">General</h5>
+                    <div class="row container-fluid  p-0">
+                        <div class="col-sm-6 m-0 p-0"></div>
+                        <div class="col-sm-6 m-0 p-0"></div>
+                    </div>
 
-                        <div class="row container-fluid  p-2">
-                            <div class="col-sm-6 m-0 p-0"> <label for="c">Select type of voucher</label></div>
-                            <div class="col-sm-6 m-0 p-0">
-                                <select name="" id="voucher_type" class="form-control" onchange="showVoucherType()" required >
-                                    <option value="Abr"></option>
-                                    <option value="Attendance">Attendance</option>  
-                                    <option value="Contra">Contra</option> 
-                                    <option value="Credit_Note">Credit Note</option>
-                                    <option value="Debit_Note">Debit Note</option>
-                                    <option value="Delivery_Note">Delivery Note</option>
-                                    <option value="Job_Work_In_Order">Job Work In Order</option>
-                                    <option value="Job_Work_Out_Order">Job Work Out Order</option>
-                                    <option value="Journal">Journal</option>
-                                    <option value="Material_In">Material In</option>
-                                    <option value="Material_Out">Material Out</option>
-                                    <option value="Memorandum">Memorandum</option>
-                                    <option value="Payment">Payment</option>
-                                    <option value="Payroll">Payroll</option>
-                                    <option value="Physical_Stock">Physical Stock</option>
-                                    <option value="Purchase">Purchase</option>
-                                    <option value="Purchase_Order">Purchase Order</option>
-                                    <option value="Receipt">Receipt</option>
-                                    <option value="Receipt_Note">Receipt Note</option>
-                                    <option value="Rejections_In">Rejections In</option>
-                                    <option value="Rejections_Out">Rejections Out</option>
-                                    <option value="Reversing_Journal">Reversing Journal</option>
-                                    <option value="Sales">Sales</option>
-                                    <option value="Sales_Order">Sales Order</option>
-                                    <option value="Stock_Journal">Stock Journal</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="row container-fluid  p-2" id="abr">
-                            <div class="col-sm-6 m-0 p-0"> <label for="d">Abbreviation</label></div>
-                            <div class="col-sm-6 m-0 p-0" ><input type="text" class="form-control" id="" placeholder=""></div>
-                        </div>
-                        <!-- <div class="row container-fluid hide p-2" id="attd">
-                            <div class="col-sm-6 m-0 p-0"> <label for="d">Abbreviation</label></div>
-                            <div class="col-sm-6 m-0 p-0" ><input type="text" class="form-control" id="" value="attd"></div>
-                        </div>
-                        <div class="row container-fluid hide p-2" id="contra">
-                            <div class="col-sm-6 m-0 p-0"> <label for="d">Abbreviation</label></div>
-                            <div class="col-sm-6 m-0 p-0" ><input type="text" class="form-control" id="" value="Ctra"></div>
-                        </div>
-                        <div class="row container-fluid hide p-2" id="credit_note">
-                            <div class="col-sm-6 m-0 p-0"> <label for="d">Abbreviation</label></div>
-                            <div class="col-sm-6 m-0 p-0" ><input type="text" class="form-control" id="" value="C/Note"></div>
-                        </div>
-                        <div class="row container-fluid hide p-2" id="debit_note">
-                            <div class="col-sm-6 m-0 p-0"> <label for="d">Abbreviation</label></div>
-                            <div class="col-sm-6 m-0 p-0" ><input type="text" class="form-control" id="" value="D/Note"></div>
-                        </div>
-                        <div class="row container-fluid hide p-2" id="delivery_note">
-                            <div class="col-sm-6 m-0 p-0"> <label for="d">Abbreviation</label></div>
-                            <div class="col-sm-6 m-0 p-0" ><input type="text" class="form-control" id="" value="Dely Note"></div>
-                        </div>
-                        <div class="row container-fluid hide p-2" id="job_work_in">
-                            <div class="col-sm-6 m-0 p-0"> <label for="d">Abbreviation</label></div>
-                            <div class="col-sm-6 m-0 p-0" ><input type="text" class="form-control" id="" value="Job Wrk In Ordr"></div>
-                        </div>
-                        <div class="row container-fluid hide p-2" id="job_work_out">
-                            <div class="col-sm-6 m-0 p-0"> <label for="d">Abbreviation</label></div>
-                            <div class="col-sm-6 m-0 p-0" ><input type="text" class="form-control" id="" value="Job Wrk Out Ordr"></div>
-                        </div>
-                        <div class="row container-fluid hide p-2" id="journal">
-                            <div class="col-sm-6 m-0 p-0"> <label for="d">Abbreviation</label></div>
-                            <div class="col-sm-6 m-0 p-0" ><input type="text" class="form-control" id="" value="Jrnl"></div>
-                        </div>
-                        <div class="row container-fluid hide p-2" id="material_in">
-                            <div class="col-sm-6 m-0 p-0"> <label for="d">Abbreviation</label></div>
-                            <div class="col-sm-6 m-0 p-0" ><input type="text" class="form-control" id="" value="Mat In"></div>
-                        </div>
-                        <div class="row container-fluid hide p-2" id="material_out">
-                            <div class="col-sm-6 m-0 p-0"> <label for="d">Abbreviation</label></div>
-                            <div class="col-sm-6 m-0 p-0" ><input type="text" class="form-control" id="" value="Mat Out"></div>
-                        </div>
-                        <div class="row container-fluid hide p-2" id="memorandum">
-                            <div class="col-sm-6 m-0 p-0"> <label for="d">Abbreviation</label></div>
-                            <div class="col-sm-6 m-0 p-0" ><input type="text" class="form-control" id="" value="Memo"></div>
-                        </div>
-                        <div class="row container-fluid hide p-2" id="payment">
-                            <div class="col-sm-6 m-0 p-0"> <label for="d">Abbreviation</label></div>
-                            <div class="col-sm-6 m-0 p-0" ><input type="text" class="form-control" id="" value="Pymt"></div>
-                        </div>
-                        <div class="row container-fluid hide p-2" id="payroll">
-                            <div class="col-sm-6 m-0 p-0"> <label for="d">Abbreviation</label></div>
-                            <div class="col-sm-6 m-0 p-0" ><input type="text" class="form-control" id="" value="Pyrl"></div>
-                        </div>
-                        <div class="row container-fluid hide p-2" id="Physical_Stock">
-                            <div class="col-sm-6 m-0 p-0"> <label for="d">Abbreviation</label></div>
-                            <div class="col-sm-6 m-0 p-0" ><input type="text" class="form-control" id="" value="Phy Stk"></div>
-                        </div>
-                        <div class="row container-fluid hide p-2" id="purchase">
-                            <div class="col-sm-6 m-0 p-0"> <label for="d">Abbreviation</label></div>
-                            <div class="col-sm-6 m-0 p-0" ><input type="text" class="form-control" id="" value="Purc"></div>
-                        </div>
-                        <div class="row container-fluid hide p-2" id="purchase_order">
-                            <div class="col-sm-6 m-0 p-0"> <label for="d">Abbreviation</label></div>
-                            <div class="col-sm-6 m-0 p-0" ><input type="text" class="form-control" id="" value="Purc Order"></div>
-                        </div>
-                        <div class="row container-fluid hide p-2" id="receipt">
-                            <div class="col-sm-6 m-0 p-0"> <label for="d">Abbreviation</label></div>
-                            <div class="col-sm-6 m-0 p-0" ><input type="text" class="form-control" id="" value="Rcpt"></div>
-                        </div>
-                        <div class="row container-fluid hide p-2" id="receipt_note">
-                            <div class="col-sm-6 m-0 p-0"> <label for="d">Abbreviation</label></div>
-                            <div class="col-sm-6 m-0 p-0" ><input type="text" class="form-control" id="" value="Rcpt Note"></div>
-                        </div>
-                        <div class="row container-fluid hide p-2" id="rejections_in">
-                            <div class="col-sm-6 m-0 p-0"> <label for="d">Abbreviation</label></div>
-                            <div class="col-sm-6 m-0 p-0" ><input type="text" class="form-control" id="" value="Rej In"></div>
-                        </div>
-                        <div class="row container-fluid hide p-2" id="rejections_out">
-                            <div class="col-sm-6 m-0 p-0"> <label for="d">Abbreviation</label></div>
-                            <div class="col-sm-6 m-0 p-0" ><input type="text" class="form-control" id="" value="Rej Out"></div>
-                        </div>
-                        <div class="row container-fluid hide p-2" id="reversing_journal">
-                            <div class="col-sm-6 m-0 p-0"> <label for="d">Abbreviation</label></div>
-                            <div class="col-sm-6 m-0 p-0" ><input type="text" class="form-control" id="" value="Rev Jrnl"></div>
-                        </div>
-                        <div class="row container-fluid hide p-2" id="sales">
-                            <div class="col-sm-6 m-0 p-0"> <label for="d">Abbreviation</label></div>
-                            <div class="col-sm-6 m-0 p-0" ><input type="text" class="form-control" id="" value="Sale"></div>
-                        </div>
-                        <div class="row container-fluid hide p-2" id="sales_order">
-                            <div class="col-sm-6 m-0 p-0"> <label for="d">Abbreviation</label></div>
-                            <div class="col-sm-6 m-0 p-0" ><input type="text" class="form-control" id="" value="Sales Ordr"></div>
-                        </div>
-                        <div class="row container-fluid hide p-2" id="Stock Journal">
-                            <div class="col-sm-6 m-0 p-0"> <label for="d">Abbreviation</label></div>
-                            <div class="col-sm-6 m-0 p-0" ><input type="text" class="form-control" id="" value="Stk Jrnl"></div>
-                        </div> -->
-
-                        <div class="row container-fluid  p-2">
-                            <div class="col-sm-6 m-0 p-0"> <label for="e">Activate this voucher type</label></div>
-                            <div class="col-sm-6 m-0 p-0">
-                                <select name="Activate" id="e" class="form-control">
-                                    <option value="No">Yes</option> 
-                                    <option value="Yes">No</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="row container-fluid  p-2">
-                            <div class="col-sm-6 m-0 p-0"> <label for="f">Method of voucher numbering</label></div>
-                            <div class="col-sm-6 m-0 p-0"><select name="method" id="f" class="form-control">
-                                <option value="auto">Automatic</option> 
-                                <option value="overd">Automatic(Manual Override)</option> 
-                                <option value="manu">Manual</option>
-                                <option value="multi">Multiuser Auto</option>
-                                <option value="none">None</option>
+                    <div class="row container-fluid  p-2">
+                        <div class="col-sm-6 m-0 p-0"> <label for="c">Select type of voucher</label></div>
+                        <div class="col-sm-6 m-0 p-0">
+                            <select name="" id="voucher_type" class="form-control" onchange="showVoucherType()" required >
+                                <option value="Abr"></option>
+                                <option value="Attendance">Attendance</option>  
+                                <option value="Contra">Contra</option> 
+                                <option value="Credit_Note">Credit Note</option>
+                                <option value="Debit_Note">Debit Note</option>
+                                <option value="Delivery_Note">Delivery Note</option>
+                                <option value="Job_Work_In_Order">Job Work In Order</option>
+                                <option value="Job_Work_Out_Order">Job Work Out Order</option>
+                                <option value="Journal">Journal</option>
+                                <option value="Material_In">Material In</option>
+                                <option value="Material_Out">Material Out</option>
+                                <option value="Memorandum">Memorandum</option>
+                                <option value="Payment">Payment</option>
+                                <option value="Payroll">Payroll</option>
+                                <option value="Physical_Stock">Physical Stock</option>
+                                <option value="Purchase">Purchase</option>
+                                <option value="Purchase_Order">Purchase Order</option>
+                                <option value="Receipt">Receipt</option>
+                                <option value="Receipt_Note">Receipt Note</option>
+                                <option value="Rejections_In">Rejections In</option>
+                                <option value="Rejections_Out">Rejections Out</option>
+                                <option value="Reversing_Journal">Reversing Journal</option>
+                                <option value="Sales">Sales</option>
+                                <option value="Sales_Order">Sales Order</option>
+                                <option value="Stock_Journal">Stock Journal</option>
                             </select>
-                            </div>
                         </div>
-            
-                        <div class="row container-fluid  p-2">
-                            <div class="col-sm-6 m-0 p-0"> <label for="g">Use effective dates  for vouchers</label></div>
-                            <div class="col-sm-6 m-0 p-0">
-                                <select name="usedate" id="g" class="form-control">
-                                    <option value="no">No</option>
-                                    <option value="yes">Yes</option>   
-                                </select>
-                            </div>
-                        </div>
-                        <div class="row container-fluid  p-2">
-                            <div class="col-sm-6 m-0 p-0"> <label for="h">Allow zero valued transactions</label></div>
-                            <div class="col-sm-6 m-0 p-0">
-                                <select name="zeroval" id="" class="form-control">
-                                    <option value="no">No</option>
-                                    <option value="yes">Yes</option>   
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="row container-fluid  p-2" id="optional">
-                            <div class="col-sm-6 m-0 p-0"> <label for="i">Make voucher type as 'Optional' by default</label></div>
-                            <div class="col-sm-6 m-0 p-0">
-                                <select name="optional" id="i" class="form-control">
-                                    <option value="no">No</option>
-                                    <option value="yes">Yes</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="row container-fluid  p-2">
-                            <div class="col-sm-6 m-0 p-0"> <label for="">Allow narration in voucher</label></div>
-                            <div class="col-sm-6 m-0 p-0">
-                                <select name="allownr" id="j" class="form-control">
-                                    <option value="yes">Yes</option> 
-                                    <option value="no">No</option>   
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="row container-fluid  p-2" id="provide">
-                            <div class="col-sm-6 m-0 p-0"> <label for="k">Provide narration for each leadger voucher</label></div>
-                            <div class="col-sm-6 m-0 p-0">
-                                <select name="providenr" id="k" class="form-control">
-                                    <option value="no">No</option>
-                                    <option value="yes">Yes</option> 
-                                </select>
-                            </div>
-                        </div><br>
-
-                        <div class="row container-fluid hide p-2" id="track">
-                            <div class="col-sm-6 m-0 p-0"> <label for="">Track Additional Cost for Purchases</label></div>
-                            <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" id="" value=""> </div>
-                        </div>
-                        <div class="row container-fluid hide p-2" id="enable">
-                            <div class="col-sm-6 m-0 p-0"> <label for="">Enable default accounting allocations</label></div>
-                            <div class="col-sm-6 m-0 p-0">
-                                <select name="" id="" class="form-control">
-                                    <option value="no">No</option>
-                                    <option value="yes">Yes</option> 
-                                </select>
-                            </div>
-                        </div>       
                     </div>
-                    <div class="col-sm-4 m-0 p-4" style=" border-right: 1px solid rgba(128, 128, 128, 0.6);">
-                        <h5 class="text-center">Printing</h5>
-                        <div class="row container-fluid  p-2">
-                            <div class="col-sm-6 m-0 p-0"> <label for="l">Print voucher after saving</label></div>
-                            <div class="col-sm-6 m-0 p-0">
-                                <select name="providenr" id="l" class="form-control">
-                                    <option value="no">No</option>
-                                    <option value="yes">Yes</option>  
-                                </select>
-                            </div>
-                        </div> 
-                        <div class="row container-fluid hide p-2" id="jurisdiction">
-                            <div class="col-sm-6 m-0 p-0"> <label for="l">Default Jurisdiction</label></div>
-                            <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" id="" value=""></div>
-                        </div> <br>
-                        <div class="row container-fluid hide p-2" id="title_print">
-                            <div class="col-sm-6 m-0 p-0"> <label for="l">Default Title to Print</label></div>
-                            <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" id="" value=""></div>
-                        </div> 
-                        <div class="row container-fluid hide p-2" id="set/alter">
-                            <div class="col-sm-6 m-0 p-0"> <label for="l">Set / Alter declaration</label></div>
-                            <div class="col-sm-6 m-0 p-0">
-                                <select name="providenr" id="" class="form-control">
-                                    <option value="no">No</option>
-                                    <option value="yes">Yes</option>  
-                                </select>
-                            </div>
-                        </div>  
-                             
-                        
+
+                    <div class="row container-fluid  p-2" id="">
+                        <div class="col-sm-6 m-0 p-0"> <label for="d">Abbreviation</label></div>
+                        <div class="col-sm-6 m-0 p-0" ><input type="text" class="form-control" id="abr" placeholder=""></div>
                     </div>
-                    <div class="col-sm-3 m-0 p-4">
-                        <h5 class="text-center">Name of class</h5>
+                    
+                    <div class="row container-fluid  p-2">
+                        <div class="col-sm-6 m-0 p-0"> <label for="e">Activate this voucher type</label></div>
+                        <div class="col-sm-6 m-0 p-0">
+                            <select name="Activate" id="e" class="form-control">
+                                <option value="No">Yes</option> 
+                                <option value="Yes">No</option>
+                            </select>
+                        </div>
                     </div>
+
+                    <div class="row container-fluid p-2">
+                        <div class="col-sm-6 m-0 p-0"> <label for="f">Method of voucher numbering</label></div>
+                        <div class="col-sm-6 m-0 p-0">
+                            <select name="method" id="voucher_no" class="form-control" onchange="showVoucherNo()" required>
+                                <option value="option"></option>
+                                <option value="Automatic">Automatic</option> 
+                                <option value="Override">Automatic(Manual Override)</option> 
+                                <option value="Manual">Manual</option>
+                                <option value="Multiuser Auto">Multiuser Auto</option>
+                                <option value="None">None</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row container-fluid hide p-2" id="duplicates">
+                        <div class="col-sm-6 m-0 p-0"> <label for="g">Prevent duplicates</label></div>
+                        <div class="col-sm-6 m-0 p-0">
+                            <select name="" id="g" class="form-control">
+                                <option value="No">No</option>
+                                <option value="Yes">Yes</option>   
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row container-fluid hide p-2" id="advanced">
+                        <div class="col-sm-6 m-0 p-0"> <label for="g">Use advanced configuration</label></div>
+                        <div class="col-sm-6 m-0 p-0">
+                            <select name="" id="g" class="form-control">
+                                <option value="No">No</option>
+                                <option value="Yes">Yes</option>   
+                            </select>
+                        </div>
+                    </div>     
+
+                    <div class="row container-fluid  p-2">
+                        <div class="col-sm-6 m-0 p-0"> <label for="g">Use effective dates  for vouchers</label></div>
+                        <div class="col-sm-6 m-0 p-0">
+                            <select name="usedate" id="g" class="form-control">
+                                <option value="no">No</option>
+                                <option value="yes">Yes</option>   
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row container-fluid  p-2">
+                        <div class="col-sm-6 m-0 p-0"> <label for="h">Allow zero valued transactions</label></div>
+                        <div class="col-sm-6 m-0 p-0">
+                            <select name="zeroval" id="" class="form-control">
+                                <option value="no">No</option>
+                                <option value="yes">Yes</option>   
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row container-fluid  p-2" id="optional">
+                        <div class="col-sm-6 m-0 p-0"> <label for="i">Make voucher type as 'Optional' by default</label></div>
+                        <div class="col-sm-6 m-0 p-0">
+                            <select name="optional" id="i" class="form-control">
+                                <option value="no">No</option>
+                                <option value="yes">Yes</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row container-fluid  p-2">
+                        <div class="col-sm-6 m-0 p-0"> <label for="">Allow narration in voucher</label></div>
+                        <div class="col-sm-6 m-0 p-0">
+                            <select name="allownr" id="j" class="form-control">
+                                <option value="yes">Yes</option> 
+                                <option value="no">No</option>   
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row container-fluid  p-2" id="provide">
+                        <div class="col-sm-6 m-0 p-0"> <label for="k">Provide narration for each leadger voucher</label></div>
+                        <div class="col-sm-6 m-0 p-0">
+                            <select name="providenr" id="k" class="form-control">
+                                <option value="no">No</option>
+                                <option value="yes">Yes</option> 
+                            </select>
+                        </div>
+                    </div><br>
+                    <div class="row container-fluid hide p-2" id="journal">
+                        <div class="col-sm-6 m-0 p-0"> <label for="k">Use as a manufacturing journal</label></div>
+                        <div class="col-sm-6 m-0 p-0">
+                            <select name="providenr" id="k" class="form-control">
+                                <option value="No">No</option>
+                                <option value="Yes">Yes</option> 
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row container-fluid hide p-2" id="track">
+                        <div class="col-sm-6 m-0 p-0"> <label for="">Track Additional Cost for Purchases</label></div>
+                        <div class="col-sm-6 m-0 p-0">
+                            <select name="" id="" class="form-control">
+                                <option value="No">No</option>
+                                <option value="Yes">Yes</option> 
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row container-fluid hide p-2" id="enable">
+                        <div class="col-sm-6 m-0 p-0"> <label for="">Enable default accounting allocations</label></div>
+                        <div class="col-sm-6 m-0 p-0">
+                            <select name="" id="" class="form-control">
+                                <option value="no">No</option>
+                                <option value="yes">Yes</option> 
+                            </select>
+                        </div>
+                    </div>  
+                    
                 </div>
-                <div class="enter w-100 py-4"><button class="btn btn-info w-15">CREATE</button></div>    
-            </form>
-    </div>  
+                <div class="col-sm-4 m-0 p-4" style=" border-right: 1px solid rgba(128, 128, 128, 0.6);">
+                    <h5 class="text-center">Printing</h5>
+                    <div class="row container-fluid  p-2">
+                        <div class="col-sm-6 m-0 p-0"> <label for="l">Print voucher after saving</label></div>
+                        <div class="col-sm-6 m-0 p-0">
+                            <select name="providenr" id="l" class="form-control">
+                                <option value="no">No</option>
+                                <option value="yes">Yes</option>  
+                            </select>
+                        </div>
+                    </div> 
+                    <div class="row container-fluid hide p-2" id="jurisdiction">
+                        <div class="col-sm-6 m-0 p-0"> <label for="l">Default Jurisdiction</label></div>
+                        <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" id="" value=""></div>
+                    </div> <br>
+
+                    <div class="row container-fluid hide p-2" id="pos">
+                        <div class="col-sm-6 m-0 p-0"> <label for="l">Use for POS invoice</label></div>
+                        <div class="col-sm-6 m-0 p-0">
+                            <select name="" id="POS" class="form-control" onchange="showPOS()" required>
+                                <option value="No">No</option>
+                                <option value="Yes">Yes</option>  
+                            </select>
+                        </div>
+                    </div> 
+                    <div class="row container-fluid hide p-2" id="msg_1">
+                        <div class="col-sm-6 m-0 p-0"> <label for="l">Messege to print (1)</label></div>
+                        <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" id="" value=""></div>
+                    </div> 
+                    <div class="row container-fluid hide p-2" id="msg_2">
+                        <div class="col-sm-6 m-0 p-0"> <label for="l">Messege to print (2)</label></div>
+                        <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" id="" value=""></div>
+                    </div> 
+
+                    <div class="row container-fluid hide p-2" id="bank">
+                        <div class="col-sm-6 m-0 p-0"> <label for="l">Default Bank</label></div>
+                        <div class="col-sm-6 m-0 p-0">
+                            <select name="" id="" class="form-control">
+                                <option value="Not Applicable">Not Applicable</option>
+                                <!-- <option value="Yes">Yes</option>   -->
+                            </select>
+                        </div>
+                    </div> 
+
+                    <div class="row container-fluid hide p-2" id="title_print">
+                        <div class="col-sm-6 m-0 p-0"> <label for="l">Default Title to Print</label></div>
+                        <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" id="" value=""></div>
+                    </div> 
+                    <div class="row container-fluid hide p-2" id="set/alter">
+                        <div class="col-sm-6 m-0 p-0"> <label for="l">Set / Alter declaration</label></div>
+                        <div class="col-sm-6 m-0 p-0">
+                            <select name="providenr" id="" class="form-control">
+                                <option value="no">No</option>
+                                <option value="yes">Yes</option>  
+                            </select>
+                        </div>
+                    </div>      
+                </div>
+                <div class="col-sm-3 m-0 p-4">
+                    <h5 class="text-center">Name of class</h5>
+                </div>
+            </div>
+            <div class="enter w-100 py-4"><button class="btn btn-info w-15">CREATE</button></div>    
+        </form>     
+    </div> 
 {% endblock %}

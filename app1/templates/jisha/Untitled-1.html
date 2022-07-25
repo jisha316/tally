@@ -1,0 +1,452 @@
+
+                        <div class="container-fluid bankac hide p-0" id="bankac">
+                            <h6 class="p-3">Bank Account Details</h6>
+                            <div class="row container-fluid  p-2 m-0">
+                                <div class="col-sm-6 m-0 p-0"> <label for="pan">A/c Holder's Name</label></div>
+                                <div class="col-sm-6 m-0 p-0">
+                                    <input type="text" value="{{cmp.name}}" class="form-control" id="acna" placeholder="" name="holder_name">
+                                </div>  
+                            </div>
+                            <div class="row container-fluid  p-2 m-0">
+                                <div class="col-sm-6 m-0 p-0"> <label for="pan">A/c No.</label></div>
+                                <div class="col-sm-6 m-0 p-0">
+                                    <input type="text" class="form-control" id="acno" placeholder="" name="acc_no">
+                                </div>   
+                            </div>
+                            <div class="row container-fluid  p-2 m-0">
+                                <div class="col-sm-6 m-0 p-0"> <label for="pan">IFS Code</label></div>
+                                <div class="col-sm-6 m-0 p-0">
+                                    <input type="text" class="form-control" id="ifs" placeholder="" name="ifsc">
+                                </div> 
+                            </div>
+                            <div class="row container-fluid  p-2 m-0">
+                                <div class="col-sm-6 m-0 p-0"> <label for="pan">SWIFT Code</label></div>
+                                <div class="col-sm-6 m-0 p-0">
+                                    <input type="text" class="form-control" id="swift" placeholder="" name="swift_code">
+                                </div>  
+                            </div>
+                            <div class="row container-fluid   p-2 m-0">
+                                <div class="col-sm-6 m-0 p-0"> <label for="rgtype" >Bank Name</label></div>
+                                <div class="col-sm-6 m-0 p-0">
+                                    <select name="bank_name" id="" class="form-control">
+                                        <option value="not applicable">Not applicable</option>  
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row container-fluid  p-2 m-0">
+                                <div class="col-sm-6 m-0 p-0"> <label for="pan">Branch</label></div>
+                                <div class="col-sm-6 m-0 p-0">
+                                    <input type="text" class="form-control" id="branch" placeholder="" name="branch">
+                                </div>  
+                            </div>
+                            <h6 class="p-3">Bank Configuration</h6>
+                            <div class="row container-fluid   p-2 m-0">
+                                <div class="col-sm-6 m-0 p-0"> <label for="rgtype" >Set/Alter range for Cheque Books</label></div>
+                                <div class="col-sm-6 m-0 p-0">
+                                    <select name="set_cheque" id="chqrng" class="form-control">
+                                        <option value="No">No</option>
+                                        <option value="Yes">Yes</option>  
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row container-fluid   p-2 m-0">
+                                <div class="col-sm-6 m-0 p-0"> <label for="rgtype" >Enable Cheque printing</label></div>
+                                <div class="col-sm-6 m-0 p-0">
+                                    <select name="ch_printing" id="chqprnt" class="form-control">
+                                        <option value="No">No</option>
+                                        <option value="Yes" selected>Yes</option>   
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row container-fluid   p-2 m-0">
+                                <div class="col-sm-6 m-0 p-0"> <label for="rgtype" >Set/Alter Cheque Printing Configuration</label></div>
+                                <div class="col-sm-6 m-0 p-0">
+                                    <select name="ch_config" id="ch_config" class="form-control">
+                                        <option value="No">No</option>
+                                        <option value="Yes">Yes</option>     
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="container-fluid bankod hide p-0 "id="bankod">
+                            <div class="row container-fluid  p-2 m-0">
+                                <div class="col-sm-6 m-0 p-0"> <label for="pan">Set OD limit</label></div>
+                                <div class="col-sm-6 m-0 p-0">
+                                    <input type="text" value="{{cmp.name}}" class="form-control" id="odlimit" placeholder="" name="od_limit">
+                                </div>  
+                            </div>
+                            <h6>Bank Account Details</h6>
+                            <div class="row container-fluid  p-2 m-0">
+                                <div class="col-sm-6 m-0 p-0"> <label for="pan">A/c Holders Name</label></div>
+                                <div class="col-sm-6 m-0 p-0">
+                                    <input type="text" value="{{cmp.name}}" class="form-control" id="acna" placeholder="" name="holder_name">
+                                </div>    
+                            </div>
+                            <div class="row container-fluid  p-2 m-0">
+                                <div class="col-sm-6 m-0 p-0"> <label for="pan">A/c Number</label></div>
+                                <div class="col-sm-6 m-0 p-0">
+                                    <input type="text" class="form-control" id="acno" placeholder="" name="ac_number">
+                                </div>  
+                            </div>
+                            <div class="row container-fluid  p-2 m-0">
+                                <div class="col-sm-6 m-0 p-0"> <label for="pan">IFS Code</label></div>
+                                <div class="col-sm-6 m-0 p-0">
+                                    <input type="text" class="form-control" id="ifs" placeholder="" name="ifsc">
+                                </div>  
+                            </div>
+                            <div class="row container-fluid  p-2 m-0">
+                                <div class="col-sm-6 m-0 p-0"> <label for="pan">SWIfT Code</label></div>
+                                <div class="col-sm-6 m-0 p-0">
+                                    <input type="text" class="form-control" id="swift" placeholder="" name="swift_code">
+                                </div> 
+                            </div>
+                            <div class="row container-fluid   p-2 m-0">
+                                <div class="col-sm-6 m-0 p-0"> <label for="rgtype" >Bank Name</label></div>
+                                <div class="col-sm-6 m-0 p-0">
+                                    <select name="bank_name" id="" class="form-control">
+                                        <option value="not applicable">Not applicable</option>  
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row container-fluid  p-2 m-0">
+                                <div class="col-sm-6 m-0 p-0"> <label for="pan">Branch</label></div>
+                                <div class="col-sm-6 m-0 p-0">
+                                    <input type="text" class="form-control" id="branch" placeholder="" name="branch_name">
+                                </div>
+                            </div>
+                            <div class="row container-fluid   p-2 m-0">
+                                <div class="col-sm-6 m-0 p-0"> <label for="rgtype" >Set/Alter Range of cheque Books</label></div>
+                                <div class="col-sm-6 m-0 p-0">
+                                    <select name="alter_chk_bks" id="chqrng" class="form-control">
+                                        <option value="No">No</option>
+                                        <option value="Yes">Yes</option>    
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row container-fluid   p-2 m-0">
+                                <div class="col-sm-6 m-0 p-0"> <label for="rgtype" >Enable Cheque printing</label></div>
+                                <div class="col-sm-6 m-0 p-0">
+                                    <select name="enbl_chk_printing" id="chqprnt" class="form-control">
+                                        <option value="No">No</option>
+                                        <option value="Yes">Yes</option>      
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row container-fluid   p-2 m-0">
+                                <div class="col-sm-6 m-0 p-0"> <label for="rgtype" >Set/Alter Cheque Printing Configuration</label></div>
+                                <div class="col-sm-6 m-0 p-0">
+                                    <select name="chqconfg" id="chqconfg" class="form-control">
+                                        <option value="No">No</option>
+                                        <option value="Yes">Yes</option>     
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="container-fluid dirctexpncs hide p-0 m-0" id="direct_expences">
+                            <div class="row container-fluid   p-2 m-0 " id="typldr0">
+                                <div class="col-sm-6 m-0 p-0 "> <label for="">Types of ledger</label></div>
+                                <div class="col-sm-6 m-0 p-0">
+                                    <select name="ledger_type" id="typldr" class="form-control" onchange="showdirctexp2()">
+                                        <option value="null">----Select---</option>
+                                        <option value="Not_applicable">Not Applicable</option>
+                                        <option value="Discount">Discount</option>
+                                        <option value="invroundg">Invoice Rounding</option>    
+                                    </select>
+                                </div>
+                            </div>
+                        
+                            <div class="row container-fluid   p-2 m-0 hide w-100" id="roundmd0">
+                                <div class="col-sm-6 m-0 p-0 "> <label for="">Rounding Method</label></div>
+                                <div class="col-sm-6 m-0 p-0">
+                                    <select name="rounding_method" id="roundmd" class="form-control">
+                                        <option value="Down_Rounding">Down Rounding</option>
+                                        <option value="Normal_Rounding">Normal Rounding</option>
+                                        <option value="Up_Rounding">Up Rounding</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="row container-fluid  p-2 m-0 hide w-100"  id="rndlmt0" >
+                                <div class="col-sm-6 m-0 p-0"> <label for="pan">Round limit</label></div>
+                                <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" id="rndlmt" placeholder="" name="round_limit" value="1"></div>
+                            </div>
+                        
+                        
+                            <div class="dirctexpns2 hide p-0 m-0 w-100" id="dirctexpns2">
+                        
+                            
+                                <h6>Statutory Details</h6>
+                                <div class="row container-fluid   p-2 m-0" id="applicablegst0">
+                                    <div class="col-sm-6 m-0 p-0 "> <label for="">Is GST applicable</label></div>
+                                    <div class="col-sm-6 m-0 p-0">
+                                        <select name="is_gst_applicable" id="applicablegst" class="form-control" onchange="showdirctexp3()">
+                                            <option value="Not_Applicable"> Not Applicable</option>
+                                            <option value="Applicable">Applicable</option>
+                                            <option value="Undefined">Undefined</option>
+                                        </select>
+                                    </div>
+                                </div>         
+                        
+                                <div class="row container-fluid  p-2 m-0 hide" id="stgst0">
+                                    <div class="col-sm-6 m-0 p-0"> <label for="pan">Set/Alter GST details </label></div>
+                                    <div class="col-sm-6 m-0 p-0">
+                                        <select name="Set_alter_GST" id="stgst" class="form-control">
+                                            <option value="No">No</option>
+                                            <option value="Yes">Yes</option>  
+                                            
+                                        </select>
+                                    </div>          
+                                </div>
+                        
+                                <div class="row container-fluid  p-2 m-0 hide w-100"  id="typsofsply0" >
+                                    <div class="col-sm-6 m-0 p-0"> <label for="pan">Types of Supply</label></div>
+                                    <div class="col-sm-6 m-0 p-0">
+                                        <select name="type_of_supply" id="typsofsply" class="form-control">
+                                            <option value="Service">Service</option>
+                                            <option value="Goods">Goods</option>  
+                                            
+                                        </select>
+                                    </div>
+                                </div>
+                        
+                        
+                                <div class="row container-fluid   p-2 m-0 hide" id="calcgst0">
+                                    <div class="col-sm-6 m-0 p-0"> <label for="rgtype" >Include assessable value calculations for </label></div>
+                                    <div class="col-sm-6 m-0 p-0">
+                                        <select name="assessable_calculation" id="calcgst2" class="form-control" onchange="showAssets2()">
+                                            <option value="Not_Applicable">Not Applicable</option>
+                                            <option value="GST">GST</option>  
+                                            
+                                        </select>
+                                    </div>
+                                </div>
+                                
+                                
+                                
+                                <div class="row container-fluid   p-2 m-0 hide" id="Approp01">
+                                    <div class="col-sm-6 m-0 p-0"> <label for="rgtype" >Appropriate to</label></div>
+                                    <div class="col-sm-6 m-0 p-0">
+                                        <select name="appropriate_to" id="Approp1" class="form-control" onchange="showbased()">
+                                            <option value="Both">Both</option>
+                                            <option value="Goods">Goods</option>
+                                            <option value="Services">Services</option>   
+                                            
+                                        </select>
+                                    </div>
+                                </div>
+                                
+                                <div class="row container-fluid   p-2 m-0 hide " id="mtdcalc01">
+                                    <div class="col-sm-6 m-0 p-0 "> <label for="mtdcalc">Method of Calculation</label></div>
+                                    <div class="col-sm-6 m-0 p-0">
+                                        <select name="method_of_calc" id="mtdcalc1" class="form-control">
+                                            <option value="Based_on_Value" >Based on value</option>
+                                            <option value="Based_on_Quntity" id="qlty">Based on quantity</option>    
+                                        </select>
+                                    </div>
+                                </div>
+                                
+                                
+                                
+                                
+                        
+                            
+                            
+                        </div>
+                        
+                        
+                        
+                        </div>
+                        
+                        <div class="dutiesandtax1 p-0 m-0 w-100 hide" id="dutiesandtax1">
+                        
+                            <div class="row container-fluid   p-2 m-0 " id="typdty0">
+                                <div class="col-sm-6 m-0 p-0 "> <label for="">Type of Duty/Tax</label></div>
+                                <div class="col-sm-6 m-0 p-0">
+                                    <select name="type_of_duty_or_tax" id="typdty" class="form-control" onchange="showdutiesandtax2()">
+                                        <option value="null">----Select---</option>
+                                        <option value="gst">GST</option>
+                                        <option value="other">Other</option>
+                                         
+                                    </select>
+                                </div>
+                            </div>
+                        
+                            <div class="row container-fluid   p-2 m-0 hide " id="taxtyp0">
+                                <div class="col-sm-6 m-0 p-0 "> <label for="">Tax Type</label></div>
+                                <div class="col-sm-6 m-0 p-0">
+                                    <select name="type_of_tax" id="taxtyp" class="form-control" onchange="showdutiesandtax3()">
+                                        <option value="null">----Select---</option>
+                                        <option value="central">Central Tax</option>
+                                        <option value="cess">Cess</option>
+                                        <option value="integrated">Integrated Tax</option>
+                                        <option value="state">State Tax</option>
+                                         
+                                    </select>
+                                </div>
+                            </div>
+                        
+                            <div class="row container-fluid   p-2 m-0 hide " id="valtyp0">
+                                <div class="col-sm-6 m-0 p-0 "> <label for="mtdcalc">Valuation Type</label></div>
+                                <div class="col-sm-6 m-0 p-0">
+                                    <select name="valuation_type" id="valtyp" class="form-control" onchange="showdutiesandtax4()">
+                                        <option value="" >---Select---</option>
+                                        <option value="any" >Any</option>
+                                        <option value="Based_on_Value" >Based on value</option>
+                                        <option value="Based_on_Quntity">Based on quantity</option>    
+                                    </select>
+                                </div>
+                            </div>
+                        
+                            <div class="row container-fluid  p-2 m-0 hide w-100"  id="rtprunit0" >
+                                <div class="col-sm-6 m-0 p-0"> <label for="pan">Rate per unit</label></div>
+                                <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" id="rtprunit" placeholder="" name="rate_per_unit" value="0"></div>
+                            </div>
+                        
+                            <div class="row container-fluid  p-2 m-0 hide w-100"  id="prstgcalc0" >
+                                <div class="col-sm-6 m-0 p-0"> <label for="pan">Percentage of calcution </label></div>
+                                <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" id="prstgcalc" placeholder="" name="Persentage_of_calculation" value="0%"></div>
+                            </div>
+                        </div>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <div class="row container-fluid   p-2 m-0 hide w-100" id="roundmd20">
+                            <div class="col-sm-6 m-0 p-0 "> <label for="">Rounding Method</label></div>
+                            <div class="col-sm-6 m-0 p-0">
+                                <select name="rounding_method" id="roundmd2" class="form-control" onchange="rounding()">
+                                    <option value="null">Not Applicable</option>
+                                    <option value="Down_Rounding">Down Rounding</option>
+                                    <option value="Normal_Rounding">Normal Rounding</option>
+                                    <option value="Up_Rounding">Up Rounding</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="row container-fluid  p-2 m-0 hide w-100"  id="rndlmt20" >
+                            <div class="col-sm-6 m-0 p-0"> <label for="pan">Round limit</label></div>
+                            <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" id="rndlmt2" placeholder="" name="round_limit" value="1"></div>
+                        </div>
+                        
+                        <div class="dirctexpns4 hide py-3 m-0 w-100" id="dirctexpns4">
+                        
+                            <h5>Statutory Details</h5>
+                            <div class="row container-fluid   p-2 m-0 " id="applicablegst20">
+                                <div class="col-sm-6 m-0 p-0 "> <label for="">Is GST applicable</label></div>
+                                <div class="col-sm-6 m-0 p-0">
+                                    <select name="gst_applicable" id="applicablegst2" class="form-control" onchange="showdirctexp4()">
+                                        <option value="">----Select----</option>
+                                        <option value="Not_Applicable"> Not Applicable</option>
+                                        <option value="Applicable">Applicable</option>
+                                        <option value="Undefined">Undefined</option>
+                                    </select>
+                                </div>
+                            </div>         
+                        
+                            <div class="row container-fluid  p-2 m-0 hide" id="stgst20">
+                                <div class="col-sm-6 m-0 p-0"> <label for="pan">Set/Alter GST details </label></div>
+                                <div class="col-sm-6 m-0 p-0">
+                                    <select name="set_alter_GST" id="stgst2" class="form-control">
+                                        <option value="No">No</option>
+                                        <option value="Yes">Yes</option>  
+                                        
+                                    </select>
+                                </div>          
+                            </div>
+                        
+                            <div class="row container-fluid  p-2 m-0  w-100 hide"  id="typsofsply20" >
+                                <div class="col-sm-6 m-0 p-0"> <label for="pan">Types of Supply</label></div>
+                                <div class="col-sm-6 m-0 p-0">
+                                    <select name="type_of_supply" id="typsofsply2" class="form-control">
+                                        <option value="Service">Service</option>
+                                        <option value="Goods">Goods</option>  
+                                        
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        
+                        
+                        <div class="Sundry_commit py-2 m-0 hide" id="Sundry_commit">
+                        
+                            <div class="row container-fluid  p-2 m-0 " id="billbybill0">
+                                <div class="col-sm-6 m-0 p-0"> <label for="pan">Maintain balance Bill by Bill</label></div>
+                                <div class="col-sm-6 m-0 p-0">
+                                    <select name="maintain_balance_bill_by_bill" id="billbybill" class="form-control" onchange="bill()">
+                                        <option value="">--Select---</option> 
+                                        <option value="Yes">Yes</option>  
+                                        <option value="No">No</option>
+                        
+                                    </select>
+                                </div>          
+                            </div>
+                        
+                            <div class="row container-fluid  p-2 m-0 hide w-100"  id="Default_Credit_period0" >
+                                <div class="col-sm-6 m-0 p-0"> <label for="pan">Default credit period</label></div>
+                                <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" id="default_Credit_period" placeholder="" name="default_credit_period" value="1"></div>
+                            </div>
+                        
+                            <div class="row container-fluid  p-2 m-0 hide" id="creditdays0">
+                                <div class="col-sm-6 m-0 p-0"> <label for="pan">Check for credit days during voucher enter</label></div>
+                                <div class="col-sm-6 m-0 p-0">
+                                    <select name="check_for_credit_days" id="creditdays" class="form-control">
+                                        <option value="No">No</option>
+                                        <option value="Yes">Yes</option>  
+                                    </select>
+                                </div>          
+                            </div>
+                        
+                        
+                        
+                        </div>
+                        
+                        <div class="Statutory_Details hide p-0 m-0 w-100" id="Statutory_Details">
+                            <h6 class="p-3">Statutory Details</h6>
+                            
+                            <div class="row container-fluid   p-2 m-0 ">
+                                <div class="col-sm-6 m-0 p-0"> <label for="rgtype" >Include assessable value calculations for </label></div>
+                                <div class="col-sm-6 m-0 p-0">
+                                    <select name="assessable_calculation" id="calcgst" class="form-control" onchange="showAssets()">
+                                        <option value="Not_Applicable">Not Applicable</option>
+                                        <option value="GST">GST</option>  
+                                        
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            
+                            
+                            <div class="row container-fluid   p-2 m-0 hide w-100 " id="Approp0">
+                                <div class="col-sm-6 m-0 p-0"> <label for="rgtype" >Appropriate to</label></div>
+                                <div class="col-sm-6 m-0 p-0">
+                                    <select name="Appropriate_to" id="Approp" class="form-control" onchange="showbased()">
+                                        <option value="Both">Both</option>
+                                        <option value="Goods">Goods</option>
+                                        <option value="Services">Services</option>   
+                                        
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="row container-fluid   p-2 m-0 hide w-100 " id="mtdcalc0">
+                                <div class="col-sm-6 m-0 p-0 "> <label for="mtdcalc">Method of Calculation</label></div>
+                                <div class="col-sm-6 m-0 p-0">
+                                    <select name="" id="Method_of_calc" class="form-control">
+                                        <option value="Based_on_Value" >Based on value</option>
+                                        <option value="Based_on_Quntity" id="qlty">Based on quantity</option>    
+                                    </select>
+                                </div>
+                            </div>

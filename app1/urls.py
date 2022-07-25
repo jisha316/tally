@@ -58,7 +58,13 @@ urlpatterns = [
 
     path('cn',views.cn,name='cn'),
 
-    path('add_group',views.add_group,name='add_group'),
+    path('create_group',views.create_group,name='create_group'),
+
+    path('create_currency',views.create_currency,name='create_currency'),
+
+    path('alter_currency',views.alter_currency,name='alter_currency'),
+
+    path('load_centre',views.load_centre,name='load_centre'),
 
     
 ]
