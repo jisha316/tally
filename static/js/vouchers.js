@@ -143,6 +143,7 @@ function showVoucherType(){
         document.getElementById('provide').style.display = "flex";
         document.getElementById('optional').style.display = "flex";
         document.getElementById('track').style.display = "none";
+        document.getElementById('formal').style.display = "none";
         document.getElementById('jurisdiction').style.display = "none";
         document.getElementById('title_print').style.display = "none";
         document.getElementById('enable').style.display = "none";
@@ -155,6 +156,7 @@ function showVoucherType(){
         document.getElementById('enable').style.display = "flex";
         document.getElementById('optional').style.display = "flex";
         document.getElementById('title_print').style.display = "none";
+        document.getElementById('formal').style.display = "none";
         document.getElementById('track').style.display = "none";
         document.getElementById('jurisdiction').style.display = "none";
         document.getElementById('journal').style.display = "none";
@@ -168,6 +170,7 @@ function showVoucherType(){
         document.getElementById('title_print').style.display = "flex";
         document.getElementById('optional').style.display = "flex";
         document.getElementById('track').style.display = "none";
+        document.getElementById('formal').style.display = "none";
         document.getElementById('journal').style.display = "none";
         document.getElementById('pos').style.display = "none";
         document.getElementById('bank').style.display = "none";
@@ -179,6 +182,7 @@ function showVoucherType(){
         document.getElementById('title_print').style.display = "flex";
         document.getElementById('optional').style.display = "flex";
         document.getElementById('jurisdiction').style.display = "none";
+        document.getElementById('formal').style.display = "none";
         document.getElementById('attd').style.display = "none";
         document.getElementById('journal').style.display = "none";
         document.getElementById('pos').style.display = "none";
@@ -191,6 +195,7 @@ function showVoucherType(){
         document.getElementById('optional').style.display = "flex";
         document.getElementById('track').style.display = "none";
         document.getElementById('provide').style.display = "none";
+        document.getElementById('formal').style.display = "none";
         document.getElementById('journal').style.display = "none";
         document.getElementById('pos').style.display = "none";
         document.getElementById('bank').style.display = "none";    
@@ -200,7 +205,8 @@ function showVoucherType(){
         document.getElementById('set/alter').style.display = "flex";
         document.getElementById('optional').style.display = "flex";
         document.getElementById('track').style.display = "none";
-        document.getElementById('provide').style.display = "none"; 
+        document.getElementById('provide').style.display = "none";
+        document.getElementById('formal').style.display = "none"; 
         document.getElementById('enable').style.display = "none";
         document.getElementById('jurisdiction').style.display = "none";
         document.getElementById('journal').style.display = "none";
@@ -214,6 +220,7 @@ function showVoucherType(){
         document.getElementById('optional').style.display = "flex";
         document.getElementById('track').style.display = "none";
         document.getElementById('provide').style.display = "none"; 
+        document.getElementById('formal').style.display = "none";
         document.getElementById('enable').style.display = "none";
         document.getElementById('journal').style.display = "none";
         document.getElementById('pos').style.display = "none";
@@ -227,6 +234,7 @@ function showVoucherType(){
         document.getElementById('title_print').style.display = "none";
         document.getElementById('enable').style.display = "none";
         document.getElementById('set/alter').style.display = "none";
+        document.getElementById('formal').style.display = "none";
         document.getElementById('journal').style.display = "none";
         document.getElementById('pos').style.display = "none";
         document.getElementById('bank').style.display = "none";    
@@ -240,6 +248,7 @@ function showVoucherType(){
         document.getElementById('track').style.display = "none";
         document.getElementById('set/alter').style.display = "none";
         document.getElementById('journal').style.display = "none";
+        document.getElementById('formal').style.display = "none";
         document.getElementById('pos').style.display = "none";
         document.getElementById('bank').style.display = "none";
     }
@@ -249,6 +258,7 @@ function showVoucherType(){
         document.getElementById('provide').style.display = "none";
         document.getElementById('track').style.display = "none";
         document.getElementById('title_print').style.display = "none"; 
+        document.getElementById('formal').style.display = "none";
         document.getElementById('set/alter').style.display = "none";
         document.getElementById('journal').style.display = "none";
         document.getElementById('pos').style.display = "none";
@@ -260,12 +270,11 @@ function showVoucherType(){
         document.getElementById('optional').style.display = "none";
         document.getElementById('enable').style.display = "none";
         document.getElementById('title_print').style.display = "none";
+        document.getElementById('formal').style.display = "none";
         document.getElementById('set/alter').style.display = "none";
         document.getElementById('journal').style.display = "none";
         document.getElementById('pos').style.display = "none";
-        document.getElementById('bank').style.display = "none";
-        
-       
+        document.getElementById('bank').style.display = "none";       
     }
     else if( a == "Payment" ){
         document.getElementById('provide').style.display = "flex";
@@ -274,6 +283,7 @@ function showVoucherType(){
         document.getElementById('optional').style.display = "flex";
         document.getElementById('title_print').style.display = "none";
         document.getElementById('jurisdiction').style.display = "none";
+        document.getElementById('formal').style.display = "none";
         document.getElementById('set/alter').style.display = "none";
         document.getElementById('journal').style.display = "none";
         document.getElementById('pos').style.display = "none";
@@ -286,6 +296,7 @@ function showVoucherType(){
         document.getElementById('enable').style.display = "none";
         document.getElementById('title_print').style.display = "none";
         document.getElementById('jurisdiction').style.display = "none";
+        document.getElementById('formal').style.display = "none";
         document.getElementById('set/alter').style.display = "none";
         document.getElementById('journal').style.display = "none";
         document.getElementById('pos').style.display = "none";
@@ -298,6 +309,7 @@ function showVoucherType(){
         document.getElementById('enable').style.display = "none";
         document.getElementById('title_print').style.display = "none";
         document.getElementById('jurisdiction').style.display = "none";
+        document.getElementById('formal').style.display = "none";
         document.getElementById('set/alter').style.display = "none";
         document.getElementById('journal').style.display = "none";
         document.getElementById('pos').style.display = "none";
@@ -309,6 +321,7 @@ function showVoucherType(){
         document.getElementById('track').style.display = "flex";
         document.getElementById('enable').style.display = "flex";
         document.getElementById('title_print').style.display = "none";
+        document.getElementById('formal').style.display = "none";
         document.getElementById('jurisdiction').style.display = "none";
         document.getElementById('set/alter').style.display = "none";
         document.getElementById('journal').style.display = "none";
@@ -323,12 +336,14 @@ function showVoucherType(){
         document.getElementById('track').style.display = "none";
         document.getElementById('title_print').style.display = "none";
         document.getElementById('jurisdiction').style.display = "none";
+        document.getElementById('formal').style.display = "none";
         document.getElementById('set/alter').style.display = "none";
         document.getElementById('journal').style.display = "none";
         document.getElementById('pos').style.display = "none";
         document.getElementById('bank').style.display = "none";
     }
     else if( a == "Receipt" ){
+        document.getElementById('formal_rcpt').style.display = "flex";
         document.getElementById('provide').style.display = "flex";
         document.getElementById('optional').style.display = "flex";
         document.getElementById('enable').style.display = "flex";
@@ -347,6 +362,7 @@ function showVoucherType(){
         document.getElementById('provide').style.display = "none";
         document.getElementById('title_print').style.display = "none";
         document.getElementById('jurisdiction').style.display = "none";
+        document.getElementById('formal').style.display = "none";
         document.getElementById('set/alter').style.display = "none";
         document.getElementById('journal').style.display = "none";
         document.getElementById('pos').style.display = "none";
@@ -358,6 +374,7 @@ function showVoucherType(){
         document.getElementById('track').style.display = "none";
         document.getElementById('enable').style.display = "none";
         document.getElementById('title_print').style.display = "none";
+        document.getElementById('formal').style.display = "none";
         document.getElementById('jurisdiction').style.display = "none";
         document.getElementById('set/alter').style.display = "none";
         document.getElementById('journal').style.display = "none";
@@ -371,6 +388,7 @@ function showVoucherType(){
         document.getElementById('enable').style.display = "none";
         document.getElementById('title_print').style.display = "none";
         document.getElementById('jurisdiction').style.display = "none";
+        document.getElementById('formal').style.display = "none";
         document.getElementById('set/alter').style.display = "none";
         document.getElementById('journal').style.display = "none";
         document.getElementById('pos').style.display = "none";
@@ -380,6 +398,7 @@ function showVoucherType(){
         document.getElementById('provide').style.display = "flex";
         document.getElementById('track').style.display = "flex";
         document.getElementById('optional').style.display = "none";
+        document.getElementById('formal').style.display = "none";
         document.getElementById('enable').style.display = "none";
         document.getElementById('title_print').style.display = "none";
         document.getElementById('jurisdiction').style.display = "none";
@@ -398,6 +417,7 @@ function showVoucherType(){
         document.getElementById('jurisdiction').style.display = "flex";
         document.getElementById('set/alter').style.display = "flex";
         document.getElementById('track').style.display = "none";
+        document.getElementById('formal').style.display = "none";
         document.getElementById('journal').style.display = "none";
     }
     else if( a == "Sales_Order" ){
@@ -410,7 +430,7 @@ function showVoucherType(){
         document.getElementById('track').style.display = "none";
         document.getElementById('title_print').style.display = "none";
         document.getElementById('jurisdiction').style.display = "none";
-        
+        document.getElementById('formal').style.display = "none";
         document.getElementById('journal').style.display = "none";  
     }
     else if( a == "Stock_Journal" ){
@@ -423,6 +443,7 @@ function showVoucherType(){
         document.getElementById('jurisdiction').style.display = "none";
         document.getElementById('set/alter').style.display = "none";
         document.getElementById('pos').style.display = "none";
+        document.getElementById('formal').style.display = "none";
         document.getElementById('bank').style.display = "none";
     }    
 }

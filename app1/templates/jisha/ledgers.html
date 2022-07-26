@@ -9,9 +9,6 @@
         }
         .hide{
 			display: none;
-			align-items:center;
-			justify-content:center;
-			flex-direction: column;
     	}
     </style>
     
@@ -20,7 +17,7 @@
     
     <script src="{% static 'js/ledger.js' %}"></script>
 
-  <div class="m-3">
+  <div class="m-2">
         <h6  class="bg-info text-light p-2 m-0 text-center">Ledger Creation</h6>
         <form class="p-5" style="background-color:rgba(0,0,0,.4);">
             <div class="p-3">
@@ -63,9 +60,10 @@
                                 <option value="Loans_Advance">Loans & Advances (Asset)</option>
                                 <option value="Loans_liability">Loans (Liability)</option>
                                 <option value="Mis_Expenses">Misc. Expenses (Asset)</option>
-                                <option value="provisions">provisions</option>
+                                <option value="Provisions">Provisions</option>
                                 <option value="Purchase_Account">Purchase Accounts</option>
-                                <option value="retained">Retained Earnings</option>
+                                <option value="Reserves_&_Surplus">Reserves & Surplus</option>
+                                <option value="Retained">Retained Earnings</option>
                                 <option value="Sales_Account">Sales Accounts</option>
                                 <option value="Secured_loans">Secured Loans</option>
                                 <option value="Stock">Stock-in-Hand</option>
@@ -78,10 +76,236 @@
                                 {% endfor %} 
                             </select>
                         </div>
-
-                        
+                        <div class="row container-fluid hide p-2" id="assets">
+                            <div class="col-sm-6 m-0 p-0"></div>
+                            <div class="col-sm-6 m-0 p-0">&nbsp;&nbsp;&nbsp;&nbsp;<label for=""><i>(Current Assets)</i></label></div>
+                        </div>
+                        <div class="row container-fluid hide p-2 m-0"  id="loans">
+                            <div class="col-sm-6 m-0 p-0"></div>
+                            <div class="col-sm-6 m-0 p-0">&nbsp;&nbsp;&nbsp;&nbsp;<label for=""><i>(Loans (Liability))</i></label></div>
+                        </div>
+                        <div class="row container-fluid hide p-2 m-0"  id="liabilities">
+                            <div class="col-sm-6 m-0 p-0"></div>
+                            <div class="col-sm-6 m-0 p-0">&nbsp;&nbsp;&nbsp;&nbsp;<label for=""><i>(Current Liabilities)</i></label></div>
+                        </div>
+                        <div class="row container-fluid hide p-2 m-0"  id="account">
+                            <div class="col-sm-6 m-0 p-0"></div>
+                            <div class="col-sm-6 m-0 p-0">&nbsp;&nbsp;&nbsp;&nbsp;<label for=""><i>(Capital Account)</i></label></div>
+                        </div>  
                     </div>
+
+
+                    <div class="row container-fluid bankac hide p-0" id="banka/c">
+                        <h6 class="p-3">Bank Account Details</h6>
+                        <div class="row container-fluid  p-2 m-0">
+                            <div class="col-sm-6 m-0 p-0"> <label for="pan">A/c Holder's Name</label></div>
+                            <div class="col-sm-6 m-0 p-0">
+                                <input type="text" value="{{cmp.name}}" class="form-control" id="acna" placeholder="" name="holder_name">
+                            </div>  
+                        </div>
+                        <div class="row container-fluid  p-2 m-0">
+                            <div class="col-sm-6 m-0 p-0"> <label for="pan">A/c No.</label></div>
+                            <div class="col-sm-6 m-0 p-0">
+                                <input type="text" class="form-control" id="acno" placeholder="" name="acc_no">
+                            </div>   
+                        </div>
+                        <div class="row container-fluid  p-2 m-0">
+                            <div class="col-sm-6 m-0 p-0"> <label for="pan">IFS Code</label></div>
+                            <div class="col-sm-6 m-0 p-0">
+                                <input type="text" class="form-control" id="ifs" placeholder="" name="ifsc">
+                            </div> 
+                        </div>
+                        <div class="row container-fluid  p-2 m-0">
+                            <div class="col-sm-6 m-0 p-0"> <label for="pan">SWIFT Code</label></div>
+                            <div class="col-sm-6 m-0 p-0">
+                                <input type="text" class="form-control" id="swift" placeholder="" name="swift_code">
+                            </div>  
+                        </div>
+                        <div class="row container-fluid   p-2 m-0">
+                            <div class="col-sm-6 m-0 p-0"> <label for="rgtype" >Bank Name</label></div>
+                            <div class="col-sm-6 m-0 p-0">
+                                <select name="bank_name" id="" class="form-control">
+                                    <option value="not applicable">Not applicable</option>  
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row container-fluid  p-2 m-0">
+                            <div class="col-sm-6 m-0 p-0"> <label for="pan">Branch</label></div>
+                            <div class="col-sm-6 m-0 p-0">
+                                <input type="text" class="form-control" id="branch" placeholder="" name="branch">
+                            </div>  
+                        </div>
+                        <h6 class="p-3">Bank Configuration</h6>
+                        <div class="row container-fluid   p-2 m-0">
+                            <div class="col-sm-6 m-0 p-0"> <label for="rgtype" >Set/Alter range for Cheque Books</label></div>
+                            <div class="col-sm-6 m-0 p-0">
+                                <select name="set_cheque" id="chqrng" class="form-control">
+                                    <option value="No">No</option>
+                                    <option value="Yes">Yes</option>  
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row container-fluid   p-2 m-0">
+                            <div class="col-sm-6 m-0 p-0"> <label for="rgtype" >Enable Cheque printing</label></div>
+                            <div class="col-sm-6 m-0 p-0">
+                                <select name="ch_printing" id="chqprnt" class="form-control">
+                                    <option value="No">No</option>
+                                    <option value="Yes" selected>Yes</option>   
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row container-fluid   p-2 m-0">
+                            <div class="col-sm-6 m-0 p-0"> <label for="rgtype" >Set/Alter Cheque Printing Configuration</label></div>
+                            <div class="col-sm-6 m-0 p-0">
+                                <select name="ch_config" id="ch_config" class="form-control">
+                                    <option value="No">No</option>
+                                    <option value="Yes">Yes</option>     
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row container-fluid bankod hide p-0 "id="bankod_a/c">
+                        <div class="row container-fluid  p-2 m-0">
+                            <div class="col-sm-6 m-0 p-0"> <label for="pan">Set OD limit</label></div>
+                            <div class="col-sm-6 m-0 p-0">
+                                <input type="text" value="{{cmp.name}}" class="form-control" id="odlimit" placeholder="" name="od_limit">
+                            </div>  
+                        </div>
+                        <h6>Bank Account Details</h6>
+                        <div class="row container-fluid  p-2 m-0">
+                            <div class="col-sm-6 m-0 p-0"> <label for="pan">A/c Holders Name</label></div>
+                            <div class="col-sm-6 m-0 p-0">
+                                <input type="text" value="{{cmp.name}}" class="form-control" id="acna" placeholder="" name="holder_name">
+                            </div>    
+                        </div>
+                        <div class="row container-fluid  p-2 m-0">
+                            <div class="col-sm-6 m-0 p-0"> <label for="pan">A/c Number</label></div>
+                            <div class="col-sm-6 m-0 p-0">
+                                <input type="text" class="form-control" id="acno" placeholder="" name="ac_number">
+                            </div>  
+                        </div>
+                        <div class="row container-fluid  p-2 m-0">
+                            <div class="col-sm-6 m-0 p-0"> <label for="pan">IFS Code</label></div>
+                            <div class="col-sm-6 m-0 p-0">
+                                <input type="text" class="form-control" id="ifs" placeholder="" name="ifsc">
+                            </div>  
+                        </div>
+                        <div class="row container-fluid  p-2 m-0">
+                            <div class="col-sm-6 m-0 p-0"> <label for="pan">SWIfT Code</label></div>
+                            <div class="col-sm-6 m-0 p-0">
+                                <input type="text" class="form-control" id="swift" placeholder="" name="swift_code">
+                            </div> 
+                        </div>
+                        <div class="row container-fluid   p-2 m-0">
+                            <div class="col-sm-6 m-0 p-0"> <label for="rgtype" >Bank Name</label></div>
+                            <div class="col-sm-6 m-0 p-0">
+                                <select name="bank_name" id="" class="form-control">
+                                    <option value="not applicable">Not applicable</option>  
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row container-fluid  p-2 m-0">
+                            <div class="col-sm-6 m-0 p-0"> <label for="pan">Branch</label></div>
+                            <div class="col-sm-6 m-0 p-0">
+                                <input type="text" class="form-control" id="branch" placeholder="" name="branch_name">
+                            </div>
+                        </div>
+                        <div class="row container-fluid   p-2 m-0">
+                            <div class="col-sm-6 m-0 p-0"> <label for="rgtype" >Set/Alter Range of cheque Books</label></div>
+                            <div class="col-sm-6 m-0 p-0">
+                                <select name="alter_chk_bks" id="chqrng" class="form-control">
+                                    <option value="No">No</option>
+                                    <option value="Yes">Yes</option>    
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row container-fluid   p-2 m-0">
+                            <div class="col-sm-6 m-0 p-0"> <label for="rgtype" >Enable Cheque printing</label></div>
+                            <div class="col-sm-6 m-0 p-0">
+                                <select name="enbl_chk_printing" id="chqprnt" class="form-control">
+                                    <option value="No">No</option>
+                                    <option value="Yes">Yes</option>      
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row container-fluid   p-2 m-0">
+                            <div class="col-sm-6 m-0 p-0"> <label for="rgtype" >Set/Alter Cheque Printing Configuration</label></div>
+                            <div class="col-sm-6 m-0 p-0">
+                                <select name="chqconfg" id="chqconfg" class="form-control">
+                                    <option value="No">No</option>
+                                    <option value="Yes">Yes</option>     
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="row container-fluid hide p-0" id="statutory_details">
+                        <h6 class="p-3">Statutory Details</h6>
+                        <div class="row container-fluid p-2 m-0 " id="">
+                            <div class="col-sm-6 m-0 p-0"> <label for="" >Include assessable value calculations for </label></div>
+                            <div class="col-sm-6 m-0 p-0">
+                                <select name="" id="call_gst" class="form-control" onchange="showAssets()">
+                                    <option value="Not_Applicable">Not Applicable</option>
+                                    <option value="GST">GST</option>     
+                                </select>
+                            </div>
+                        </div>
+                    
+                        <div class="row container-fluid p-2 m-0 hide" id="appropriate_to">
+                            <div class="col-sm-6 m-0 p-0"> <label for="" >Appropriate to</label></div>
+                            <div class="col-sm-6 m-0 p-0">
+                                <select name="" id="appropriate" class="form-control" onchange="showbased()">
+                                    <option value="Both">Both</option>
+                                    <option value="Goods">Goods</option>
+                                    <option value="Services">Services</option>      
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row container-fluid  p-2 m-0 hide" id="method_of_calculation">
+                            <div class="col-sm-6 m-0 p-0 "> <label for="">Method of Calculation</label></div>
+                            <div class="col-sm-6 m-0 p-0">
+                                <select name="" id="" class="form-control">
+                                    <option value="Based_on_Value" >Based on value</option>
+                                    <option value="Based_on_Quntity" id="qlty">Based on quantity</option>    
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row container-fluid hide p-0" id="bill_by_bill">
+                        <h6 class="p-3"></h6>
+                        <div class="row container-fluid  p-2" id="">
+                            <div class="col-sm-6 m-0 p-0"> <label for="c">Maintain balance Bill by Bill</label></div>
+                            <div class="col-sm-6 m-0 p-0">
+                                <select name="" id="billbybill" class="form-control" onchange="bill()">
+                                    <option value="option"></option>
+                                    <option value="Yes">Yes</option>
+                                    <option value="No">No</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row container-fluid hide p-2" id="credit_period">
+                            <div class="col-sm-6 m-0 p-0"> <label for="c">Default credit period</label></div>
+                            <div class="col-sm-6 m-0 p-0">
+                                <input type="text" class="form-control" id="" placeholder="" name="" value="">
+                            </div>
+                        </div>    
+
+                        <div class="row container-fluid hide p-2" id="voucher_enter">
+                            <div class="col-sm-6 m-0 p-0"> <label for="c">Check for credit days during voucher enter</label></div>
+                            <div class="col-sm-6 m-0 p-0">
+                                <select name="" id="" class="form-control">
+                                    <option value="No">No</option>
+                                    <option value="Yes">Yes</option>
+                                </select>
+                            </div>
+                        </div>            
+                    </div>      
                 </div>
+
 
                 <div class="col-sm-6 m-0 p-4" style=" border-right: 1px solid rgba(128, 128, 128, 0.6);">
                     <h5 class="text-center">Mailing Details</h5>

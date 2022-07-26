@@ -66,5 +66,9 @@ urlpatterns = [
 
     path('load_centre',views.load_centre,name='load_centre'),
 
+    path('create_tds',views.create_tds,name='create_tds'),
+
+    path('person_tds',views.person_tds,name='person_tds'),
+
     
 ]

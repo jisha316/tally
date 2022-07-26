@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from .models import tally_group,tally_currency,alt_currency,cost_centre
+from .models import tally_group,tally_currency,alt_currency,cost_centre,tally_tds,person_res_details,vouchers
 
 # Create your views here.
 
@@ -183,3 +183,121 @@ def load_centre(request):
 		cost.save()
 		print("added")
 		return redirect('/')
+
+def create_tds(request):
+	if request.method=='POST':
+		t_reg = request.POST['tan_reg_no']
+		tax_clct = request.POST['tax_ded_clctn']
+		ded_type = request.POST['deductor_type']
+		ded_bd = request.POST['ded_brachdevision']
+		prsn_res = request.POST['person_res']
+		ignr = request.POST['ignore_it']
+		st_itm = request.POST['tds_stock_items']
+		
+		ctds=tally_tds(tan_reg_no=t_reg,
+                        tax_ded_clctn = tax_clct,
+                        deductor_type = ded_type,
+                        ded_brachdevision = ded_bd,
+                        person_res = prsn_res,
+                        ignore_it = ignr,
+                        tds_stock_items = st_itm)          
+		ctds.save()
+		print("added")
+		return redirect('/')
+
+def person_tds(request):
+	if request.method=='POST':
+		name = request.POST['name']
+		sd = request.POST['son_daughter']
+		des = request.POST['designation']
+		pan = request.POST['pan']
+		ftno = request.POST['flat_no']
+		pnm = request.POST['premise_name']
+		str = request.POST['street']
+		are = request.POST['area']
+		city = request.POST['city']
+		st = request.POST['state']
+		pcd = request.POST['pincode']
+		m_no = request.POST['mobile_no']
+		std = request.POST['std_code']
+		tph = request.POST['telephone']
+		emal = request.POST['email']
+	    
+		prs=person_res_details(name=name,
+                        son_daughter = sd,
+                        designation = des,
+                        pan = pan,
+                        flat_no = ftno,
+                        premise_name = pnm,
+                        street = str,
+                        area = are,
+                        city = city,
+                        state = st,
+                        pincode = pcd,
+                        mobile_no = m_no,
+                        std_code = std,
+                        telephone = tph,
+                        email = emal)          
+		prs.save()
+		print("added")
+		return redirect('/')
+
+def create_voucher(request):
+	if request.method=='POST':
+		nm=request.POST['name']
+		als=request.POST['alias']
+		vtp=request.POST['voucher_type']
+		abbr=request.POST['Abbreviation']
+		actp=request.POST['activate_Vtype']
+		mvno=request.POST['method_Vno']
+		prnt=request.POST['prevent']
+		acn=request.POST['advance_con']
+		use=request.POST['use_EDV']
+		zero=request.POST['zero_val']
+		mvd=request.POST['mVoptional_defualt']
+		anar=request.POST['allow_nar']
+		prvdl=request.POST['provide_L']
+		jrnl=request.POST['manu_jrnl']
+		track=request.POST['track_purchase']
+		enbl=request.POST['enable_acc']
+		prntva=request.POST['prnt_VA_save']
+		prntfml=request.POST['prnt_frml']
+		juri=request.POST['jurisdiction']
+		tprint=request.POST['title_print']
+		setaltr=request.POST['set_alter']
+		posinv=request.POST['pos_invoice']
+		msg1=request.POST['msg_1']
+		msg2=request.POST['msg_2']
+		dbank=request.POST['default_bank']
+		nc=request.POST['name_class']
+
+		vhr=vouchers(name=nm,
+                    alias = als,
+                    voucher_type = vtp,
+                    Abbreviation = abbr,
+                    activate_Vtype = actp,
+                    method_Vno = mvno,
+                    prevent = prnt,
+                    advance_con = acn,
+                    use_EDV = use,
+                    zero_val = zero,
+                    mVoptional_defualt = mvd,
+                    allow_nar = anar,
+                    provide_L = prvdl,
+                    manu_jrnl = jrnl,
+                    track_purchase = track,
+                    enable_acc = enbl,
+                    prnt_VA_save = prntva,
+                    prnt_frml = prntfml,
+                    jurisdiction = juri,
+                    title_print = tprint,
+                    set_alter = setaltr,
+                    pos_invoice = posinv,
+                    msg_1 = msg1,
+                    msg_2 = msg2,
+                    default_bank = dbank,
+                    name_class = nc)          
+		vhr.save()
+		print("added")
+		return redirect('/')
+
