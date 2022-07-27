@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from .models import tally_group,tally_currency,alt_currency,cost_centre,tally_tds,person_res_details,vouchers
+from .models import tally_group,tally_currency,alt_currency,cost_centre,tally_tds,person_res_details,tally_vouchers
 
 # Create your views here.
 
@@ -54,7 +54,9 @@ def c_alter(request):
     return render(request, 'jisha/c_alter.html')
 
 def cost(request):
-    return render(request, 'jisha/cost.html')
+	costt=cost_centre.objects.all()
+	context={'costt' : costt}
+	return render(request,'jisha/cost.html',context)
 
 def rates(request):
     return render(request, 'jisha/rates.html')
@@ -94,6 +96,9 @@ def shut_cmpny(request):
 
 def shut_msg(request):
     return render(request, 'jisha/shut_msg.html')
+
+def lut_bond(request):
+    return render(request, 'jisha/lut_bond.html')
 
 
 def cn(request):
@@ -244,9 +249,9 @@ def person_tds(request):
 
 def create_voucher(request):
 	if request.method=='POST':
-		nm=request.POST['name']
+		nm=request.POST['vname']
 		als=request.POST['alias']
-		vtp=request.POST['voucher_type']
+		vtp=request.POST['vouch_type']
 		abbr=request.POST['Abbreviation']
 		actp=request.POST['activate_Vtype']
 		mvno=request.POST['method_Vno']
@@ -271,7 +276,7 @@ def create_voucher(request):
 		dbank=request.POST['default_bank']
 		nc=request.POST['name_class']
 
-		vhr=vouchers(name=nm,
+		vhr=tally_vouchers(voucher_name=nm,
                     alias = als,
                     voucher_type = vtp,
                     Abbreviation = abbr,

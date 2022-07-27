@@ -71,7 +71,7 @@
                                 <option value="Sundry_Debtors">Sundry Debtors</option>
                                 <option value="Suspence">Suspence A/c</option>
                                 <option value="Unsecured_loans">Unsecured Loans</option> 
-                                {% for i in grup %} 
+                                {% for i in tally_group %} 
                                     <option >{{i.name}}</option>  
                                 {% endfor %} 
                             </select>
@@ -92,9 +92,15 @@
                             <div class="col-sm-6 m-0 p-0"></div>
                             <div class="col-sm-6 m-0 p-0">&nbsp;&nbsp;&nbsp;&nbsp;<label for=""><i>(Capital Account)</i></label></div>
                         </div>  
+                        <div class="row container-fluid p-2 m-0 hide" id="bankoda/c">
+                            <div class="col-sm-6 m-0 p-0"> <label for="pan">Set OD limit</label></div>
+                            <div class="col-sm-6 m-0 p-0">
+                                <input type="text" value="{{cmp.name}}" class="form-control" id="odlimit" placeholder="" name="od_limit">
+                            </div>  
+                        </div>
                     </div>
 
-
+                    
                     <div class="row container-fluid bankac hide p-0" id="banka/c">
                         <h6 class="p-3">Bank Account Details</h6>
                         <div class="row container-fluid  p-2 m-0">
@@ -164,6 +170,7 @@
                             </div>
                         </div>
                     </div>
+                    
 
                     <div class="row container-fluid bankod hide p-0 "id="bankod_a/c">
                         <div class="row container-fluid  p-2 m-0">
@@ -241,7 +248,7 @@
                     </div>
 
 
-                    <div class="row container-fluid hide p-0" id="statutory_details">
+                    <!-- <div class="row container-fluid hide p-0" id="statutory_details">
                         <h6 class="p-3">Statutory Details</h6>
                         <div class="row container-fluid p-2 m-0 " id="">
                             <div class="col-sm-6 m-0 p-0"> <label for="" >Include assessable value calculations for </label></div>
@@ -303,8 +310,8 @@
                                 </select>
                             </div>
                         </div>            
-                    </div>      
-                </div>
+                    </div> -->     
+                </div> 
 
 
                 <div class="col-sm-6 m-0 p-4" style=" border-right: 1px solid rgba(128, 128, 128, 0.6);">
@@ -345,23 +352,22 @@
                         <div class="col-sm-6 m-0 p-0"> <label for="d">Pin Code</label></div>
                         <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" id="d" placeholder=""></div>
                     </div>
-                    <h5 class="text-center">Banking Details</h5>
-                    <div class="row container-fluid  p-0">
-                        <div class="col-sm-6 m-0 p-0"></div>
-                        <div class="col-sm-6 m-0 p-0"></div>
-                    </div>
-                    <div class="row container-fluid  p-2">
-                        <div class="col-sm-6 m-0 p-0"> <label for="e">Provide Bank details</label></div>
-                        <div class="col-sm-6 m-0 p-0">
-                            <select  class="form-control">
-                                <option value="">No</option> 
-                                <option value="">Yes</option>
-                            </select>
+
+                    <div class="row container-fluid hide p-0 "id="bank_details">
+                        <h5 class="text-center">Banking Details</h5>
+                        <div class="row container-fluid  p-0">
+                            <div class="col-sm-6 m-0 p-0"></div>
+                            <div class="col-sm-6 m-0 p-0"></div>
                         </div>
-                    </div>
-                    <div class="row container-fluid  p-2" id="code" >
-                        <div class="col-sm-6 m-0 p-0"> <label for="yes">Pin Code</label></div>
-                        <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" id="yes" placeholder=""></div>
+                        <div class="row container-fluid  p-2">
+                            <div class="col-sm-6 m-0 p-0"> <label for="e">Provide Bank details</label></div>
+                            <div class="col-sm-6 m-0 p-0">
+                                <select  class="form-control">
+                                    <option value="">No</option> 
+                                    <option value="">Yes</option>
+                                </select>
+                            </div>
+                        </div>
                     </div>
                     <h5 class="text-center">Tax Registration Details</h5>
                     <div class="row container-fluid  p-2">

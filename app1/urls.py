@@ -56,6 +56,8 @@ urlpatterns = [
 
     path('c_rates',views.c_rates,name='c_rates'),
 
+    path('lut_bond',views.lut_bond,name='lut_bond'),
+
     path('cn',views.cn,name='cn'),
 
     path('create_group',views.create_group,name='create_group'),
@@ -69,6 +71,8 @@ urlpatterns = [
     path('create_tds',views.create_tds,name='create_tds'),
 
     path('person_tds',views.person_tds,name='person_tds'),
+
+    path('create_voucher',views.create_voucher,name='create_voucher'),
 
     
 ]

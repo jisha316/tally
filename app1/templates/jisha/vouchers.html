@@ -15,17 +15,17 @@
     
     <div class="m-2">
         <h6  class="bg-info text-light p-2 m-0 text-center">Voucher Type Creation</h6>
-        <form class="p-5" style="background-color:rgba(0,0,0,.4);" autocomplete="off">
+        <form class="p-5" style="background-color:rgba(0,0,0,.4);" method="post" action="{% url 'create_voucher' %}" autocomplete="off">
+            {% csrf_token %}
             <div class="p-3">
                 <div class="row container-fluid  p-2 m-0">
                     <div class="col-sm-2 m-0 p-0"> <label for="a">Name</label></div>
-                    <div class="col-sm-3 m-0 p-0"><input type="text" class="form-control" id="a" placeholder=""></div>
+                    <div class="col-sm-3 m-0 p-0"><input type="text" name="vname" class="form-control" id=""></div>
                     <div class="col-sm-7 m-0 p-0"></div>
                 </div>
                 <div class="row container-fluid  p-2 m-0">
                     <div class="col-sm-2 m-0 p-0"> <label for="b">Alias</label></div>
-                    <div class="col-sm-3 m-0 p-0"> 
-                    <input type="text" class="form-control" id="b" placeholder=""></div>
+                    <div class="col-sm-3 m-0 p-0"><input type="text" name="alias" class="form-control" id=""></div>
                     <div class="col-sm-7 m-0 p-0"></div>
                 </div>
             </div>
@@ -41,7 +41,7 @@
                     <div class="row container-fluid  p-2">
                         <div class="col-sm-6 m-0 p-0"> <label for="c">Select type of voucher</label></div>
                         <div class="col-sm-6 m-0 p-0">
-                            <select name="" id="voucher_type" class="form-control" onchange="showVoucherType()" required >
+                            <select name="vouch_type" id="voucher_type" class="form-control" onchange="showVoucherType()" required >
                                 <option value="Abr"></option>
                                 <option value="Attendance">Attendance</option>  
                                 <option value="Contra">Contra</option> 
@@ -73,15 +73,15 @@
 
                     <div class="row container-fluid  p-2" id="">
                         <div class="col-sm-6 m-0 p-0"> <label for="d">Abbreviation</label></div>
-                        <div class="col-sm-6 m-0 p-0" ><input type="text" class="form-control" id="abr" placeholder=""></div>
+                        <div class="col-sm-6 m-0 p-0"><input type="text" name="Abbreviation" class="form-control" id="abr"></div>
                     </div>
                     
                     <div class="row container-fluid  p-2">
                         <div class="col-sm-6 m-0 p-0"> <label for="e">Activate this voucher type</label></div>
                         <div class="col-sm-6 m-0 p-0">
-                            <select name="Activate" id="e" class="form-control">
-                                <option value="No">Yes</option> 
-                                <option value="Yes">No</option>
+                            <select name="activate_Vtype" id="e" class="form-control">
+                                <option value="Yes">Yes</option> 
+                                <option value="No">No</option>
                             </select>
                         </div>
                     </div>
@@ -89,7 +89,7 @@
                     <div class="row container-fluid p-2">
                         <div class="col-sm-6 m-0 p-0"> <label for="f">Method of voucher numbering</label></div>
                         <div class="col-sm-6 m-0 p-0">
-                            <select name="method" id="voucher_no" class="form-control" onchange="showVoucherNo()" required>
+                            <select name="method_Vno" id="voucher_no" class="form-control" onchange="showVoucherNo()" required>
                                 <option value="option"></option>
                                 <option value="Automatic">Automatic</option> 
                                 <option value="Override">Automatic(Manual Override)</option> 
@@ -102,7 +102,7 @@
                     <div class="row container-fluid hide p-2" id="duplicates">
                         <div class="col-sm-6 m-0 p-0"> <label for="g">Prevent duplicates</label></div>
                         <div class="col-sm-6 m-0 p-0">
-                            <select name="" id="g" class="form-control">
+                            <select name="prevent" id="g" class="form-control">
                                 <option value="No">No</option>
                                 <option value="Yes">Yes</option>   
                             </select>
@@ -112,7 +112,7 @@
                     <div class="row container-fluid hide p-2" id="advanced">
                         <div class="col-sm-6 m-0 p-0"> <label for="g">Use advanced configuration</label></div>
                         <div class="col-sm-6 m-0 p-0">
-                            <select name="" id="g" class="form-control">
+                            <select name="advance_con" id="g" class="form-control">
                                 <option value="No">No</option>
                                 <option value="Yes">Yes</option>   
                             </select>
@@ -122,7 +122,7 @@
                     <div class="row container-fluid  p-2">
                         <div class="col-sm-6 m-0 p-0"> <label for="g">Use effective dates  for vouchers</label></div>
                         <div class="col-sm-6 m-0 p-0">
-                            <select name="usedate" id="g" class="form-control">
+                            <select name="use_EDV" id="g" class="form-control">
                                 <option value="no">No</option>
                                 <option value="yes">Yes</option>   
                             </select>
@@ -131,7 +131,7 @@
                     <div class="row container-fluid  p-2">
                         <div class="col-sm-6 m-0 p-0"> <label for="h">Allow zero valued transactions</label></div>
                         <div class="col-sm-6 m-0 p-0">
-                            <select name="zeroval" id="" class="form-control">
+                            <select name="zero_val" id="" class="form-control">
                                 <option value="no">No</option>
                                 <option value="yes">Yes</option>   
                             </select>
@@ -141,7 +141,7 @@
                     <div class="row container-fluid  p-2" id="optional">
                         <div class="col-sm-6 m-0 p-0"> <label for="i">Make voucher type as 'Optional' by default</label></div>
                         <div class="col-sm-6 m-0 p-0">
-                            <select name="optional" id="i" class="form-control">
+                            <select name="mVoptional_defualt" id="i" class="form-control">
                                 <option value="no">No</option>
                                 <option value="yes">Yes</option>
                             </select>
@@ -151,7 +151,7 @@
                     <div class="row container-fluid  p-2">
                         <div class="col-sm-6 m-0 p-0"> <label for="">Allow narration in voucher</label></div>
                         <div class="col-sm-6 m-0 p-0">
-                            <select name="allownr" id="j" class="form-control">
+                            <select name="allow_nar" id="j" class="form-control">
                                 <option value="yes">Yes</option> 
                                 <option value="no">No</option>   
                             </select>
@@ -161,7 +161,7 @@
                     <div class="row container-fluid  p-2" id="provide">
                         <div class="col-sm-6 m-0 p-0"> <label for="k">Provide narration for each leadger voucher</label></div>
                         <div class="col-sm-6 m-0 p-0">
-                            <select name="providenr" id="k" class="form-control">
+                            <select name="provide_L" id="k" class="form-control">
                                 <option value="no">No</option>
                                 <option value="yes">Yes</option> 
                             </select>
@@ -170,7 +170,7 @@
                     <div class="row container-fluid hide p-2" id="journal">
                         <div class="col-sm-6 m-0 p-0"> <label for="k">Use as a manufacturing journal</label></div>
                         <div class="col-sm-6 m-0 p-0">
-                            <select name="providenr" id="k" class="form-control">
+                            <select name="manu_jrnl" id="k" class="form-control">
                                 <option value="No">No</option>
                                 <option value="Yes">Yes</option> 
                             </select>
@@ -180,7 +180,7 @@
                     <div class="row container-fluid hide p-2" id="track">
                         <div class="col-sm-6 m-0 p-0"> <label for="">Track Additional Cost for Purchases</label></div>
                         <div class="col-sm-6 m-0 p-0">
-                            <select name="" id="" class="form-control">
+                            <select name="track_purchase" id="" class="form-control">
                                 <option value="No">No</option>
                                 <option value="Yes">Yes</option> 
                             </select>
@@ -189,9 +189,9 @@
                     <div class="row container-fluid hide p-2" id="enable">
                         <div class="col-sm-6 m-0 p-0"> <label for="">Enable default accounting allocations</label></div>
                         <div class="col-sm-6 m-0 p-0">
-                            <select name="" id="" class="form-control">
-                                <option value="no">No</option>
-                                <option value="yes">Yes</option> 
+                            <select name="enable_acc" id="" class="form-control">
+                                <option value="No">No</option>
+                                <option value="Yes">Yes</option> 
                             </select>
                         </div>
                     </div>  
@@ -202,26 +202,26 @@
                     <div class="row container-fluid  p-2">
                         <div class="col-sm-6 m-0 p-0"> <label for="l">Print voucher after saving</label></div>
                         <div class="col-sm-6 m-0 p-0">
-                            <select name="providenr" id="l" class="form-control">
-                                <option value="no">No</option>
-                                <option value="yes">Yes</option>  
+                            <select name="prnt_VA_save" id="l" class="form-control">
+                                <option value="No">No</option>
+                                <option value="Yes">Yes</option>  
                             </select>
                         </div>
                     </div> 
                     
                     <div class="row container-fluid hide p-2" id="formal_rcpt">
                         <div class="col-sm-6 m-0 p-0"> <label for="l">Print formal receipt after savings</label></div>
-                        <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" id="" value=""></div>
+                        <div class="col-sm-6 m-0 p-0"><input type="text" name="prnt_frml" class="form-control" id="" value=""></div>
                     </div>
                     <div class="row container-fluid hide p-2" id="jurisdiction">
                         <div class="col-sm-6 m-0 p-0"> <label for="l">Default Jurisdiction</label></div>
-                        <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" id="" value=""></div>
+                        <div class="col-sm-6 m-0 p-0"><input type="text" name="jurisdiction" class="form-control" id="" value=""></div>
                     </div> <br>
 
                     <div class="row container-fluid hide p-2" id="pos">
                         <div class="col-sm-6 m-0 p-0"> <label for="l">Use for POS invoice</label></div>
                         <div class="col-sm-6 m-0 p-0">
-                            <select name="" id="POS" class="form-control" onchange="showPOS()" required>
+                            <select name="pos_invoice" id="POS" class="form-control" onchange="showPOS()" required>
                                 <option value="No">No</option>
                                 <option value="Yes">Yes</option>  
                             </select>
@@ -229,17 +229,17 @@
                     </div> 
                     <div class="row container-fluid hide p-2" id="msg_1">
                         <div class="col-sm-6 m-0 p-0"> <label for="l">Messege to print (1)</label></div>
-                        <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" id="" value=""></div>
+                        <div class="col-sm-6 m-0 p-0"><input type="text" name="msg_1" class="form-control" id="" value=""></div>
                     </div> 
                     <div class="row container-fluid hide p-2" id="msg_2">
                         <div class="col-sm-6 m-0 p-0"> <label for="l">Messege to print (2)</label></div>
-                        <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" id="" value=""></div>
+                        <div class="col-sm-6 m-0 p-0"><input type="text" name="msg_2" class="form-control" id="" value=""></div>
                     </div> 
 
                     <div class="row container-fluid hide p-2" id="bank">
                         <div class="col-sm-6 m-0 p-0"> <label for="l">Default Bank</label></div>
                         <div class="col-sm-6 m-0 p-0">
-                            <select name="" id="" class="form-control">
+                            <select name="default_bank" id="" class="form-control">
                                 <option value="Not Applicable">Not Applicable</option>
                                 <!-- <option value="Yes">Yes</option>   -->
                             </select>
@@ -248,22 +248,22 @@
 
                     <div class="row container-fluid hide p-2" id="title_print">
                         <div class="col-sm-6 m-0 p-0"> <label for="l">Default Title to Print</label></div>
-                        <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" id="" value=""></div>
+                        <div class="col-sm-6 m-0 p-0"><input type="text" name="title_print" class="form-control" id="" value=""></div>
                     </div> 
                     <div class="row container-fluid hide p-2" id="set/alter">
                         <div class="col-sm-6 m-0 p-0"> <label for="l">Set / Alter declaration</label></div>
                         <div class="col-sm-6 m-0 p-0">
-                            <select name="providenr" id="" class="form-control">
-                                <option value="no">No</option>
-                                <option value="yes">Yes</option>  
+                            <select name="set_alter" id="" class="form-control">
+                                <option value="No">No</option>
+                                <option value="Yes">Yes</option>  
                             </select>
                         </div>
                     </div>      
                 </div>
                 <div class="col-sm-3 m-0 p-4">
                     <h5 class="text-center">Name of class</h5>
-                    <div class="container-fluid p-2" id="">
-                        <div class="col-sm-12 m-0 p-0"><input type="text" class="form-control" id="" value=""></div>
+                    <div class="container-fluid hide p-2" id="">
+                        <div class="col-sm-12 m-0 p-0"><input type="text" name="name_class" class="form-control" id="" value=""></div>
                     </div> 
                 </div>
             </div>

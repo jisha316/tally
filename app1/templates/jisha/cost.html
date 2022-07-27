@@ -30,8 +30,10 @@
                             <div class="col-sm-4 m-0 p-0"> <label for="b">Under</label></div>
                             <div class="col-sm-6 m-0 p-0"> 
                                 <select name="c_under" id="i" class="form-control">
-                                    <option>__Select__</option>
-                                    <option value="primary">Primary</option>
+                                    <option value="Primary">Primary</option>
+                                    {% for cost_centre in costt %}
+                                        <option value="{{ cost_centre.centre_name }}">{{ cost_centre.centre_name }}</option>
+                                    {% endfor %}
                                 </select>
                             </div>
                             <div class="col-sm-7 m-0 p-0"></div>

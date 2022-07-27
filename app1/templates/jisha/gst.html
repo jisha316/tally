@@ -88,9 +88,9 @@
                     <div class="row container-fluid  p-2">
                         <div class="col-sm-6 m-0 p-0"> <label for="d">Registration Type</label></div>
                         <div class="col-sm-6 m-0 p-0">
-                            <select name="Activate" id="e" class="form-control">
-                                <option value="">Composition</option>
-                                <option value="" selected>Regular</option> 
+                            <select name="Activate" id="register_type" class="form-control">
+                                <option value="Composition">Composition</option>
+                                <option value="Regular" selected>Regular</option> 
                             </select>
                         </div>
                     </div>
@@ -112,67 +112,92 @@
                         </div>
                     </div><br>
                     <h5 class="text-left">Additional Features</h5>
-                    <div class="row container-fluid  p-2">
-                        <div class="col-sm-6 m-0 p-0"> <label for="c">Kerala Flood Cess Application</label></div>
-                        <div class="col-sm-6 m-0 p-0">
-                            <select name="Activate" id="e" class="form-control" onchange="showDiv('hidden_div', this)">
-                                <option value="0">No</option>
-                                <option value="1">Yes</option> 
-                            </select>
+                        <div class="row container-fluid  p-2">
+                            <div class="col-sm-6 m-0 p-0"> <label for="c">Kerala Flood Cess Application</label></div>
+                            <div class="col-sm-6 m-0 p-0">
+                                <select name="Activate" id="e" class="form-control">
+                                    <option value="">No</option>
+                                    <option value="">Yes</option> 
+                                </select>
+                            </div>
                         </div>
-                    </div>
-                    <div class="row container-fluid  p-2" id="hidden_div">
-                        <div class="col-sm-6 m-0 p-0"> <label for="">&nbsp;&nbsp;&nbsp;&nbsp;Applicable Form</label></div>
-                        <div class="col-sm-6 m-0 p-0"><input type="date" class="form-control" id="" placeholder=""></div> 
-                    </div>
-                    <div class="row container-fluid  p-2">
-                        <div class="col-sm-6 m-0 p-0"> <label for="c">Set / Alter GST rate details</label></div>
-                        <div class="col-sm-6 m-0 p-0">
-                            <select name="Activate" id="e" class="form-control">
-                                <option value="">No</option>
-                                <option value="">Yes</option> 
-                            </select>
+                        <div class="row container-fluid  p-2" id="">
+                            <div class="col-sm-6 m-0 p-0"> <label for="">&nbsp;&nbsp;&nbsp;&nbsp;Applicable Form</label></div>
+                            <div class="col-sm-6 m-0 p-0"><input type="date" class="form-control" id="" placeholder=""></div> 
                         </div>
-                    </div>
-                    <div class="row container-fluid  p-2">
-                        <div class="col-sm-6 m-0 p-0"> <label for="c">Enable tax liability on advance receipts</label></div>
-                        <div class="col-sm-6 m-0 p-0">
-                            <select name="Activate" id="e" class="form-control">
-                                <option value="">No</option>
-                                <option value="">Yes</option> 
-                            </select>
+                        <div class="row container-fluid  p-2">
+                            <div class="col-sm-6 m-0 p-0"> <label for="c">Set / Alter GST rate details</label></div>
+                            <div class="col-sm-6 m-0 p-0">
+                                <select name="Activate" id="e" class="form-control">
+                                    <option value="">No</option>
+                                    <option value="">Yes</option> 
+                                </select>
+                            </div>
                         </div>
-                    </div>
-                    <div class="row container-fluid  p-2">
-                        <div class="col-sm-6 m-0 p-0"> <label for="c">Enable tax liability on reverse charge
-                            <br><p><i>&nbsp;&nbsp;&nbsp;&nbsp;(Purchase from unregistered dealer)</i></p></label>
+                        <div class="row container-fluid  p-2">
+                            <div class="col-sm-6 m-0 p-0"> <label for="c">Enable tax liability on advance receipts</label></div>
+                            <div class="col-sm-6 m-0 p-0">
+                                <select name="Activate" id="e" class="form-control">
+                                    <option value="">No</option>
+                                    <option value="">Yes</option> 
+                                </select>
+                            </div>
                         </div>
-                        <div class="col-sm-6 m-0 p-0">
-                            <select name="Activate" id="e" class="form-control">
-                                <option value="">No</option>
-                                <option value="">Yes</option> 
-                            </select>
+                        <div class="row container-fluid  p-2">
+                            <div class="col-sm-6 m-0 p-0"> <label for="c">Enable tax liability on reverse charge
+                                <br><p><i>&nbsp;&nbsp;&nbsp;&nbsp;(Purchase from unregistered dealer)</i></p></label>
+                            </div>
+                            <div class="col-sm-6 m-0 p-0">
+                                <select name="Activate" id="e" class="form-control">
+                                    <option value="">No</option>
+                                    <option value="">Yes</option> 
+                                </select>
+                            </div>
                         </div>
-                    </div>
-                    <div class="row container-fluid  p-2">
-                        <div class="col-sm-6 m-0 p-0"> <label for="c">Enable GST classifications</label></div>
-                        <div class="col-sm-6 m-0 p-0">
-                            <select name="Activate" id="e" class="form-control">
-                                <option value="">No</option>
-                                <option value="">Yes</option> 
-                            </select>
+                        <div class="row container-fluid  p-2">
+                            <div class="col-sm-6 m-0 p-0"> <label for="c">Enable GST classifications</label></div>
+                            <div class="col-sm-6 m-0 p-0">
+                                <select name="Activate" id="e" class="form-control">
+                                    <option value="">No</option>
+                                    <option value="">Yes</option> 
+                                </select>
+                            </div>
                         </div>
-                    </div>
-                    <div class="row container-fluid  p-2">
-                        <div class="col-sm-6 m-0 p-0"> <label for="c">Provide LUT/Bond details</label></div>
-                        <div class="col-sm-6 m-0 p-0">
-                            <select name="Activate" id="e" class="form-control">
-                                <option value="">No</option>
-                                <option value="">Yes</option> 
-                            </select>
+                        <div class="row container-fluid  p-2">
+                            <div class="col-sm-6 m-0 p-0"> <label for="c">Provide LUT/Bond details</label></div>
+                            <div class="col-sm-6 m-0 p-0">
+                                <select name="Activate" id="e" class="form-control">
+                                    <option value="">No</option>
+                                    <option value="">Yes</option> 
+                                </select>
+                            </div>
                         </div>
-                    </div>
+                    <!-- <div class="row container-fluid hide p-2" id="composition1">
+                        <div class="row container-fluid  p-2">
+                            <div class="col-sm-6 m-0 p-0"> <label for="c">Tax rate for taxable turnover</label></div>
+                            <div class="col-sm-6 m-0 p-0"><input type="text" value="1%" class="form-control" id="" placeholder=""></div>
+                        </div>
+                        <div class="row container-fluid  p-2"></div>
+                            <div class="col-sm-6 m-0 p-0"> <label for="c">Basic tax calculation</label></div>
+                            <div class="col-sm-6 m-0 p-0">
+                                <select name="" id="e" class="form-control">
+                                    <option value="">Taxable, Exempt and Nil rated values</option>
+                                    <option value="">Taxable value</option> 
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row container-fluid  p-2"></div>
+                            <div class="col-sm-6 m-0 p-0"> <label for="c">Enable tax rate for purchase</label></div>
+                            <div class="col-sm-6 m-0 p-0">
+                                <select name="" id="e" class="form-control">
+                                    <option value="">No</option>
+                                    <option value="">Yes</option> 
+                                </select>
+                            </div>
+                        </div>
+                    </div>   -->
                 </div>
+                
                 <div class="col-sm-6 m-0 p-4" style=" border-right: 1px solid rgba(128, 128, 128, 0.6);">
                     <h5 class="text-left">Invoice Featurs</h5>
                     <div class="row container-fluid  p-0">
@@ -285,5 +310,25 @@
             </div>
             <div class="enter w-100 py-4"><button class="btn btn-info w-15">CREATE</button></div>       
         </form>
-    </div>     
+    </div>    
+    
+    
+
+    <!-- <script>
+        function showregitertype(){
+            var status = document.getElementById("register_type");
+            var a = status.value;
+            console.log(a);
+            if( a == "Composition" ){
+                console.log(a);
+
+                document.getElementById('composition1').style.display = "flex";
+                document.getElementById('regular1').style.display = "none";
+            }
+            else{
+                document.getElementById('regular1').style.display = "flex"; 
+                document.getElementById('composition1').style.display = "none";
+            }
+        }
+    </script> -->
 {% endblock %}

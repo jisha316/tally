@@ -69,8 +69,8 @@ class person_res_details(models.Model):
     telephone = models.IntegerField(null=True)
     email = models.EmailField(null=True)
 
-class vouchers(models.Model):
-    name = models.CharField(max_length=255,null=True)
+class tally_vouchers(models.Model):
+    voucher_name = models.CharField(max_length=255,null=True)
     alias = models.CharField(max_length=255,null=True)
     voucher_type = models.CharField(max_length=255,null=True)
     Abbreviation = models.CharField(max_length=255,null=True)
