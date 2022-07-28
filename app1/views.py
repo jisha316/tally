@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from .models import tally_group,tally_currency,alt_currency,cost_centre,tally_tds,person_res_details,tally_vouchers
+from .models import tally_group,tally_currency,alt_currency,cost_centre,tally_tds,person_res_details,tally_vouchers,gst_lutbond,gst_taxability
 
 # Create your views here.
 
@@ -99,6 +99,9 @@ def shut_msg(request):
 
 def lut_bond(request):
     return render(request, 'jisha/lut_bond.html')
+
+def gst_1(request):
+    return render(request, 'jisha/gst_1.html')
 
 
 def cn(request):
@@ -306,3 +309,33 @@ def create_voucher(request):
 		print("added")
 		return redirect('/')
 
+def create_gstdetails(request):
+	if request.method=='POST':
+		txb=request.POST['taxability']
+		af=request.POST['appicable_from']
+		it=request.POST['integrated_tax']
+		ces=request.POST['cess']
+		fc=request.POST['flood_cess']
+		
+		cost=gst_taxability(taxability=txb,
+                        applicable_dt = af,
+                        integrated_tax = it,      
+                        cess = ces,      
+                        flood_cess = fc)          
+		cost.save()
+		print("added")
+		return redirect('/')
+	return render(request,'jisha/gst_details.html')
+
+def create_lutbond(request):
+	if request.method=='POST':
+		lbno=request.POST['lut_bondNo']
+		afrom=request.POST['application_from']
+		ato=request.POST['application_to']
+		lb=gst_lutbond(lut_bond_No=lbno,
+                        validity_from = afrom,
+                        validity_to = ato)          
+		lb.save()
+		print("added")
+		return redirect('/')
+	

@@ -96,3 +96,16 @@ class tally_vouchers(models.Model):
     msg_2 = models.CharField(max_length=255,null=True)
     default_bank = models.CharField(max_length=255,null=True)
     name_class = models.CharField(max_length=255,null=True)
+
+class gst_lutbond(models.Model):
+    lut_bond_No = models.CharField(max_length=50)
+    validity_from = models.DateField()
+    validity_to = models.DateField()
+
+class gst_taxability(models.Model):
+    taxability = models.CharField(max_length=50)
+    applicable_dt = models.DateField(null=True)
+    integrated_tax = models.CharField(max_length=50)
+    cess = models.CharField(max_length=50)
+    flood_cess = models.CharField(max_length=50)
+

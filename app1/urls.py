@@ -60,6 +60,8 @@ urlpatterns = [
 
     path('cn',views.cn,name='cn'),
 
+    path('gst_1',views.gst_1,name='gst_1'),
+
     path('create_group',views.create_group,name='create_group'),
 
     path('create_currency',views.create_currency,name='create_currency'),
@@ -73,6 +75,10 @@ urlpatterns = [
     path('person_tds',views.person_tds,name='person_tds'),
 
     path('create_voucher',views.create_voucher,name='create_voucher'),
+
+    path('create_gstdetails',views.create_gstdetails,name='create_gstdetails'),
+
+    path('create_lutbond',views.create_lutbond,name='create_lutbond'),
 
     
 ]
