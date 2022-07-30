@@ -1,5 +1,6 @@
 from django.shortcuts import render,redirect
-from .models import tally_group,tally_currency,alt_currency,cost_centre,tally_tds,person_res_details,tally_vouchers,gst_lutbond,gst_taxability
+from .models import *
+# from .models import tally_group,tally_currency,alt_currency,cost_centre,tally_tds,person_res_details,tally_vouchers,gst_lutbond,gst_taxability,currency_ROE
 
 # Create your views here.
 
@@ -59,7 +60,8 @@ def cost(request):
 	return render(request,'jisha/cost.html',context)
 
 def rates(request):
-    return render(request, 'jisha/rates.html')
+	cr=currency_ROE.objects.all()
+	return render(request,'jisha/rates.html',{'cr' : cr})
 
 def cmpny_list(request):
     return render(request, 'jisha/cmpny_list.html')
@@ -306,7 +308,7 @@ def create_voucher(request):
                     default_bank = dbank,
                     name_class = nc)          
 		vhr.save()
-		print("added")
+		print("Added")
 		return redirect('/')
 
 def create_gstdetails(request):
@@ -323,9 +325,8 @@ def create_gstdetails(request):
                         cess = ces,      
                         flood_cess = fc)          
 		cost.save()
-		print("added")
+		print("Added")
 		return redirect('/')
-	return render(request,'jisha/gst_details.html')
 
 def create_lutbond(request):
 	if request.method=='POST':
@@ -336,6 +337,86 @@ def create_lutbond(request):
                         validity_from = afrom,
                         validity_to = ato)          
 		lb.save()
-		print("added")
+		print("Added")
+		return redirect('/')
+
+def create_ROE(request):
+	if request.method=='POST':
+		dt=request.POST['dt']
+		crncy=request.POST['curname']
+		cr=tally_currency.objects.get(id=crncy)
+		stdr=request.POST['stdr']
+		ssr=request.POST['ssr']
+		bsr=request.POST['bsr']
+		croe=currency_ROE(date_ROE=dt,
+                        currency = cr,
+                        std_rate = stdr,
+                        selling_SR = ssr,
+                        buying_SR = bsr)          
+		croe.save()
+		print("Added")
 		return redirect('/')
 	
+def create_gst(request):
+    if request.method=='POST':
+        state = request.POST['state']
+        rt = request.POST['registration_type']
+        at = request.POST['assessee_territory']
+        gsta = request.POST['gst_applicable']
+        gstuin = request.POST['gstin_uin']
+        prd = request.POST['periodicity']
+        kfca = request.POST['kerala_fca']
+        af = request.POST['applicable_from']
+        gstrd = request.POST['gst_rate_details']
+        tla = request.POST['tl_advanceR']
+        tlr = request.POST['tl_reverseC']
+        gstc = request.POST['gst_classification']
+        lb = request.POST['lut_bond']
+        tr = request.POST['tax_rate']
+        tc = request.POST['tax_calculation']
+        tp = request.POST['tax_purchase']
+
+        eA = request.POST('e_waybillA')
+        aaf = request.POST['applicable_f']
+        tli = request.POST['thresholdlimit_include']
+        tl = request.POST['threshold_limit']
+        intr = request.POST['intrastate']
+        itl = request.POST['ithreshold_limit']
+        pnw = request.POST['print_eway']
+
+        einva = request.POST['e_invoiceA']
+        appf = request.POST['app_f']
+        bfp = request.POST['billfrom_place']
+        peir = request.POST['period_einvoiceR']
+        sewdei = request.POST['send_eW_details_einvoice']
+        gstd=gst_details(state=state,
+						registration_type=rt,
+						assessee_territory=at,
+						gst_applicable=gsta,
+						gstin_uin=gstuin,
+						periodicity=prd,
+						kerala_fca=kfca,
+						applicable_from=af,
+						gst_rate_details=gstrd,
+						tl_advanceR=tla,
+						tl_reverseC=tlr,
+						gst_classification=gstc,
+						lut_bond=lb,		
+						tax_rate=tr,		
+						tax_calculation=tc,		
+						tax_purchase=tp,
+						e_waybillA=eA,
+						applicable_f=aaf,
+						thresholdlimit_include=tli,
+						threshold_limit=tl,
+						intrastate=intr,
+						ithreshold_limit=itl,
+						print_eway=pnw,
+
+						e_invoiceA=einva,
+						app_from=appf,
+						billfrom_place=bfp,
+						period_einvoiceR=peir,
+						send_eW_details_einvoice=sewdei)
+		gstd
+		

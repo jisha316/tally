@@ -22,7 +22,7 @@
             <div class="col-sm-6 m-0 p-0">
                 <h6  class="bg-info text-light p-2 m-0 text-left">GST Details</h6>
                 <h6  class=" text-light p-2 m-0 text-center" style="background-color: rgba(0,0,0,.4);">GST Details for Company</h6>
-                <form class="p-5" style="background-color:rgba(0,0,0,.4);" action="{% url 'create_gstdetails' %}" autocomplete="off">
+                <form class="p-5" style="background-color:rgba(0,0,0,.4);" method="post" action="{% url 'create_gstdetails' %}" autocomplete="off">
                     {% csrf_token %}
                     <h6  class="bg-trasparent text-light p-2 m-0 text-left">Tax Details <br><i><p>(From 1-Apr-22)</p></i></h6>
                     <div class="p-3">

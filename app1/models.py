@@ -109,3 +109,45 @@ class gst_taxability(models.Model):
     cess = models.CharField(max_length=50)
     flood_cess = models.CharField(max_length=50)
 
+class currency_ROE(models.Model):
+    date_ROE = models.DateField()
+    currency = models.ForeignKey(tally_currency,on_delete = models.CASCADE,null = True)
+    std_rate = models.CharField(max_length=20,null=True)
+    selling_SR = models.CharField(max_length=20,null=True)
+    buying_SR = models.CharField(max_length=20,null=True)
+
+class gst_details(models.Model):
+    state = models.CharField(max_length=255)
+    registration_type = models.CharField(max_length=50)
+    assessee_territory = models.CharField(max_length=50)
+    gst_applicable = models.DateField(null=True)
+    gstin_uin = models.CharField(max_length=100)
+    periodicity = models.CharField(max_length=50)
+    kerala_fca = models.CharField(max_length=20,null=True)
+    applicable_from = models.DateField(null=True)
+    gst_rate_details = models.CharField(max_length=20)
+    tl_advanceR = models.CharField(max_length=20)
+    tl_reverseC = models.CharField(max_length=20)
+    gst_classification = models.CharField(max_length=20)
+    lut_bond = models.CharField(max_length=20)
+    tax_rate = models.CharField(max_length=20)
+    tax_calculation = models.CharField(max_length=100)
+    tax_purchase = models.CharField(max_length=20)
+    
+    e_waybillA = models.CharField(max_length=20)
+    applicable_f = models.DateField(null=True)
+    thresholdlimit_include = models.CharField(max_length=255)
+    threshold_limit = models.IntegerField()
+    intrastate = models.CharField(max_length=20)
+    ithreshold_limit = models.IntegerField()
+    print_eway = models.CharField(max_length=20)
+
+    e_invoiceA = models.CharField(max_length=20)
+    app_from = models.DateField(null=True)
+    billfrom_place = models.CharField(max_length=50)
+    period_einvoiceR = models.CharField(max_length=50)
+    send_eW_details_einvoice = models.CharField(max_length=50)
+
+# class gst_invoicefeatures(models.Model):
+#     gst = models.ForeignKey(tally_currency,on_delete = models.CASCADE,null = True)
+    

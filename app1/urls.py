@@ -80,5 +80,9 @@ urlpatterns = [
 
     path('create_lutbond',views.create_lutbond,name='create_lutbond'),
 
+    path('create_ROE',views.create_ROE,name='create_ROE'),
+
+    path('create_gst',views.create_gst,name='create_gst'),
+
     
 ]

@@ -11,18 +11,17 @@
 
     <div class="m-3">
         <h6  class="bg-info text-light p-2 m-0 text-left">Multi-Currency Alteration</h6>
-        <form class="p-5" style="background-color:rgba(0,0,0,.4);">
+        <form class="p-5" style="background-color:rgba(0,0,0,.4);" method="post" action="{% url 'create_ROE' %}" autocomplete="off">
+            {% csrf_token %}
             <div class="p-3">
                 <div class="row container-fluid  p-2 m-0">
-                    <div class="col-sm-2 m-0 p-0"> <label for="a">Date for rate of exchange : </label></div>
-                    <div class="col-sm-3 m-0 p-0"><p>1-Apr-22</p></div>
+                    <div class="col-sm-2 m-0 p-0"><label for="a">Date for rate of exchange : </label></div>
+                    <div class="col-sm-3 m-0 p-0"><input type="date" class="from-control" name="dt" ></div>
                     <div class="col-sm-7 m-0 p-0"></div>
                 </div>
-
-                
-                    <div class="table-responsive-sm">
-
-                        <Table class="w-100 table text-center" border="1">
+                <div class="table-responsive-sm">
+                    <Table class="w-100 table text-center" border="1">
+                        <thead>
                             <tr>
                                 <th rowspan="2">Sl.no</th>
                                 <th rowspan="2">currency</th>
@@ -37,24 +36,25 @@
                                 <th>last voucher rate</th>
                                 <th>Specified rate</th>
                             </tr>
-                            <tr>
-                                <form action="save_currency_data" method="post">
-                                    {% csrf_token %}
+                        </thead>
+                        
+                        <tbody>
+                            <!-- {% for c in cr %} -->
+                                <tr>
                                     <td><input type="text" class="w-50 from-control" name="slno"></td>
-                                    <td><input type="text" class="from-control" name="curname" style="width: 500px;"></td></td>
+                                    <td><input type="text" class="from-control" name="curname" style="width: 500px;"
+                                        value="{{ c.tally_currency.c_symbol }}{{ c.tally_currency.formal_name }}"></td>
                                     <td><input type="text" class="w-100 from-control" name="stdr"></td>
-                                    <td><input type="text" class="w-100 from-control" name="lvr"></td>
+                                    <td></td>
                                     <td><input type="text" class="w-100 from-control" name="sr"></td>
-                                    <td><input type="text" class="w-100 from-control" name="lvr2"></td>
+                                    <td></td>
                                     <td><input type="text" class="w-100 from-control" name="sr2"></td>
-                                    <td><button class="btn btn-info">Enter</button></td> 
-                                </form>
-                            </tr>   
-                        </Table>
-
-                    </div>
-                   
-                
+                                    <td><button class="btn btn-info">Enter</button></td>
+                                </tr>
+                            <!-- {% endfor %}      -->
+                        </tbody>
+                    </Table>
+               </div>  
             </div>
         </form>
     </div>

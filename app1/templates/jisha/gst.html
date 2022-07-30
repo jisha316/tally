@@ -49,7 +49,8 @@
     </script>
     <div class="m-0">
         <h6  class="bg-info text-light p-2 m-0 text-left">Company GST Details</h6>
-        <form class="p-5" style="background-color:rgba(0,0,0,.4);">
+        <form class="p-5" style="background-color:rgba(0,0,0,.4);" method="post" action="{% url 'create_gst' %}" autocomplete="off">
+            {% csrf_token %}
             <div class="p-3">
                 <h5  class="bg-trasparent text-light p-2 m-0 text-center">GST Details</h5>
             </div> 
@@ -59,7 +60,7 @@
                     <div class="row container-fluid  p-2">
                         <div class="col-sm-6 m-0 p-0"> <label for="c">State</label></div>
                         <div class="col-sm-6 m-0 p-0">
-                            <select name="optional" id="i" class="form-control">
+                            <select name="state" id="i" class="form-control">
                                 <option value="Andhra Pradesh">Andhra Pradesh</option>
                                 <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
                                 <option value="Arunachal Pradesh">Arunachal Pradesh</option>
@@ -102,7 +103,7 @@
                     <div class="row container-fluid  p-2" id="regtype">
                         <div class="col-sm-6 m-0 p-0"> <label for="d">Registration Type</label></div>
                         <div class="col-sm-6 m-0 p-0">
-                            <select name="Activate" id="regtype0" class="form-control" onchange="showregtype()">
+                            <select name="registration_type" id="regtype0" class="form-control" onchange="showregtype()">
                                 <option value="Composition" >Composition</option> 
                                 <option value="Regular" selected>Regular</option>       
                             </select>    
@@ -139,29 +140,38 @@
                             </div>
                         </div>
                     </div>
-        
+                    
+                    <div class="row container-fluid  p-2" id="aot1">
+                        <div class="col-sm-6 m-0 p-0"> <label for="d">Assessee of Teritory</label></div>
+                        <div class="col-sm-6 m-0 p-0">
+                            <select name="assessee_territory" id="aot" class="form-control" onchange="showaot()">
+                                <option value="No">No</option> 
+                                <option value="No">Yes</option>       
+                            </select>    
+                        </div>
+                    </div>
                     <div class="row container-fluid  p-2">
                         <div class="col-sm-6 m-0 p-0"> <label for="d">GST Application From</label></div>
-                        <div class="col-sm-6 m-0 p-0"><input type="date" value="01-12-2022" class="form-control"></div>
+                        <div class="col-sm-6 m-0 p-0"><input type="date" name="gst_applicable" value="01-12-2022" class="form-control"></div>
                     </div>
                     <div class="row container-fluid  p-2">
                         <div class="col-sm-6 m-0 p-0"> <label for="e">GSTIN / UIN</label></div>
-                        <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" id="c" placeholder=""></div>
+                        <div class="col-sm-6 m-0 p-0"><input type="text" name="gstin_uin" class="form-control" id="c" placeholder=""></div>
                     </div>
                     <div class="row container-fluid  p-2" id="gstr1">
                         <div class="col-sm-6 m-0 p-0"> <label for="d">Periodicity Of GSTR1</label></div>
                         <div class="col-sm-6 m-0 p-0">
-                            <select name="Activate" id="e" class="form-control">
-                                <option value="">Monthly</option>
-                                <option value="" selected>Quarterly</option> 
+                            <select name="periodicity" id="e" class="form-control">
+                                <option value="Monthly">Monthly</option>
+                                <option value="Quarterly" selected>Quarterly</option> 
                             </select>
                         </div>
                     </div><br>
                     <h5 class="text-left">Additional Features</h5>
-                    <div class="row container-fluid  p-2" id="fldces">
-                        <div class="col-sm-6 m-0 p-0"> <label for="c">Flood Cess Application</label></div>
+                    <div class="row container-fluid p-2" id="fldces">
+                        <div class="col-sm-6 m-0 p-0"> <label for="c">Kerala Flood Cess Application</label></div>
                         <div class="col-sm-6 m-0 p-0">
-                            <select name="" id="flood_cess" class="form-control" onchange="showfloodcess()">
+                            <select name="kerala_fca" id="flood_cess" class="form-control" onchange="showfloodcess()">
                                 <option value="No">No</option>
                                 <option value="Yes">Yes</option> 
                             </select>
@@ -169,23 +179,23 @@
                     </div>
                     <div class="row container-fluid hide p-2" id="appform">
                         <div class="col-sm-6 m-0 p-0"> <label for="">&nbsp;&nbsp;&nbsp;&nbsp;Applicable Form</label></div>
-                        <div class="col-sm-6 m-0 p-0"><input type="date" class="form-control" id="" placeholder=""></div> 
+                        <div class="col-sm-6 m-0 p-0"><input type="date" name="applicable_from" class="form-control" id="" placeholder=""></div> 
                     </div>
                     <div class="row container-fluid  p-2" id="setalt">
                         <div class="col-sm-6 m-0 p-0"> <label for="c">Set / Alter GST rate details</label></div>
                         <div class="col-sm-6 m-0 p-0">
-                            <select name="Activate" id="e" class="form-control">
-                                <option value="">No</option>
-                                <option value="">Yes</option> 
+                            <select name="gst_rate_details" id="set_alter" class="form-control" onchange="showgst()">
+                                <option value="No">No</option>
+                                <option value="Yes">Yes</option> 
                             </select>
                         </div>
                     </div>
                     <div class="row container-fluid  p-2" id="taxli">
                         <div class="col-sm-6 m-0 p-0"> <label for="c">Enable tax liability on advance receipts</label></div>
                         <div class="col-sm-6 m-0 p-0">
-                            <select name="Activate" id="e" class="form-control">
-                                <option value="">No</option>
-                                <option value="">Yes</option> 
+                            <select name="tl_advanceR" id="e" class="form-control">
+                                <option value="No">No</option>
+                                <option value="Yes">Yes</option> 
                             </select>
                         </div>
                     </div>
@@ -194,27 +204,27 @@
                             <br><p><i>&nbsp;&nbsp;&nbsp;&nbsp;(Purchase from unregistered dealer)</i></p></label>
                         </div>
                         <div class="col-sm-6 m-0 p-0">
-                            <select name="Activate" id="e" class="form-control">
-                                <option value="">No</option>
-                                <option value="">Yes</option> 
+                            <select name="tl_reverseC" id="e" class="form-control">
+                                <option value="No">No</option>
+                                <option value="Yes">Yes</option> 
                             </select>
                         </div>
                     </div>
                     <div class="row container-fluid  p-2"id="enbgstclz">
                         <div class="col-sm-6 m-0 p-0"> <label for="c">Enable GST classifications</label></div>
                         <div class="col-sm-6 m-0 p-0">
-                            <select name="Activate" id="e" class="form-control">
-                                <option value="">No</option>
-                                <option value="">Yes</option> 
+                            <select name="gst_classification" id="e" class="form-control">
+                                <option value="No">No</option>
+                                <option value="Yes">Yes</option> 
                             </select>
                         </div>
                     </div>
                     <div class="row container-fluid  p-2" id="lutbnd">
                         <div class="col-sm-6 m-0 p-0"> <label for="c">Provide LUT/Bond details</label></div>
                         <div class="col-sm-6 m-0 p-0">
-                            <select name="Activate" id="e" class="form-control">
-                                <option value="">No</option>
-                                <option value="">Yes</option> 
+                            <select name="lut_bond" id="lutbond" class="form-control" onchange="showlutbond()">
+                                <option value="No">No</option>
+                                <option value="Yes">Yes</option> 
                             </select>
                         </div>
                     </div>
@@ -222,7 +232,7 @@
                         <div class="col-sm-6 m-0 p-0"> <label for="">Tax rate for taxable turnover
                             <br><p><i>&nbsp;&nbsp;&nbsp;&nbsp;(From 1-Apr-22)</i></p>
                         </label></div>
-                        <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" id="" placeholder="1%"></div> 
+                        <div class="col-sm-6 m-0 p-0"><input type="text" name="tax_rate" class="form-control" id="" placeholder="1%"></div> 
                     </div>
                     <div class="row container-fluid hide p-2" id="basic_tax">
                         <div class="col-sm-6 m-0 p-0"> 
@@ -231,7 +241,7 @@
                             </label>
                         </div>
                         <div class="col-sm-6 m-0 p-0">
-                            <select name="" id="e" class="form-control">
+                            <select name="tax_calculation" id="e" class="form-control">
                                 <option value="Taxable Nil rated values">Taxable, Exempt and Nil rated values</option>
                                 <option value="Taxable value">Taxable value</option> 
                             </select>
@@ -240,9 +250,9 @@
                     <div class="row container-fluid hide p-2" id="tax_rate">
                         <div class="col-sm-6 m-0 p-0"> <label for="c">Enable tax rate for purchase</label></div>
                         <div class="col-sm-6 m-0 p-0">
-                            <select name="" id="e" class="form-control">
-                                <option value="">No</option>
-                                <option value="">Yes</option> 
+                            <select name="tax_purchase" id="e" class="form-control">
+                                <option value="No">No</option>
+                                <option value="Yes">Yes</option> 
                             </select>
                         </div>
                     </div>    
@@ -257,7 +267,7 @@
                     <div class="row container-fluid  p-2" id="e-way">
                         <div class="col-sm-6 m-0 p-0"> <label for="d">e-Way bill applicable</label></div>
                         <div class="col-sm-6 m-0 p-0">
-                            <select name="Activate" id="id_e_way" class="form-control">
+                            <select name="e_waybillA" id="id_e_way" class="form-control">
                                 <option value="Yes" selected="true">Yes</option>
                                 <option value="No">No</option> 
                             </select>
@@ -267,47 +277,47 @@
                     <div class="container-fluid  p-0" id="e-way_bill">
                         <div class="row container-fluid  p-2">
                             <div class="col-sm-6 m-0 p-0"> <label for="d">&nbsp;&nbsp;&nbsp;&nbsp;Applicable Form</label></div>
-                            <div class="col-sm-6 m-0 p-0"><input type="date" class="form-control" id="d" placeholder=""></div>
+                            <div class="col-sm-6 m-0 p-0"><input type="date" name="applicable_f" class="form-control" id="d" placeholder=""></div>
                         </div>
                         
 
                         <div class="row container-fluid  p-2">
                             <div class="col-sm-6 m-0 p-0"> <label for="d">&nbsp;&nbsp;&nbsp;&nbsp;Threshold limit include</label></div>
                             <div class="col-sm-6 m-0 p-0">
-                                <select name="Activate" id="e" class="form-control">
-                                    <option value="">Invoice Value</option>
-                                    <option value="">Taxable and exempt goods value</option> 
-                                    <option value="">Taxable goods value</option> 
+                                <select name="thresholdlimit_include" id="e" class="form-control">
+                                    <option value="Invoice Value">Invoice Value</option>
+                                    <option value="Taxable and exempt goods value">Taxable and exempt goods value</option> 
+                                    <option value="Taxable goods value">Taxable goods value</option> 
                                 </select>
                             </div>
                         </div>
 
                         <div class="row container-fluid  p-2">
                             <div class="col-sm-6 m-0 p-0"> <label for="d">&nbsp;&nbsp;&nbsp;&nbsp;Threshold limit</label></div>
-                            <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" id="d" placeholder="" value="50,000"></div>
+                            <div class="col-sm-6 m-0 p-0"><input type="text" name="threshold_limit" class="form-control" id="d" placeholder="" value="50,000"></div>
                         </div>
 
                         <div class="row container-fluid  p-2">
                             <div class="col-sm-6 m-0 p-0"> <label for="d">&nbsp;&nbsp;&nbsp;&nbsp;Applicable for intrastate</label></div>
                             <div class="col-sm-6 m-0 p-0">
-                                <select name="Activate" id="e" class="form-control">
-                                    <option value="">Yes</option>
-                                    <option value="">No</option> 
+                                <select name="intrastate" id="e" class="form-control">
+                                    <option value="Yes">Yes</option>
+                                    <option value="No">No</option> 
                                 </select>
                             </div>
                         </div>
 
                         <div class="row container-fluid  p-2">
                             <div class="col-sm-6 m-0 p-0"> <label for="d">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Threshold Limit</label></div>
-                            <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" id="d" placeholder="" value="50,000"></div>
+                            <div class="col-sm-6 m-0 p-0"><input type="text" name="ithreshold_limit" class="form-control" id="d" placeholder="" value="50,000"></div>
                         </div>
 
                         <div class="row container-fluid  p-2">
                             <div class="col-sm-6 m-0 p-0"> <label for="d">&nbsp;&nbsp;&nbsp;&nbsp;Print e-Way Bill with invoice</label></div>
                             <div class="col-sm-6 m-0 p-0">
-                                <select name="Activate" id="e" class="form-control">
-                                    <option value="">No</option>
-                                    <option value="">Yes</option> 
+                                <select name="print_eway" id="e" class="form-control">
+                                    <option value="No">No</option>
+                                    <option value="Yes">Yes</option> 
                                 </select>
                             </div>
                         </div>
@@ -316,7 +326,7 @@
                     <div class="row container-fluid  p-2" id="e_invoice">
                         <div class="col-sm-6 m-0 p-0"> <label for="d">e-Invoice applicable</label></div>
                         <div class="col-sm-6 m-0 p-0">
-                            <select name="" id="id_e_invoice" class="form-control" >
+                            <select name="e_invoiceA" id="id_e_invoice" class="form-control" >
                                 <option value="No" selected="true">No</option>
                                 <option value="Yes">Yes</option> 
                             </select>
@@ -326,16 +336,16 @@
                     <div class="container-fluid p-0" id="e-Invoice_applicable">
                         <div class="row container-fluid  p-2" id="">
                             <div class="col-sm-6 m-0 p-0"> <label for="">&nbsp;&nbsp;&nbsp;&nbsp;Applicable Form</label></div>
-                            <div class="col-sm-6 m-0 p-0"><input type="date" class="form-control" id="" placeholder=""></div> <br><br>
+                            <div class="col-sm-6 m-0 p-0"><input type="date" name="app_f" class="form-control" id="" placeholder=""></div> <br><br>
                         </div>
                         <div class="row container-fluid  p-2" id="">
                             <div class="col-sm-6 m-0 p-0"> <label for="d">&nbsp;&nbsp;&nbsp;&nbsp;Bill From Place</label></div>
-                            <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" id="d" placeholder=""></div>
+                            <div class="col-sm-6 m-0 p-0"><input type="text" name="billfrom_place" class="form-control" id="d" placeholder=""></div>
                         </div>
 
                         <div class="row container-fluid  p-2" id="">
                             <div class="col-sm-6 m-0 p-0"> <label for="d">&nbsp;&nbsp;&nbsp;&nbsp;Default period for the e-Invoice report</label></div>
-                            <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" id="d" placeholder="" value="3 days"></div>
+                            <div class="col-sm-6 m-0 p-0"><input type="text" name="period_einvoiceR" class="form-control" id="d" placeholder="" value="3 days"></div>
                         </div>
 
                         <div class="row container-fluid  p-2" id="">
@@ -343,9 +353,9 @@
                                 <br><p><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(Applicable for sales transactions)</i></p></label>
                             </div>
                             <div class="col-sm-6 m-0 p-0" id="">
-                                <select name="Activate" id="e" class="form-control">
-                                    <option value="">Yes</option>
-                                    <option value="">No</option> 
+                                <select name="send_eW_details_einvoice" id="e" class="form-control">
+                                    <option value="Yes">Yes</option>
+                                    <option value="No">No</option> 
                                 </select>
                             </div>
                         </div>    
@@ -400,6 +410,41 @@
             }
             else{
                 document.getElementById('appform').style.display ="flex";
+            }
+        }
+        function showaot(){
+            var status =document.getElementById("aot");
+            var a= status.value;
+            console.log(a);
+            if( a == "Yes"){
+                console.log(a);
+                document.getElementById('fldces').style.display ="flex";
+            }
+            else{
+                document.getElementById('fldces').style.display ="none";
+            }
+        }
+
+        function showgst(){
+            var status = document.getElementById("set_alter");
+            var a = status.value;
+            if(a=="Yes"){
+
+                window.location.href="{% url 'gst_details' %}"
+            }
+            else{
+                document.getElementById('taxli').style.display="flex";
+            }
+        }
+        function showlutbond(){
+            var status = document.getElementById("lutbond");
+            var a = status.value;
+            if(a=="Yes"){
+
+                window.location.href="{% url 'lut_bond' %}"
+            }
+            else{
+                document.getElementById('lutbnd').style.display="flex";
             }
         }
     </script>

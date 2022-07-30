@@ -429,7 +429,7 @@ function showgst(){
     var a = status.value;
     if(a=="Yes"){
 
-        window.location.href="{% url 'gst' %}"
+        window.location.href="{% url 'gst_details' %}"
     }
     else{
         document.getElementById('enbgst').style.display="flex";
@@ -441,7 +441,7 @@ function showtds(){
     var a = status.value;
     if(a=="Yes"){
 
-        window.location.href="{% url 'tds' %}"
+        window.location.href="{% url 'tds_detuctor' %}"
     }
     else{
         document.getElementById('enbtds').style.display="flex";
