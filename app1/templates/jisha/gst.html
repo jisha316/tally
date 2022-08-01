@@ -60,7 +60,7 @@
                     <div class="row container-fluid  p-2">
                         <div class="col-sm-6 m-0 p-0"> <label for="c">State</label></div>
                         <div class="col-sm-6 m-0 p-0">
-                            <select name="state" id="i" class="form-control">
+                            <select name="state" id="" class="form-control">
                                 <option value="Andhra Pradesh">Andhra Pradesh</option>
                                 <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
                                 <option value="Arunachal Pradesh">Arunachal Pradesh</option>
@@ -152,7 +152,8 @@
                     </div>
                     <div class="row container-fluid  p-2">
                         <div class="col-sm-6 m-0 p-0"> <label for="d">GST Application From</label></div>
-                        <div class="col-sm-6 m-0 p-0"><input type="date" name="gst_applicable" value="01-12-2022" class="form-control"></div>
+                        <div class="col-sm-6 m-0 p-0"><input type="text" name="gst_applicable" class="form-control"
+                            value="2022-04-01" onfocus="(this.type='date')" onblur="if(!this.value) this.type='text'"></div>
                     </div>
                     <div class="row container-fluid  p-2">
                         <div class="col-sm-6 m-0 p-0"> <label for="e">GSTIN / UIN</label></div>
@@ -179,7 +180,8 @@
                     </div>
                     <div class="row container-fluid hide p-2" id="appform">
                         <div class="col-sm-6 m-0 p-0"> <label for="">&nbsp;&nbsp;&nbsp;&nbsp;Applicable Form</label></div>
-                        <div class="col-sm-6 m-0 p-0"><input type="date" name="applicable_from" class="form-control" id="" placeholder=""></div> 
+                        <div class="col-sm-6 m-0 p-0"><input type="text" name="applicable_from" class="form-control"
+                            value="2022-04-01" onfocus="(this.type='date')" onblur="if(!this.value) this.type='text'"></div> 
                     </div>
                     <div class="row container-fluid  p-2" id="setalt">
                         <div class="col-sm-6 m-0 p-0"> <label for="c">Set / Alter GST rate details</label></div>
@@ -232,7 +234,7 @@
                         <div class="col-sm-6 m-0 p-0"> <label for="">Tax rate for taxable turnover
                             <br><p><i>&nbsp;&nbsp;&nbsp;&nbsp;(From 1-Apr-22)</i></p>
                         </label></div>
-                        <div class="col-sm-6 m-0 p-0"><input type="text" name="tax_rate" class="form-control" id="" placeholder="1%"></div> 
+                        <div class="col-sm-6 m-0 p-0"><input type="text" name="tax_rate" class="form-control" id="" value="1%"></div> 
                     </div>
                     <div class="row container-fluid hide p-2" id="basic_tax">
                         <div class="col-sm-6 m-0 p-0"> 
@@ -242,8 +244,8 @@
                         </div>
                         <div class="col-sm-6 m-0 p-0">
                             <select name="tax_calculation" id="e" class="form-control">
-                                <option value="Taxable Nil rated values">Taxable, Exempt and Nil rated values</option>
                                 <option value="Taxable value">Taxable value</option> 
+                                <option value="Taxable Nil rated values">Taxable, Exempt and Nil rated values</option>
                             </select>
                         </div>
                     </div>
@@ -277,7 +279,8 @@
                     <div class="container-fluid  p-0" id="e-way_bill">
                         <div class="row container-fluid  p-2">
                             <div class="col-sm-6 m-0 p-0"> <label for="d">&nbsp;&nbsp;&nbsp;&nbsp;Applicable Form</label></div>
-                            <div class="col-sm-6 m-0 p-0"><input type="date" name="applicable_f" class="form-control" id="d" placeholder=""></div>
+                            <div class="col-sm-6 m-0 p-0"><input type="text" name="applicable_f" class="form-control"
+                                value="2022-04-01" onfocus="(this.type='date')" onblur="if(!this.value) this.type='text'"></div>
                         </div>
                         
 
@@ -294,7 +297,7 @@
 
                         <div class="row container-fluid  p-2">
                             <div class="col-sm-6 m-0 p-0"> <label for="d">&nbsp;&nbsp;&nbsp;&nbsp;Threshold limit</label></div>
-                            <div class="col-sm-6 m-0 p-0"><input type="text" name="threshold_limit" class="form-control" id="d" placeholder="" value="50,000"></div>
+                            <div class="col-sm-6 m-0 p-0"><input type="text" name="threshold_limit" class="form-control" id="d" placeholder="" value="50000"></div>
                         </div>
 
                         <div class="row container-fluid  p-2">
@@ -309,7 +312,7 @@
 
                         <div class="row container-fluid  p-2">
                             <div class="col-sm-6 m-0 p-0"> <label for="d">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Threshold Limit</label></div>
-                            <div class="col-sm-6 m-0 p-0"><input type="text" name="ithreshold_limit" class="form-control" id="d" placeholder="" value="50,000"></div>
+                            <div class="col-sm-6 m-0 p-0"><input type="text" name="ithreshold_limit" class="form-control" id="d" placeholder="" value="50000"></div>
                         </div>
 
                         <div class="row container-fluid  p-2">
@@ -336,7 +339,8 @@
                     <div class="container-fluid p-0" id="e-Invoice_applicable">
                         <div class="row container-fluid  p-2" id="">
                             <div class="col-sm-6 m-0 p-0"> <label for="">&nbsp;&nbsp;&nbsp;&nbsp;Applicable Form</label></div>
-                            <div class="col-sm-6 m-0 p-0"><input type="date" name="app_f" class="form-control" id="" placeholder=""></div> <br><br>
+                            <div class="col-sm-6 m-0 p-0"><input type="text" name="app_f" class="form-control"
+                                value="2022-04-01" onfocus="(this.type='date')" onblur="if(!this.value) this.type='text'"></div> <br><br>
                         </div>
                         <div class="row container-fluid  p-2" id="">
                             <div class="col-sm-6 m-0 p-0"> <label for="d">&nbsp;&nbsp;&nbsp;&nbsp;Bill From Place</label></div>

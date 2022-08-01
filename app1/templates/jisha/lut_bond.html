@@ -33,6 +33,7 @@
                         <div class="row container-fluid  p-2 m-0">
                             <div class="col-sm-4 m-0 p-0"><label for="a">Validity</label></div>
                             <div class="col-sm-4 m-0 p-0"><label data-toggle="modal" data-target="#myModal"><b>From</b></label></div>
+                            
                             <div class="col-sm-4 m-0 p-0"><label><b>To</b></label></div>
                         </div>
                         <div class="container">
@@ -47,7 +48,8 @@
                                             <h6  class=" text-light p-2 m-0 text-center">LUT / Bond Applicability</h6>
                                             <div class="row container-fluid  p-2 m-0">
                                                 <div class="col-sm-4 m-0 p-0"> <label for="a"><b>Application From</b></label></div>
-                                                <div class="col-sm-6 m-0 p-0"><input type="date" name="application_from" class="form-control"></div>
+                                                <div class="col-sm-6 m-0 p-0"><input type="text" name="application_from" class="form-control"
+                                                    value="2022-08-01" onfocus="(this.type='date')" onblur="if(!this.value) this.type='text'"></div>
                                                 <div class="col-sm-4 m-0 p-0"></div>
                                             </div>
                                             <div class="row container-fluid  p-2 m-0">

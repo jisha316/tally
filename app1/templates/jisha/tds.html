@@ -47,15 +47,16 @@
                         <div class="row container-fluid  p-2 m-0">
                             <div class="col-sm-4 m-0 p-0"> <label for="b">Set / Alter details of person responsible</label></div>
                             <div class="col-sm-6 m-0 p-0"> 
-                                <select name="person_res" id="i" class="form-control">
+                                <select name="person_res" id="person" class="form-control" onchange="showperson()">
                                     <option value="No">No</option>
-                                    <option value="Yes">Yes></option>
+                                    <option value="Yes">Yes</option>
                                 </select>
                             </div>
                             <div class="col-sm-7 m-0 p-0"></div>
                         </div>
+                        
                         <hr>
-                        <h6  class=" text-light p-2 m-0 text-center">Rate and Exemption Details</h6>
+                        <h6  class=" text-light p-2 m-0 text-center" id="rate">Rate and Exemption Details</h6>
                         <div class="row container-fluid  p-2 m-0">
                             <div class="col-sm-4 m-0 p-0"> <label for="b">Ignore IT exemption limit for TDS deduction</label></div>
                             <div class="col-sm-6 m-0 p-0"> 
@@ -82,4 +83,18 @@
             </div>
         <div class="col-sm-5 m-0 p-0"></div>
     </div>  
+
+    <script>
+        function showperson(){
+            var status = document.getElementById("person");
+            var a = status.value;
+            if(a=="Yes"){
+
+                window.location.href="{% url 'tds_details' %}"
+            }
+            else{
+                document.getElementById('rate').style.display="flex";
+            }
+        }
+    </script>
 {% endblock %}

@@ -15,7 +15,7 @@
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> 
     <script src="//geodata.solutions/includes/countrystatecity.js"></script>
     
-    <script src="{% static 'js/ledger.js' %}"></script>
+    <!-- <script src="{% static 'js/ledger.js' %}"></script> -->
 
   <div class="m-2">
         <h6  class="bg-info text-light p-2 m-0 text-center">Ledger Creation</h6>
@@ -92,7 +92,7 @@
                             <div class="col-sm-6 m-0 p-0"></div>
                             <div class="col-sm-6 m-0 p-0">&nbsp;&nbsp;&nbsp;&nbsp;<label for=""><i>(Capital Account)</i></label></div>
                         </div>  
-                        <div class="row container-fluid p-2 m-0 hide" id="bankoda/c">
+                        <div class="row container-fluid p-2 m-0 hide" id="bankod_a/c">
                             <div class="col-sm-6 m-0 p-0"> <label for="pan">Set OD limit</label></div>
                             <div class="col-sm-6 m-0 p-0">
                                 <input type="text" value="{{cmp.name}}" class="form-control" id="odlimit" placeholder="" name="od_limit">
@@ -172,7 +172,7 @@
                     </div>
                     
 
-                    <div class="row container-fluid bankod hide p-0 "id="bankod_a/c">
+                    <!-- <div class="row container-fluid bankod hide p-0 "id="bankod_a/c">
                         <div class="row container-fluid  p-2 m-0">
                             <div class="col-sm-6 m-0 p-0"> <label for="pan">Set OD limit</label></div>
                             <div class="col-sm-6 m-0 p-0">
@@ -245,10 +245,10 @@
                                 </select>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
 
 
-                    <!-- <div class="row container-fluid hide p-0" id="statutory_details">
+                    <div class="row container-fluid hide p-0" id="statutory_details">
                         <h6 class="p-3">Statutory Details</h6>
                         <div class="row container-fluid p-2 m-0 " id="">
                             <div class="col-sm-6 m-0 p-0"> <label for="" >Include assessable value calculations for </label></div>
@@ -281,7 +281,34 @@
                         </div>
                     </div>
                     
-                    <div class="row container-fluid hide p-0" id="bill_by_bill">
+                    <div class="row container-fluid p-0 m-0 hide" id="bill_by_bill">
+                        <div class="row container-fluid  p-2" id="">
+                            <div class="col-sm-6 m-0 p-0"> <label for="c">Maintain balance Bill by Bill</label></div>
+                            <div class="col-sm-6 m-0 p-0">
+                                <select name="" id="billbybill" class="form-control" onchange="bill()">
+                                    <option value="option"></option>
+                                    <option value="Yes">Yes</option>
+                                    <option value="No">No</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row container-fluid hide p-2" id="credit_period">
+                            <div class="col-sm-6 m-0 p-0"> <label for="c">Default credit period</label></div>
+                            <div class="col-sm-6 m-0 p-0">
+                                <input type="text" class="form-control" id="" placeholder="" name="" value="">
+                            </div>
+                        </div> 
+                        <div class="row container-fluid hide p-2" id="voucher_enter">
+                            <div class="col-sm-6 m-0 p-0"> <label for="c">Check for credit days during voucher enter</label></div>
+                            <div class="col-sm-6 m-0 p-0">
+                                <select name="" id="" class="form-control">
+                                    <option value="No">No</option>
+                                    <option value="Yes">Yes</option>
+                                </select>
+                            </div>
+                        </div> 
+                    </div>
+                    <!-- <div class="row container-fluid hide p-0" id="bill_by_bill">
                         <h6 class="p-3"></h6>
                         <div class="row container-fluid  p-2" id="">
                             <div class="col-sm-6 m-0 p-0"> <label for="c">Maintain balance Bill by Bill</label></div>
@@ -310,7 +337,7 @@
                                 </select>
                             </div>
                         </div>            
-                    </div> -->     
+                    </div>      -->
                 </div> 
 
 
@@ -353,23 +380,20 @@
                         <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" id="d" placeholder=""></div>
                     </div>
 
-                    <div class="row container-fluid hide p-0 "id="bank_details">
+                    <div class="row container-fluid  p-2" id="bank_details">
                         <h5 class="text-center">Banking Details</h5>
-                        <div class="row container-fluid  p-0">
-                            <div class="col-sm-6 m-0 p-0"></div>
-                            <div class="col-sm-6 m-0 p-0"></div>
-                        </div>
-                        <div class="row container-fluid  p-2">
-                            <div class="col-sm-6 m-0 p-0"> <label for="e">Provide Bank details</label></div>
+                        <div class="row container-fluid  p-2 m-0">
+                            <div class="col-sm-6 m-0 p-0"> <label for="pan">Provide Bank details</label></div>
                             <div class="col-sm-6 m-0 p-0">
                                 <select  class="form-control">
                                     <option value="">No</option> 
                                     <option value="">Yes</option>
                                 </select>
-                            </div>
+                            </div>  
                         </div>
                     </div>
-                    <h5 class="text-center">Tax Registration Details</h5>
+
+                    <h5>Tax Registration Details</h5>
                     <div class="row container-fluid  p-2">
                         <div class="col-sm-6 m-0 p-0"> <label for="e">PAN / IT No.</label></div>
                         <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" id="c" placeholder=""></div>
@@ -408,5 +432,329 @@
             <div class="enter w-100 py-4"><button class="btn btn-info w-15">CREATE</button></div>       
         </form>
     </div> 
+
+    <script>
+        function showunder(){
+            var status = document.getElementById("under");
+            var a = status.value;
+            console.log(a);
+            if( a == "Bank_Accounts" ){
+                console.log(a);
+                
+                document.getElementById('assets').style.display = "flex";
+                document.getElementById('banka/c').style.display = "flex"; 
+                document.getElementById('loans').style.display = "none"; 
+                document.getElementById('bank_details').style.display = "none"; 
+                document.getElementById('account').style.display = "none";     
+                document.getElementById('liabilities').style.display = "none"; 
+                document.getElementById('bankod_a/c').style.display = "none";  
+                document.getElementById('bill_by_bill').style.display = "none";  
+                document.getElementById('statutory_details').style.display = "none";      
+            }
+            else if( a == "Bank_OCC_AC" ){
+                document.getElementById('loans').style.display = "flex";
+                document.getElementById('bankod_a/c').style.display = "flex";
+                document.getElementById('banka/c').style.display = "flex";  
+                document.getElementById('bank_details').style.display = "none";
+                document.getElementById('assets').style.display = "none"; 
+                document.getElementById('account').style.display = "none";      
+                document.getElementById('liabilities').style.display = "none";  
+                document.getElementById('bill_by_bill').style.display = "none";  
+                document.getElementById('statutory_details').style.display = "none";       
+            }
+            else if( a == "Bank_OD_A/c" ){
+                document.getElementById('loans').style.display = "flex";
+                document.getElementById('bankod_a/c').style.display = "flex";
+                document.getElementById('banka/c').style.display = "flex"; 
+                document.getElementById('bank_details').style.display = "none";
+                document.getElementById('assets').style.display = "none";
+                document.getElementById('account').style.display = "none";      
+                document.getElementById('liabilities').style.display = "none";  
+                document.getElementById('bill_by_bill').style.display = "none";
+                document.getElementById('statutory_details').style.display = "none";       
+            }
+            else if( a == "Cash_in_Hand" ){
+                document.getElementById('assets').style.display = "flex";
+                document.getElementById('bank_details').style.display = "flex";
+                document.getElementById('loans').style.display = "none"; 
+                document.getElementById('account').style.display = "none";     
+                document.getElementById('liabilities').style.display = "none"; 
+                document.getElementById('bill_by_bill').style.display = "none";  
+                document.getElementById('statutory_details').style.display = "none";  
+                document.getElementById('banka/c').style.display = "none"; 
+                document.getElementById('bankod_a/c').style.display = "none";       
+            }
+            else if( a == "Current_Assets" ){ 
+                document.getElementById('statutory_details').style.display = "flex"; 
+                document.getElementById('bank_details').style.display = "flex";
+                document.getElementById('loans').style.display = "none";    
+                document.getElementById('account').style.display = "none";
+                document.getElementById('liabilities').style.display = "none";
+                document.getElementById('assets').style.display = "none"; 
+                document.getElementById('bill_by_bill').style.display = "none";  
+                document.getElementById('banka/c').style.display = "none"; 
+                document.getElementById('bankod_a/c').style.display = "none";        
+            }
+            else if( a == "Deposits (Asset)" ){
+                document.getElementById('assets').style.display = "flex";
+                document.getElementById('bank_details').style.display = "flex";
+                document.getElementById('loans').style.display = "none"; 
+                document.getElementById('account').style.display = "none";     
+                document.getElementById('liabilities').style.display = "none";   
+                document.getElementById('bill_by_bill').style.display = "none"; 
+                document.getElementById('statutory_details').style.display = "none";  
+                document.getElementById('banka/c').style.display = "none"; 
+                document.getElementById('bankod_a/c').style.display = "none";    
+            }
+            else if( a == "Direct_Expenses" ){ 
+                document.getElementById('statutory_details').style.display = "flex"; 
+                document.getElementById('bank_details').style.display = "flex";
+                document.getElementById('loans').style.display = "none";    
+                document.getElementById('account').style.display = "none";
+                document.getElementById('liabilities').style.display = "none";
+                document.getElementById('assets').style.display = "none"; 
+                document.getElementById('bill_by_bill').style.display = "none";  
+                document.getElementById('banka/c').style.display = "none"; 
+                document.getElementById('bankod_a/c').style.display = "none";        
+            }
+            else if( a == "Direct_Incomes" ){ 
+                document.getElementById('statutory_details').style.display = "flex"; 
+                document.getElementById('bank_details').style.display = "flex";
+                document.getElementById('loans').style.display = "none";    
+                document.getElementById('account').style.display = "none";
+                document.getElementById('liabilities').style.display = "none";
+                document.getElementById('assets').style.display = "none"; 
+                document.getElementById('bill_by_bill').style.display = "none";
+                document.getElementById('banka/c').style.display = "none"; 
+                document.getElementById('bankod_a/c').style.display = "none";          
+            }
+            else if( a == "Duties_and_Taxes" ){ 
+                document.getElementById('statutory_details').style.display = "flex"; 
+                document.getElementById('bank_details').style.display = "flex";
+                document.getElementById('loans').style.display = "none";    
+                document.getElementById('account').style.display = "none";
+                document.getElementById('liabilities').style.display = "none";
+                document.getElementById('assets').style.display = "none"; 
+                document.getElementById('bill_by_bill').style.display = "none";
+                document.getElementById('banka/c').style.display = "none"; 
+                document.getElementById('bankod_a/c').style.display = "none";          
+            }
+            else if( a == "Expences_Direct" ){ 
+                document.getElementById('statutory_details').style.display = "flex"; 
+                document.getElementById('bank_details').style.display = "flex";
+                document.getElementById('loans').style.display = "none";    
+                document.getElementById('account').style.display = "none";
+                document.getElementById('liabilities').style.display = "none";
+                document.getElementById('assets').style.display = "none"; 
+                document.getElementById('bill_by_bill').style.display = "none"; 
+                document.getElementById('banka/c').style.display = "none"; 
+                document.getElementById('bankod_a/c').style.display = "none";         
+            }
+            else if( a == "Expences_Indirect" ){ 
+                document.getElementById('statutory_details').style.display = "flex"; 
+                document.getElementById('bank_details').style.display = "flex";
+                document.getElementById('loans').style.display = "none";    
+                document.getElementById('account').style.display = "none";
+                document.getElementById('liabilities').style.display = "none";
+                document.getElementById('assets').style.display = "none"; 
+                document.getElementById('bill_by_bill').style.display = "none"; 
+                document.getElementById('banka/c').style.display = "none"; 
+                document.getElementById('bankod_a/c').style.display = "none";         
+            }
+            else if( a == "Fixed_Assets" ){ 
+                document.getElementById('statutory_details').style.display = "flex"; 
+                document.getElementById('bank_details').style.display = "flex";
+                document.getElementById('loans').style.display = "none";    
+                document.getElementById('account').style.display = "none";
+                document.getElementById('liabilities').style.display = "none";
+                document.getElementById('assets').style.display = "none"; 
+                document.getElementById('bill_by_bill').style.display = "none"; 
+                document.getElementById('banka/c').style.display = "none"; 
+                document.getElementById('bankod_a/c').style.display = "none";         
+            }
+            else if( a == "Income_direct" ){ 
+                document.getElementById('statutory_details').style.display = "flex"; 
+                document.getElementById('bank_details').style.display = "flex";
+                document.getElementById('loans').style.display = "none";    
+                document.getElementById('account').style.display = "none";
+                document.getElementById('liabilities').style.display = "none";
+                document.getElementById('assets').style.display = "none"; 
+                document.getElementById('bill_by_bill').style.display = "none"; 
+                document.getElementById('banka/c').style.display = "none"; 
+                document.getElementById('bankod_a/c').style.display = "none";         
+            }
+            else if( a == "Income_Indirect" ){ 
+                document.getElementById('statutory_details').style.display = "flex"; 
+                document.getElementById('bank_details').style.display = "flex";
+                document.getElementById('loans').style.display = "none";    
+                document.getElementById('account').style.display = "none";
+                document.getElementById('liabilities').style.display = "none";
+                document.getElementById('assets').style.display = "none"; 
+                document.getElementById('bill_by_bill').style.display = "none"; 
+                document.getElementById('banka/c').style.display = "none"; 
+                document.getElementById('bankod_a/c').style.display = "none";         
+            }
+            else if( a == "Loans_Advance" ){
+                document.getElementById('assets').style.display = "flex";
+                document.getElementById('bank_details').style.display = "flex";
+                document.getElementById('loans').style.display = "none";  
+                document.getElementById('account').style.display = "none";     
+                document.getElementById('liabilities').style.display = "none";  
+                document.getElementById('bill_by_bill').style.display = "none";
+                document.getElementById('statutory_details').style.display = "none";  
+                document.getElementById('banka/c').style.display = "none"; 
+                document.getElementById('bankod_a/c').style.display = "none";    
+            }
+            else if( a == "Loans_liability" ){ 
+                document.getElementById('statutory_details').style.display = "flex"; 
+                document.getElementById('bank_details').style.display = "flex";
+                document.getElementById('loans').style.display = "none";    
+                document.getElementById('account').style.display = "none";
+                document.getElementById('liabilities').style.display = "none";
+                document.getElementById('assets').style.display = "none"; 
+                document.getElementById('bill_by_bill').style.display = "none";  
+                document.getElementById('banka/c').style.display = "none"; 
+                document.getElementById('bankod_a/c').style.display = "none";        
+            }
+            else if( a == "Provisions" ){
+                document.getElementById('liabilities').style.display = "flex";
+                document.getElementById('bank_details').style.display = "flex";
+                document.getElementById('assets').style.display = "none";
+                document.getElementById('loans').style.display = "none";          
+                document.getElementById('account').style.display = "none";  
+                document.getElementById('bill_by_bill').style.display = "none"; 
+                document.getElementById('statutory_details').style.display = "none"; 
+                document.getElementById('banka/c').style.display = "none"; 
+                document.getElementById('bankod_a/c').style.display = "none";      
+            }
+            else if( a == "Purchase_Account" ){ 
+                document.getElementById('statutory_details').style.display = "flex"; 
+                document.getElementById('bank_details').style.display = "flex";
+                document.getElementById('loans').style.display = "none";    
+                document.getElementById('account').style.display = "none";
+                document.getElementById('liabilities').style.display = "none";
+                document.getElementById('assets').style.display = "none"; 
+                document.getElementById('bill_by_bill').style.display = "none"; 
+                document.getElementById('banka/c').style.display = "none"; 
+                document.getElementById('bankod_a/c').style.display = "none";         
+            }
+            else if( a == "Reserves_&_Surplus" ){
+                document.getElementById('account').style.display = "flex";
+                document.getElementById('bank_details').style.display = "flex";
+                document.getElementById('liabilities').style.display = "none";
+                document.getElementById('assets').style.display = "none";
+                document.getElementById('loans').style.display = "none";  
+                document.getElementById('bill_by_bill').style.display = "none"; 
+                document.getElementById('statutory_details').style.display = "none"; 
+                document.getElementById('banka/c').style.display = "none"; 
+                document.getElementById('bankod_a/c').style.display = "none";      
+            }
+            else if( a == "Retained" ){
+                document.getElementById('account').style.display = "flex";
+                document.getElementById('bank_details').style.display = "flex";
+                document.getElementById('liabilities').style.display = "none";
+                document.getElementById('assets').style.display = "none";
+                document.getElementById('loans').style.display = "none";  
+                document.getElementById('bill_by_bill').style.display = "none"; 
+                document.getElementById('statutory_details').style.display = "none";
+                document.getElementById('banka/c').style.display = "none"; 
+                document.getElementById('bankod_a/c').style.display = "none";       
+            }
+            else if( a == "Sales_Account" ){ 
+                document.getElementById('statutory_details').style.display = "flex"; 
+                document.getElementById('bank_details').style.display = "flex";
+                document.getElementById('loans').style.display = "none";    
+                document.getElementById('account').style.display = "none";
+                document.getElementById('liabilities').style.display = "none";
+                document.getElementById('assets').style.display = "none"; 
+                document.getElementById('bill_by_bill').style.display = "none";
+                document.getElementById('banka/c').style.display = "none"; 
+                document.getElementById('bankod_a/c').style.display = "none";          
+            }
+            else if( a == "Secured_loans" ){
+                document.getElementById('loans').style.display = "flex";   
+                document.getElementById('statutory_details').style.display = "flex";   
+                document.getElementById('bank_details').style.display = "flex";
+                document.getElementById('account').style.display = "none";
+                document.getElementById('liabilities').style.display = "none";
+                document.getElementById('assets').style.display = "none"; 
+                document.getElementById('bill_by_bill').style.display = "none";
+                document.getElementById('banka/c').style.display = "none"; 
+                document.getElementById('bankod_a/c').style.display = "none";          
+            }
+            else if( a == "Stock" ){
+                document.getElementById('assets').style.display = "flex";
+                document.getElementById('bank_details').style.display = "flex";
+                document.getElementById('loans').style.display = "none";  
+                document.getElementById('account').style.display = "none";     
+                document.getElementById('liabilities').style.display = "none";  
+                document.getElementById('bill_by_bill').style.display = "none"; 
+                document.getElementById('statutory_details').style.display = "none";
+                document.getElementById('banka/c').style.display = "none"; 
+                document.getElementById('bankod_a/c').style.display = "none";     
+            }
+            else if( a == "Sundry_Creditors" ){
+                document.getElementById('liabilities').style.display = "flex";
+                document.getElementById('bill_by_bill').style.display = "flex";
+                document.getElementById('bank_details').style.display = "flex";
+                document.getElementById('assets').style.display = "none";
+                document.getElementById('loans').style.display = "none";          
+                document.getElementById('account').style.display = "none";  
+                document.getElementById('statutory_details').style.display = "none";
+                document.getElementById('banka/c').style.display = "none"; 
+                document.getElementById('bankod_a/c').style.display = "none";        
+            }
+            else if( a == "Sundry_Debtors" ){
+                document.getElementById('assets').style.display = "flex";
+                document.getElementById('bill_by_bill').style.display = "flex";
+                document.getElementById('bank_details').style.display = "flex";
+                document.getElementById('loans').style.display = "none";  
+                document.getElementById('account').style.display = "none";     
+                document.getElementById('liabilities').style.display = "none";  
+                document.getElementById('statutory_details').style.display = "none";
+                document.getElementById('banka/c').style.display = "none"; 
+                document.getElementById('bankod_a/c').style.display = "none";      
+            }
+            else if( a == "Unsecured_loans" ){
+                document.getElementById('loans').style.display = "flex";          
+                document.getElementById('statutory_details').style.display = "flex";          
+                document.getElementById('bank_details').style.display = "flex";
+                document.getElementById('liabilities').style.display = "none";
+                document.getElementById('assets').style.display = "none";
+                document.getElementById('account').style.display = "none"; 
+                document.getElementById('bill_by_bill').style.display = "none";  
+                document.getElementById('banka/c').style.display = "none"; 
+                document.getElementById('bankod_a/c').style.display = "none";          
+            }
+            else{
+                document.getElementById('assets').style.display = "none";
+                document.getElementById('loans').style.display = "none"; 
+                document.getElementById('liabilities').style.display = "none";   
+                document.getElementById('account').style.display = "none";      
+                document.getElementById('bill_by_bill').style.display = "none";   
+                document.getElementById('statutory_details').style.display = "none";
+                document.getElementById('banka/c').style.display = "none"; 
+                document.getElementById('bankod_a/c').style.display = "none";   
+            }
+        }
+
+        function bill(){
+            var status = document.getElementById("billbybill");
+            var a = status.value
+            console.log(a);
+            if( a == "Yes" ){
+                console.log(a);
+
+                document.getElementById('credit_period').style.display = "flex";
+                document.getElementById('voucher_enter').style.display = "flex";
+            }
+            else{
+                
+                document.getElementById('credit_period').style.display = "none";
+                document.getElementById('voucher_enter').style.display = "none";
+            }
+        }
+   
+    </script>
     
 {% endblock %}

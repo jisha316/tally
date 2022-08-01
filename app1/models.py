@@ -97,57 +97,55 @@ class tally_vouchers(models.Model):
     default_bank = models.CharField(max_length=255,null=True)
     name_class = models.CharField(max_length=255,null=True)
 
-class gst_lutbond(models.Model):
-    lut_bond_No = models.CharField(max_length=50)
-    validity_from = models.DateField()
-    validity_to = models.DateField()
-
-class gst_taxability(models.Model):
-    taxability = models.CharField(max_length=50)
-    applicable_dt = models.DateField(null=True)
-    integrated_tax = models.CharField(max_length=50)
-    cess = models.CharField(max_length=50)
-    flood_cess = models.CharField(max_length=50)
-
 class currency_ROE(models.Model):
     date_ROE = models.DateField()
     currency = models.ForeignKey(tally_currency,on_delete = models.CASCADE,null = True)
     std_rate = models.CharField(max_length=20,null=True)
     selling_SR = models.CharField(max_length=20,null=True)
     buying_SR = models.CharField(max_length=20,null=True)
-
-class gst_details(models.Model):
-    state = models.CharField(max_length=255)
-    registration_type = models.CharField(max_length=50)
-    assessee_territory = models.CharField(max_length=50)
+    
+class tally_gst(models.Model):
+    state = models.CharField(max_length=255,null=True)
+    registration_type = models.CharField(max_length=50,null=True)
+    assessee_territory = models.CharField(max_length=50,null=True)
     gst_applicable = models.DateField(null=True)
-    gstin_uin = models.CharField(max_length=100)
-    periodicity = models.CharField(max_length=50)
+    gstin_uin = models.CharField(max_length=100,null=True)
+    periodicity = models.CharField(max_length=50,null=True)
     kerala_fca = models.CharField(max_length=20,null=True)
     applicable_from = models.DateField(null=True)
-    gst_rate_details = models.CharField(max_length=20)
-    tl_advanceR = models.CharField(max_length=20)
-    tl_reverseC = models.CharField(max_length=20)
-    gst_classification = models.CharField(max_length=20)
-    lut_bond = models.CharField(max_length=20)
-    tax_rate = models.CharField(max_length=20)
-    tax_calculation = models.CharField(max_length=100)
-    tax_purchase = models.CharField(max_length=20)
+    gst_rate_details = models.CharField(max_length=20,null=True)
+    tl_advanceR = models.CharField(max_length=20,null=True)
+    tl_reverseC = models.CharField(max_length=20,null=True)
+    gst_classification = models.CharField(max_length=20,null=True)
+    lut_bond = models.CharField(max_length=20,null=True)
+    tax_rate = models.CharField(max_length=20,null=True)
+    tax_calculation = models.CharField(max_length=100,null=True)
+    tax_purchase = models.CharField(max_length=20,null=True)
     
-    e_waybillA = models.CharField(max_length=20)
+    e_waybillA = models.CharField(max_length=20,null=True)
     applicable_f = models.DateField(null=True)
-    thresholdlimit_include = models.CharField(max_length=255)
-    threshold_limit = models.IntegerField()
-    intrastate = models.CharField(max_length=20)
-    ithreshold_limit = models.IntegerField()
-    print_eway = models.CharField(max_length=20)
+    thresholdlimit_include = models.CharField(max_length=255,null=True)
+    threshold_limit = models.IntegerField(null=True)
+    intrastate = models.CharField(max_length=20,null=True)
+    ithreshold_limit = models.IntegerField(null=True)
+    print_eway = models.CharField(max_length=20,null=True)
 
-    e_invoiceA = models.CharField(max_length=20)
+    e_invoiceA = models.CharField(max_length=20,null=True)
     app_from = models.DateField(null=True)
-    billfrom_place = models.CharField(max_length=50)
-    period_einvoiceR = models.CharField(max_length=50)
-    send_eW_details_einvoice = models.CharField(max_length=50)
+    billfrom_place = models.CharField(max_length=50,null=True)
+    period_einvoiceR = models.CharField(max_length=50,null=True)
+    send_eW_details_einvoice = models.CharField(max_length=50,null=True)
 
-# class gst_invoicefeatures(models.Model):
-#     gst = models.ForeignKey(tally_currency,on_delete = models.CASCADE,null = True)
-    
+class gst_lutbond(models.Model):
+    # gst = models.ForeignKey(tally_gst,on_delete = models.CASCADE,null = True)
+    lut_bond_No = models.CharField(max_length=50)
+    validity_from = models.DateField()
+    validity_to = models.DateField()
+
+class gst_taxability(models.Model):
+    # gst2 = models.ForeignKey(tally_gst,on_delete = models.CASCADE,null = True)
+    taxability = models.CharField(max_length=50)
+    applicable_dt = models.DateField(null=True)
+    integrated_tax = models.CharField(max_length=50)
+    cess = models.CharField(max_length=50)
+    flood_cess = models.CharField(max_length=50)

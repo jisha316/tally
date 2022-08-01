@@ -1,6 +1,5 @@
 from django.shortcuts import render,redirect
 from .models import *
-# from .models import tally_group,tally_currency,alt_currency,cost_centre,tally_tds,person_res_details,tally_vouchers,gst_lutbond,gst_taxability,currency_ROE
 
 # Create your views here.
 
@@ -214,6 +213,7 @@ def create_tds(request):
 		ctds.save()
 		print("added")
 		return redirect('/')
+	return render(request,'jisha/tds.html')
 
 def person_tds(request):
 	if request.method=='POST':
@@ -250,7 +250,8 @@ def person_tds(request):
                         email = emal)          
 		prs.save()
 		print("added")
-		return redirect('/')
+		return redirect('person_tds')
+	return render(request,'jisha/tds_details.html')
 
 def create_voucher(request):
 	if request.method=='POST':
@@ -326,19 +327,22 @@ def create_gstdetails(request):
                         flood_cess = fc)          
 		cost.save()
 		print("Added")
-		return redirect('/')
+		return redirect('gst_details')
+	return render(request,'jisha/gst_details')
 
 def create_lutbond(request):
 	if request.method=='POST':
 		lbno=request.POST['lut_bondNo']
 		afrom=request.POST['application_from']
 		ato=request.POST['application_to']
+		# u=tally_gst.objects.get('')  
 		lb=gst_lutbond(lut_bond_No=lbno,
                         validity_from = afrom,
-                        validity_to = ato)          
-		lb.save()
+                        validity_to = ato)      
+		lb.save() 
 		print("Added")
-		return redirect('/')
+		return redirect('lut_bond')
+	return render(request,'jisha/lut_bond')
 
 def create_ROE(request):
 	if request.method=='POST':
@@ -356,67 +360,82 @@ def create_ROE(request):
 		croe.save()
 		print("Added")
 		return redirect('/')
-	
+
 def create_gst(request):
-    if request.method=='POST':
-        state = request.POST['state']
-        rt = request.POST['registration_type']
-        at = request.POST['assessee_territory']
-        gsta = request.POST['gst_applicable']
-        gstuin = request.POST['gstin_uin']
-        prd = request.POST['periodicity']
-        kfca = request.POST['kerala_fca']
-        af = request.POST['applicable_from']
-        gstrd = request.POST['gst_rate_details']
-        tla = request.POST['tl_advanceR']
-        tlr = request.POST['tl_reverseC']
-        gstc = request.POST['gst_classification']
-        lb = request.POST['lut_bond']
-        tr = request.POST['tax_rate']
-        tc = request.POST['tax_calculation']
-        tp = request.POST['tax_purchase']
+	if request.method=='POST':
+		st = request.POST['state']
+		rt = request.POST['registration_type']
+		at = request.POST['assessee_territory']
+		gsta = request.POST['gst_applicable']
+		gstuin = request.POST['gstin_uin']
+		prd = request.POST['periodicity']
 
-        eA = request.POST('e_waybillA')
-        aaf = request.POST['applicable_f']
-        tli = request.POST['thresholdlimit_include']
-        tl = request.POST['threshold_limit']
-        intr = request.POST['intrastate']
-        itl = request.POST['ithreshold_limit']
-        pnw = request.POST['print_eway']
+	# .................regular.................
 
-        einva = request.POST['e_invoiceA']
-        appf = request.POST['app_f']
-        bfp = request.POST['billfrom_place']
-        peir = request.POST['period_einvoiceR']
-        sewdei = request.POST['send_eW_details_einvoice']
-        gstd=gst_details(state=state,
+		kfca = request.POST['kerala_fca']
+		af = request.POST['applicable_from']
+		gstrd = request.POST['gst_rate_details']
+		tla = request.POST['tl_advanceR']
+		tlr = request.POST['tl_reverseC']
+		gstc = request.POST['gst_classification'] 
+		lb = request.POST['lut_bond']
+
+    # ................composition................  
+	  
+		tr = request.POST['tax_rate']
+		tc = request.POST['tax_calculation']
+		tp = request.POST['tax_purchase']
+
+	# ............e-Way bill applicable...........
+
+		ea = request.POST['e_waybillA']
+		aaf = request.POST['applicable_f']
+		tli = request.POST['thresholdlimit_include']
+		tl = request.POST['threshold_limit']
+		intr = request.POST['intrastate']
+		itl = request.POST['ithreshold_limit']
+		pnw = request.POST['print_eway']
+
+	# .............e-Invoice applicable..............
+
+		einva = request.POST['e_invoiceA']
+		appf = request.POST['app_f']
+		bfp = request.POST['billfrom_place']
+		peir = request.POST['period_einvoiceR']
+		sewdei = request.POST['send_eW_details_einvoice']
+        
+		gstd=tally_gst(state=st,
 						registration_type=rt,
 						assessee_territory=at,
 						gst_applicable=gsta,
 						gstin_uin=gstuin,
 						periodicity=prd,
+					# ........regular.......
 						kerala_fca=kfca,
 						applicable_from=af,
 						gst_rate_details=gstrd,
 						tl_advanceR=tla,
 						tl_reverseC=tlr,
 						gst_classification=gstc,
-						lut_bond=lb,		
+						lut_bond=lb,	
+					# ........composition.......
 						tax_rate=tr,		
 						tax_calculation=tc,		
 						tax_purchase=tp,
-						e_waybillA=eA,
+					# ........e-Way bill applicable.......
+						e_waybillA=ea,
 						applicable_f=aaf,
 						thresholdlimit_include=tli,
 						threshold_limit=tl,
 						intrastate=intr,
 						ithreshold_limit=itl,
 						print_eway=pnw,
-
+					# ........e-Invoice applicable.......
 						e_invoiceA=einva,
 						app_from=appf,
 						billfrom_place=bfp,
 						period_einvoiceR=peir,
 						send_eW_details_einvoice=sewdei)
-		gstd
-		
+		gstd.save()
+		print("Added")
+		return redirect('/')
