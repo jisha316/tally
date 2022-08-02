@@ -17,6 +17,7 @@ urlpatterns = [
 
 #.........................jisha..........................
     path('ledgers',views.ledgers,name='ledgers'),
+    path('ledg',views.ledg,name='ledg'),
 
     path('vouchers',views.vouchers,name='vouchers'),
 

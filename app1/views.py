@@ -38,6 +38,9 @@ def vouchpage(request):
 def ledgers(request):
     return render(request, 'jisha/ledgers.html')
 
+def ledg(request):
+    return render(request, 'jisha/ledg.html')
+
 def vouchers(request):
     return render(request, 'jisha/vouchers.html')
 
