@@ -12,28 +12,27 @@
     	}
     </style>
     
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> 
-    <script src="//geodata.solutions/includes/countrystatecity.js"></script>
-    
-    <!-- <script src="{% static 'js/ledger.js' %}"></script> -->
+    <script src="{% static 'js/ledger.js' %}"></script>
 
   <div class="m-2">
-        <a href="javascript:history.go(-1);" class="close" style="color: #213b52;">&times; &nbsp;</a>
-        <h6 class="bg-info text-light p-2 m-0 text-center">Ledger Creation</h6>
-        <form class="p-2" style="background-color:rgba(0,0,0,.4);">
+        <h6 class="bg-info text-light p-2 m-0 text-center"><a href="javascript:history.go(-1);" class="close">&times;</a>
+            Ledger Creation
+        </h6>
+        <form class="p-2" style="background-color:rgba(0,0,0,.4);" method="post" action="{% url 'create_ledger' %}" autocomplete="off">
+            {% csrf_token %}
             <div class="p-0">
                 <div class="row container-fluid p-0 m-0" >
                     <div class="col-sm-6 m-0 p-4">
                         <div class="row container-fluid  p-2 m-0">
                             <div class="col-sm-3 m-0 p-0"> <label for="a" >Name</label></div>
                             <div class="col-sm-6 m-0 p-0">
-                                <input required type="text" class="form-control" id="ledger_name" oninput="addname()" placeholder="" name="ledger_name">
+                                <input onchange="showname()" required type="text" class="form-control" id="name"  placeholder="" name="name" required>
                             </div>
                         </div>
                         <div class="row container-fluid  p-2 m-0">
                             <div class="col-sm-3 m-0 p-0"> <label for="b">Alias</label></div>
                             <div class="col-sm-6 m-0 p-0"> 
-                                <input type="text" class="form-control" id="b" placeholder="" name="ledger_alias">
+                                <input type="text" class="form-control" id="b" placeholder="" name="alias">
                             </div>
                         </div>
                     </div>
@@ -53,7 +52,7 @@
                                 <option value="Bank_OCC_AC">Bank OCC A/c</option>
                                 <option value="Bank_OD_A/c">Bank OD A/c</option>
                                 <option value="Branch_Divisions">Branch Divisions</option>
-                                <option value="Capital_Amount" selected>Capital Account</option>
+                                <option value="Capital_Account" selected>Capital Account</option>
                                 <option value="Cash_in_Hand">Cash in Hand</option>
                                 <option value="Current_Assets">Current Assets</option>
                                 <option value="Current_Liabilities">Current Liabilities</option>
@@ -81,9 +80,9 @@
                                 <option value="Sundry_Debtors">Sundry Debtors</option>
                                 <option value="Suspence">Suspence A/c</option>
                                 <option value="Unsecured_loans">Unsecured Loans</option> 
-                                {% for i in tally_group %} 
-                                    <option >{{i.name}}</option>  
-                                {% endfor %} 
+                                {% for g in grp %}
+                                    <option value="{{ g.group_name }}">{{ g.group_name }}</option>
+                                {% endfor %}
                             </select>
                         </div>
                         <div class="row container-fluid hide p-2" id="assets">
@@ -105,7 +104,7 @@
                         <div class="row container-fluid p-2 m-0 hide" id="bankod_a/c">
                             <div class="col-sm-6 m-0 p-0"> <label for="pan">Set OD limit</label></div>
                             <div class="col-sm-6 m-0 p-0">
-                                <input type="text" value="{{cmp.name}}" class="form-control" id="odlimit" placeholder="" name="od_limit">
+                                <input type="text" value="{{cmp.name}}" class="form-control" id="odlimit" placeholder="" name="set_odl">
                             </div>  
                         </div>
                     </div>
@@ -116,7 +115,7 @@
                         <div class="row container-fluid  p-2 m-0">
                             <div class="col-sm-6 m-0 p-0"> <label for="pan">A/c Holder's Name</label></div>
                             <div class="col-sm-6 m-0 p-0">
-                                <input type="text" value="{{cmp.name}}" class="form-control" id="acna" placeholder="" name="holder_name">
+                                <input type="text" value="{{cmp.name}}" class="form-control" id="acna" placeholder="" name="ac_holder_nm">
                             </div>  
                         </div>
                         <div class="row container-fluid  p-2 m-0">
@@ -128,7 +127,7 @@
                         <div class="row container-fluid  p-2 m-0">
                             <div class="col-sm-6 m-0 p-0"> <label for="pan">IFS Code</label></div>
                             <div class="col-sm-6 m-0 p-0">
-                                <input type="text" class="form-control" id="ifs" placeholder="" name="ifsc">
+                                <input type="text" class="form-control" id="ifs" placeholder="" name="ifsc_code">
                             </div> 
                         </div>
                         <div class="row container-fluid  p-2 m-0">
@@ -155,7 +154,7 @@
                         <div class="row container-fluid   p-2 m-0">
                             <div class="col-sm-6 m-0 p-0"> <label for="rgtype" >Set/Alter range for Cheque Books</label></div>
                             <div class="col-sm-6 m-0 p-0">
-                                <select name="set_cheque" id="chqrng" class="form-control">
+                                <select name="SA_cheque_bk" id="chqrng" class="form-control">
                                     <option value="No">No</option>
                                     <option value="Yes">Yes</option>  
                                 </select>
@@ -164,7 +163,7 @@
                         <div class="row container-fluid   p-2 m-0">
                             <div class="col-sm-6 m-0 p-0"> <label for="rgtype" >Enable Cheque printing</label></div>
                             <div class="col-sm-6 m-0 p-0">
-                                <select name="ch_printing" id="chqprnt" class="form-control">
+                                <select name="Echeque_p" id="chqprnt" class="form-control">
                                     <option value="No">No</option>
                                     <option value="Yes" selected>Yes</option>   
                                 </select>
@@ -173,7 +172,7 @@
                         <div class="row container-fluid   p-2 m-0">
                             <div class="col-sm-6 m-0 p-0"> <label for="rgtype" >Set/Alter Cheque Printing Configuration</label></div>
                             <div class="col-sm-6 m-0 p-0">
-                                <select name="ch_config" id="ch_config" class="form-control">
+                                <select name="SA_chequeP_con" id="ch_config" class="form-control">
                                     <option value="No">No</option>
                                     <option value="Yes">Yes</option>     
                                 </select>
@@ -375,25 +374,25 @@
 
 
                 <div class="col-sm-6 m-0 p-4" style=" border-right: 1px solid rgba(128, 128, 128, 0.6);">
-                    <h5 class="text-center">Mailing Details</h5>
+                    <div class="row container-fluid  p-0" id=""><h5>Mailing Details</h5></div>
                     <div class="row container-fluid  p-0">
                         <div class="col-sm-6 m-0 p-0"></div>
                         <div class="col-sm-6 m-0 p-0"></div>
                     </div>
                     <div class="row container-fluid  p-2">
                         <div class="col-sm-6 m-0 p-0"> <label for="d">Name</label></div>
-                        <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" id="c" placeholder=""></div>
+                        <div class="col-sm-6 m-0 p-0"><input name="mailingname" type="text" class="form-control" id="mailingname" placeholder=""></div>
                     </div>
                     <div class="row container-fluid  p-2">
                         <div class="col-sm-6 m-0 p-0"> <label for="d">Address</label></div>
-                        <div class="col-sm-6 m-0 p-0"><input type="textarea" class="form-control" id="d" placeholder=""></div>
+                        <div class="col-sm-6 m-0 p-0"><textarea class="form-control" name="address" id="" cols="36" rows="4"></textarea></div>
                     </div>
                     <div class="container-fluid  p-0" id="">
                         <div class="row container-fluid  p-2">
                             <div class="col-sm-6 m-0 p-0"> <label  for="" id="stateLabel">State</label></div>
                             <div class="col-sm-6 m-0 p-0" >
-                                <select class="form-control states" name="state" id="stateId">
-                                    <option value="">state</option>
+                                <select class="form-control states" name="state" id="">
+                                    <option value="Kerala">Kerala</option>
                                 </select>
                             </div>
                         </div>
@@ -402,51 +401,50 @@
                     <div class="row container-fluid  p-2">
                         <div class="col-sm-6 m-0 p-0"> <label for="country">Country</label></div>
                         <div class="col-sm-6 m-0 p-0" >
-                            <select class="form-control countries" name="country" id="countryId">
-                                <option value="0">Select Country</option>
+                            <select class="form-control countries" name="country" id="">
+                                <option value="India">India</option>
                             </select>
                             
                         </div>
                     </div>
                     <div class="row container-fluid  p-2">
                         <div class="col-sm-6 m-0 p-0"> <label for="d">Pin Code</label></div>
-                        <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" id="d" placeholder=""></div>
+                        <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" name="pincode"></div>
                     </div>
 
-                    <div class="row container-fluid  p-2" id="bank_details">
+                    <div class="row container-fluid  p-0" id="bank_details">
                         <h5 class="text-center">Banking Details</h5>
                         <div class="row container-fluid  p-2 m-0">
                             <div class="col-sm-6 m-0 p-0"> <label for="pan">Provide Bank details</label></div>
                             <div class="col-sm-6 m-0 p-0">
-                                <select  class="form-control">
-                                    <option value="">No</option> 
-                                    <option value="">Yes</option>
+                                <select  class="form-control" name="bank_details">
+                                    <option value="No">No</option> 
+                                    <option value="Yes">Yes</option>
                                 </select>
                             </div>  
                         </div>
                     </div>
-
-                    <h5>Tax Registration Details</h5>
+                    <div class="row container-fluid  p-0" id=""><h5>Tax Registration Details</h5></div>
                     <div class="row container-fluid  p-2">
                         <div class="col-sm-6 m-0 p-0"> <label for="e">PAN / IT No.</label></div>
-                        <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" id="c" placeholder=""></div>
+                        <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" name="pan_no" id="c"></div>
                     </div>
                     <div class="row container-fluid  p-2">
                         <div class="col-sm-6 m-0 p-0"> <label for="e">Registration Type</label></div>
                         <div class="col-sm-6 m-0 p-0">
-                            <select name="Activate" id="e" class="form-control">
-                                <option value="">Unknown</option> 
-                                <option value="">Composition</option>
-                                <option value="">Consumer</option>
-                                <option value="" selected>Regular</option>
-                                <option value="">Unregistred</option>
+                            <select name="registration_type" id="e" class="form-control">
+                                <option value="Unknown">Unknown</option> 
+                                <option value="Composition">Composition</option>
+                                <option value="Consumer">Consumer</option>
+                                <option value="Regular" selected>Regular</option>
+                                <option value="Unregistred">Unregistred</option>
                             </select>
                         </div>
                     </div>
                     <div class="row container-fluid  p-2">
                         <div class="col-sm-6 m-0 p-0"> <label for="e">GSTIN / UIN</label></div>
                         <div class="col-sm-6 m-0 p-0">
-                            <input type="text" class="form-control" id="c" placeholder="">
+                            <input type="text" class="form-control" name="gst_uin" id="c" placeholder="">
                         </div>
                     </div>
                 </div>
@@ -456,7 +454,7 @@
                 <div class="col-sm-5 m-0 p-4">
                     <div class="row container-fluid  p-2">
                         <div class="col-sm-6 m-0 p-0"> <label for="d"></label>Opening Balance (On 1-Apr-22)</div>
-                        <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" id="d" placeholder=""></div>
+                        <div class="col-sm-6 m-0 p-0"><input type="text" name="opening_blnc" class="form-control" id="d" placeholder=""></div>
                     </div>
                 </div>
                 <div class="col-sm-4 m-0 p-4"></div>
@@ -464,620 +462,6 @@
 
             <div class="enter w-100 py-4"><button class="btn btn-info w-15">CREATE</button></div>       
         </form>
-    </div> 
-
-    <script>
-        function showunder(){
-            var status = document.getElementById("under");
-            var a = status.value;
-            console.log(a);
-            if( a == "Bank_Accounts" ){
-                console.log(a);
-                
-                document.getElementById('assets').style.display = "flex";
-                document.getElementById('banka/c').style.display = "flex"; 
-                document.getElementById('sd').style.display = "none"; 
-                document.getElementById('loans').style.display = "none"; 
-                document.getElementById('bank_details').style.display = "none"; 
-                document.getElementById('account').style.display = "none";     
-                document.getElementById('liabilities').style.display = "none"; 
-                document.getElementById('bankod_a/c').style.display = "none";  
-                document.getElementById('bill_by_bill').style.display = "none";  
-                document.getElementById('statutory_details').style.display = "none";  
-                document.getElementById('Duties&Taxes').style.display = "none"; 
-                document.getElementById('Type_of_ledger').style.display = "none"; 
-                document.getElementById('rounding_method').style.display = "none";     
-            }
-            else if( a == "Bank_OCC_AC" ){
-                document.getElementById('loans').style.display = "flex";
-                document.getElementById('bankod_a/c').style.display = "flex";
-                document.getElementById('banka/c').style.display = "flex";  
-                document.getElementById('bank_details').style.display = "none";
-                document.getElementById('sd').style.display = "none"; 
-                document.getElementById('assets').style.display = "none"; 
-                document.getElementById('account').style.display = "none";      
-                document.getElementById('liabilities').style.display = "none";  
-                document.getElementById('bill_by_bill').style.display = "none";  
-                document.getElementById('statutory_details').style.display = "none";    
-                document.getElementById('Duties&Taxes').style.display = "none"; 
-                document.getElementById('Type_of_ledger').style.display = "none";  
-                document.getElementById('rounding_method').style.display = "none";    
-            }
-            else if( a == "Bank_OD_A/c" ){
-                document.getElementById('loans').style.display = "flex";
-                document.getElementById('bankod_a/c').style.display = "flex";
-                document.getElementById('banka/c').style.display = "flex"; 
-                document.getElementById('sd').style.display = "none"; 
-                document.getElementById('bank_details').style.display = "none";
-                document.getElementById('assets').style.display = "none";
-                document.getElementById('account').style.display = "none";      
-                document.getElementById('liabilities').style.display = "none";  
-                document.getElementById('bill_by_bill').style.display = "none";
-                document.getElementById('statutory_details').style.display = "none";   
-                document.getElementById('Duties&Taxes').style.display = "none"; 
-                document.getElementById('Type_of_ledger').style.display = "none"; 
-                document.getElementById('rounding_method').style.display = "none";     
-            }
-            else if( a == "Cash_in_Hand" ){
-                document.getElementById('assets').style.display = "flex";
-                document.getElementById('bank_details').style.display = "flex";
-                document.getElementById('loans').style.display = "none"; 
-                document.getElementById('account').style.display = "none";     
-                document.getElementById('liabilities').style.display = "none"; 
-                document.getElementById('sd').style.display = "none"; 
-                document.getElementById('bill_by_bill').style.display = "none";  
-                document.getElementById('statutory_details').style.display = "none";  
-                document.getElementById('banka/c').style.display = "none"; 
-                document.getElementById('bankod_a/c').style.display = "none";   
-                document.getElementById('Duties&Taxes').style.display = "none"; 
-                document.getElementById('Type_of_ledger').style.display = "none"; 
-                document.getElementById('rounding_method').style.display = "none";     
-            }
-            else if( a == "Current_Assets" ){ 
-                document.getElementById('statutory_details').style.display = "flex"; 
-                document.getElementById('sd_4').style.display = "flex"; 
-                document.getElementById('bank_details').style.display = "flex";
-                document.getElementById('sd').style.display = "none"; 
-                document.getElementById('loans').style.display = "none";    
-                document.getElementById('account').style.display = "none";
-                document.getElementById('liabilities').style.display = "none";
-                document.getElementById('assets').style.display = "none"; 
-                document.getElementById('bill_by_bill').style.display = "none";  
-                document.getElementById('banka/c').style.display = "none"; 
-                document.getElementById('bankod_a/c').style.display = "none";    
-                document.getElementById('Duties&Taxes').style.display = "none"; 
-                document.getElementById('Type_of_ledger').style.display = "none"; 
-                document.getElementById('rounding_method').style.display = "none";     
-            }
-            else if( a == "Deposits (Asset)" ){
-                document.getElementById('assets').style.display = "flex";
-                document.getElementById('bank_details').style.display = "flex";
-                document.getElementById('loans').style.display = "none"; 
-                document.getElementById('account').style.display = "none";   
-                document.getElementById('sd').style.display = "none";   
-                document.getElementById('liabilities').style.display = "none";   
-                document.getElementById('bill_by_bill').style.display = "none"; 
-                document.getElementById('statutory_details').style.display = "none";  
-                document.getElementById('banka/c').style.display = "none"; 
-                document.getElementById('bankod_a/c').style.display = "none";  
-                document.getElementById('Duties&Taxes').style.display = "none"; 
-                document.getElementById('Type_of_ledger').style.display = "none"; 
-                document.getElementById('rounding_method').style.display = "none";   
-            }
-            else if( a == "Direct_Expenses" ){ 
-                document.getElementById('Type_of_ledger').style.display = "flex";  
-                document.getElementById('bank_details').style.display = "flex";
-                document.getElementById('loans').style.display = "none";    
-                document.getElementById('account').style.display = "none";
-                document.getElementById('liabilities').style.display = "none";
-                document.getElementById('assets').style.display = "none"; 
-                document.getElementById('bill_by_bill').style.display = "none";  
-                document.getElementById('banka/c').style.display = "none"; 
-                document.getElementById('bankod_a/c').style.display = "none";    
-                document.getElementById('Duties&Taxes').style.display = "none"; 
-                document.getElementById('rounding_method').style.display = "none";     
-            }
-            else if( a == "Direct_Incomes" ){ 
-                document.getElementById('Type_of_ledger').style.display = "flex"; 
-                document.getElementById('bank_details').style.display = "flex";
-                document.getElementById('sd').style.display = "none"; 
-                document.getElementById('loans').style.display = "none";    
-                document.getElementById('account').style.display = "none";
-                document.getElementById('liabilities').style.display = "none";
-                document.getElementById('assets').style.display = "none"; 
-                document.getElementById('bill_by_bill').style.display = "none";
-                document.getElementById('banka/c').style.display = "none"; 
-                document.getElementById('bankod_a/c').style.display = "none";  
-                document.getElementById('Duties&Taxes').style.display = "none"; 
-                document.getElementById('rounding_method').style.display = "none";         
-            }
-            else if( a == "Duties_and_Taxes" ){ 
-                document.getElementById('liabilities').style.display = "flex";
-                document.getElementById('Duties&Taxes').style.display = "flex"; 
-                document.getElementById('bank_details').style.display = "flex";
-                document.getElementById('loans').style.display = "none"; 
-                document.getElementById('sd').style.display = "none";    
-                document.getElementById('account').style.display = "none";
-                document.getElementById('assets').style.display = "none"; 
-                document.getElementById('bill_by_bill').style.display = "none";
-                document.getElementById('banka/c').style.display = "none"; 
-                document.getElementById('bankod_a/c').style.display = "none"; 
-                document.getElementById('Type_of_ledger').style.display = "none";          
-            }
-            else if( a == "Expences_Direct" ){ 
-                document.getElementById('Type_of_ledger').style.display = "flex"; 
-                document.getElementById('bank_details').style.display = "flex";
-                document.getElementById('loans').style.display = "none";    
-                document.getElementById('account').style.display = "none";
-                document.getElementById('liabilities').style.display = "none";
-                document.getElementById('assets').style.display = "none"; 
-                document.getElementById('bill_by_bill').style.display = "none"; 
-                document.getElementById('banka/c').style.display = "none"; 
-                document.getElementById('bankod_a/c').style.display = "none"; 
-                document.getElementById('Duties&Taxes').style.display = "none"; 
-                document.getElementById('rounding_method').style.display = "none";         
-            }
-            else if( a == "Expences_Indirect" ){ 
-                document.getElementById('Type_of_ledger').style.display = "flex"; 
-                document.getElementById('bank_details').style.display = "flex";
-                document.getElementById('loans').style.display = "none";    
-                document.getElementById('account').style.display = "none";
-                document.getElementById('liabilities').style.display = "none";
-                document.getElementById('assets').style.display = "none"; 
-                document.getElementById('bill_by_bill').style.display = "none"; 
-                document.getElementById('banka/c').style.display = "none"; 
-                document.getElementById('bankod_a/c').style.display = "none"; 
-                document.getElementById('Duties&Taxes').style.display = "none"; 
-                document.getElementById('rounding_method').style.display = "none";         
-            }
-            else if( a == "Fixed_Assets" ){ 
-                document.getElementById('statutory_details').style.display = "flex"; 
-                document.getElementById('sd_4').style.display = "flex"; 
-                document.getElementById('bank_details').style.display = "flex";
-                document.getElementById('loans').style.display = "none";    
-                document.getElementById('account').style.display = "none";
-                document.getElementById('liabilities').style.display = "none";
-                document.getElementById('assets').style.display = "none"; 
-                document.getElementById('bill_by_bill').style.display = "none"; 
-                document.getElementById('banka/c').style.display = "none"; 
-                document.getElementById('bankod_a/c').style.display = "none";  
-                document.getElementById('Duties&Taxes').style.display = "none"; 
-                document.getElementById('Type_of_ledger').style.display = "none"; 
-                document.getElementById('rounding_method').style.display = "none";        
-            }
-            else if( a == "Income_direct" ){ 
-                document.getElementById('Type_of_ledger').style.display = "flex"; 
-                document.getElementById('bank_details').style.display = "flex";
-                document.getElementById('loans').style.display = "none";    
-                document.getElementById('account').style.display = "none";
-                document.getElementById('liabilities').style.display = "none";
-                document.getElementById('assets').style.display = "none"; 
-                document.getElementById('bill_by_bill').style.display = "none"; 
-                document.getElementById('banka/c').style.display = "none"; 
-                document.getElementById('bankod_a/c').style.display = "none"; 
-                document.getElementById('Duties&Taxes').style.display = "none"; 
-                document.getElementById('rounding_method').style.display = "none";         
-            }
-            else if( a == "Income_Indirect" ){ 
-                document.getElementById('Type_of_ledger').style.display = "flex";  
-                document.getElementById('bank_details').style.display = "flex";
-                document.getElementById('loans').style.display = "none";    
-                document.getElementById('account').style.display = "none";
-                document.getElementById('liabilities').style.display = "none";
-                document.getElementById('assets').style.display = "none"; 
-                document.getElementById('bill_by_bill').style.display = "none"; 
-                document.getElementById('banka/c').style.display = "none"; 
-                document.getElementById('bankod_a/c').style.display = "none";
-                document.getElementById('Duties&Taxes').style.display = "none"; 
-                document.getElementById('rounding_method').style.display = "none";          
-            }
-            else if( a == "Loans_Advance" ){
-                document.getElementById('assets').style.display = "flex";
-                document.getElementById('bank_details').style.display = "flex";
-                document.getElementById('loans').style.display = "none";  
-                document.getElementById('account').style.display = "none";  
-                document.getElementById('sd').style.display = "none";    
-                document.getElementById('liabilities').style.display = "none";  
-                document.getElementById('bill_by_bill').style.display = "none";
-                document.getElementById('statutory_details').style.display = "none";  
-                document.getElementById('banka/c').style.display = "none"; 
-                document.getElementById('bankod_a/c').style.display = "none";
-                document.getElementById('Duties&Taxes').style.display = "none"; 
-                document.getElementById('Type_of_ledger').style.display = "none"; 
-                document.getElementById('rounding_method').style.display = "none";     
-            }
-            else if( a == "Loans_liability" ){ 
-                document.getElementById('statutory_details').style.display = "flex"; 
-                document.getElementById('sd_4').style.display = "flex"; 
-                document.getElementById('bank_details').style.display = "flex";
-                document.getElementById('loans').style.display = "none";    
-                document.getElementById('account').style.display = "none";
-                document.getElementById('liabilities').style.display = "none";
-                document.getElementById('assets').style.display = "none"; 
-                document.getElementById('bill_by_bill').style.display = "none";  
-                document.getElementById('banka/c').style.display = "none"; 
-                document.getElementById('bankod_a/c').style.display = "none";     
-                document.getElementById('Duties&Taxes').style.display = "none"; 
-                document.getElementById('Type_of_ledger').style.display = "none"; 
-                document.getElementById('rounding_method').style.display = "none";    
-            }
-            else if( a == "Provisions" ){
-                document.getElementById('liabilities').style.display = "flex";
-                document.getElementById('bank_details').style.display = "flex";
-                document.getElementById('assets').style.display = "none";
-                document.getElementById('sd').style.display = "none"; 
-                document.getElementById('loans').style.display = "none";          
-                document.getElementById('account').style.display = "none";  
-                document.getElementById('bill_by_bill').style.display = "none"; 
-                document.getElementById('statutory_details').style.display = "none"; 
-                document.getElementById('banka/c').style.display = "none"; 
-                document.getElementById('bankod_a/c').style.display = "none"; 
-                document.getElementById('Duties&Taxes').style.display = "none"; 
-                document.getElementById('Type_of_ledger').style.display = "none"; 
-                document.getElementById('rounding_method').style.display = "none";      
-            }
-            else if( a == "Purchase_Account" ){ 
-                document.getElementById('Type_of_ledger').style.display = "flex";  
-                document.getElementById('bank_details').style.display = "flex";
-                document.getElementById('loans').style.display = "none";    
-                document.getElementById('account').style.display = "none";
-                document.getElementById('liabilities').style.display = "none";
-                document.getElementById('assets').style.display = "none"; 
-                document.getElementById('bill_by_bill').style.display = "none"; 
-                document.getElementById('banka/c').style.display = "none"; 
-                document.getElementById('bankod_a/c').style.display = "none"; 
-                document.getElementById('Duties&Taxes').style.display = "none";  
-                document.getElementById('rounding_method').style.display = "none";         
-            }
-            else if( a == "Reserves_&_Surplus" ){
-                document.getElementById('account').style.display = "flex";
-                document.getElementById('bank_details').style.display = "flex";
-                document.getElementById('liabilities').style.display = "none";
-                document.getElementById('assets').style.display = "none";
-                document.getElementById('loans').style.display = "none";  
-                document.getElementById('bill_by_bill').style.display = "none"; 
-                document.getElementById('statutory_details').style.display = "none"; 
-                document.getElementById('banka/c').style.display = "none"; 
-                document.getElementById('bankod_a/c').style.display = "none";    
-                document.getElementById('Duties&Taxes').style.display = "none"; 
-                document.getElementById('Type_of_ledger').style.display = "none"; 
-                document.getElementById('rounding_method').style.display = "none";   
-            }
-            else if( a == "Retained" ){
-                document.getElementById('account').style.display = "flex";
-                document.getElementById('bank_details').style.display = "flex";
-                document.getElementById('liabilities').style.display = "none";
-                document.getElementById('assets').style.display = "none";
-                document.getElementById('loans').style.display = "none";  
-                document.getElementById('bill_by_bill').style.display = "none"; 
-                document.getElementById('statutory_details').style.display = "none";
-                document.getElementById('banka/c').style.display = "none"; 
-                document.getElementById('bankod_a/c').style.display = "none";   
-                document.getElementById('Duties&Taxes').style.display = "none"; 
-                document.getElementById('Type_of_ledger').style.display = "none"; 
-                document.getElementById('rounding_method').style.display = "none";     
-            }
-            else if( a == "Sales_Account" ){ 
-                document.getElementById('Type_of_ledger').style.display = "flex"; 
-                document.getElementById('bank_details').style.display = "flex";
-                document.getElementById('loans').style.display = "none";    
-                document.getElementById('account').style.display = "none";
-                document.getElementById('liabilities').style.display = "none";
-                document.getElementById('assets').style.display = "none"; 
-                document.getElementById('bill_by_bill').style.display = "none";
-                document.getElementById('banka/c').style.display = "none"; 
-                document.getElementById('bankod_a/c').style.display = "none"; 
-                document.getElementById('Duties&Taxes').style.display = "none"; 
-                document.getElementById('rounding_method').style.display = "none";          
-            }
-            else if( a == "Secured_loans" ){
-                document.getElementById('loans').style.display = "flex";   
-                document.getElementById('statutory_details').style.display = "flex";   
-                document.getElementById('sd_4').style.display = "flex"; 
-                document.getElementById('bank_details').style.display = "flex";
-                document.getElementById('account').style.display = "none";
-                document.getElementById('liabilities').style.display = "none";
-                document.getElementById('assets').style.display = "none"; 
-                document.getElementById('bill_by_bill').style.display = "none";
-                document.getElementById('banka/c').style.display = "none"; 
-                document.getElementById('bankod_a/c').style.display = "none";      
-                document.getElementById('Duties&Taxes').style.display = "none"; 
-                document.getElementById('Type_of_ledger').style.display = "none"; 
-                document.getElementById('rounding_method').style.display = "none";     
-            }
-            else if( a == "Stock" ){
-                document.getElementById('assets').style.display = "flex";
-                document.getElementById('bank_details').style.display = "flex";
-                document.getElementById('loans').style.display = "none";  
-                document.getElementById('account').style.display = "none";     
-                document.getElementById('liabilities').style.display = "none";  
-                document.getElementById('bill_by_bill').style.display = "none"; 
-                document.getElementById('sd').style.display = "none"; 
-                document.getElementById('banka/c').style.display = "none"; 
-                document.getElementById('bankod_a/c').style.display = "none"; 
-                document.getElementById('Duties&Taxes').style.display = "none"; 
-                document.getElementById('Type_of_ledger').style.display = "none"; 
-                document.getElementById('rounding_method').style.display = "none";     
-            }
-            else if( a == "Sundry_Creditors" ){
-                document.getElementById('liabilities').style.display = "flex";
-                document.getElementById('bill_by_bill').style.display = "flex";
-                document.getElementById('bank_details').style.display = "flex";
-                document.getElementById('assets').style.display = "none";
-                document.getElementById('loans').style.display = "none";          
-                document.getElementById('account').style.display = "none";  
-                document.getElementById('sd').style.display = "none"; 
-                document.getElementById('banka/c').style.display = "none"; 
-                document.getElementById('bankod_a/c').style.display = "none";    
-                document.getElementById('Duties&Taxes').style.display = "none"; 
-                document.getElementById('Type_of_ledger').style.display = "none"; 
-                document.getElementById('rounding_method').style.display = "none";     
-            }
-            else if( a == "Sundry_Debtors" ){
-                document.getElementById('assets').style.display = "flex";
-                document.getElementById('bill_by_bill').style.display = "flex";
-                document.getElementById('bank_details').style.display = "flex";
-                document.getElementById('loans').style.display = "none";  
-                document.getElementById('account').style.display = "none";     
-                document.getElementById('liabilities').style.display = "none";  
-                document.getElementById('sd').style.display = "none"; 
-                document.getElementById('banka/c').style.display = "none"; 
-                document.getElementById('bankod_a/c').style.display = "none";   
-                document.getElementById('Duties&Taxes').style.display = "none"; 
-                document.getElementById('Type_of_ledger').style.display = "none"; 
-                document.getElementById('rounding_method').style.display = "none";    
-            }
-            else if( a == "Unsecured_loans" ){
-                document.getElementById('loans').style.display = "flex";          
-                document.getElementById('statutory_details').style.display = "flex";  
-                document.getElementById('sd_4').style.display = "flex";         
-                document.getElementById('bank_details').style.display = "flex";
-                document.getElementById('liabilities').style.display = "none";
-                document.getElementById('assets').style.display = "none";
-                document.getElementById('account').style.display = "none"; 
-                document.getElementById('bill_by_bill').style.display = "none";  
-                document.getElementById('banka/c').style.display = "none"; 
-                document.getElementById('bankod_a/c').style.display = "none"; 
-                document.getElementById('Duties&Taxes').style.display = "none"; 
-                document.getElementById('Type_of_ledger').style.display = "none"; 
-                document.getElementById('rounding_method').style.display = "none";          
-            }
-            else{
-                document.getElementById('Duties&Taxes').style.display = "none"; 
-                document.getElementById('Type_of_ledger').style.display = "none"; 
-                document.getElementById('rounding_method').style.display = "none"; 
-                document.getElementById('assets').style.display = "none";
-                document.getElementById('loans').style.display = "none"; 
-                document.getElementById('liabilities').style.display = "none";   
-                document.getElementById('account').style.display = "none";      
-                document.getElementById('bill_by_bill').style.display = "none";  
-                document.getElementById('sd').style.display = "none";  
-                document.getElementById('statutory_details').style.display = "none";
-                document.getElementById('sd_4').style.display = "none";
-                document.getElementById('sd_1').style.display = "none";
-                document.getElementById('sd_3').style.display = "none";
-                document.getElementById('sd_3').style.display = "none";
-                document.getElementById('banka/c').style.display = "none"; 
-                document.getElementById('bankod_a/c').style.display = "none";   
-            }
-        }
-        function typ_ledger(){
-            var status = document.getElementById("typledger");
-            var a = status.value
-            console.log(a);
-            if( a == "Not_Applicable" ){
-                console.log(a);
-                
-                document.getElementById('sd_1').style.display = "flex"; 
-                document.getElementById('statutory_details').style.display = "flex";    
-                document.getElementById('rounding_method1').style.display = "none";    
-            }
-            else if ( a == "Discount" ){
-                document.getElementById('sd_1').style.display = "none";  
-                document.getElementById('statutory_details').style.display = "none";  
-                document.getElementById('rounding_method1').style.display = "none"; 
-                document.getElementById('sd_2').style.display = "none";
-                document.getElementById('sd_3').style.display = "none"; 
-                document.getElementById('sd_4').style.display = "none"; 
-                document.getElementById('appropriate_to').style.display = "none"; 
-                document.getElementById('method_of_calculation').style.display = "none"; 
-            }
-            else if( a == "Invoice_Rounding" ){
-                document.getElementById('sd_1').style.display = "none";  
-                document.getElementById('statutory_details').style.display = "none";
-                document.getElementById('rounding_method1').style.display = "flex"; 
-                document.getElementById('sd_2').style.display = "none";
-                document.getElementById('sd_3').style.display = "none"; 
-                document.getElementById('sd_4').style.display = "none"; 
-                document.getElementById('appropriate_to').style.display = "none"; 
-                document.getElementById('method_of_calculation').style.display = "none"; 
-            }
-            else{ 
-                document.getElementById('sd_1').style.display = "none";  
-                document.getElementById('statutory_details').style.display = "none";
-                document.getElementById('rounding_method1').style.display = "none"; 
-                document.getElementById('sd_2').style.display = "none";
-                document.getElementById('sd_3').style.display = "none"; 
-                document.getElementById('sd_4').style.display = "none"; 
-                document.getElementById('appropriate_to').style.display = "none"; 
-                document.getElementById('method_of_calculation').style.display = "none"; 
-            }
-        }
-        function typ_dttax(){
-            var status = document.getElementById("type_duty_tax");
-            var a = status.value
-            console.log(a);
-            if( a == "Others" ){
-                console.log(a);
-                
-                document.getElementById('statutory_details').style.display = "flex";
-                document.getElementById('sd_4').style.display = "flex"; 
-                document.getElementById('perc_calc').style.display = "flex"; 
-                document.getElementById('tax_type').style.display = "none";
-                document.getElementById('rounding_method').style.display = "none";
-                document.getElementById('rounding_limit').style.display = "none";
-            }
-            else if( a == "GST" ){
-                document.getElementById('tax_type').style.display = "flex";
-                document.getElementById('perc_calc').style.display = "flex"; 
-                document.getElementById('rounding_method').style.display = "flex"; 
-                document.getElementById('statutory_details').style.display = "none";
-                document.getElementById('sd_4').style.display = "none"; 
-                document.getElementById('appropriate_to').style.display = "none"; 
-                document.getElementById('method_of_calculation').style.display = "none"; 
-            }
-            else{
-                document.getElementById('tax_type').style.display = "none";
-                document.getElementById('perc_calc').style.display = "none"; 
-                document.getElementById('statutory_details').style.display = "none";
-                document.getElementById('rounding_method').style.display = "none";
-                document.getElementById('sd_4').style.display = "none"; 
-                document.getElementById('appropriate_to').style.display = "none"; 
-                document.getElementById('method_of_calculation').style.display = "none"; 
-            }
-        }
-        function round_mthd(){
-            var status = document.getElementById("rond_met");
-            var a = status.value
-            console.log(a);
-            if( a == "Not_Applicable" ){
-                console.log(a);
-                
-                document.getElementById('rounding_limit').style.display = "none";     
-            }
-            else{
-                
-                document.getElementById('rounding_limit').style.display = "flex"; 
-            }
-        }
-        function tax_type0(){
-            var status = document.getElementById("taxtype");
-            var a = status.value
-            console.log(a);
-            if( a == "Central_Tax" ){
-                console.log(a);
-                
-                document.getElementById('val_type').style.display = "none";     
-            }
-            else if( a == "Cess" ){
-                
-                document.getElementById('val_type').style.display = "flex"; 
-            }
-            else if( a == "Integrated_Tax" ){
-                document.getElementById('val_type').style.display = "none"; 
-            }
-            else if( a == "State_Tax" ){
-                document.getElementById('val_type').style.display = "none"; 
-            }
-            else{
-                document.getElementById('perc_calc').style.display = "none";
-                document.getElementById('val_type').style.display = "none"; 
-            }
-        }
-        function valtype0(){
-            var status = document.getElementById("valtype");
-            var a = status.value
-            console.log(a);
-            if( a == "Any" ){
-                console.log(a);
-                
-                document.getElementById('perc_calc').style.display = "flex";
-                document.getElementById('rate_per_unit').style.display = "none";     
-            }
-            else if( a == "Based_on_Quantity" ){
-                document.getElementById('rate_per_unit').style.display = "flex";
-                document.getElementById('perc_calc').style.display = "none";
-            }
-            else if( a == "Based_on_Value" ){
-                document.getElementById('perc_calc').style.display = "flex";
-                document.getElementById('rate_per_unit').style.display = "none"; 
-            }
-            else{
-                document.getElementById('perc_calc').style.display = "none";
-                document.getElementById('rate_per_unit').style.display = "none"; 
-            }
-        }
-        function showgstA(){
-            var status = document.getElementById("gst_applicable");
-            var a = status.value
-            console.log(a);
-            if( a == "Not_Applicable" ){
-                console.log(a);
-
-                document.getElementById('sd_4').style.display = "flex";
-                document.getElementById('sd_3').style.display = "none";
-                document.getElementById('sd_2').style.display = "none";
-            }
-            else if( a == "Applicable" ){
-                document.getElementById('sd_2').style.display = "flex";
-                document.getElementById('sd_3').style.display = "flex";
-                document.getElementById('sd_4').style.display = "none";
-                document.getElementById('appropriate_to').style.display = "none"; 
-                document.getElementById('method_of_calculation').style.display = "none"; 
-            }
-            else if( a == "Undifined" ){
-                document.getElementById('sd_3').style.display = "flex";
-                document.getElementById('sd_2').style.display = "none";
-                document.getElementById('sd_4').style.display = "none";
-                document.getElementById('appropriate_to').style.display = "none"; 
-                document.getElementById('method_of_calculation').style.display = "none"; 
-            }
-            else{
-                document.getElementById('sd_2').style.display = "none";
-                document.getElementById('sd_3').style.display = "none";
-                document.getElementById('sd_4').style.display = "none";
-                document.getElementById('appropriate_to').style.display = "none"; 
-                document.getElementById('method_of_calculation').style.display = "none"; 
-            }
-        }
-        function showAssets(){
-            var status = document.getElementById("call_gst");
-            var a = status.value
-            console.log(a);
-            if( a == "GST" ){
-                console.log(a);
-
-                document.getElementById('appropriate_to').style.display = "flex";
-                document.getElementById('method_of_calculation').style.display = "flex";
-            }
-            else{
-                
-                document.getElementById('appropriate_to').style.display = "none";
-                document.getElementById('method_of_calculation').style.display = "none";
-            }
-        }                                                
-        function showbased(){
-            var status = document.getElementById("appropriate");
-            var a = status.value
-            console.log(a);
-            if( a == "Services" ){
-                console.log(a);
-
-                document.getElementById('qlty').style.display = "none";
-                
-            }
-            else{
-                document.getElementById('qlty').style.display = "flex";
-                
-            }
-        }
-        function bill(){
-            var status = document.getElementById("billbybill");
-            var a = status.value
-            console.log(a);
-            if( a == "Yes" ){
-                console.log(a);
-
-                document.getElementById('credit_period').style.display = "flex";
-                document.getElementById('voucher_enter').style.display = "flex";
-            }
-            else{
-                
-                document.getElementById('credit_period').style.display = "none";
-                document.getElementById('voucher_enter').style.display = "none";
-            }
-        }
-   
-    </script>
+    </div>
     
 {% endblock %}

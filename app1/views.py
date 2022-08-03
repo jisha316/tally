@@ -1,3 +1,4 @@
+from asyncio import current_task
 from django.shortcuts import render,redirect
 from .models import *
 
@@ -36,7 +37,9 @@ def vouchpage(request):
 
 #......................jisha........................
 def ledgers(request):
-    return render(request, 'jisha/ledgers.html')
+	grp=tally_group.objects.all()
+	context={'grp' : grp}
+	return render(request,'jisha/ledgers.html',context)
 
 def ledg(request):
     return render(request, 'jisha/ledg.html')
@@ -93,7 +96,7 @@ def c_rates(request):
     return render(request, 'jisha/c_rates.html')
 
 def bank_details(request):
-    return render(request, 'jisha/bank_details.html')
+	return render(request,'jisha/bank_details.html')
 
 def shut_cmpny(request):
     return render(request, 'jisha/shut_cmpny.html')
@@ -442,3 +445,40 @@ def create_gst(request):
 		gstd.save()
 		print("Added")
 		return redirect('/')
+		
+
+def create_ledger(request):
+    if request.method=='POST':
+        nm=request.POST.get('name')
+        als=request.POST.get('alias')
+        under=request.POST.get('under')
+        mname=request.POST.get('mailingname')
+        adr=request.POST.get('address')
+        st=request.POST.get('state')
+        cntry=request.POST.get('country')
+        pin=request.POST.get('pincode')
+        pno=request.POST.get('pan_no')
+        bdetls=request.POST.get('bank_details')
+        rtype=request.POST.get('registration_type')
+        gst_uin=request.POST.get('gst_uin')
+        opnbn=request.POST.get('opening_blnc')
+
+        spdl=request.POST.get('set_odl')
+        achnm=request.POST.get('ac_holder_nm')
+        acno=request.POST.get('acc_no')
+        ifsc=request.POST.get('ifsc_code')
+        scode=request.POST.get('swift_code')
+        bn=request.POST.get('bank_name')
+        brnch=request.POST.get('branch')
+        sacbk=request.POST.get('SA_cheque_bk')
+        ecp=request.POST.get('Echeque_p')
+        sacpc=request.POST.get('SA_chequeP_con')
+        
+        ldr=tally_ledger(name=nm,alias=als,under=under,mname=mname,address=adr,state=st,country=cntry,
+						pincode=pin,pan_no=pno,bank_details=bdetls,registration_type=rtype,gst_uin=gst_uin,
+						opening_blnc=opnbn,set_odl=spdl,ac_holder_nm=achnm,acc_no=acno,ifsc_code=ifsc,swift_code=scode,
+						bank_name=bn,branch=brnch,SA_cheque_bk=sacbk,Echeque_p=ecp,SA_chequeP_con=sacpc)
+		
+        ldr.save()
+        return redirect('/')
+    return render(request,'ledgers')

@@ -149,3 +149,37 @@ class gst_taxability(models.Model):
     integrated_tax = models.CharField(max_length=50)
     cess = models.CharField(max_length=50)
     flood_cess = models.CharField(max_length=50)
+
+class tally_ledger(models.Model):
+    name = models.CharField(max_length=255)
+    alias = models.CharField(max_length=255)
+    under = models.CharField(max_length=255)
+    grp = models.ForeignKey(tally_group,on_delete = models.CASCADE,null = True)
+    mname = models.CharField(max_length=255)
+    address = models.CharField(max_length=255)
+    state = models.CharField(max_length=255)
+    country = models.CharField(max_length=255)
+    pincode = models.IntegerField()
+    bank_details = models.CharField(max_length=20,null=True)
+    pan_no = models.CharField(max_length=100)
+    registration_type = models.CharField(max_length=100)
+    gst_uin = models.CharField(max_length=100)
+    opening_blnc = models.IntegerField()
+
+    set_odl = models.CharField(max_length=255,null=True)
+    ac_holder_nm = models.CharField(max_length=255,null=True)
+    acc_no = models.CharField(max_length=255,null=True)
+    ifsc_code = models.CharField(max_length=255,null=True)
+    swift_code = models.CharField(max_length=255,null=True)
+    bank_name = models.CharField(max_length=255,null=True)
+    branch = models.CharField(max_length=255,null=True)
+    SA_cheque_bk = models.CharField(max_length=20,null=True)
+    Echeque_p = models.CharField(max_length=20,null=True)
+    SA_chequeP_con = models.CharField(max_length=20,null=True)
+
+    
+    
+    
+
+
+

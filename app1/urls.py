@@ -17,7 +17,6 @@ urlpatterns = [
 
 #.........................jisha..........................
     path('ledgers',views.ledgers,name='ledgers'),
-    path('ledg',views.ledg,name='ledg'),
 
     path('vouchers',views.vouchers,name='vouchers'),
 
@@ -84,6 +83,8 @@ urlpatterns = [
     path('create_ROE',views.create_ROE,name='create_ROE'),
 
     path('create_gst',views.create_gst,name='create_gst'),
+
+    path('create_ledger',views.create_ledger,name='create_ledger'),
 
     
 ]
