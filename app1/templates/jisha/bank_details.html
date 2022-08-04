@@ -15,16 +15,18 @@
         <div class="row container-fluid  p-2 m-0">
             <div class="col-sm-3 m-0 p-0"></div>  
             <div class="col-sm-6 m-0 p-0">
-                <h6  class="bg-info text-light p-2 m-0 text-left">Bank Details</h6>
+                <h6  class="bg-info text-light p-2 m-0 text-left">Bank Details<a href="javascript:history.go(-1);" class="close">&times;</a></h6>
                 
                 <form class="p-5" style="background-color:rgba(0,0,0,.4);">
+                    
                     <h6  class=" text-light p-2 m-0 text-center">Bank Details For : {{ bank.name }}</h6>
-                    <div class="p-3">
-                        <div class="row container-fluid  p-2 m-0">
+                    
+                    <div class="p-3"><hr>
+                        <div class="row container-fluid  p-0 m-0">
                             <div class="col-sm-4 m-0 p-0"> <label for="a">Transaction Type</label></div>
                             <div class="col-sm-6 m-0 p-0"></div>
                             <div class="col-sm-4 m-0 p-0"></div>
-                        </div>
+                        </div><hr>
                         <div class="row container-fluid  p-2 m-0">
                             <div class="col-sm-4 m-0 p-0">
                                 <select name="" id="Transaction_Type" class="form-control" onchange="trantype()" required >

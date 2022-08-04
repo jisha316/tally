@@ -107,6 +107,18 @@ def shut_msg(request):
 def lut_bond(request):
     return render(request, 'jisha/lut_bond.html')
 
+def cheque(request):
+    return render(request, 'jisha/cheque.html')
+
+def ledger_gst(request):
+    return render(request, 'jisha/ledger_gst.html')
+
+def ledger_chequed(request):
+    return render(request, 'jisha/ledger_chequed.html')
+
+def vouch_advance(request):
+    return render(request, 'jisha/vouch_advance.html')
+
 def gst_1(request):
     return render(request, 'jisha/gst_1.html')
 

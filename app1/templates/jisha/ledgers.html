@@ -154,7 +154,7 @@
                         <div class="row container-fluid   p-2 m-0">
                             <div class="col-sm-6 m-0 p-0"> <label for="rgtype" >Set/Alter range for Cheque Books</label></div>
                             <div class="col-sm-6 m-0 p-0">
-                                <select name="SA_cheque_bk" id="chqrng" class="form-control">
+                                <select name="SA_cheque_bk" id="chqrng" class="form-control" onchange="cheque()">
                                     <option value="No">No</option>
                                     <option value="Yes">Yes</option>  
                                 </select>
@@ -172,7 +172,7 @@
                         <div class="row container-fluid   p-2 m-0">
                             <div class="col-sm-6 m-0 p-0"> <label for="rgtype" >Set/Alter Cheque Printing Configuration</label></div>
                             <div class="col-sm-6 m-0 p-0">
-                                <select name="SA_chequeP_con" id="ch_config" class="form-control">
+                                <select name="SA_chequeP_con" id="ch_config" class="form-control" onchange="chequedimension()">
                                     <option value="No">No</option>
                                     <option value="Yes">Yes</option>     
                                 </select>
@@ -295,7 +295,7 @@
                         <div class="row container-fluid p-2 m-0 hide" id="sd_2">
                             <div class="col-sm-6 m-0 p-0"><label for="">Set / Alter GST Details</label></div>
                             <div class="col-sm-6 m-0 p-0">
-                                <select name="" id="" class="form-control">
+                                <select name="" id="lgst" class="form-control" onchange="ledgergst()">
                                     <option value="No">No</option>
                                     <option value="Yes">Yes</option>     
                                 </select>
@@ -417,7 +417,7 @@
                         <div class="row container-fluid  p-2 m-0">
                             <div class="col-sm-6 m-0 p-0"> <label for="pan">Provide Bank details</label></div>
                             <div class="col-sm-6 m-0 p-0">
-                                <select  class="form-control" name="bank_details">
+                                <select  class="form-control" name="bank_details" id="bd" onchange="bankd()">
                                     <option value="No">No</option> 
                                     <option value="Yes">Yes</option>
                                 </select>
@@ -464,4 +464,38 @@
         </form>
     </div>
     
+    <script>
+        function chequedimension(){
+        var status = document.getElementById("ch_config");
+        var a = status.value;
+            if(a=="Yes"){
+
+                window.location.href="{% url 'ledger_chequed' %}"
+            }
+        }
+        function cheque(){
+            var status = document.getElementById("chqrng");
+            var a = status.value;
+            if(a=="Yes"){
+
+                window.location.href="{% url 'cheque' %}"
+            }
+        }
+        function bankd(){
+            var status = document.getElementById("bd");
+            var a = status.value;
+            if(a=="Yes"){
+
+                window.location.href="{% url 'bank_details' %}"
+            }
+        }
+        function ledgergst(){
+            var status = document.getElementById("lgst");
+            var a = status.value;
+            if(a=="Yes"){
+
+                window.location.href="{% url 'ledger_gst' %}"
+            }
+        }
+    </script>
 {% endblock %}

@@ -1,5 +1,6 @@
 
 from django.db import models
+from django.urls import clear_script_prefix
 
 # Create your models here.
 
@@ -176,10 +177,5 @@ class tally_ledger(models.Model):
     SA_cheque_bk = models.CharField(max_length=20,null=True)
     Echeque_p = models.CharField(max_length=20,null=True)
     SA_chequeP_con = models.CharField(max_length=20,null=True)
-
-    
-    
-    
-
 
 

@@ -62,6 +62,14 @@ urlpatterns = [
 
     path('gst_1',views.gst_1,name='gst_1'),
 
+    path('cheque',views.cheque,name='cheque'),
+
+    path('ledger_gst',views.ledger_gst,name='ledger_gst'),
+
+    path('vouch_advance',views.vouch_advance,name='vouch_advance'),
+
+    path('ledger_chequed',views.ledger_chequed,name='ledger_chequed'),
+
     path('create_group',views.create_group,name='create_group'),
 
     path('create_currency',views.create_currency,name='create_currency'),
