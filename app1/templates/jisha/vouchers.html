@@ -10,6 +10,18 @@
         .hide{
             display: none;
         }
+        .card {
+            color: #fff;
+            background-color: #213b52;
+            max-width: 400px;
+            margin: auto;
+            text-align: center;
+            font-family: arial;
+        }
+        .modal-content{
+            margin-top: 250px;
+            background-color: #213b52;
+        }
     </style>
     <script src="{% static 'js/vouchers.js' %}"></script>
     
@@ -79,13 +91,41 @@
                     <div class="row container-fluid  p-2">
                         <div class="col-sm-6 m-0 p-0"> <label for="e">Activate this voucher type</label></div>
                         <div class="col-sm-6 m-0 p-0">
-                            <select name="activate_Vtype" id="e" class="form-control">
-                                <option value="Yes">Yes</option> 
+                            <select name="activate_Vtype" class="form-control" id="vouchertype0">
                                 <option value="No">No</option>
+                                <option value="Yes">Yes</option>
                             </select>
                         </div>
                     </div>
-
+                    <script>
+                        $(document).ready(function(){ 
+                            $('#vouchertype0').change(function() 
+                            { 
+                                var opval = $(this).val(); 
+                                if(opval=="Yes"){ 
+                                    $('#myModal').modal("show"); 
+                                }
+                            });
+                        });
+                    </script>
+                    <div class="modal fade" id="myModal" role="dialog" >
+                        <div class="modal-dialog">
+                            <div class="modal-content" >
+                                <div class="modal-body"><br>
+                                    <div class="card"><br>
+                                        <p class="price">You need to enable the Payroll Feature for your Company
+                                            <center>Enable Now?</center>
+                                        </p><br><br><br>
+                                        <div>
+                                            <a href="" data-dismiss="modal"><span style="color: #fff;">Yes </span><span style="color: #000;"> Or </span> </a>
+                                            <a href="" style="color: #fff;" data-dismiss="modal">No</a> 
+                                            <br><br>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="row container-fluid p-2">
                         <div class="col-sm-6 m-0 p-0"> <label for="f">Method of voucher numbering</label></div>
                         <div class="col-sm-6 m-0 p-0">
@@ -112,7 +152,7 @@
                     <div class="row container-fluid hide p-2" id="advanced">
                         <div class="col-sm-6 m-0 p-0"> <label for="g">Use advanced configuration</label></div>
                         <div class="col-sm-6 m-0 p-0">
-                            <select name="advance_con" id="g" class="form-control">
+                            <select name="advance_con" id="config" class="form-control" onchange="showconfig()" required>
                                 <option value="No">No</option>
                                 <option value="Yes">Yes</option>   
                             </select>
@@ -253,16 +293,46 @@
                     <div class="row container-fluid hide p-2" id="set/alter">
                         <div class="col-sm-6 m-0 p-0"> <label for="l">Set / Alter declaration</label></div>
                         <div class="col-sm-6 m-0 p-0">
-                            <select name="set_alter" id="" class="form-control">
+                            <select name="set_alter" id="setalter" class="form-control">
                                 <option value="No">No</option>
                                 <option value="Yes">Yes</option>  
                             </select>
                         </div>
-                    </div>      
+                    </div>  
+                    <script>
+                        $(document).ready(function(){ 
+                            $('#setalter').change(function() 
+                            { 
+                                var opval = $(this).val(); 
+                                if(opval=="Yes"){ 
+                                    $('#myModal1').modal("show"); 
+                                }
+                            });
+                        });
+                    </script>
+                    <div class="modal fade" id="myModal1" role="dialog" >
+                        <div class="modal-dialog">
+                            <div class="modal-content" >
+                                <div class="modal-body"><br>
+                                    <h6 style="text-align: center;">Declaration</h6>
+                                    <div class="card"><br>
+                                        <p class="price">We declare that this invoice shows the actual price of the goods described and that 
+                                            all particulars are true and correct.
+                                        </p><br><br><br>
+                                        <div>
+                                            <a href="" data-dismiss="modal"><span style="color: #fff;">Yes </span><span style="color: #000;"> Or </span> </a>
+                                            <a href="" style="color: #fff;" data-dismiss="modal">No</a> 
+                                            <br><br>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>    
                 </div>
                 <div class="col-sm-3 m-0 p-4">
                     <h5 class="text-center">Name of class</h5>
-                    <div class="container-fluid hide p-2" id="">
+                    <div class="container-fluid hide p-2" id="name_class">
                         <div class="col-sm-12 m-0 p-0"><input type="text" name="name_class" class="form-control" id="" value=""></div>
                     </div> 
                 </div>
@@ -270,4 +340,16 @@
             <div class="enter w-100 py-4"><button class="btn btn-info w-15">CREATE</button></div>    
         </form>     
     </div> 
+
+    <script>
+        function showconfig(){
+            var status =document.getElementById("config");
+            var a= status.value;
+            console.log(a);
+            if( a== "Yes"){
+                console.log(a);
+                window.location.href="{% url 'vouch_advance' %}"
+            }
+        }
+    </script>
 {% endblock %}

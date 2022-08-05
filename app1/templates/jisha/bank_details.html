@@ -77,16 +77,12 @@
             var status = document.getElementById("Transaction_Type");
             var a = status.value;
             console.log(a);
-            if( a == "End of List" ){
+            if( a == "Cheque" ){
                 console.log(a);
-
-                window.location.href="{% url 'ledgers' %}";
-            }
-            else if( a == "Cheque" ){
                 document.getElementById('cross_using').style.display = "flex";
                 document.getElementById('A/c_No').style.display = "none";
                 document.getElementById('IFSC_Code').style.display = "none";
-                document.getElementById('Bank_Name').style.display = "none";
+                document.getElementById('Bank_Name').style.display = "none";    
             }
             else if( a == "e - Fund Trasfer" ){
                 document.getElementById('A/c_No').style.display = "flex";

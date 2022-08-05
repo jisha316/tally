@@ -344,6 +344,7 @@ function showVoucherType(){
     }
     else if( a == "Receipt" ){
         document.getElementById('formal_rcpt').style.display = "flex";
+        document.getElementById('name_class').style.display = "flex";
         document.getElementById('provide').style.display = "flex";
         document.getElementById('optional').style.display = "flex";
         document.getElementById('enable').style.display = "flex";
