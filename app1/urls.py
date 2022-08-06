@@ -94,5 +94,7 @@ urlpatterns = [
 
     path('create_ledger',views.create_ledger,name='create_ledger'),
 
+    path('create_ledgerdimension',views.create_ledgerdimension,name='create_ledgerdimension'),
+
     
 ]

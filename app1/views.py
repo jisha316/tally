@@ -1,4 +1,3 @@
-from asyncio import current_task
 from django.shortcuts import render,redirect
 from .models import *
 
@@ -494,3 +493,49 @@ def create_ledger(request):
         ldr.save()
         return redirect('/')
     return render(request,'ledgers')
+
+def create_ledgerdimension(request):
+	if request.method == 'POST':
+		cw= request.POST.get('cheque_width')
+		ch= request.POST.get('cheque_height')
+		sle= request.POST.get('startL_leftEdge')
+		slte= request.POST.get('startL_topEdge')
+		dlle= request.POST.get('distancel_leftEdge')
+		dlte= request.POST.get('distancel_topEdge')
+		ds= request.POST.get('date_style')
+		dts= request.POST.get('date_seperator')
+		sw= request.POST.get('separator_width')
+		cd= request.POST.get('character_distance')
+		pdle= request.POST.get('Pdistancel_leftEdge')
+		pdlte= request.POST.get('Pdistancel_topEdge')
+		aw= request.POST.get('area_width')
+		sldte= request.POST.get('secondL_DTE')
+		sflh= request.POST.get('secondfirstL_height')
+		fldte= request.POST.get('firstL_dTE')
+		slfle= request.POST.get('sl_fisrtl_LE')
+		slsle= request.POST.get('sl_secondl_LE')
+		awa= request.POST.get('amount_widtharea')
+		cfnmp= request.POST.get('currencyFNM_print')
+		dfte= request.POST.get('df_TE')
+		sle= request.POST.get('startL_LE')
+		amwa= request.POST.get('amt_widtharea')
+		csp= request.POST.get('currencyS_print')
+		cn= request.POST.get('company_name')
+		pcn= request.POST.get('print_CN')
+		sfs= request.POST.get('salutation_Fsign')
+		sss= request.POST.get('salutation_Ssign')
+		tes= request.POST.get('top_Edistance')
+		slfl= request.POST.get('startLF_leftE')
+		wsa= request.POST.get('width_sign_area')
+		hsa= request.POST.get('height_sign_area')
+
+		cld= ledger_cheque_demension(cheque_width=cw,cheque_height=ch,startL_leftEdge=sle,startL_topEdge=slte,distancel_leftEdge=dlle,
+									distancel_topEdge=dlte,date_style=ds,date_seperator=dts,separator_width=sw,character_distance=cd,
+									Pdistancel_leftEdge=pdle,Pdistancel_topEdge=pdlte,area_width=aw,secondL_DTE=sldte,secondfirstL_height=sflh,
+									firstL_dTE=fldte,sl_fisrtl_LE=slfle,sl_secondl_LE=slsle,amount_widtharea=awa,currencyFNM_print=cfnmp,
+									df_TE=dfte,startL_LE=sle,amt_widtharea=amwa,currencyS_print=csp,company_name=cn,print_CN=pcn,
+									salutation_Fsign=sfs,salutation_Ssign=sss,top_Edistance=tes,startLF_leftE=slfl,width_sign_area=wsa,
+									height_sign_area=hsa)
+
+		cld.save()
+		return redirect('/')

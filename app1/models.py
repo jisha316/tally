@@ -1,4 +1,8 @@
 
+from tkinter.ttk import Separator
+from tracemalloc import start
+from turtle import width
+from xml.dom.minidom import CharacterData
 from django.db import models
 from django.urls import clear_script_prefix
 
@@ -178,4 +182,37 @@ class tally_ledger(models.Model):
     Echeque_p = models.CharField(max_length=20,null=True)
     SA_chequeP_con = models.CharField(max_length=20,null=True)
 
-
+class ledger_cheque_demension(models.Model):
+    cheque_width = models.IntegerField(null=True)
+    cheque_height = models.IntegerField(null=True)
+    startL_leftEdge = models.IntegerField(null=True)
+    startL_topEdge = models.IntegerField(null=True)
+    distancel_leftEdge = models.IntegerField(null=True)
+    distancel_topEdge = models.IntegerField(null=True)
+    date_style = models.CharField(max_length=100,null=True)
+    date_seperator = models.CharField(max_length=10,null=True)
+    separator_width = models.IntegerField(null=True)
+    character_distance = models.FloatField(null=True)
+    Pdistancel_leftEdge = models.IntegerField(null=True)
+    Pdistancel_topEdge = models.IntegerField(null=True)
+    area_width = models.IntegerField(null=True)
+    secondL_DTE = models.IntegerField(null=True)
+    secondfirstL_height = models.IntegerField(null=True)
+    firstL_dTE = models.IntegerField(null=True)
+    sl_fisrtl_LE = models.IntegerField(null=True)
+    sl_secondl_LE = models.IntegerField(null=True)
+    amount_widtharea = models.IntegerField(null=True)
+    currencyFNM_print = models.CharField(max_length=10,null=True)
+    df_TE = models.IntegerField(null=True)
+    startL_LE = models.IntegerField(null=True)
+    amt_widtharea = models.IntegerField(null=True)
+    currencyS_print = models.CharField(max_length=10,null=True)
+    company_name = models.CharField(max_length=10,null=True)
+    print_CN = models.CharField(max_length=10,null=True)
+    salutation_Fsign = models.CharField(max_length=100,null=True)
+    salutation_Ssign = models.CharField(max_length=100,null=True)
+    top_Edistance = models.IntegerField(null=True)
+    startLF_leftE = models.IntegerField(null=True)
+    width_sign_area = models.IntegerField(null=True)
+    height_sign_area = models.IntegerField(null=True)
+    ledger_name = models.ForeignKey(tally_group,on_delete = models.CASCADE,null = True)
