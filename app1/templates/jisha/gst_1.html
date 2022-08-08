@@ -1,456 +1,412 @@
 {% extends 'base.html' %}
-    {% block body %}
-    {% load static %}
-    <style>
-        .enter{
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            
-        }
-    </style>
 
-  <div class="m-3">
-        <h6  class="bg-info text-light p-2 m-0 text-left">Company Features Alteration</h6>
-        <form class="p-5" style="background-color:rgba(0,0,0,.4);">
-            <div class="p-3">
-                <h2  class="bg-transparent text-light p-2 m-0 text-center">Company Created Successfully.</h2>
-                <h4  class="bg-transparent text-light p-2 m-0 text-center"><i>(Enable the features as per your business needs)</i></h4>
-                <hr>
-                <h6  class="bg-transparent text-light p-2 m-0 text-left">Company : </h6>
-                <hr>
-                <div class="row container-fluid  p-2 m-0">
-                    <div class="col-sm-2 m-0 p-0"> <label for="a">Show more features</label></div>
-                    <div class="col-sm-3 m-0 p-0">
-                        <select name="" class="form-control" id="features" onchange="showfeature()"  required>
-                            <option value="No">No</option>
-                            <option value="Yes">Yes</option> 
-                            
-                        </select>
-                    </div>
-                    <div class="col-sm-7 m-0 p-0"></div>
-                </div>
+{% block body %}
+{% load static %}
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> 
+<script src="//geodata.solutions/includes/countrystatecity.js"></script>
+<style>
+    .enter{
+        display: flex;
+        align-items: center;
+        justify-content: center;
         
-                <div class="row container-fluid  p-2 m-0 hide"id="showall0">
-                    <div class="col-sm-2 m-0 p-0"> <label for="">Show all features</label></div>
-                    <div class="col-sm-3 m-0 p-0"> 
-                        <select name="" class="form-control" id="all" onchange="showall()" required>
-                            <option value="No">No</option>
-                            <option value="Yes">Yes</option> 
-                            
-                        </select>
-                    </div>
-                    <div class="col-sm-7 m-0 p-0"></div>
-                </div>
-            </div> 
+    }
+</style>
+<script>
+function copyName(){
+    document.getElementById("mailing_name").value = document.getElementById("companyname").value;
+}
+
+function currency1(){
+    var val=document.getElementById("countryId").value;
+    if(val=="India")
+    {
+        newval="Rs";
+        Formal="INR";
+    }
+    else if(val=="Afghanistan")
+    {
+        newval="AFN";
+        Formal="Afghani";
+    }
+    else if(val=="Albania")
+    {
+        newval="Lek";
+        Formal="ALL";
+    }
+    else if(val=="Algeria")
+    {
+        newval="DSD";
+        Formal="Algerian Dinar";
+    }
+    else if(val=="Andorra")
+    {
+        newval="Nu";
+        Formal="Bhutanese Ngultrum";
+    }
+    else if(val=="Angola")
+    {
+        newval="Kz";
+        Formal="Angolan Kwanza";
+    }
+    else if(val=="Argentina")
+    {
+        newval="$";
+        Formal="Argentine Peso";
+    }
+    else if(val=="Australia")
+    {
+        newval="$";
+        Formal="Australian Dollar";
+    }
+    else if(val=="Bangladesh")
+    {
+        newval="TK";
+        Formal="Bangladeshi Taka";
+    }
+    else if(val=="Belgium")
+    {
+        newval="€";
+        Formal="European Euro";
+    }
+    else if(val=="Benin")
+    {
+        newval="franc";
+        Formal="West African CFA";
+    }
+    else if(val=="Bhutan")
+    {
+        newval="Nu";
+        Formal="Bhutanese Ngultrum";
+    }
+    else if(val=="Botswana")
+    {
+        newval="P";
+        Formal="Botswana Pula";
+    }
+    else if(val=="Brazil")
+    {
+        newval="R$";
+        Formal="Brazilian Real";
+    }
+    else if(val=="Burkina Faso")
+    {
+        newval="franc";
+        Formal="West African CFA";
+    }
+    else if(val=="Burundi")
+    {
+        newval="Fbu";
+        Formal="Burundian Franc";
+    }
+    else if(val=="Cambodia")
+    {
+        newval="KHR";
+        Formal="Combodian Riel";
+    }
+    else if(val=="Cameroon")
+    {
+        newval="franc";
+        Formal="Central African CFA";
+    }
+    else if(val=="Canada")
+    {
+        newval="$";
+        Formal="Canadian Dollar";
+    }
+    else if(val=="Chad")
+    {
+        newval="franc";
+        Formal="Central African CFA";
+    }
+    else if(val=="Chile")
+    {
+        newval="$";
+        Formal="Peso";
+    }
+    else if(val=="China")
+    {
+        newval="¥";
+        Formal="Yuan Renminbi";
+    }
+    else if(val=="Colombia")
+    {
+        newval="$";
+        Formal="Peso";
+    }
+    else if(val=="Cuba")
+    {
+        newval="CUP";
+        Formal="Peso";
+    }
+    else if(val=="Czech Republic")
+    {
+        newval="CZK";
+        Formal="Koruna";
+    }
+    else if(val=="Dominican Republic")
+    {
+        newval="RD$";
+        Formal="Peso";
+    }
+    else if(val=="Ecuador")
+    {
+        newval="S";
+        Formal="Ecuadorian sucre";
+    }
+    else if(val=="Dominican Republic")
+    {
+        newval="RD$";
+        Formal="Peso";
+    }
+    else if(val=="Egypt")
+    {
+        newval="EGP";
+        Formal="Egyptian Pound";
+    }
+    else if(val=="Dominican Republic")
+    {
+        newval="RD$";
+        Formal="Peso";
+    }
+    else if(val=="Ethiopia")
+    {
+        newval="ETB";
+        Formal="Ethiopian birr";
+    }
+    else if(val=="France")
+    {
+        newval="€";
+        Formal="European Euro";
+    }
+    else if(val=="Germany")
+    {
+        newval="€";
+        Formal="European Euro";
+    }
+    else if(val=="Ghana")
+    {
+        newval="GH¢";
+        Formal="Ghanaian Cedi";
+    }
+    else if(val=="Ghana")
+    {
+        newval="GH¢";
+        Formal="Ghanaian Cedi";
+    }
+    else if(val=="Greece")
+    {
+        newval="€";
+        Formal="European Euro";
+    }
+    else if(val=="Guatemala")
+    {
+        newval="Q";
+        Formal="Quetzal";
+    }
+    else if(val=="Guinea")
+    {
+        newval="FCFA";
+        Formal="Central African CFA franc";
+    }
+    else if(val=="Haiti")
+    {
+        newval="HTG";
+        Formal="Haitian Gourde";
+    }
+    else if(val=="Hong Kong")
+    {
+        newval="HKD";
+        Formal="Hong Kong Dollar";
+    }
+    else if(val=="Indonesia")
+    {
+        newval="Rp";
+        Formal="Indonesian Rupiah";
+    }
+    else if(val=="Iran")
+    {
+        newval="IRR";
+        Formal="Rial";
+    }
+    else if(val=="Iraq")
+    {
+        newval="IQD";
+        Formal="Iraqi Dinar";
+    }
+    else if(val=="Italy")
+    {
+        newval="€";
+        Formal="European Euro";
+    }
+    else if(val=="Japan")
+    {
+        newval="¥";
+        Formal="Yen";
+    }
+    else if(val=="Kazakhstan")
+    {
+        newval="KZT";
+        Formal="Tenge";
+    }
+    else if(val=="Kenya")
+    {
+        newval="KSh";
+        Formal="Kenyan Shilling";
+    }
+    else if(val=="Kuwait")
+    {
+        newval="KWD";
+        Formal="Kuwaiti Dinar";
+    }
+    else if(val=="Liberia")
+    {
+        newval="$";
+        Formal="Dollar";
+    }
+    else if(val=="Madagascar")
+    {
+        newval="MGA";
+        Formal="Malagasy Ariary";
+    }
+    else if(val=="Malawi")
+    {
+        newval="MWK";
+        Formal="Malawian Kwacha";
+    }
+    else if(val=="Malaysia")
+    {
+        newval="RM";
+        Formal="Ringgit Malaysia";
+    }
+    else
+    {
+        newval="";
+        Formal="";
+    }
+    document.getElementById("cur").value = newval;
+    document.getElementById("formal").value = Formal;
+}
+</script>
+
+<p id="a"></p>
+<div class="ml-5 mr-5">
+
+    
+    
+<h6 class="bg-info text-light p-2 m-0 text-center"> Company Creation</h6>
+        <form class="p-5" style="background-color:rgba(0,0,0,.4);" action="" method="post" class="needs-validation" novalidate>
+            {% csrf_token %}
+            <div class="p-3">
+            <div class="row container-fluid  p-2 m-0">
+                <div class="col-sm-2 m-0 p-0"> <label for="a">Company Data Path</label></div>
+                <div class="col-sm-3 m-0 p-0"><input type="text" class="form-control" id="a" placeholder=""></div>
+                <div class="col-sm-7 m-0 p-0"></div>
+            </div>
+            
+        </div>
+
+            
+                
+               
             <div class="row container-fluid  p-0 m-0" style=" border: 1px solid rgba(128, 128, 128, 0.6);">
                 <div class="col-sm-6 m-0 p-4" style=" border-right: 1px solid rgba(128, 128, 128, 0.6);">
-                    <h5  class="bg-trasparent text-light p-2 m-0 text-left">Accounting</h5>
+                   
+                    <div class="row container-fluid  p-0">
+                        <div class="col-sm-6 m-0 p-0"></div>
+                        <div class="col-sm-6 m-0 p-0"></div>
+                    </div>
+
                     <div class="row container-fluid  p-2">
-                        <div class="col-sm-6 m-0 p-0"> <label for=""></label>Maintain Accounts</div>
+                        <div class="col-sm-6 m-0 p-0"> <label for="c">Company Name</label></div>
+                        <div class="col-sm-6 m-0 p-0"><input type="text" id="companyname" name="companyname" class="form-control" id="c" placeholder=""></div>
+                    </div>
+
+                    <div class="row container-fluid  p-2">
+                        <div class="col-sm-6 m-0 p-0"> <label for="d">Mailing Name</label></div>
+                        <div class="col-sm-6 m-0 p-0"><input type="text" id="mailing_name" name="mailing_name" class="form-control" id="d" placeholder="" onclick="copyName()"></div>
+                    </div>
+                    <div class="row container-fluid  p-2">
+                        <div class="col-sm-6 m-0 p-0"> <label for="e">Address</label></div>
                         <div class="col-sm-6 m-0 p-0">
-                            <select name="optional" id="i" class="form-control">
-                                <option value="">Yes</option>
-                                <option value="">No</option> 
-                            </select>
+                            <textarea name="address" class="form-control" rows="4" cols="28"></textarea>
                         </div>
                     </div>
                     <div class="row container-fluid  p-2">
-                        <div class="col-sm-6 m-0 p-0"> <label for=""></label>&nbsp;&nbsp;&nbsp;&nbsp;Enable Bill-wise entry</div>
+                        <div class="col-sm-6 m-0 p-0"> <label for="g">Country</label></div>
                         <div class="col-sm-6 m-0 p-0">
-                            <select name="optional" id="i" class="form-control">
-                                <option value="">No</option>
-                                <option value="">Yes</option> 
-                            </select>
-                        </div>
-                    </div>
-                    <div class="row container-fluid  hide p-2 " id="enbcost">
-                        <div class="col-sm-6 m-0 p-0"> <label for=""></label>&nbsp;&nbsp;&nbsp;&nbsp;Enable Cost Centres</div>
-                        <div class="col-sm-6 m-0 p-0">
-                            <select name="optional" id="i" class="form-control">
-                                <option value="">No</option>
-                                <option value="">Yes</option> 
-                            </select>
-                        </div>
-                    </div>
-                    <div class="row container-fluid hide p-2" id="enbint">
-                        <div class="col-sm-6 m-0 p-0"> <label for=""></label>&nbsp;&nbsp;&nbsp;&nbsp;Enable Interest Calculation</div>
-                        <div class="col-sm-6 m-0 p-0">
-                            <select name="optional" id="i" class="form-control">
-                                <option value="">No</option>
-                                <option value="">Yes</option> 
-                            </select>
-                        </div>
-                    </div>
-                    <h5  class="bg-trasparent text-light p-2 m-0 text-left">Inventory</h5>
-                    <div class="row container-fluid  p-2">
-                        <div class="col-sm-6 m-0 p-0"> <label for=""></label>Maintain Inventory</div>
-                        <div class="col-sm-6 m-0 p-0">
-                            <select name="optional" id="i" class="form-control">
-                                <option value="">Yes</option>
-                                <option value="">No</option> 
+                            <select name="country" class="form-control countries" id="countryId" onchange="currency1()" >
+                                <option value="Select Country">Select Country</option>
+                                
                             </select>
                         </div>
                     </div>
                     <div class="row container-fluid  p-2">
-                        <div class="col-sm-6 m-0 p-0"> <label for=""></label>&nbsp;&nbsp;&nbsp;&nbsp;Integrate account with inventory</div>
-                        <div class="col-sm-6 m-0 p-0">
-                            <select name="optional" id="i" class="form-control">
-                                <option value="">No</option>
-                                <option value="">Yes</option> 
-                            </select>
+                        <div class="col-sm-6 m-0 p-0"> <label for="f">State</label></div>
+                        <div class="col-sm-6 m-0 p-0"> <select name="state" class="form-control states" id="stateId">
+                            <option value="">Select State</option>
+                        </select>
                         </div>
                     </div>
-                    <div class="row container-fluid  hide p-2" id="enbmul">
-                        <div class="col-sm-6 m-0 p-0"> <label for=""></label>&nbsp;&nbsp;&nbsp;&nbsp;Enable multitle price leves</div>
-                        <div class="col-sm-6 m-0 p-0">
-                            <select name="optional" id="i" class="form-control">
-                                <option value="">No</option>
-                                <option value="">Yes</option> 
-                            </select>
-                        </div>
+                    
+                    <div class="row container-fluid  p-2">
+                        <div class="col-sm-6 m-0 p-0"> <label for="h">Pincode</label></div>
+                        <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" id="pincode" name="pincode" required pattern="\S+"/ placeholder=""></div>
                     </div>
-                    <div class="row container-fluid hide p-2" id="enbbat">
-                        <div class="col-sm-6 m-0 p-0"> <label for=""></label>&nbsp;&nbsp;&nbsp;&nbsp;Enable Batches</div>
-                        <div class="col-sm-6 m-0 p-0">
-                            <select name="optional" id="enbbat0" class="form-control" onchange="showenbbat()">
-                                <option value="No">No</option>
-                                <option value="Yes">Yes</option> 
-                            </select>
-                        </div>
+                    <div class="row container-fluid  p-2">
+                        <div class="col-sm-6 m-0 p-0"> <label for="h">Telephone</label></div>
+                        <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" id="telephone" name="telephone" onkeypress="document.getElementById('mobile').focus();" placeholder=""></div>
                     </div>
-                    <div class="row container-fluid  hide p-2" id="maiex">
-                        <div class="col-sm-6 m-0 p-0"> <label for=""></label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            Maintain Expiry Date of Batches</div>
-                        <div class="col-sm-6 m-0 p-0">
-                            <select name="optional" id="i" class="form-control">
-                                <option value="">No</option>
-                                <option value="">Yes</option> 
-                            </select>
-                        </div>
+                    <div class="row container-fluid  p-2">
+                        <div class="col-sm-6 m-0 p-0"> <label for="h" id="validationCustom03">Mobile</label></div>
+                        <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" id="mobie" name="mobile"   placeholder=""></div>
                     </div>
-                    <div class="row container-fluid  hide p-2" id="enbjob">
-                        <div class="col-sm-6 m-0 p-0"> <label for=""></label>&nbsp;&nbsp;&nbsp;&nbsp;Enable Job Order Proccessing</div>
-                        <div class="col-sm-6 m-0 p-0">
-                            <select name="optional" id="i" class="form-control">
-                                <option value="">No</option>
-                                <option value="">Yes</option> 
-                            </select>
-                        </div>
+                    <div class="row container-fluid  p-2">
+                        <div class="col-sm-6 m-0 p-0"> <label for="h">Fax</label></div>
+                        <div class="col-sm-6 m-0 p-0"><input type="text" name="fax" class="form-control" id="d" placeholder=""></div>
                     </div>
-                    <div class="row container-fluid  hide p-2" id="enbcostrack">
-                        <div class="col-sm-6 m-0 p-0"> <label for=""></label>&nbsp;&nbsp;&nbsp;&nbsp;Enable Cost Tracking</div>
-                        <div class="col-sm-6 m-0 p-0">
-                            <select name="optional" id="i" class="form-control">
-                                <option value="">No</option>
-                                <option value="">Yes</option> 
-                            </select>
-                        </div>
+                    <div class="row container-fluid  p-2">
+                        <div class="col-sm-6 m-0 p-0"> <label for="h">Email</label></div>
+                        <div class="col-sm-6 m-0 p-0"><input type="email" name="email" class="form-control" id="d" placeholder=""></div>
                     </div>
-                    <div class="row container-fluid  hide p-2" id="enbjbcst">
-                        <div class="col-sm-6 m-0 p-0"> <label for=""></label>&nbsp;&nbsp;&nbsp;&nbsp;Enable Job Costing</div>
-                        <div class="col-sm-6 m-0 p-0">
-                            <select name="optional" id="i" class="form-control">
-                                <option value="">No</option>
-                                <option value="">Yes</option> 
-                            </select>
-                        </div>
+                    <div class="row container-fluid  p-2">
+                        <div class="col-sm-6 m-0 p-0"> <label for="h">Website</label></div>
+                        <div class="col-sm-6 m-0 p-0"><input type="text" name="website" class="form-control" id="d" placeholder=""></div>
                     </div>
-                    <div class="row container-fluid hide p-2" id="usedis">
-                        <div class="col-sm-6 m-0 p-0"> <label for=""></label>&nbsp;&nbsp;&nbsp;&nbsp;Use Discount column in invoices</div>
-                        <div class="col-sm-6 m-0 p-0">
-                            <select name="optional" id="i" class="form-control">
-                                <option value="">No</option>
-                                <option value="">Yes</option> 
-                            </select>
-                        </div>
+                    
+                    <div class="row container-fluid  p-2">
+                        <div class="col-sm-6 m-0 p-0"> <label for="h">Base Currency Symbol</label></div>
+                        <div class="col-sm-6 m-0 p-0"><input type="text"  name="currency" class="form-control" id="cur" placeholder=""></div>
                     </div>
-                    <div class="row container-fluid hide p-2" id="usesep">
-                        <div class="col-sm-6 m-0 p-0"> <label for=""></label>&nbsp;&nbsp;&nbsp;&nbsp;Use seperate Actual and Billed Quantity column in invoice</div>
-                        <div class="col-sm-6 m-0 p-0">
-                            <select name="optional" id="i" class="form-control">
-                                <option value="">No</option>
-                                <option value="">Yes</option> 
-                            </select>
-                        </div>
+                    <div class="row container-fluid  p-2">
+                        <div class="col-sm-6 m-0 p-0"> <label for="h">Formal Name</label></div>
+                        <div class="col-sm-6 m-0 p-0"><input type="text"  name="formal" class="form-control" id="formal" placeholder=""></div>
                     </div>
+                    
                 </div>
                 <div class="col-sm-6 m-0 p-4" style=" border-right: 1px solid rgba(128, 128, 128, 0.6);">
-                    <h5 class="text-left">Taxation</h5>
-                    <div class="row container-fluid  p-0">
-                        <div class="col-sm-6 m-0 p-0"></div>
-                        <div class="col-sm-6 m-0 p-0"></div>
-                    </div>
-                    <div class="row container-fluid  p-2" id="enbgst">
-                        <div class="col-sm-6 m-0 p-0"> <label for="d">Enable Goods and Service Tax (GST)</label></div>
+                  
+                    <div class="row container-fluid  p-2">
+                        <div class="col-sm-6 m-0 p-0"> <label for="l">Financial Year Begining From</label></div>
                         <div class="col-sm-6 m-0 p-0">
-                            <select name="optional" id="gst" class="form-control" onchange="showgst()">
-                                <option value="No">No</option>
-                                <option value="Yes">Yes</option> 
-                            </select>
+                            <input type= "date" data-date-format="DD/MM/YYYY" value="2022-04-01"  class="form-control" id="d" placeholder="" name="fyear">
                         </div>
                     </div>
-                    <div class="row container-fluid  p-2" id="enbtds">
-                        <div class="col-sm-6 m-0 p-0"> <label for="d">Enable Tax Deducted at Source (TDS)</label></div>
+                    <div class="row container-fluid  p-2">
+                        <div class="col-sm-6 m-0 p-0"> <label for="l">Books Begining From</label></div>
                         <div class="col-sm-6 m-0 p-0">
-                            <select name="optional" id="tds" class="form-control" onchange="showtds()">
-                                <option value="No">No</option>
-                                <option value="Yes">Yes</option> 
-                            </select>
-                        </div>
-                    </div>
-                    <div class="row container-fluid  hide p-2" id="enbtax">
-                        <div class="col-sm-6 m-0 p-0"> <label for="d">Enable Tax Collected at Source (TCS)</label></div>
-                        <div class="col-sm-6 m-0 p-0">
-                            <select name="optional" id="i" class="form-control">
-                                <option value="">No</option>
-                                <option value="">Yes</option> 
-                            </select>
-                        </div>
-                    </div>
-                    <div class="row container-fluid  hide p-2" id="enbval">
-                        <div class="col-sm-6 m-0 p-0"> <label for="d">Enable Value Added Tax (VAT)</label></div>
-                        <div class="col-sm-6 m-0 p-0">
-                            <select name="optional" id="i" class="form-control">
-                                <option value="">No</option>
-                                <option value="">Yes</option> 
-                            </select>
-                        </div>
-                    </div>
-                    <div class="row container-fluid  hide p-2" id="enbex">
-                        <div class="col-sm-6 m-0 p-0"> <label for="d">Enable Excise</label></div>
-                        <div class="col-sm-6 m-0 p-0">
-                            <select name="optional" id="i" class="form-control">
-                                <option value="">No</option>
-                                <option value="">Yes</option> 
-                            </select>
-                        </div>
-                    </div>
-                    <div class="row container-fluid hide p-2" id="enbser">
-                        <div class="col-sm-6 m-0 p-0"> <label for="d">Enable Service Tax</label></div>
-                        <div class="col-sm-6 m-0 p-0">
-                            <select name="optional" id="i" class="form-control">
-                                <option value="">No</option>
-                                <option value="">Yes</option> 
-                            </select>
-                        </div>
-                    </div>
-                    <h5 class="text-left hide"   id="Payroll">Payroll</h5>
-                    <div class="row container-fluid  p-0">
-                        <div class="col-sm-6 m-0 p-0"></div>
-                        <div class="col-sm-6 m-0 p-0"></div>
-                    </div>
-                    <div class="row container-fluid hide p-2" id="maipay">
-                        <div class="col-sm-6 m-0 p-0"> <label for="e">Maintain Payroll</label></div>
-                        <div class="col-sm-6 m-0 p-0">
-                            <select name="optional"  class="form-control" id="maipay0" onchange="showmainpay()">
-                                <option value="No">No</option> 
-                                <option value="Yes">Yes</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="row container-fluid hide p-2" id="enbsta">
-                        <div class="col-sm-6 m-0 p-0"> <label for="e">Enable Payroll Statutory</label></div>
-                        <div class="col-sm-6 m-0 p-0">
-                            <select  class="form-control">
-                                <option value="">Yes</option> 
-                                <option value="">No</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class=" p-0 m-0 w-0 ">
-                    <h5 class="text-left hide p-2" id="other">Others</h5>
-                    <div class="row container-fluid  p-0">
-                        <div class="col-sm-6 m-0 p-0"></div>
-                        <div class="col-sm-6 m-0 p-0"></div>
-                    </div>
-                    <div class="row container-fluid hide p-2" id="enbadrs">
-                        <div class="col-sm-6 m-0 p-0"> <label for="e">Enable Multiple Addressess</label></div>
-                        <div class="col-sm-6 m-0 p-0">
-                            <select  class="form-control">
-                                <option value="">No</option> 
-                                <option value="">Yes</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="row container-fluid  hide p-2" id="markmod">
-                        <div class="col-sm-6 m-0 p-0"> <label for="e">Mark Modified vouchers</label></div>
-                        <div class="col-sm-6 m-0 p-0">
-                            <select  class="form-control">
-                                <option value="">No</option> 
-                                <option value="">Yes</option>
-                            </select>
+                            <input  type="date" data-date-format="DD/MM/YYYY" value="2022-04-01"  class="form-control" id="d" placeholder="" value="1-Apr-22" name="byear">
                         </div>
                     </div>
                 </div>
-            </div> 
-            <div class="enter w-100 py-4"><button class="btn btn-info w-15">ACCEPT</button></div>       
+               
+            </div>
+            <div class="enter w-100 py-4"><button class="btn btn-info w-35">CREATE</button></div>   
+            
         </form>
     </div>
-
-    <style>
-        .hide{
-            display: none;
-            
-        }
-        </style>
-
     
-    <script>
-
-function showunder(){
-        
-       
-
-
-        var status = document.getElementById("under");
-        var a = status.value;
-        console.log(a);
-        if( a == "yes1" ){
-            console.log(a);
-
-            document.getElementById('feature1').style.display = "flex";
-            document.getElementById('feature1').style.display = "none";
-            document.getElementById('feature1').style.display = "none";
-            document.getElementById('feature1').style.display = "none";
-            document.getElementById('feature1').style.display = "none";
-            document.getElementById('feature1').style.display = "none";
-            document.getElementById('feature1').style.display = "none";
-            document.getElementById('feature1').style.display = "none";
-            document.getElementById('feature1').style.display = "none";
-           
-            
-        }
-}
-
-function showfeature(){
-    var status = document.getElementById("features");
-    var a = status.value;
-    console.log(a);
-    if( a =="Yes" ){
-        console.log(a);
-        document.getElementById("showall0").style.display="flex";
-        document.getElementById("enbcost").style.display="none";
-        document.getElementById("enbint").style.display="flex";
-        document.getElementById("enbmul").style.display="flex";
-        document.getElementById("enbbat").style.display="flex";
-        document.getElementById("maiex").style.display="none";
-        document.getElementById("usedis").style.display="flex";
-        document.getElementById("usesep").style.display="flex";
-        document.getElementById("enbtax").style.display="flex";
-        document.getElementById('other').style.display = "flex";
-        document.getElementById("enbadrs").style.display="flex";
-        document.getElementById("markmod").style.display="flex";
-    }
-
-    else{
-        document.getElementById("showall0").style.display="none";
-        document.getElementById("enbcost").style.display="none";
-        document.getElementById("enbint").style.display="none";
-        document.getElementById("enbmul").style.display="none";
-        document.getElementById("enbbat").style.display="none";
-        document.getElementById("maiex").style.display="none";
-        document.getElementById("usedis").style.display="none";
-        document.getElementById("usesep").style.display="none";
-        document.getElementById("enbtax").style.display="none";
-        document.getElementById('other').style.display = "none";
-        document.getElementById("enbadrs").style.display="none";
-        document.getElementById("markmod").style.display="none";
-    }
-}
-
-function showall(){
-var status = document.getElementById("all");
-var a = status.value
-console.log(a);
-if( a == "Yes" ){
-    console.log(a);
-
-    document.getElementById('enbcost').style.display = "flex";
-    document.getElementById("enbjob").style.display="flex";
-    document.getElementById("enbcostrack").style.display="flex";
-    document.getElementById("enbjbcst").style.display="flex";
-    document.getElementById("enbval").style.display="flex";
-    document.getElementById("enbex").style.display="flex";
-    document.getElementById("enbser").style.display="flex";
-    document.getElementById("Payroll").style.display="flex";
-    document.getElementById("maipay").style.display="flex";
-    document.getElementById("enbsta").style.display="none";
-
-
-
-
-    }
-else{
-    document.getElementById('enbcost').style.display = "none";
-    document.getElementById("enbjob").style.display="none";
-    document.getElementById("enbcostrack").style.display="none";
-    document.getElementById("enbjbcst").style.display="none";
-    document.getElementById("enbval").style.display="none";
-    document.getElementById("enbex").style.display="none";
-    document.getElementById("enbser").style.display="none";
-    document.getElementById("Payroll").style.display="none";
-    document.getElementById("maipay").style.display="none";
-    document.getElementById("enbsta").style.display="none";
-
-
-}
-}
-function showenbbat(){
-var status = document.getElementById("enbbat0");
-var a = status.value
-console.log(a);
-if( a == "Yes" ){
-    console.log(a);
-
-    document.getElementById('maiex').style.display = "flex";
-}
-else{
-    document.getElementById('maiex').style.display = "none";
-
-}
-}
-function showmainpay(){
-var status = document.getElementById("maipay0");
-var a = status.value
-console.log(a);
-if( a == "Yes" ){
-    console.log(a);
-
-    document.getElementById('enbsta').style.display = "flex";
-}
-else{
-    document.getElementById('enbsta').style.display = "none";
-
-}
-}
-function showgst(){
-    var status = document.getElementById("gst");
-    var a = status.value;
-    if(a=="Yes"){
-
-        window.location.href="{% url 'gst' %}"
-    }
-    else{
-        document.getElementById('enbgst').style.display="flex";
-    }
-}
-
-function showtds(){
-    var status = document.getElementById("tds");
-    var a = status.value;
-    if(a=="Yes"){
-
-        window.location.href="{% url 'tds' %}"
-    }
-    else{
-        document.getElementById('enbtds').style.display="flex";
-    }
-}
-    </script>
     
-
-
-
-
 {% endblock %}

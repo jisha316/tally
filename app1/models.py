@@ -1,12 +1,49 @@
-
-from tkinter.ttk import Separator
-from tracemalloc import start
-from turtle import width
-from xml.dom.minidom import CharacterData
 from django.db import models
-from django.urls import clear_script_prefix
 
 # Create your models here.
+class create_company(models.Model):
+    company_name = models.CharField(max_length=255)
+    mailing_name = models.CharField(max_length=255)
+    address = models.CharField(max_length=255)
+    state = models.CharField(max_length=255)
+    country = models.CharField(max_length=255)
+    pincode = models.IntegerField(null=True)
+    telephone = models.IntegerField(null=True)
+    mobile_no = models.IntegerField(null=True)
+    fax = models.CharField(max_length=100,null=True)
+    email = models.EmailField(null=True)
+    website = models.CharField(max_length=255,null=True)
+    currency_symbol = models.CharField(max_length=20)
+    formal_name = models.CharField(max_length=20)
+    fin_begin = models.DateField()
+    books_begin = models.DateField()
+
+class company_features(models.Model):
+    maintain_account = models.CharField(max_length=10)
+    billwise_entry = models.CharField(max_length=10)
+    cost_centre = models.CharField(max_length=10)
+    interest_calculation = models.CharField(max_length=10)
+    maintain_inventry = models.CharField(max_length=10)
+    account_inventry = models.CharField(max_length=10)
+    multiple_pricelevel = models.CharField(max_length=10)
+    enable_batches = models.CharField(max_length=10)
+    expiry_date = models.CharField(max_length=10)
+    job_order_procress = models.CharField(max_length=10)
+    cost_tracking = models.CharField(max_length=10)
+    job_costing= models.CharField(max_length=10)
+    discount_column = models.CharField(max_length=10)
+    seperte_actual = models.CharField(max_length=10)
+    gst = models.CharField(max_length=10)
+    tds = models.CharField(max_length=10)
+    tcs = models.CharField(max_length=10)
+    vat = models.CharField(max_length=10)
+    excise = models.CharField(max_length=10)
+    service_tax = models.CharField(max_length=10)
+    payroll = models.CharField(max_length=10)
+    multiple_address = models.CharField(max_length=10)
+    mark_modified = models.CharField(max_length=10)
+    company=models.ForeignKey(create_company,on_delete = models.CASCADE,null = True)
+
 
 
 class tally_group(models.Model):
@@ -216,3 +253,5 @@ class ledger_cheque_demension(models.Model):
     width_sign_area = models.IntegerField(null=True)
     height_sign_area = models.IntegerField(null=True)
     ledger_name = models.ForeignKey(tally_group,on_delete = models.CASCADE,null = True)
+
+

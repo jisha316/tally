@@ -1,3 +1,5 @@
+import datetime
+from pyexpat.errors import messages
 from django.shortcuts import render,redirect
 from .models import *
 
@@ -538,4 +540,74 @@ def create_ledgerdimension(request):
 									height_sign_area=hsa)
 
 		cld.save()
+		return redirect('/')
+
+def company_create(request):
+	if request.method=="POST":
+		name=request.POST['companyname']
+		mname=request.POST['mailing_name']
+		addr=request.POST['address']
+		st=request.POST['state']
+		cntry=request.POST['country']
+		pncd=request.POST['pincode']
+		tlphn=request.POST['telephone']
+		mbl=request.POST['mobile']
+		fax=request.POST['fax']
+		email=request.POST['email']
+		wbsit=request.POST['website']
+		fin_begin=request.POST['fyear']
+		bk_begin=request.POST['byear']
+		crny_symbol=request.POST['currency']
+		frml_name=request.POST['formal']
+
+		ccmp=create_company.objects.filter(company_name=name)
+		# out=datetime.datetime.strptime (fin_begin,'%Y-%m-%d')+datetime.timedelta (days=364)
+		# a=out.date()
+		# fin_end=a
+
+		if ccmp:
+			messages.info(request,'Company name already exists!!')
+			return redirect('create_cmpny')
+		else:
+			cmp=create_company(company_name=name,mailing_name=mname,address=addr,state=st,country=cntry,
+                pincode=pncd,telephone=tlphn,mobile_no=mbl,fax=fax,email=email,website=wbsit,fin_begin=fin_begin,
+                books_begin=bk_begin,currency_symbol=crny_symbol,formal_name=frml_name)
+			cmp.save()
+			messages.info(request,'Company created successfully(Enable the features as per your business needs)')
+			return render(request,'jisha/features.html',{'cmp':cmp})
+
+def company_features(request,cf):
+	if request.method=="POST":
+		cmp_fet=create_company.objects.get(id=cf)
+		ma=request.POST['maintain_account']
+		be=request.POST['billwise_entry']
+		cc=request.POST['cost_centre']
+		ic=request.POST['interest_calculation']
+		mi=request.POST['maintain_inventry']
+		ai=request.POST['account_inventry']
+		mpl=request.POST['multiple_pricelevel']
+		eb=request.POST['enable_batches']
+		edt=request.POST['expiry_date']
+		jop=request.POST['job_order_procress']
+		ct=request.POST['cost_tracking']
+		jc=request.POST['job_costing']
+		dc=request.POST['discount_column']
+		sa=request.POST['seperte_actual']
+		gst=request.POST['gst']
+		tds=request.POST['tds']
+		tcs=request.POST['tcs']
+		vat=request.POST['vat']
+		excise=request.POST['excise']
+		st=request.POST['service_tax']
+		prl=request.POST['payroll']
+		maddr=request.POST['multiple_address']
+		mark_mod=request.POST['mark_modified']
+		company=request.POST['company']
+
+		cmp_fet=company_features(maintain_account=ma,billwise_entry=be,cost_centre=cc,interest_calculation=ic,maintain_inventry=mi,
+		account_inventry=ai,multiple_pricelevel=mpl,enable_batches=eb,expiry_date=edt,job_order_procress=jop,cost_tracking=ct,job_costing=jc,discount_column=dc,
+		seperte_actual=sa,gst=gst,tds=tds,tcs=tcs,vat=vat,excise=excise,service_tax=st,payroll=prl,multiple_address=maddr,
+		mark_modified=mark_mod,company=company)
+
+		cmp_fet.save()
 		return redirect('/')

@@ -96,5 +96,9 @@ urlpatterns = [
 
     path('create_ledgerdimension',views.create_ledgerdimension,name='create_ledgerdimension'),
 
+    path('company_create',views.company_create,name='company_create'),
+
+    path('company_features/<int:cf>',views.company_features,name='company_features'),
+
     
 ]
