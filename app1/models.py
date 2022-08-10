@@ -17,6 +17,7 @@ class create_company(models.Model):
     formal_name = models.CharField(max_length=20)
     fin_begin = models.DateField()
     books_begin = models.DateField()
+    fin_end = models.DateField()
 
 class company_features(models.Model):
     maintain_account = models.CharField(max_length=10)
@@ -67,6 +68,13 @@ class tally_currency(models.Model):
     add_space = models.CharField(max_length=20)
     word_rep = models.CharField(max_length=255,null=True)
     no_decimal = models.IntegerField()
+
+class currency_ROE(models.Model):
+    date_ROE = models.DateField()
+    currency_name =models.CharField(max_length=20,null=True)
+    std_rate = models.IntegerField(null=True)
+    selling_SR = models.IntegerField(null=True)
+    buying_SR = models.IntegerField(null=True)
 
 class alt_currency(models.Model):
     c_symbol = models.CharField(max_length=255)
@@ -138,13 +146,6 @@ class tally_vouchers(models.Model):
     msg_2 = models.CharField(max_length=255,null=True)
     default_bank = models.CharField(max_length=255,null=True)
     name_class = models.CharField(max_length=255,null=True)
-
-class currency_ROE(models.Model):
-    date_ROE = models.DateField()
-    currency = models.ForeignKey(tally_currency,on_delete = models.CASCADE,null = True)
-    std_rate = models.CharField(max_length=20,null=True)
-    selling_SR = models.CharField(max_length=20,null=True)
-    buying_SR = models.CharField(max_length=20,null=True)
     
 class tally_gst(models.Model):
     state = models.CharField(max_length=255,null=True)

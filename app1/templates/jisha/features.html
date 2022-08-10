@@ -14,16 +14,14 @@
 
     <div class="m-3">
         <h6  class="bg-info text-light p-2 m-0 text-left">Company Features Alteration</h6>
-        <form class="p-5" style="background-color:rgba(0,0,0,.4);" method="post" action="{% url 'company_features' cmp.id %}">
+         <form class="p-5" style="background-color:rgba(0,0,0,.4);" method="post" action="{% url 'company_feature' cmp.id  %}">
             {% csrf_token %}
             <div class="p-3">
-                <h2  class="bg-transparent text-light p-2 m-0 text-center">Company Created Successfully.</h2>
-                <h4  class="bg-transparent text-light p-2 m-0 text-center"><i>(Enable the features as per your business needs)</i></h4>
                 <hr>
                 <div class="row container-fluid  p-2 m-0">
                     <div class="col-sm-1 m-0 p-0"> <label for="a">Company : </label></div>
                     <div class="col-sm-2 m-0 p-0">
-                        <p name="company" value="{{cmp.company_name}}"></p>
+                        {{cmp.company_name}}
                     </div>
                 </div>
                 <hr>
@@ -413,7 +411,7 @@
             var a = status.value;
             if(a=="Yes"){
 
-                window.location.href="{% url 'gst cmp.id' %}"
+                window.location.href="{% url 'gst' %}" 
             }
             else{
                 document.getElementById('enbgst').style.display="flex";
@@ -424,7 +422,7 @@
             var a = status.value;
             if(a=="Yes"){
 
-                window.location.href="{% url 'tds cmp.id' %}"
+                 window.location.href="{% url 'tds' %}"
             }
             else{
                 document.getElementById('enbtds').style.display="flex";

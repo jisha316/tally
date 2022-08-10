@@ -6,752 +6,350 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            
         }
-        .hide{
-            display: none;
-        }
-        .card {
-            color: black;
-            background-color: white;
-            max-width: 400px;
-            margin: auto;
-            text-align: center;
-            font-family: arial;
-        }
-        .modal-content{
-            margin-top: 300px;
-            background-color: #eee7e7;
+        button{
+            background-color:rgb(23, 127, 192) ;
+            color:white;
+            padding:10px 10px;
+            align-items: center;
+            justify-content: center;
         }
     </style>
-    
-    <div class="m-2">
-        <h6  class="bg-info text-light p-2 m-0 text-center">Voucher Type Alteration</h6>
-        <form class="p-5" style="background-color:rgba(0,0,0,.4);" action="load_voucher_type" method="post" autocomplete="off">
-            {% csrf_token %}
-            <div class="p-3">
-                <div class="row container-fluid  p-2 m-0">
-                    <div class="col-sm-2 m-0 p-0"> <label for="a">Name</label></div>
-                    <div class="col-sm-3 m-0 p-0"><input type="text" class="form-control" id="a" placeholder="" name="vname"></div>
-                    <div class="col-sm-7 m-0 p-0"></div>
-                </div>
-                <div class="row container-fluid  p-2 m-0">
-                    <div class="col-sm-2 m-0 p-0"> <label for="b">Alias</label></div>
-                    <div class="col-sm-3 m-0 p-0"> 
-                    <input type="text" class="form-control" id="b" placeholder="" name="valias"></div>
-                    <div class="col-sm-7 m-0 p-0"></div>
-                </div>
-            </div>
+     <script>
+        function savegst(){
+            window.location.href="{% url 'gst' ctg.id %}";
+        }
+        function savetds(){
+            window.location.href="{% url 'tds' ctg.id %}";
 
-            <div class="row container-fluid  p-0 m-0" style=" border: 1px solid rgba(128, 128, 128, 0.6);">
-                <div class="col-sm-5 m-0 p-4" style=" border-right: 1px solid rgba(128, 128, 128, 0.6);">
-                    <h5 class="text-center">General</h5>
-                    <div class="row container-fluid  p-0">
-                        <div class="col-sm-6 m-0 p-0"></div>
-                        <div class="col-sm-6 m-0 p-0"></div>
-                    </div>
-
-                    <div class="row container-fluid  p-2">
-                        <div class="col-sm-6 m-0 p-0"> <label for="c">Select type of voucher</label></div>
-                        <div class="col-sm-6 m-0 p-0">
-                            <select name="vtype" id="voucher_type" class="form-control"  onchange="showVoucherType()" required >
-                                <option value="Abr"></option>
-                                <option value="Attendance">Attendance</option>  
-                                <option value="Contra">Contra</option> 
-                                <option value="Credit_Note">Credit Note</option>
-                                <option value="Debit_Note">Debit Note</option>
-                                <option value="Delivery_Note">Delivery Note</option>
-                                <option value="Job_Work_In_Order">Job Work In Order</option>
-                                <option value="Job_Work_Out_Order">Job Work Out Order</option>
-                                <option value="Journal">Journal</option>
-                                <option value="Material_In">Material In</option>
-                                <option value="Material_Out">Material Out</option>
-                                <option value="Memorandum">Memorandum</option>
-                                <option value="Payment">Payment</option>
-                                <option value="Payroll">Payroll</option>
-                                <option value="Physical_Stock">Physical Stock</option>
-                                <option value="Purchase">Purchase</option>
-                                <option value="Purchase_Order">Purchase Order</option>
-                                <option value="Receipt">Receipt</option>
-                                <option value="Receipt_Note">Receipt Note</option>
-                                <option value="Rejections_In">Rejections In</option>
-                                <option value="Rejections_Out">Rejections Out</option>
-                                <option value="Reversing_Journal">Reversing Journal</option>
-                                <option value="Sales">Sales</option>
-                                <option value="Sales_Order">Sales Order</option>
-                                <option value="Stock_Journal">Stock Journal</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="row container-fluid  p-2" id="">
-                        <div class="col-sm-6 m-0 p-0"> <label for="d">Abbreviation</label></div>
-                        <div class="col-sm-6 m-0 p-0" ><input type="text" class="form-control" id="abr" name="vabbre" placeholder=""></div>
-                    </div>
+        } 
+    </script> 
+  <div class="m-4">
+    <div class="form1"style=" background-color:rgba(0,0,0,0.3);">
+        {% comment %} <a href="javascript:history.go(-2);" class="close">x</a>
+    <h6  class="bg-info text-light p-2 m-0 text-center"></h6> {% endcomment %}
+            <form class="p-5" style="background-color:rgba(0,0,0,.4);" id="frmfeature" method="post" action="{% url 'features' ctg.id %}"> 
+                
+                {% csrf_token %}
+                
                     
-                    <div class="row container-fluid  p-2">
-                        <div class="col-sm-6 m-0 p-0"> <label for="e">Activate this voucher type</label></div>
-                        <div class="col-sm-6 m-0 p-0">
-                            <select  id="vouchertype0" name="vactive" class="form-control" onchange="showvouchertype()">
-                                <option value="No">No</option>
-                                <option value="Yes">Yes</option> 
-                                
-                            </select>
+                   
+                <div class="row container-fluid  p-0 m-0" style=" border: 1px solid rgba(128, 128, 128, 0.6);">
+                    <div class="col-sm-6 m-0 p-4" style=" border-right: 1px solid rgba(128, 128, 128, 0.6);">
+                        {% comment %} <h5 class="text-center">GST registration detais</h5> {% endcomment %}
+                        <div class="row container-fluid  p-2">
+                            <div class="col-sm-6 m-0 p-0"><label>company</label></div>
+                            <div class="col-sm-6 m-0 p-0"> <input type="text" name="state" value="{{ctg.name}}" class="form-control"></div>
                         </div>
-                    </div>
-                    <script>
-                        $(document).ready(function(){ 
-                            $('#vouchertype0').change(function() 
-                            { 
-                                var opval = $(this).val(); 
-                                if(opval=="Yes"){ 
-                                    $('#myModal').modal("show"); 
-                                }
-                            });
-                        });
-                    </script>
-                    <div class="modal fade" id="myModal" role="dialog" >
-                        <div class="modal-dialog">
-                            <div class="modal-content" >
-                                <div class="modal-body"><br>
-                                    <div class="card"><br>
-                                        <p class="price">You need to enable the Payroll Feature
-                                            <center>for your Company</center>
-                                        </p><br><br><br>
-                                        <div>
-                                            <a href=""><span style="color: #131363;">Yes </span><span style="color: #000;"> Or </span> </a>
-                                            <a href="" style="color: #131363;" data-dismiss="modal">No</a> 
-                                            <br><br>
-                                        </div>
-                                    </div>
-                                </div>
+                        <div class="row container-fluid  p-2">
+                            <h6><u>Accounting</u></h6>
+                        </div>
+                        <div class="row container-fluid  p-2">
+                            <div class="col-sm-6 m-0 p-0">
+                                 <label for="e">Maintain accounts</label>
+                            </div>
+                            <div class="col-sm-6 m-0 p-0">
+                                <select   name="maintain_accounts" id="maintain_accounts"  class="form-control">
+                              
+                                <option value="Yes" selected >Yes</option>
+                                <option value="No" >No</option>
+                              
+                                
+                                
+                                </select>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="row container-fluid p-2">
-                        <div class="col-sm-6 m-0 p-0"> <label for="f">Method of voucher numbering</label></div>
+                        
+                        <div class="row container-fluid  p-2">
+                            <div class="col-sm-6 m-0 p-0"> 
+                                <label for="g">Enable bill-wise entry</label>
+                            </div>
+                            <div class="col-sm-6 m-0 p-0">
+                                <select  class="form-control" name="bill_wise_entry" id="bill_wise_entry" >
+                                   
+                                      <option value="Yes" selected >Yes</option>
+                                      <option value="No" >No</option>
+                                 
+                                     
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row container-fluid  p-2">
+                            <div class="col-sm-6 m-0 p-0"> <label for="g">Enable Cost Centres</label></div>
+                            <div class="col-sm-6 m-0 p-0">
+                                <select  class="form-control" name="cost_centres" id="cost_centres" >
+                                 
+                                      <option value="Yes">Yes</option>
+                                      <option value="No"  selected  >No</option>
+                                  
+                                    
+                                   
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row container-fluid  p-2">
+                            <div class="col-sm-6 m-0 p-0"> <label for="g">Enable Interest Calculation</label></div>
+                            <div class="col-sm-6 m-0 p-0">
+                                <select class="form-control" name="interest_calc" id="interest_calc" >
+                                   
+                                      <option value="Yes" >Yes</option>
+                                      <option value="No"  selected >No</option>
+                                  
+                                     
+                                    
+                                   
+                                   
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row container-fluid  p-2">
+                            <h6><u>Inventory</u></h6>
+                        </div>
+                        <div class="row container-fluid  p-2">
+                            <div class="col-sm-6 m-0 p-0"> <label for="e">Maintain inventory</label></div>
+                            <div class="col-sm-6 m-0 p-0">
+                                <select class="form-control" name="maintain_inventory" id="maintain_inventory" >
+                                    
+                                    <option value="Yes" selected >Yes</option>
+                                    <option value="No" >No</option>
+                                  
+                                    
+                                 
+                                </select>
+                            </div>
+                        </div>
+
+                        
+                        <div class="row container-fluid  p-2">
+                            <div class="col-sm-6 m-0 p-0"> <label for="g">Integrate accounts with inventory</label></div>
+                            <div class="col-sm-6 m-0 p-0">
+                                <select  class="form-control"name="integrate_accounts" id="integrate_accounts" >
+                                    
+                                    <option value="Yes" selected >Yes</option>
+                                    <option value="No" >No</option>
+                                 
+                                 
+                                   
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="row container-fluid  p-2">
+                            <div class="col-sm-6 m-0 p-0"> <label for="g">Enable Multiple Price Levels</label></div>
+                            <div class="col-sm-6 m-0 p-0">
+                                <select class="form-control" name="multiple_price_level" id="multiple_price_level" >
+                                   
+                                  
+                                    <option value="Yes" >Yes</option>
+                                    <option value="No" selected>No</option>
+                                
+                                
+                                   
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row container-fluid  p-2">
+                        <div class="col-sm-6 m-0 p-0"> <label for="g">Enable batches</label></div>
                         <div class="col-sm-6 m-0 p-0">
-                            <select id="voucher_no" name="vnum" class="form-control" onchange="showVoucherNo()" required>
-                                <option value="option"></option>
-                                <option value="Automatic">Automatic</option> 
-                                <option value="Override">Automatic(Manual Override)</option> 
-                                <option value="Manual">Manual</option>
-                                <option value="Multiuser Auto">Multiuser Auto</option>
-                                <option value="None">None</option>
+                            <select class="form-control" name="batches" id="batches" >
+                              
+                                <option value="Yes" selected >Yes</option>
+                                <option value="No" >No</option>
+                              
+                                <option value="Yes" >Yes</option>
+                                <option value="No" selected>No</option>
+
+                             
                             </select>
                         </div>
                     </div>
-                    <div class="row container-fluid hide p-2" id="duplicates">
-                        <div class="col-sm-6 m-0 p-0"> <label for="g">Prevent duplicates</label></div>
-                        <div class="col-sm-6 m-0 p-0">
-                            <select name="vprev" id="g" class="form-control">
-                                <option value="No">No</option>
-                                <option value="Yes">Yes</option>   
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="row container-fluid hide p-2" id="advanced">
-                        <div class="col-sm-6 m-0 p-0"> <label for="g">Use advanced configuration</label></div>
-                        <div class="col-sm-6 m-0 p-0">
-                            <select name="advcon" id="g" class="form-control">
-                                <option value="No">No</option>
-                                <option value="Yes">Yes</option>   
-                            </select>
-                        </div>
-                    </div>     
-
                     <div class="row container-fluid  p-2">
-                        <div class="col-sm-6 m-0 p-0"> <label for="g">Use effective dates  for vouchers</label></div>
+                        <div class="col-sm-6 m-0 p-0"> <label for="g">Maintain Expiry Date for Batches</label></div>
                         <div class="col-sm-6 m-0 p-0">
-                            <select name="effct" id="g" class="form-control">
-                                <option value="no">No</option>
-                                <option value="yes">Yes</option>   
+                            <select  class="form-control" name="expirydate_batches" id="expirydate_batches" >
+                               
+                           
+                                <option value="Yes" >Yes</option>
+                                <option value="No" selected>No</option>
+                              
                             </select>
                         </div>
                     </div>
                     <div class="row container-fluid  p-2">
-                        <div class="col-sm-6 m-0 p-0"> <label for="h">Allow zero valued transactions</label></div>
-                        <div class="col-sm-6 m-0 p-0">
-                            <select name="trans" id="" class="form-control">
-                                <option value="no">No</option>
-                                <option value="yes">Yes</option>   
-                            </select>
+                            <div class="col-sm-6 m-0 p-0"> <label for="g">Enable Job Order Processing</label></div>
+                            <div class="col-sm-6 m-0 p-0">
+                                <select  class="form-control" name="joborder_processing" id="joborder_processing" >
+                                    
+                                    <option value="Yes" >Yes</option>
+                                    <option value="No" selected>No</option>
+                                
+                                   
+                                </select>
+                            </div>
                         </div>
-                    </div>
-
-                    <div class="row container-fluid  p-2" id="optional">
-                        <div class="col-sm-6 m-0 p-0"> <label for="i">Make voucher type as 'Optional' by default</label></div>
-                        <div class="col-sm-6 m-0 p-0">
-                            <select name="opt" id="i" class="form-control">
-                                <option value="no">No</option>
-                                <option value="yes">Yes</option>
-                            </select>
+                        <div class="row container-fluid  p-2">
+                            <div class="col-sm-6 m-0 p-0"> <label for="g">Enable Cost Tracking</label></div>
+                            <div class="col-sm-6 m-0 p-0">
+                                <select  class="form-control" name="cost_tracking" id="cost_tracking" >
+                                    
+                                    <option value="Yes" >Yes</option>
+                                    <option value="No" selected>No</option>
+                                
+                                </select>
+                            </div>
                         </div>
-                    </div>
-
-                    <div class="row container-fluid  p-2">
-                        <div class="col-sm-6 m-0 p-0"> <label for="">Allow narration in voucher</label></div>
-                        <div class="col-sm-6 m-0 p-0">
-                            <select name="narrate" id="j" class="form-control">
-                                <option value="yes">Yes</option> 
-                                <option value="no">No</option>   
-                            </select>
+                        <div class="row container-fluid  p-2">
+                            <div class="col-sm-6 m-0 p-0"> <label for="g">Enable Job Costing</label></div>
+                            <div class="col-sm-6 m-0 p-0">
+                                <select class="form-control" name="job_costing" id="job_costing" >
+                                    
+                                    <option value="Yes" >Yes</option>
+                                    <option value="No" selected>No</option>
+                                
+                                   
+                                </select>
+                            </div>
                         </div>
-                    </div>
-
-                    <div class="row container-fluid  p-2" id="provide">
-                        <div class="col-sm-6 m-0 p-0"> <label for="k">Provide narration for each leadger voucher</label></div>
-                        <div class="col-sm-6 m-0 p-0">
-                            <select name="provide" id="k" class="form-control">
-                                <option value="no">No</option>
-                                <option value="yes">Yes</option> 
-                            </select>
+                        <div class="row container-fluid  p-2">
+                            <div class="col-sm-6 m-0 p-0"> <label for="g">Use Discount column in invoices</label></div>
+                            <div class="col-sm-6 m-0 p-0">
+                                <select name="Discount_coloumn" id="g" class="form-control">
+                                    <option value="yes">Yes</option> 
+                                    <option value="no" selected>No</option>
+                                   
+                                </select>
+                            </div>
                         </div>
-                    </div><br>
-                    <div class="row container-fluid hide p-2" id="journal">
-                        <div class="col-sm-6 m-0 p-0"> <label for="k">Use as a manufacturing journal</label></div>
-                        <div class="col-sm-6 m-0 p-0">
-                            <select name="journal" id="k" class="form-control">
-                                <option value="No">No</option>
-                                <option value="Yes">Yes</option> 
-                            </select>
+                        <div class="row container-fluid  p-2">
+                            <div class="col-sm-6 m-0 p-0"> <label for="g">Use Seperate actual and billed quantity column in invoices</label></div>
+                            <div class="col-sm-6 m-0 p-0">
+                                <select name="billed_quantity" id="g" class="form-control">
+                                    <option value="yes">Yes</option> 
+                                    <option value="no" selected>No</option>
+                                   
+                                </select>
+                            </div>
                         </div>
-                    </div>
-
-                    <div class="row container-fluid hide p-2" id="track">
-                        <div class="col-sm-6 m-0 p-0"> <label for="">Track Additional Cost for Purchases</label></div>
-                        <div class="col-sm-6 m-0 p-0">
-                            <select name="purchase" id="" class="form-control">
-                                <option value="No">No</option>
-                                <option value="Yes">Yes</option> 
-                            </select>
-                        </div>
-                    </div>
-                    <div class="row container-fluid hide p-2" id="enable">
-                        <div class="col-sm-6 m-0 p-0"> <label for="">Enable default accounting allocations</label></div>
-                        <div class="col-sm-6 m-0 p-0">
-                            <select name="allocate" id="" class="form-control">
-                                <option value="no">No</option>
-                                <option value="yes">Yes</option> 
-                            </select>
-                        </div>
-                    </div>  
-                    
                 </div>
-                <div class="col-sm-4 m-0 p-4" style=" border-right: 1px solid rgba(128, 128, 128, 0.6);">
-                    <h5 class="text-center">Printing</h5>
-                    <div class="row container-fluid  p-2">
-                        <div class="col-sm-6 m-0 p-0"> <label for="l">Print voucher after saving</label></div>
-                        <div class="col-sm-6 m-0 p-0">
-                            <select name="vprint" id="l" class="form-control">
-                                <option value="no">No</option>
-                                <option value="yes">Yes</option>  
-                            </select>
+                    <div class="col-sm-6 m-0 p-4" style=" border-right: 1px solid rgba(128, 128, 128, 0.6);">
+                        <div class="row container-fluid  p-2">
+                            <h6><u>Taxation</u></h6>
                         </div>
-                    </div> 
-                    <div class="row container-fluid hide p-2" id="jurisdiction">
-                        <div class="col-sm-6 m-0 p-0"> <label for="l">Default Jurisdiction</label></div>
-                        <div class="col-sm-6 m-0 p-0"><input type="text" name="juri" class="form-control" id="" value=""></div>
-                    </div> <br>
+                        <div class="row container-fluid  p-2">
+                            <div class="col-sm-6 m-0 p-0"> <label for="l">Enable Goods and Services Tax(GST)</label></div>
+                            <div class="col-sm-6 m-0 p-0">
+                                <select name="gst" id="l" class="form-control" onchange="savegst()">
 
-                    <div class="row container-fluid hide p-2" id="pos">
-                        <div class="col-sm-6 m-0 p-0"> <label for="l">Use for POS invoice</label></div>
-                        <div class="col-sm-6 m-0 p-0">
-                            <select name="pos" id="POS" class="form-control" onchange="showPOS()" required>
-                                <option value="No">No</option>
-                                <option value="Yes">Yes</option>  
-                            </select>
+                                    <option value="Yes" >Yes</option>
+                                    <option value="No" selected >No</option>
+                                   
+                                </select>
+                            </div>
                         </div>
-                    </div> 
-                    <div class="row container-fluid hide p-2" id="msg_1">
-                        <div class="col-sm-6 m-0 p-0"> <label for="l">Messege to print (1)</label></div>
-                        <div class="col-sm-6 m-0 p-0"><input type="text" name="msg1" class="form-control" id="" value=""></div>
-                    </div> 
-                    <div class="row container-fluid hide p-2" id="msg_2">
-                        <div class="col-sm-6 m-0 p-0"> <label for="l">Messege to print (2)</label></div>
-                        <div class="col-sm-6 m-0 p-0"><input type="text" name="msg2" class="form-control" id="" value=""></div>
-                    </div> 
-
-                    <div class="row container-fluid hide p-2" id="bank">
-                        <div class="col-sm-6 m-0 p-0"> <label for="l">Default Bank</label></div>
-                        <div class="col-sm-6 m-0 p-0">
-                            <select name="vbank" id="" class="form-control">
-                                <option value="Not Applicable">Not Applicable</option>
-                                <!-- <option value="Yes">Yes</option>   -->
-                            </select>
+                        <div class="row container-fluid  p-2">
+                            <div class="col-sm-6 m-0 p-0"> <label for="l">Enable Tax Deducted at Source(TDS)</label></div>
+                            <div class="col-sm-6 m-0 p-0">
+                                <select name="tds" id="l" class="form-control" onchange="savetds()">
+                                    <option value="Yes">Yes</option>
+                                    <option value="No" selected>No</option>
+                                   
+                                </select>
+                            </div>
                         </div>
-                    </div> 
-
-                    <div class="row container-fluid hide p-2" id="title_print">
-                        <div class="col-sm-6 m-0 p-0"> <label for="l">Default Title to Print</label></div>
-                        <div class="col-sm-6 m-0 p-0"><input type="text" name="vtitle" class="form-control" id="" value=""></div>
-                    </div> 
-                    <div class="row container-fluid hide p-2" id="set/alter">
-                        <div class="col-sm-6 m-0 p-0"> <label for="l">Set / Alter declaration</label></div>
-                        <div class="col-sm-6 m-0 p-0">
-                            <select name="vsetalt" id="statdeclar0" class="form-control" onchange="showdeclaration()">
-                                <option value="No">No</option>
-                                <option value="Yes">Yes</option>  
-                            </select>
+                        <div class="row container-fluid  p-2">
+                            <div class="col-sm-6 m-0 p-0"> <label for="l">Enable Tax Collected  at Source(TCS)</label></div>
+                            <div class="col-sm-6 m-0 p-0">
+                                <select name="tcs" id="l" class="form-control">
+                                    <option value="no" selected>No</option>
+                                    <option value="yes">Yes</option> 
+                                   
+                                </select>
+                            </div>
                         </div>
-                    </div>   
-                      
+                        <div class="row container-fluid  p-2">
+                            <div class="col-sm-6 m-0 p-0"> <label for="l">Enable value Added Tax(VAT)</label></div>
+                            <div class="col-sm-6 m-0 p-0">
+                                <select name="vat" id="l" class="form-control">
+                                    <option value="Yes">Yes</option>
+                                    <option value="No" selected>No</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row container-fluid  p-2">
+                            <div class="col-sm-6 m-0 p-0"> <label for="l">Enable Excise</label></div>
+                            <div class="col-sm-6 m-0 p-0">
+                                <select name="excise" id="l" class="form-control">
+                                    <option value="no" selected>No</option>
+                                    <option value="yes">Yes</option> 
+                                   
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row container-fluid  p-2">
+                            <div class="col-sm-6 m-0 p-0"> <label for="l">Enable Service Tax</label></div>
+                            <div class="col-sm-6 m-0 p-0">
+                                <select name="service_tax" id="l" class="form-control">
+                                    <option value="no" selected>No</option>
+                                    <option value="yes">Yes</option> 
+                                   
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="row container-fluid  p-2">
+                            <h6><u>Payroll</u></h6>
+                        </div>
+                        <div class="row container-fluid  p-2">
+                            <div class="col-sm-6 m-0 p-0"> <label for="l">Maintain Payroll</label></div>
+                            <div class="col-sm-6 m-0 p-0">
+                                <select name="payroll" id="l" class="form-control">
+                                    <option value="no" selected>No</option>
+                                    <option value="yes">Yes</option> 
+                                   
+                                </select>
+                            </div>
+                        </div>
+                        <!-- <div class="row container-fluid  p-2">
+                            <div class="col-sm-6 m-0 p-0"> <label for="l">Enable Payroll Statutory</label></div>
+                            <div class="col-sm-6 m-0 p-0">
+                                <select name="payroll_statutory" id="Payroll_statutory" class="form-control" name="Payroll_statutory">
+                                    <option value="no" selected>No</option>
+                                    <option value="yes">Yes</option> 
+                                   
+                                </select>
+                            </div>
+                        </div> -->
+                        <div class="row container-fluid  p-2">
+                            <h6><u>Others</u></h6>
+                        </div>
+                        <div class="row container-fluid  p-2">
+                            <div class="col-sm-6 m-0 p-0"> <label for="l">Enable Multiple Addresses</label></div>
+                            <div class="col-sm-6 m-0 p-0">
+                                <select name="multiple_address" id="l" class="form-control">
+                                    <option value="no" selected>No</option>
+                                    <option value="yes">Yes</option> 
+                                   
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row container-fluid  p-2">
+                            <div class="col-sm-6 m-0 p-0"> <label for="l">Mark Modified Vouchers</label></div>
+                            <div class="col-sm-6 m-0 p-0">
+                                <select name="Modified_vouchers" id="l" class="form-control">
+                                    <option value="no" selected>No</option>
+                                    <option value="yes">Yes</option> 
+                                   
+                                </select>
+                            </div>
+                        </div>
+                   
                 </div>
-                <div class="col-sm-3 m-0 p-4">
-                    <h5 class="text-center">Name of class</h5>
-                    
-                </div>
-            </div>
-            <div class="enter w-100 py-4"><button class="btn btn-info w-15">CREATE</button></div>    
-        </form>     
-    </div> 
-
-<script>
-    function showVoucherNo(){
-    var status = document.getElementById("voucher_no");
-    var a = status.value;
-    console.log(a);
-    if( a == "option" ){
-        console.log(a);
-
-        document.getElementById('advanced').style.display = "none";
-        document.getElementById('duplicates').style.display = "none";
-    }
-    else if( a == "Automatic" ){
-        document.getElementById('advanced').style.display = "flex";
-        document.getElementById('duplicates').style.display = "none";
-    }
-    else if( a == "Override" ){
-        document.getElementById('advanced').style.display = "flex";
-        document.getElementById('duplicates').style.display = "flex";
-    }
-    else if( a == "Manual" ){
-        document.getElementById('duplicates').style.display = "flex";
-        document.getElementById('advanced').style.display = "none";
-    }
-    else if( a == "Multiuser Auto" ){
-        document.getElementById('advanced').style.display = "flex";
-        document.getElementById('duplicates').style.display = "none";
-    }
-    else{
-        document.getElementById('duplicates').style.display = "none";
-        document.getElementById('advanced').style.display = "none";
-    }
-}
-
-function showVoucherType(){
-    var val=document.getElementById("voucher_type").value;
-        if(val=="Attendance")
-        {
-            newval="Attd";
-        }
-        else if(val=="Contra")
-        {
-            newval="Ctra";
-        }
-        else if(val=="Credit_Note")
-        {
-            newval="C/Note";
-        }
-        else if(val=="Debit_Note")
-        {
-            newval="D/Note";
-        }
-        else if(val=="Delivery_Note")
-        {
-            newval="Dely Note";
-        }
-        else if(val=="Job_Work_In_Order")
-        {
-            newval="Job Wrk In Ordr";
-        }
-        else if(val=="Job_Work_Out_Order")
-        {
-            newval="Job Wrk Out Ordr";
-        }
-        else if(val=="Journal")
-        {
-            newval="Jrnl";
-        }
-        else if(val=="Material_In")
-        {
-            newval="Mat In";
-        }
-        else if(val=="Material_Out")
-        {
-            newval="Mat Out";
-        }
-        else if(val=="Memorandum")
-        {
-            newval="Memo";
-        }
-        else if(val=="Payment")
-        {
-            newval="Pymt";
-        }
-        else if(val=="Payroll")
-        {
-            newval="Pyrl";
-        }
-        else if(val=="Physical_Stock")
-        {
-            newval="Phy Stk";
-        }
-        else if(val=="Purchase")
-        {
-            newval="Purc";
-        }
-        else if(val=="Purchase_Order")
-        {
-            newval="Purc Order";
-        }
-        else if(val=="Receipt")
-        {
-            newval="Rcpt";
-        }
-        else if(val=="Receipt_Note")
-        {
-            newval="Rcpt Note";
-        }
-        else if(val=="Rejections_In")
-        {
-            newval="Rej In";
-        }
-        else if(val=="Rejections_Out")
-        {
-            newval="Rej Out";
-        }
-        else if(val=="Reversing_Journal")
-        {
-            newval="Rev Jrnl";
-        }
-        else if(val=="Sales")
-        {
-            newval="Sale";
-        }
-        else if(val=="Sales_Order")
-        {
-            newval="Sales Ordr";
-        }
-        else if(val=="Stock_Journal")
-        {
-            newval="Stk Jrnl";
-        }
-        else
-        {
-            newval="";
-        }
-        document.getElementById("abr").value = newval;
-    
-    var status = document.getElementById("voucher_type");
-    var a = status.value;
-    console.log(a);
-    if( a == "Attendance" ){
-        console.log(a);
+             <div class="enter w-100 py-4"><button class="btn btn-info w-15">CREATE</button></div>   
+                
+            </form>
+        </div>
         
-        document.getElementById('provide').style.display = "flex";
-        document.getElementById('optional').style.display = "flex";
-        document.getElementById('track').style.display = "none";
-        document.getElementById('jurisdiction').style.display = "none";
-        document.getElementById('title_print').style.display = "none";
-        document.getElementById('enable').style.display = "none";
-        document.getElementById('journal').style.display = "none";
-        document.getElementById('pos').style.display = "none";
-        document.getElementById('bank').style.display = "none";
-    }
-    else if( a == "Contra" ){
-        document.getElementById('provide').style.display = "flex";
-        document.getElementById('enable').style.display = "flex";
-        document.getElementById('optional').style.display = "flex";
-        document.getElementById('title_print').style.display = "none";
-        document.getElementById('track').style.display = "none";
-        document.getElementById('jurisdiction').style.display = "none";
-        document.getElementById('journal').style.display = "none";
-        document.getElementById('pos').style.display = "none";
-        document.getElementById('bank').style.display = "none";
-    }
-    else if( a == "Credit_Note" ){
-        document.getElementById('provide').style.display = "flex";
-        document.getElementById('enable').style.display = "flex";
-        document.getElementById('jurisdiction').style.display = "flex";
-        document.getElementById('title_print').style.display = "flex";
-        document.getElementById('optional').style.display = "flex";
-        document.getElementById('track').style.display = "none";
-        document.getElementById('journal').style.display = "none";
-        document.getElementById('pos').style.display = "none";
-        document.getElementById('bank').style.display = "none";
-    }
-    else if( a == "Debit_Note" ){
-        document.getElementById('provide').style.display = "flex";
-        document.getElementById('enable').style.display = "flex";
-        document.getElementById('track').style.display = "flex";
-        document.getElementById('title_print').style.display = "flex";
-        document.getElementById('optional').style.display = "flex";
-        document.getElementById('jurisdiction').style.display = "none";
-        document.getElementById('attd').style.display = "none";
-        document.getElementById('journal').style.display = "none";
-        document.getElementById('pos').style.display = "none";
-        document.getElementById('bank').style.display = "none";   
-    }
-    else if( a == "Delivery_Note" ){
-        document.getElementById('enable').style.display = "flex";
-        document.getElementById('jurisdiction').style.display = "flex";
-        document.getElementById('title_print').style.display = "flex";
-        document.getElementById('optional').style.display = "flex";
-        document.getElementById('track').style.display = "none";
-        document.getElementById('provide').style.display = "none";
-        document.getElementById('journal').style.display = "none";
-        document.getElementById('pos').style.display = "none";
-        document.getElementById('bank').style.display = "none";    
-    }
-    else if( a == "Job_Work_In_Order" ){
-        document.getElementById('title_print').style.display = "flex";
-        document.getElementById('set/alter').style.display = "flex";
-        document.getElementById('optional').style.display = "flex";
-        document.getElementById('track').style.display = "none";
-        document.getElementById('provide').style.display = "none"; 
-        document.getElementById('enable').style.display = "none";
-        document.getElementById('jurisdiction').style.display = "none";
-        document.getElementById('journal').style.display = "none";
-        document.getElementById('pos').style.display = "none";
-        document.getElementById('bank').style.display = "none";    
-    }
-    else if( a == "Job_Work_Out_Order" ){
-        document.getElementById('title_print').style.display = "flex";
-        document.getElementById('set/alter').style.display = "flex";
-        document.getElementById('jurisdiction').style.display = "flex";
-        document.getElementById('optional').style.display = "flex";
-        document.getElementById('track').style.display = "none";
-        document.getElementById('provide').style.display = "none"; 
-        document.getElementById('enable').style.display = "none";
-        document.getElementById('journal').style.display = "none";
-        document.getElementById('pos').style.display = "none";
-        document.getElementById('bank').style.display = "none";
-    }
-    else if( a == "Journal" ){
-        document.getElementById('provide').style.display = "flex";
-        document.getElementById('track').style.display = "flex";
-        document.getElementById('optional').style.display = "flex";
-        document.getElementById('jurisdiction').style.display = "none";
-        document.getElementById('title_print').style.display = "none";
-        document.getElementById('enable').style.display = "none";
-        document.getElementById('set/alter').style.display = "none";
-        document.getElementById('journal').style.display = "none";
-        document.getElementById('pos').style.display = "none";
-        document.getElementById('bank').style.display = "none";    
-    }
-    else if( a == "Material_In" ){
-        document.getElementById('optional').style.display = "flex";
-        document.getElementById('jurisdiction').style.display = "none";
-        document.getElementById('title_print').style.display = "none";
-        document.getElementById('enable').style.display = "none";
-        document.getElementById('provide').style.display = "none";
-        document.getElementById('track').style.display = "none";
-        document.getElementById('set/alter').style.display = "none";
-        document.getElementById('journal').style.display = "none";
-        document.getElementById('pos').style.display = "none";
-        document.getElementById('bank').style.display = "none";
-    }
-    else if( a == "Material_Out" ){
-        document.getElementById('optional').style.display = "flex";
-        document.getElementById('jurisdiction').style.display = "none";
-        document.getElementById('provide').style.display = "none";
-        document.getElementById('track').style.display = "none";
-        document.getElementById('title_print').style.display = "none"; 
-        document.getElementById('set/alter').style.display = "none";
-        document.getElementById('journal').style.display = "none";
-        document.getElementById('pos').style.display = "none";
-        document.getElementById('bank').style.display = "none";   
-    }
-    else if( a == "Memorandum" ){
-        document.getElementById('provide').style.display = "flex";
-        document.getElementById('track').style.display = "flex";
-        document.getElementById('optional').style.display = "none";
-        document.getElementById('enable').style.display = "none";
-        document.getElementById('title_print').style.display = "none";
-        document.getElementById('set/alter').style.display = "none";
-        document.getElementById('journal').style.display = "none";
-        document.getElementById('pos').style.display = "none";
-        document.getElementById('bank').style.display = "none";
         
-       
-    }
-    else if( a == "Payment" ){
-        document.getElementById('provide').style.display = "flex";
-        document.getElementById('track').style.display = "flex";
-        document.getElementById('enable').style.display = "flex";
-        document.getElementById('optional').style.display = "flex";
-        document.getElementById('title_print').style.display = "none";
-        document.getElementById('jurisdiction').style.display = "none";
-        document.getElementById('set/alter').style.display = "none";
-        document.getElementById('journal').style.display = "none";
-        document.getElementById('pos').style.display = "none";
-        document.getElementById('bank').style.display = "none";
-    }
-    else if( a == "Payroll" ){
-        document.getElementById('provide').style.display = "flex";
-        document.getElementById('optional').style.display = "flex";
-        document.getElementById('track').style.display = "none";
-        document.getElementById('enable').style.display = "none";
-        document.getElementById('title_print').style.display = "none";
-        document.getElementById('jurisdiction').style.display = "none";
-        document.getElementById('set/alter').style.display = "none";
-        document.getElementById('journal').style.display = "none";
-        document.getElementById('pos').style.display = "none";
-        document.getElementById('bank').style.display = "none";
-    }
-    else if( a == "Physical_Stock" ){
-        document.getElementById('track').style.display = "flex";
-        document.getElementById('provide').style.display = "none";
-        document.getElementById('optional').style.display = "none";
-        document.getElementById('enable').style.display = "none";
-        document.getElementById('title_print').style.display = "none";
-        document.getElementById('jurisdiction').style.display = "none";
-        document.getElementById('set/alter').style.display = "none";
-        document.getElementById('journal').style.display = "none";
-        document.getElementById('pos').style.display = "none";
-        document.getElementById('bank').style.display = "none";
-    }
-    else if( a == "Purchase" ){
-        document.getElementById('provide').style.display = "flex";
-        document.getElementById('optional').style.display = "flex";
-        document.getElementById('track').style.display = "flex";
-        document.getElementById('enable').style.display = "flex";
-        document.getElementById('title_print').style.display = "none";
-        document.getElementById('jurisdiction').style.display = "none";
-        document.getElementById('set/alter').style.display = "none";
-        document.getElementById('journal').style.display = "none";
-        document.getElementById('pos').style.display = "none";
-        document.getElementById('bank').style.display = "none";
-    }
-    else if( a == "Purchase_Order" ){
-        
-        document.getElementById('optional').style.display = "flex";
-        document.getElementById('enable').style.display = "flex";
-        document.getElementById('provide').style.display = "none";
-        document.getElementById('track').style.display = "none";
-        document.getElementById('title_print').style.display = "none";
-        document.getElementById('jurisdiction').style.display = "none";
-        document.getElementById('set/alter').style.display = "none";
-        document.getElementById('journal').style.display = "none";
-        document.getElementById('pos').style.display = "none";
-        document.getElementById('bank').style.display = "none";
-    }
-    else if( a == "Receipt" ){
-        document.getElementById('provide').style.display = "flex";
-        document.getElementById('optional').style.display = "flex";
-        document.getElementById('enable').style.display = "flex";
-        document.getElementById('track').style.display = "none";
-        document.getElementById('title_print').style.display = "none";
-        document.getElementById('jurisdiction').style.display = "none";
-        document.getElementById('set/alter').style.display = "none";
-        document.getElementById('journal').style.display = "none";
-        document.getElementById('pos').style.display = "none";
-        document.getElementById('bank').style.display = "none";
-    }
-    else if( a == "Receipt_Note" ){
-        document.getElementById('optional').style.display = "flex";
-        document.getElementById('enable').style.display = "flex";
-        document.getElementById('track').style.display = "none";
-        document.getElementById('provide').style.display = "none";
-        document.getElementById('title_print').style.display = "none";
-        document.getElementById('jurisdiction').style.display = "none";
-        document.getElementById('set/alter').style.display = "none";
-        document.getElementById('journal').style.display = "none";
-        document.getElementById('pos').style.display = "none";
-        document.getElementById('bank').style.display = "none";
-    }
-    else if( a == "Rejections_In" ){
-        document.getElementById('optional').style.display = "flex";
-        document.getElementById('provide').style.display = "none";
-        document.getElementById('track').style.display = "none";
-        document.getElementById('enable').style.display = "none";
-        document.getElementById('title_print').style.display = "none";
-        document.getElementById('jurisdiction').style.display = "none";
-        document.getElementById('set/alter').style.display = "none";
-        document.getElementById('journal').style.display = "none";
-        document.getElementById('pos').style.display = "none";
-        document.getElementById('bank').style.display = "none";
-    }
-    else if( a == "Rejections_Out" ){
-        document.getElementById('optional').style.display = "flex";
-        document.getElementById('track').style.display = "flex";
-        document.getElementById('provide').style.display = "none";
-        document.getElementById('enable').style.display = "none";
-        document.getElementById('title_print').style.display = "none";
-        document.getElementById('jurisdiction').style.display = "none";
-        document.getElementById('set/alter').style.display = "none";
-        document.getElementById('journal').style.display = "none";
-        document.getElementById('pos').style.display = "none";
-        document.getElementById('bank').style.display = "none";
-    }
-    else if( a == "Reversing_Journal" ){
-        document.getElementById('provide').style.display = "flex";
-        document.getElementById('track').style.display = "flex";
-        document.getElementById('optional').style.display = "none";
-        document.getElementById('enable').style.display = "none";
-        document.getElementById('title_print').style.display = "none";
-        document.getElementById('jurisdiction').style.display = "none";
-        document.getElementById('set/alter').style.display = "none";
-        document.getElementById('journal').style.display = "none";
-        document.getElementById('pos').style.display = "none";
-        document.getElementById('bank').style.display = "none";
-    }
-    else if( a == "Sales" ){
-        document.getElementById('provide').style.display = "flex";
-        document.getElementById('optional').style.display = "flex";
-        document.getElementById('enable').style.display = "flex";
-        document.getElementById('pos').style.display = "flex";
-        document.getElementById('bank').style.display = "flex";
-        document.getElementById('title_print').style.display = "flex";
-        document.getElementById('jurisdiction').style.display = "flex";
-        document.getElementById('set/alter').style.display = "flex";
-        document.getElementById('track').style.display = "none";
-        document.getElementById('journal').style.display = "none";
-    }
-    else if( a == "Sales_Order" ){
-        document.getElementById('optional').style.display = "flex";
-        document.getElementById('enable').style.display = "flex";
-        document.getElementById('set/alter').style.display = "flex";
-        document.getElementById('pos').style.display = "none";
-        document.getElementById('bank').style.display = "none";
-        document.getElementById('provide').style.display = "none";
-        document.getElementById('track').style.display = "none";
-        document.getElementById('title_print').style.display = "none";
-        document.getElementById('jurisdiction').style.display = "none";
-        
-        document.getElementById('journal').style.display = "none";  
-    }
-    else if( a == "Stock_Journal" ){
-        document.getElementById('optional').style.display = "flex";
-        document.getElementById('journal').style.display = "flex";
-        document.getElementById('track').style.display = "flex";
-        document.getElementById('provide').style.display = "none";
-        document.getElementById('enable').style.display = "none";
-        document.getElementById('title_print').style.display = "none";
-        document.getElementById('jurisdiction').style.display = "none";
-        document.getElementById('set/alter').style.display = "none";
-        document.getElementById('pos').style.display = "none";
-        document.getElementById('bank').style.display = "none";
-    }    
-}
-
-function showPOS(){
-    var status = document.getElementById("POS");
-    var a = status.value;
-    console.log(a);
-    if( a == "Yes" ){
-        console.log(a);
-
-        document.getElementById('msg_1').style.display = "flex";
-        document.getElementById('msg_2').style.display = "flex";
-    }
-    else{
-        document.getElementById('msg_1').style.display = "none";
-        document.getElementById('msg_2').style.display = "none";
-    }
-}
-</script>
-
-{% endblock %}
+    {% endblock %}

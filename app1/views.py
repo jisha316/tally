@@ -1,5 +1,6 @@
 import datetime
-from pyexpat.errors import messages
+from datetime import timedelta
+from django.contrib import messages
 from django.shortcuts import render,redirect
 from .models import *
 
@@ -66,8 +67,9 @@ def cost(request):
 	return render(request,'jisha/cost.html',context)
 
 def rates(request):
-	cr=currency_ROE.objects.all()
-	return render(request,'jisha/rates.html',{'cr' : cr})
+	ccr=tally_currency.objects.all()
+	context={'ccr' : ccr}
+	return render(request,'jisha/rates.html',context)
 
 def cmpny_list(request):
     return render(request, 'jisha/cmpny_list.html')
@@ -85,7 +87,7 @@ def select_c(request):
     return render(request, 'jisha/select_c.html')
 
 def features(request):
-    return render(request, 'jisha/features.html')
+	return render(request, 'jisha/features.html')
 
 def tds(request):
     return render(request, 'jisha/tds.html')
@@ -175,6 +177,22 @@ def create_currency(request):
 		crny.save()
 		print("added")
 		return redirect('/')
+
+def create_ROE(request):
+	if request.method=='POST':
+		dt=request.POST['dt']
+		crname=request.POST['curname']
+		stdr=request.POST['stdr']
+		ssr=request.POST['ssr']
+		bsr=request.POST['bsr']
+		croe=currency_ROE(date_ROE=dt,
+                        currency_name = crname,
+                        std_rate = stdr,
+                        selling_SR = ssr,
+                        buying_SR = bsr)          
+		croe.save()
+		return redirect('/')
+	return render(request,'rates.html')
 
 def alter_currency(request):
 	if request.method=='POST':
@@ -363,23 +381,6 @@ def create_lutbond(request):
 		return redirect('lut_bond')
 	return render(request,'jisha/lut_bond')
 
-def create_ROE(request):
-	if request.method=='POST':
-		dt=request.POST['dt']
-		crncy=request.POST['curname']
-		cr=tally_currency.objects.get(id=crncy)
-		stdr=request.POST['stdr']
-		ssr=request.POST['ssr']
-		bsr=request.POST['bsr']
-		croe=currency_ROE(date_ROE=dt,
-                        currency = cr,
-                        std_rate = stdr,
-                        selling_SR = ssr,
-                        buying_SR = bsr)          
-		croe.save()
-		print("Added")
-		return redirect('/')
-
 def create_gst(request):
 	if request.method=='POST':
 		st = request.POST['state']
@@ -493,10 +494,10 @@ def create_ledger(request):
 						bank_name=bn,branch=brnch,SA_cheque_bk=sacbk,Echeque_p=ecp,SA_chequeP_con=sacpc)
 		
         ldr.save()
-        return redirect('/')
-    return render(request,'ledgers')
+        return render(request,'jisha/ledgers.html',{'ldr':ldr})
 
-def create_ledgerdimension(request):
+def create_ledgerdimension(request,lc):
+	id=create_company.objects.get(id=lc)
 	if request.method == 'POST':
 		cw= request.POST.get('cheque_width')
 		ch= request.POST.get('cheque_height')
@@ -541,6 +542,7 @@ def create_ledgerdimension(request):
 
 		cld.save()
 		return redirect('/')
+	return render(request,'jisha/ledger_chequed.html',{'ldr':id})
 
 def company_create(request):
 	if request.method=="POST":
@@ -561,9 +563,9 @@ def company_create(request):
 		frml_name=request.POST['formal']
 
 		ccmp=create_company.objects.filter(company_name=name)
-		# out=datetime.datetime.strptime (fin_begin,'%Y-%m-%d')+datetime.timedelta (days=364)
-		# a=out.date()
-		# fin_end=a
+		out=datetime.datetime.strptime (fin_begin,'%Y-%m-%d')+timedelta (days=364) 
+		a=out.date()
+		
 
 		if ccmp:
 			messages.info(request,'Company name already exists!!')
@@ -571,14 +573,14 @@ def company_create(request):
 		else:
 			cmp=create_company(company_name=name,mailing_name=mname,address=addr,state=st,country=cntry,
                 pincode=pncd,telephone=tlphn,mobile_no=mbl,fax=fax,email=email,website=wbsit,fin_begin=fin_begin,
-                books_begin=bk_begin,currency_symbol=crny_symbol,formal_name=frml_name)
+                books_begin=bk_begin,currency_symbol=crny_symbol,formal_name=frml_name,fin_end=a)
 			cmp.save()
 			messages.info(request,'Company created successfully(Enable the features as per your business needs)')
 			return render(request,'jisha/features.html',{'cmp':cmp})
 
-def company_features(request,cf):
+def company_feature(request,cf):
+	id=create_company.objects.get(id=cf)
 	if request.method=="POST":
-		cmp_fet=create_company.objects.get(id=cf)
 		ma=request.POST['maintain_account']
 		be=request.POST['billwise_entry']
 		cc=request.POST['cost_centre']
@@ -602,12 +604,12 @@ def company_features(request,cf):
 		prl=request.POST['payroll']
 		maddr=request.POST['multiple_address']
 		mark_mod=request.POST['mark_modified']
-		company=request.POST['company']
 
 		cmp_fet=company_features(maintain_account=ma,billwise_entry=be,cost_centre=cc,interest_calculation=ic,maintain_inventry=mi,
 		account_inventry=ai,multiple_pricelevel=mpl,enable_batches=eb,expiry_date=edt,job_order_procress=jop,cost_tracking=ct,job_costing=jc,discount_column=dc,
 		seperte_actual=sa,gst=gst,tds=tds,tcs=tcs,vat=vat,excise=excise,service_tax=st,payroll=prl,multiple_address=maddr,
-		mark_modified=mark_mod,company=company)
+		mark_modified=mark_mod,company=id)
 
 		cmp_fet.save()
 		return redirect('/')
+	return render(request,'jisha/features.html',{'cmp':id})

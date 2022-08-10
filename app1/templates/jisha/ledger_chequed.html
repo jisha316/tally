@@ -19,7 +19,7 @@
         <h6 class="text-light p-2 m-0 text-center" style="background-color:rgba(0,0,0,.4);">Cheque Printing Configuration for : ledger name
             <p><i>(All Dimensions in mm only)</i></p>
         </h6>
-        <form class="p-2" style="background-color:rgba(0,0,0,.4);" method="post" action="{% url 'create_ledgerdimension' %}" autocomplete="off">
+        <form class="p-2" style="background-color:rgba(0,0,0,.4);" method="post" action="{% url 'create_ledgerdimension' ldr.id %}" autocomplete="off">
             {% csrf_token %}
             
             <div class="row container-fluid  p-0 m-0" style=" border: 1px solid rgba(128, 128, 128, 0.6);">
