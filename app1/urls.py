@@ -94,11 +94,17 @@ urlpatterns = [
 
     path('create_ledger',views.create_ledger,name='create_ledger'),
 
-    path('create_ledgerdimension/<int:lc>',views.create_ledgerdimension,name='create_ledgerdimension'),
+    path('create_ledgerdimension',views.create_ledgerdimension,name='create_ledgerdimension'),
 
     path('company_create',views.company_create,name='company_create'),
 
     path('company_feature/<int:cf>',views.company_feature,name='company_feature'),
+
+    path('create_bankdetails',views.create_bankdetails,name='create_bankdetails'),
+
+    path('create_chequebk',views.create_chequebk,name='create_chequebk'),
+
+    path('create_ledger_gst',views.create_ledger_gst,name='create_ledger_gst'),
 
     
 ]

@@ -613,3 +613,54 @@ def company_feature(request,cf):
 		cmp_fet.save()
 		return redirect('/')
 	return render(request,'jisha/features.html',{'cmp':id})
+
+def create_bankdetails(request):
+	if request.method=='POST':
+		transaction_type=request.POST['transaction_type']
+		acp=request.POST['ac_payee']
+		acc_no=request.POST['acc_no']
+		ifsc_code=request.POST['ifsc_code']
+		bank_name=request.POST['bank_name']
+		lbd=ledger_bankdetails(transaction_type=transaction_type,
+                        cross_using = acp,
+                        acc_no = acc_no,      
+                        ifsc_code = ifsc_code,      
+                        bank_name =bank_name )      
+		lbd.save() 
+		print("Added")
+		return redirect('bank_details')
+	return render(request,'jisha/bank_details.html')
+
+def create_chequebk(request):
+	if request.method=='POST':
+		fn=request.POST['from_number']
+		tn=request.POST['to_number']
+		nc=request.POST['number_cheques']
+		nmc=request.POST['name_chequebk']
+		lcb=ledger_chequebook(from_number=fn,
+                        to_number = tn,
+                        no_of_cheques = nc,
+                        cheque_bookname = nmc)      
+		lcb.save() 
+		print("Added")
+		return redirect('cheque')
+	return render(request,'jisha/cheque.html')
+
+def create_ledger_gst(request):
+	if request.method=='POST':
+		ntrot=request.POST['nature_of_transaction']
+		txbl=request.POST['taxable']
+		txblty=request.POST['taxability']
+		aplifm=request.POST['appicable_from']
+		inttx=request.POST['integrated_tax']
+		ces=request.POST['cess']
+		lgst=ledger_gstvalues(nature_of_transaction=ntrot,
+                        taxable = txbl,
+                        taxability = txblty,
+                        appicable_from = aplifm,
+                        integrated_tax = inttx,
+                        cess = ces)    
+		lgst.save()  
+		print("Added")
+		return redirect('ledger_gst')
+	return render(request,'jisha/ledger_gst.html')

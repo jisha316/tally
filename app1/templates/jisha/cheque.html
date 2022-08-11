@@ -8,10 +8,19 @@
             justify-content: center;   
         }  
     </style>
-
+    <script>
+        
+        function f(){
+            var j=document.getElementById("w").value;
+            var k=document.getElementById("l").value;
+            var n=k-j;
+            document.getElementById("p").value=n;
+        }
+    
+    </script>
     <div class="m-2">
-        <h6  class="bg-info text-light p-2 m-0 text-left">Cheque Book Management<a href="javascript:history.go(-1);" class="close">&times;</a></h6>
-        <form class="p-1" style="background-color:rgba(0,0,0,.4);" method="post" action="" autocomplete="off">
+        <h6  class="bg-info text-light p-2 m-0 text-left">Cheque Book Management<a href="javascript:history.go(-2);" class="close">&times;</a></h6>
+        <form class="p-1" style="background-color:rgba(0,0,0,.4);" method="post" action="{% url 'create_chequebk' %}" autocomplete="off">
             {% csrf_token %}
             <div class="p-3">
                 <div class="container-fluid  p-2 m-0 text-center" ><label for="a">Cheque Range For : </label></div>
@@ -29,10 +38,10 @@
                         
                         <tbody>
                             <tr>
-                                <td><input type="number" class="form-control" name=""></td>
-                                <td><input type="number" class="form-control" name=""></td>
-                                <td><input type="number" class="form-control" name=""></td>
-                                <td><input type="text" class="form-control" name=""></td>
+                                <td><input type="number" class="form-control" name="from_number" id="w"></span></td>
+                                <td><input type="number" class="form-control" name="to_number" id="l"></td>
+                                <td><input type="number" class="form-control" name="number_cheques" onclick="f()" id="p"></td>
+                                <td><input type="text" class="form-control" name="name_chequebk"></td>
                                 <td><button class="btn btn-info">Enter</button></td>
                             </tr>
                         </tbody>

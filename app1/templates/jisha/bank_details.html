@@ -11,25 +11,24 @@
 			display: none;
     	}
     </style>
+    
     <div class="m-0">
         <div class="row container-fluid  p-2 m-0">
             <div class="col-sm-3 m-0 p-0"></div>  
             <div class="col-sm-6 m-0 p-0">
-                <h6  class="bg-info text-light p-2 m-0 text-left">Bank Details<a href="javascript:history.go(-1);" class="close">&times;</a></h6>
+                <h6  class="bg-info text-light p-2 m-0 text-left">Bank Details<a href="javascript:history.go(-2);" class="close">&times;</a></h6>
                 
-                <form class="p-5" style="background-color:rgba(0,0,0,.4);">
-                    
-                    <h6  class=" text-light p-2 m-0 text-center">Bank Details For : {{ bank.name }}</h6>
+                <form class="p-5" style="background-color:rgba(0,0,0,.4);" method="post" action="{% url 'create_bankdetails' %}" autocomplete="off">
+                    {% csrf_token %}
+                    <h6  class=" text-light p-2 m-0 text-center">Bank Details For : </h6>
                     
                     <div class="p-3"><hr>
-                        <div class="row container-fluid  p-0 m-0">
-                            <div class="col-sm-4 m-0 p-0"> <label for="a">Transaction Type</label></div>
-                            <div class="col-sm-6 m-0 p-0"></div>
-                            <div class="col-sm-4 m-0 p-0"></div>
+                        <div class="row container-fluid m-0">
+                            <div class="col-sm-4"> <label for="a">Transaction Type</label></div>
                         </div><hr>
                         <div class="row container-fluid  p-2 m-0">
                             <div class="col-sm-4 m-0 p-0">
-                                <select name="" id="Transaction_Type" class="form-control" onchange="trantype()" required >
+                                <select name="transaction_type" id="Transaction_Type" class="form-control" onchange="trantype()" required >
                                     <option value="End of List">End of List</option>
                                     <option value="Cheque">Cheque</option>
                                     <option value="e - Fund Trasfer">e - Fund Trasfer</option>
@@ -39,9 +38,9 @@
                             <div class="col-sm-7 m-0 p-0"></div>
                         </div>
                         <div class="row container-fluid hide p-2 m-0" id="cross_using">
-                            <div class="col-sm-6 m-0 p-0"> <label for="a">Cross Using</label></div>
+                            <div class="col-sm-6 m-0 p-0"><label for="a">Cross Using</label></div>
                             <div class="col-sm-6 m-0 p-0">
-                                <input type="text" class="form-control" value="A/C Payee" name="">
+                                <input type="text" class="form-control" value="A/C Payee" name="ac_payee">
                             </div>
                             <div class="col-sm-4 m-0 p-0"></div>
                         </div>
@@ -60,13 +59,16 @@
                         <div class="row container-fluid hide p-2 m-0" id="Bank_Name">
                             <div class="col-sm-6 m-0 p-0"> <label for="rgtype" >Bank Name</label></div>
                             <div class="col-sm-6 m-0 p-0">
-                                <select name="bank_name" id="" class="form-control">
-                                    <option value="not applicable">Not applicable</option>  
-                                </select>
+                                <input type="text" id="select_country" name="country" class="form-control"  placeholder="select country" onclick="openForm()">
+                                <!-- <select name="bank_name" id="" class="form-control">
+                                    <option value="not applicable">Not applicable</option>   
+                                </select> -->
                             </div>
                         </div>
                     </div>
                     <div class="enter w-100 py-4"><button class="btn btn-info w-15">CREATE</button></div>  
+                    
+                    
                 </form>
             </div>
         <div class="col-sm-5 m-0 p-0"></div>

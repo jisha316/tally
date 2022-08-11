@@ -255,4 +255,24 @@ class ledger_cheque_demension(models.Model):
     height_sign_area = models.IntegerField(null=True)
     ledger_name = models.ForeignKey(tally_group,on_delete = models.CASCADE,null = True)
 
+class ledger_bankdetails(models.Model):
+    transaction_type = models.CharField(max_length=100)
+    cross_using = models.CharField(max_length=100)
+    acc_no = models.CharField(max_length=100)
+    ifsc_code = models.CharField(max_length=100)
+    bank_name = models.CharField(max_length=100)
+
+class ledger_chequebook(models.Model):
+    from_number = models.IntegerField()
+    to_number = models.IntegerField()
+    no_of_cheques = models.IntegerField()
+    cheque_bookname = models.CharField(max_length=100)
+
+class ledger_gstvalues(models.Model):
+    nature_of_transaction = models.CharField(max_length=255)
+    taxable = models.CharField(max_length=100,null=True)
+    taxability = models.CharField(max_length=100,null=True)
+    appicable_from = models.DateField(null=True)
+    integrated_tax = models.CharField(max_length=100,null=True)
+    cess = models.CharField(max_length=100,null=True)
 

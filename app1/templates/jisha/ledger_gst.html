@@ -23,12 +23,12 @@
                 <h6  class="bg-info text-light p-2 m-0 text-left">GST Details<a href="javascript:history.go(-1);" class="close">&times;</a></h6>
                 <h6  class=" text-light p-2 m-0 text-center" style="background-color: rgba(0,0,0,.4);">GST Details for Ledger</h6>
                 <h6  class=" text-light p-2 m-0 text-center" style="background-color: rgba(0,0,0,.4);">Ledger Name</h6>
-                <form class="p-5" style="background-color:rgba(0,0,0,.4);" method="post" action="{% url 'create_gstdetails' %}" autocomplete="off">
+                <form class="p-5" style="background-color:rgba(0,0,0,.4);" method="post" action="{% url 'create_ledger_gst' %}" autocomplete="off">
                     {% csrf_token %}
                     <div class="row container-fluid  p-2 m-0" id="">
                         <div class="col-sm-4 m-0 p-0"><label for=""><b>Nature of Transaction</b></label></div>
                         <div class="col-sm-6 m-0 p-0">
-                             <select name="" id="Nature_of_Transaction" class="form-control" onchange="natureoftrans()">
+                             <select name="nature_of_transaction" id="Nature_of_Transaction" class="form-control" onchange="natureoftrans()">
                                 <option value="Not_Applicable">Not Applicable</option>
                                 <option value="Branch_Transfer_Inward">Branch Transfer Inward</option>
                                 <option value="Imports_Exempt">Imports Exempt</option>
@@ -71,7 +71,7 @@
                         <div class="row container-fluid  p-2 m-0">
                             <div class="col-sm-4 m-0 p-0"><label for="a">Taxability</label></div>
                             <div class="col-sm-6 m-0 p-0">
-                                <p class="form-control hide" id="taxx">Taxable</p>
+                                <input type="text" name="taxable" id="taxx" class="form-control hide" value="Taxable">
                                 <select name="taxability" id="taxability" class="form-control" onchange="showTaxable()">
                                     <option value="Unknown">Unknown</option>
                                     <option value="Exempt">Exempt</option>
@@ -88,8 +88,8 @@
                                     <div class="modal-body"><br>
                                         <div class="row container-fluid  p-2 m-0">
                                             <div class="col-sm-4 m-0 p-0"> <label for="a">Appicable From</label></div>
-                                            <div class="col-sm-8 m-0 p-0"><input type="text" name="appicable_from" class="form-control"
-                                                value="2022-04-01" onfocus="(this.type='date')" onblur="if(!this.value) this.type='text'"></div>
+                                            <div class="col-sm-8 m-0 p-0"><input type="date" name="appicable_from" class="form-control"
+                                                value="2022-04-01" data-date-format="DD/MM/YYYY"></div>
                                             <div class="col-sm-2 m-0 p-0"></div>
                                         </div>   
                                     </div>
