@@ -253,7 +253,6 @@ class ledger_cheque_demension(models.Model):
     startLF_leftE = models.IntegerField(null=True)
     width_sign_area = models.IntegerField(null=True)
     height_sign_area = models.IntegerField(null=True)
-    ledger_name = models.ForeignKey(tally_group,on_delete = models.CASCADE,null = True)
 
 class ledger_bankdetails(models.Model):
     transaction_type = models.CharField(max_length=100)
@@ -275,4 +274,16 @@ class ledger_gstvalues(models.Model):
     appicable_from = models.DateField(null=True)
     integrated_tax = models.CharField(max_length=100,null=True)
     cess = models.CharField(max_length=100,null=True)
+
+class voucher_advanceconf(models.Model):
+    starting_no = models.IntegerField()
+    numerical_partwidth = models.IntegerField()
+    prefill_zero = models.CharField(max_length=10)
+    restart_applicable_dt = models.DateField()
+    restart_startingno = models.IntegerField()
+    restart_particular = models.CharField(max_length=100)
+    prefix_applicable_dt = models.DateField()
+    prefix_particular = models.CharField(max_length=100)
+    suffix_applicable_dt = models.DateField()
+    suffix_particular = models.CharField(max_length=100)
 

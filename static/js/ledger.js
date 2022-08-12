@@ -254,6 +254,7 @@ function showunder(){
     else if( a == "Purchase_Account" ){ 
         document.getElementById('Type_of_ledger').style.display = "flex";  
         document.getElementById('bank_details').style.display = "flex";
+        document.getElementById('mailing_details').style.display = "none";    
         document.getElementById('loans').style.display = "none";    
         document.getElementById('account').style.display = "none";
         document.getElementById('liabilities').style.display = "none";
@@ -379,6 +380,7 @@ function showunder(){
     }
     else{
         document.getElementById('bank_details').style.display = "flex";
+        document.getElementById('mailing_details').style.display = "flex";
         document.getElementById('Duties&Taxes').style.display = "none"; 
         document.getElementById('Type_of_ledger').style.display = "none"; 
         document.getElementById('rounding_method').style.display = "none"; 

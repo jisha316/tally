@@ -82,6 +82,8 @@ urlpatterns = [
 
     path('person_tds',views.person_tds,name='person_tds'),
 
+    path('ledger_taxgst',views.ledger_taxgst,name='ledger_taxgst'),
+
     path('create_voucher',views.create_voucher,name='create_voucher'),
 
     path('create_gstdetails',views.create_gstdetails,name='create_gstdetails'),
@@ -105,6 +107,8 @@ urlpatterns = [
     path('create_chequebk',views.create_chequebk,name='create_chequebk'),
 
     path('create_ledger_gst',views.create_ledger_gst,name='create_ledger_gst'),
+
+    path('create_voucher_advance',views.create_voucher_advance,name='create_voucher_advance'),
 
     
 ]

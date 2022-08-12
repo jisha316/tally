@@ -11,7 +11,7 @@
 
     <div class="m-3">
         <h6  class="bg-info text-light p-2 m-0 text-left">Multi-Currency Alteration</h6>
-        <form class="p-5" style="background-color:rgba(0,0,0,.4);" method="post" action="{% url 'create_ROE' %}" autocomplete="off">
+        <form class="p-2" style="background-color:rgba(0,0,0,.4);" method="post" action="{% url 'create_ROE' %}" autocomplete="off">
             {% csrf_token %}
             <div class="p-3">
                 <div class="row container-fluid  p-2 m-0">
@@ -39,22 +39,20 @@
                         </thead>
                         
                         <tbody>
-                            <tr>
-                                <td><input type="text" value="1" class="w-50 form-control" name="slno"></td>
-                                <td>
-                                    <select name="curname" class="form-control" style="width: 200px;">
-                                        {% for cr in ccr %}
-                                            <option value="{{ cr.id }}">{{ cr.c_symbol }} ({{ cr.formal_name }})</option>
-                                        {% endfor %}
-                                    </select> 
-                                </td>
-                                <td><input type="text" class="w-100 form-control" name="stdr"></td>
-                                <td></td>
-                                <td><input type="text" class="w-100 form-control" name="ssr"></td>
-                                <td></td>
-                                <td><input type="text" class="w-100 form-control" name="bsr"></td>
-                                <td><button class="btn btn-info">Enter</button></td>
-                            </tr>
+                            {% for cr in ccr %}
+                                <tr>
+                                    <td> {{ forloop.counter }} </td>
+                                    <td> 
+                                        <input type="text" name="curname" id="" value="{{ cr.c_symbol }} ({{ cr.formal_name }})" class="form-control" >
+                                    </td>
+                                    <td><input type="text" class="form-control" value="" name="stdr"></td>
+                                    <td></td>
+                                    <td><input type="text" class="form-control" value="" name="ssr"></td>
+                                    <td></td>
+                                    <td><input type="text" class="form-control" value="" name="bsr"></td>
+                                    <td> <button class="btn btn-info">Enter</button></td> 
+                                </tr>
+                            {% endfor %}
                         </tbody>
                     </Table>
                </div>  

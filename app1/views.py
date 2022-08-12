@@ -125,6 +125,9 @@ def vouch_advance(request):
 def gst_1(request):
     return render(request, 'jisha/gst_1.html')
 
+def ledger_taxgst(request):
+    return render(request, 'jisha/ledger_taxgst.html')
+
 
 def cn(request):
     return render(request, 'jisha/cn.html')
@@ -496,8 +499,7 @@ def create_ledger(request):
         ldr.save()
         return render(request,'jisha/ledgers.html',{'ldr':ldr})
 
-def create_ledgerdimension(request,lc):
-	id=create_company.objects.get(id=lc)
+def create_ledgerdimension(request):
 	if request.method == 'POST':
 		cw= request.POST.get('cheque_width')
 		ch= request.POST.get('cheque_height')
@@ -542,7 +544,7 @@ def create_ledgerdimension(request,lc):
 
 		cld.save()
 		return redirect('/')
-	return render(request,'jisha/ledger_chequed.html',{'ldr':id})
+	return render(request,'jisha/ledger_chequed.html')
 
 def company_create(request):
 	if request.method=="POST":
@@ -664,3 +666,32 @@ def create_ledger_gst(request):
 		print("Added")
 		return redirect('ledger_gst')
 	return render(request,'jisha/ledger_gst.html')
+
+def create_voucher_advance(request):
+	if request.method=='POST':
+		stn=request.POST['starting_no']
+		npw=request.POST['numerical_partwidth']
+		pz=request.POST['prefill_zero']
+		rsad=request.POST['restart_applicable_dt']
+		rsrtsno=request.POST['restart_startingno']
+		repert=request.POST['restart_particular']
+		pread=request.POST['prefix_applicable_dt']
+		preper=request.POST['prefix_particular']
+		sfxapd=request.POST['suffix_applicable_dt']
+		sfxper=request.POST['suffix_particular']
+
+		cva=voucher_advanceconf(starting_no=stn,
+                        numerical_partwidth = npw,
+                        prefill_zero = pz,
+                        restart_applicable_dt = rsad,
+                        restart_startingno = rsrtsno,
+                        restart_particular = repert,
+                        prefix_applicable_dt = pread,
+                        prefix_particular = preper,
+                        suffix_applicable_dt = sfxapd,
+                        suffix_particular = sfxper)    
+		cva.save()  
+		print("Added")
+		return redirect('vouch_advance')
+	return render(request,'jisha/vouch_advance.html')
+

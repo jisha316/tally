@@ -19,7 +19,7 @@
             font-family: arial;
         }
         .modal-content{
-            margin-top: 300px;
+            margin-top: 250px;
             background-color: #213b52;
         }
     </style>
@@ -146,14 +146,14 @@
                         <div class="col-sm-6 m-0 p-0">
                             <select name="assessee_territory" id="aot" class="form-control" onchange="showaot()">
                                 <option value="No">No</option> 
-                                <option value="No">Yes</option>       
+                                <option value="Yes">Yes</option>       
                             </select>    
                         </div>
                     </div>
                     <div class="row container-fluid  p-2">
                         <div class="col-sm-6 m-0 p-0"> <label for="d">GST Application From</label></div>
-                        <div class="col-sm-6 m-0 p-0"><input type="text" name="gst_applicable" class="form-control"
-                            value="2022-04-01" onfocus="(this.type='date')" onblur="if(!this.value) this.type='text'"></div>
+                        <div class="col-sm-6 m-0 p-0"><input type="date" name="gst_applicable" class="form-control"
+                            value="2022-04-01" data-date-format="DD/MM/YYYY"></div>
                     </div>
                     <div class="row container-fluid  p-2">
                         <div class="col-sm-6 m-0 p-0"> <label for="e">GSTIN / UIN</label></div>
@@ -169,94 +169,100 @@
                         </div>
                     </div><br>
                     <h5 class="text-left">Additional Features</h5>
-                    <div class="row container-fluid p-2" id="fldces">
-                        <div class="col-sm-6 m-0 p-0"> <label for="c">Kerala Flood Cess Application</label></div>
-                        <div class="col-sm-6 m-0 p-0">
-                            <select name="kerala_fca" id="flood_cess" class="form-control" onchange="showfloodcess()">
-                                <option value="No">No</option>
-                                <option value="Yes">Yes</option> 
-                            </select>
+                    <div class="row container-fluid p-0" id="regular">
+                        <div class="row container-fluid p-2 m-0" id="fldces">
+                            <div class="col-sm-6 m-0 p-0"> <label for="c">Kerala Flood Cess Application</label></div>
+                            <div class="col-sm-6 m-0 p-0">
+                                <select name="kerala_fca" id="flood_cess" class="form-control" onchange="showfloodcess()">
+                                    <option value="No">No</option>
+                                    <option value="Yes">Yes</option> 
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row container-fluid hide p-2 m-0" id="appform">
+                            <div class="col-sm-6 m-0 p-0"> <label for="">&nbsp;&nbsp;&nbsp;&nbsp;Applicable Form</label></div>
+                            <div class="col-sm-6 m-0 p-0"><input type="date" name="applicable_from" class="form-control"
+                                value="2022-04-01" data-date-format="DD/MM/YYYY">
+                            </div> 
+                        </div>
+                        <div class="row container-fluid  p-2 m-0">
+                            <div class="col-sm-6 m-0 p-0"> <label for="c">Set / Alter GST rate details</label></div>
+                            <div class="col-sm-6 m-0 p-0">
+                                <select name="gst_rate_details" id="set_alter" class="form-control" onchange="showgst()">
+                                    <option value="No">No</option>
+                                    <option value="Yes">Yes</option> 
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row container-fluid  p-2 m-0">
+                            <div class="col-sm-6 m-0 p-0"> <label for="c">Enable tax liability on advance receipts</label></div>
+                            <div class="col-sm-6 m-0 p-0">
+                                <select name="tl_advanceR" id="e" class="form-control">
+                                    <option value="No">No</option>
+                                    <option value="Yes">Yes</option> 
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row container-fluid  p-2 m-0">
+                            <div class="col-sm-6 m-0 p-0"> <label for="c">Enable tax liability on reverse charge
+                                <br><p><i>&nbsp;&nbsp;&nbsp;&nbsp;(Purchase from unregistered dealer)</i></p></label>
+                            </div>
+                            <div class="col-sm-6 m-0 p-0">
+                                <select name="tl_reverseC" id="e" class="form-control">
+                                    <option value="No">No</option>
+                                    <option value="Yes">Yes</option> 
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row container-fluid  p-2 m-0">
+                            <div class="col-sm-6 m-0 p-0"> <label for="c">Enable GST classifications</label></div>
+                            <div class="col-sm-6 m-0 p-0">
+                                <select name="gst_classification" id="e" class="form-control">
+                                    <option value="No">No</option>
+                                    <option value="Yes">Yes</option> 
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row container-fluid  p-2 m-0">
+                            <div class="col-sm-6 m-0 p-0"> <label for="c">Provide LUT/Bond details</label></div>
+                            <div class="col-sm-6 m-0 p-0">
+                                <select name="lut_bond" id="lutbond" class="form-control" onchange="showlutbond()">
+                                    <option value="No">No</option>
+                                    <option value="Yes">Yes</option> 
+                                </select>
+                            </div>
                         </div>
                     </div>
-                    <div class="row container-fluid hide p-2" id="appform">
-                        <div class="col-sm-6 m-0 p-0"> <label for="">&nbsp;&nbsp;&nbsp;&nbsp;Applicable Form</label></div>
-                        <div class="col-sm-6 m-0 p-0"><input type="text" name="applicable_from" class="form-control"
-                            value="2022-04-01" onfocus="(this.type='date')" onblur="if(!this.value) this.type='text'"></div> 
-                    </div>
-                    <div class="row container-fluid  p-2" id="setalt">
-                        <div class="col-sm-6 m-0 p-0"> <label for="c">Set / Alter GST rate details</label></div>
-                        <div class="col-sm-6 m-0 p-0">
-                            <select name="gst_rate_details" id="set_alter" class="form-control" onchange="showgst()">
-                                <option value="No">No</option>
-                                <option value="Yes">Yes</option> 
-                            </select>
+                    
+                    <div class="row container-fluid hide p-0" id="composition">
+                        <div class="row container-fluid  p-2 m-0">
+                            <div class="col-sm-6 m-0 p-0"><label for="">Tax rate for taxable turnover
+                                <br><p><i>&nbsp;&nbsp;&nbsp;&nbsp;(From 1-Apr-22)</i></p>
+                            </label></div>
+                            <div class="col-sm-6 m-0 p-0"><input type="text" name="tax_rate" class="form-control" id="" value="1%"></div> 
                         </div>
-                    </div>
-                    <div class="row container-fluid  p-2" id="taxli">
-                        <div class="col-sm-6 m-0 p-0"> <label for="c">Enable tax liability on advance receipts</label></div>
-                        <div class="col-sm-6 m-0 p-0">
-                            <select name="tl_advanceR" id="e" class="form-control">
-                                <option value="No">No</option>
-                                <option value="Yes">Yes</option> 
-                            </select>
+                        <div class="row container-fluid  p-2 m-0">
+                            <div class="col-sm-6 m-0 p-0"> 
+                                <label for="c">Basic tax calculation
+                                    <br><p><i>&nbsp;&nbsp;&nbsp;&nbsp;(Applicable for GST CMP-08)</i></p>        
+                                </label>
+                            </div>
+                            <div class="col-sm-6 m-0 p-0">
+                                <select name="tax_calculation" id="e" class="form-control">
+                                    <option value="Taxable value">Taxable value</option> 
+                                    <option value="Taxable Nil rated values">Taxable, Exempt and Nil rated values</option>
+                                </select>
+                            </div>
                         </div>
-                    </div>
-                    <div class="row container-fluid  p-2" id="etlo">
-                        <div class="col-sm-6 m-0 p-0"> <label for="c">Enable tax liability on reverse charge
-                            <br><p><i>&nbsp;&nbsp;&nbsp;&nbsp;(Purchase from unregistered dealer)</i></p></label>
-                        </div>
-                        <div class="col-sm-6 m-0 p-0">
-                            <select name="tl_reverseC" id="e" class="form-control">
-                                <option value="No">No</option>
-                                <option value="Yes">Yes</option> 
-                            </select>
-                        </div>
-                    </div>
-                    <div class="row container-fluid  p-2"id="enbgstclz">
-                        <div class="col-sm-6 m-0 p-0"> <label for="c">Enable GST classifications</label></div>
-                        <div class="col-sm-6 m-0 p-0">
-                            <select name="gst_classification" id="e" class="form-control">
-                                <option value="No">No</option>
-                                <option value="Yes">Yes</option> 
-                            </select>
-                        </div>
-                    </div>
-                    <div class="row container-fluid  p-2" id="lutbnd">
-                        <div class="col-sm-6 m-0 p-0"> <label for="c">Provide LUT/Bond details</label></div>
-                        <div class="col-sm-6 m-0 p-0">
-                            <select name="lut_bond" id="lutbond" class="form-control" onchange="showlutbond()">
-                                <option value="No">No</option>
-                                <option value="Yes">Yes</option> 
-                            </select>
-                        </div>
-                    </div>
-                    <div class="row container-fluid hide p-2" id="rate">
-                        <div class="col-sm-6 m-0 p-0"> <label for="">Tax rate for taxable turnover
-                            <br><p><i>&nbsp;&nbsp;&nbsp;&nbsp;(From 1-Apr-22)</i></p>
-                        </label></div>
-                        <div class="col-sm-6 m-0 p-0"><input type="text" name="tax_rate" class="form-control" id="" value="1%"></div> 
-                    </div>
-                    <div class="row container-fluid hide p-2" id="basic_tax">
-                        <div class="col-sm-6 m-0 p-0"> 
-                            <label for="c">Basic tax calculation
-                                <br><p><i>&nbsp;&nbsp;&nbsp;&nbsp;(Applicable for GST CMP-08)</i></p>        
-                            </label>
-                        </div>
-                        <div class="col-sm-6 m-0 p-0">
-                            <select name="tax_calculation" id="e" class="form-control">
-                                <option value="Taxable value">Taxable value</option> 
-                                <option value="Taxable Nil rated values">Taxable, Exempt and Nil rated values</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="row container-fluid hide p-2" id="tax_rate">
-                        <div class="col-sm-6 m-0 p-0"> <label for="c">Enable tax rate for purchase</label></div>
-                        <div class="col-sm-6 m-0 p-0">
-                            <select name="tax_purchase" id="e" class="form-control">
-                                <option value="No">No</option>
-                                <option value="Yes">Yes</option> 
-                            </select>
-                        </div>
+                        <div class="row container-fluid  p-2 m-0">
+                            <div class="col-sm-6 m-0 p-0"> <label for="c">Enable tax rate for purchase</label></div>
+                            <div class="col-sm-6 m-0 p-0">
+                                <select name="tax_purchase" id="e" class="form-control">
+                                    <option value="No">No</option>
+                                    <option value="Yes">Yes</option> 
+                                </select>
+                            </div>
+                        </div>    
                     </div>    
                 </div>
                 
@@ -279,8 +285,8 @@
                     <div class="container-fluid  p-0" id="e-way_bill">
                         <div class="row container-fluid  p-2">
                             <div class="col-sm-6 m-0 p-0"> <label for="d">&nbsp;&nbsp;&nbsp;&nbsp;Applicable Form</label></div>
-                            <div class="col-sm-6 m-0 p-0"><input type="text" name="applicable_f" class="form-control"
-                                value="2022-04-01" onfocus="(this.type='date')" onblur="if(!this.value) this.type='text'"></div>
+                            <div class="col-sm-6 m-0 p-0"><input type="date" name="applicable_f" class="form-control"
+                                value="2022-04-01" data-date-format="DD/MM/YYYY"></div>
                         </div>
                         
 
@@ -339,8 +345,8 @@
                     <div class="container-fluid p-0" id="e-Invoice_applicable">
                         <div class="row container-fluid  p-2" id="">
                             <div class="col-sm-6 m-0 p-0"> <label for="">&nbsp;&nbsp;&nbsp;&nbsp;Applicable Form</label></div>
-                            <div class="col-sm-6 m-0 p-0"><input type="text" name="app_f" class="form-control"
-                                value="2022-04-01" onfocus="(this.type='date')" onblur="if(!this.value) this.type='text'"></div> <br><br>
+                            <div class="col-sm-6 m-0 p-0"><input type="date" name="app_f" class="form-control"
+                                value="2022-04-01" data-date-format="DD/MM/YYYY"></div> <br><br>
                         </div>
                         <div class="row container-fluid  p-2" id="">
                             <div class="col-sm-6 m-0 p-0"> <label for="d">&nbsp;&nbsp;&nbsp;&nbsp;Bill From Place</label></div>
@@ -378,42 +384,24 @@
             if( a== "Regular"){
                 console.log(a);
 
-                document.getElementById('gstr1').style.display ="flex";
-                document.getElementById('fldces').style.display ="flex";
-                document.getElementById('setalt').style.display ="flex";
-                document.getElementById('taxli').style.display ="flex";
-                document.getElementById('etlo').style.display ="flex";
-                document.getElementById('enbgstclz').style.display ="flex";
-                document.getElementById('lutbnd').style.display ="flex";
-                document.getElementById('rate').style.display ="none";
-                document.getElementById('basic_tax').style.display ="none";
-                document.getElementById('tax_rate').style.display ="none";
-                document.getElementById('appform').style.display ="none";
+                document.getElementById('regular').style.display ="flex";
+                document.getElementById('composition').style.display ="none";
             }
             else{
-                document.getElementById('rate').style.display ="flex";
-                document.getElementById('basic_tax').style.display ="flex";
-                document.getElementById('tax_rate').style.display ="flex";
-                document.getElementById('gstr1').style.display="none";
-                document.getElementById('fldces').style.display ="none";
-                document.getElementById('setalt').style.display ="none";
-                document.getElementById('taxli').style.display ="none";
-                document.getElementById('etlo').style.display ="none";
-                document.getElementById('enbgstclz').style.display ="none";
-                document.getElementById('lutbnd').style.display ="none";
-                document.getElementById('appform').style.display ="none";
+                document.getElementById('composition').style.display ="flex";
+                document.getElementById('regular').style.display="none";
             }
         }
         function showfloodcess(){
             var status =document.getElementById("flood_cess");
             var a= status.value;
             console.log(a);
-            if( a== "No"){
+            if( a== "Yes"){
                 console.log(a);
-                document.getElementById('appform').style.display ="none";
+                document.getElementById('appform').style.display ="flex";
             }
             else{
-                document.getElementById('appform').style.display ="flex";
+                document.getElementById('appform').style.display ="none";
             }
         }
         function showaot(){
@@ -422,10 +410,11 @@
             console.log(a);
             if( a == "Yes"){
                 console.log(a);
-                document.getElementById('fldces').style.display ="flex";
+                document.getElementById('fldces').style.display ="none";
+                document.getElementById('appform').style.display ="none";
             }
             else{
-                document.getElementById('fldces').style.display ="none";
+                document.getElementById('fldces').style.display ="flex";
             }
         }
 
