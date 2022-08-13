@@ -110,5 +110,7 @@ urlpatterns = [
 
     path('create_voucher_advance',views.create_voucher_advance,name='create_voucher_advance'),
 
+    path('create_ledger_taxgst',views.create_ledger_taxgst,name='create_ledger_taxgst'),
+
     
 ]

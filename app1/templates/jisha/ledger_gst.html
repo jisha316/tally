@@ -15,6 +15,11 @@
         .hide{
             display: none;
         }
+        .inp{
+            text-align: center;
+            background-color: rgba(0,0,0,.4);
+            border: none;
+        }
     </style>
     <div class="m-0">
         <div class="row container-fluid  p-2 m-0">
@@ -22,9 +27,14 @@
             <div class="col-sm-6 m-0 p-0">
                 <h6  class="bg-info text-light p-2 m-0 text-left">GST Details<a href="javascript:history.go(-1);" class="close">&times;</a></h6>
                 <h6  class=" text-light p-2 m-0 text-center" style="background-color: rgba(0,0,0,.4);">GST Details for Ledger</h6>
-                <h6  class=" text-light p-2 m-0 text-center" style="background-color: rgba(0,0,0,.4);">Ledger Name</h6>
+                <input type="text" class="form-control inp" id="nm">
                 <form class="p-5" style="background-color:rgba(0,0,0,.4);" method="post" action="{% url 'create_ledger_gst' %}" autocomplete="off">
                     {% csrf_token %}
+                    <div class="row container-fluid  p-2 m-0">
+                        <div class="col-sm-4 m-0 p-0"></div>
+                        <div class="col-sm-6 m-0 p-0"></div>
+                        <div class="col-sm-4 m-0 p-0"></div>
+                    </div>
                     <div class="row container-fluid  p-2 m-0" id="">
                         <div class="col-sm-4 m-0 p-0"><label for=""><b>Nature of Transaction</b></label></div>
                         <div class="col-sm-6 m-0 p-0">
@@ -122,6 +132,8 @@
     </div>  
 
     <script>
+        document.getElementById("nm").value = localStorage.getItem("status");
+
         $(document).ready(function(){ 
             $('#taxability').change(function() 
             { 

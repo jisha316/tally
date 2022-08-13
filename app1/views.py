@@ -695,3 +695,27 @@ def create_voucher_advance(request):
 		return redirect('vouch_advance')
 	return render(request,'jisha/vouch_advance.html')
 
+def create_ledger_taxgst(request):
+	if request.method=='POST':
+		regtp=request.POST['registration_type']
+		assester=request.POST['assessee_teritory']
+		comop=request.POST['commerce_operator']
+		partde=request.POST['party_deemed']
+		partytyp=request.POST['party_type']
+		gstinuin=request.POST['gstin_uin']
+		transp=request.POST['transporter']
+		transpid=request.POST['transporter_id']
+
+		lgt=ledger_taxreggst(registration_type=regtp,
+                        assessee_teritory = assester,
+                        commerce_operator = comop,
+                        party_deemed = partde,
+                        party_type = partytyp,
+                        gstin_uin = gstinuin,
+                        transporter = transp,
+                        transporter_id = transpid)    
+		lgt.save()  
+		print("Added")
+		return redirect('ledger_taxgst')
+	return render(request,'jisha/ledger_taxgst.html')
+

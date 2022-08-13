@@ -10,15 +10,23 @@
         .hide{
 			display: none;
     	}
+        .inp{
+            text-align: center;
+            /* background-color: rgba(0,0,0,.4); */
+            border: none;
+        }
     </style>
-
+    <script>
+        document.getElementById("nm").value = localStorage.getItem("status");
+    </script>
   <div class="m-2">
         <h6 class="bg-info text-light p-2 m-0 text-left"><a href="javascript:history.go(-1);" class="close">&times;</a>
             Cheque Dimensions
         </h6>
-        <h6 class="text-light p-2 m-0 text-center" style="background-color:rgba(0,0,0,.4);">Cheque Printing Configuration for : ledger name
+        <h6 class="text-light p-2 m-0 text-center" style="background-color:rgba(0,0,0,.4);">Cheque Printing Configuration for  </h6>
+            <input type="text" class="form-control inp" id="nm">
             <p><i>(All Dimensions in mm only)</i></p>
-        </h6>
+        
         <form class="p-2" style="background-color:rgba(0,0,0,.4);" method="post" action="{% url 'create_ledgerdimension' %}" autocomplete="off">
             {% csrf_token %}
             

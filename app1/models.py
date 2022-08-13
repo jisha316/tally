@@ -1,3 +1,4 @@
+from email import charset
 from django.db import models
 
 # Create your models here.
@@ -287,3 +288,12 @@ class voucher_advanceconf(models.Model):
     suffix_applicable_dt = models.DateField()
     suffix_particular = models.CharField(max_length=100)
 
+class ledger_taxreggst(models.Model):
+    registration_type = models.CharField(max_length=255)
+    assessee_teritory = models.CharField(max_length=10)
+    commerce_operator = models.CharField(max_length=10)
+    party_deemed = models.CharField(max_length=10)
+    party_type = models.CharField(max_length=100)
+    gstin_uin = models.CharField(max_length=100)
+    transporter = models.CharField(max_length=10)
+    transporter_id = models.CharField(max_length=100,null=True)

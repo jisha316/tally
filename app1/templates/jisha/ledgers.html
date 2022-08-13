@@ -26,7 +26,7 @@
                         <div class="row container-fluid  p-2 m-0">
                             <div class="col-sm-3 m-0 p-0"> <label for="a" >Name</label></div>
                             <div class="col-sm-6 m-0 p-0">
-                                <input onchange="showname()" required type="text" class="form-control" id="name"  placeholder="" name="name" required>
+                                <input onchange="showname()" required type="text" class="form-control" id="name" onblur="passvalue()" name="name" required>
                             </div>
                         </div>
                         <div class="row container-fluid  p-2 m-0">
@@ -1127,6 +1127,15 @@
 
                 window.location.href="{% url 'ledger_gst' %}"
             }
+        }
+
+        function passvalue(){
+            var status = document.getElementById('name').value;
+            console.log(status);
+
+            localStorage.setItem("status",status);
+            var a = localStorage.getItem('status');
+            console.log(a);
         }
     </script>
 {% endblock %}
