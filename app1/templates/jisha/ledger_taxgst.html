@@ -17,7 +17,7 @@
             <div class="col-sm-6 m-0 p-0">
                 <h6  class="bg-info text-light p-2 m-0 text-left">GST Details</h6>
                 <h6  class=" text-light p-2 m-0 text-center" style="background-color: rgba(0,0,0,.4);">GST Details</h6>
-                <form class="p-2" style="background-color:rgba(0,0,0,.4);" method="post" action="{% url 'create_ledger_taxgst' %}" autocomplete="off">
+                <form class="p-4" style="background-color:rgba(0,0,0,.4);" method="post" action="{% url 'create_ledger_taxgst' %}" autocomplete="off">
                     {% csrf_token %}
                     <div class="p-3">
                         <div class="row container-fluid  p-2 m-0">
@@ -72,7 +72,7 @@
                         </div>
                         <div class="row container-fluid  p-2 m-0" id="gst">
                             <div class="col-sm-6 m-0 p-0"> <label for="">GSTIN / UIN</label></div>
-                            <div class="col-sm-6 m-0 p-0"><input type="text" name="gstin_uin" class="form-control"></div>
+                            <div class="col-sm-6 m-0 p-0"><input type="text" name="gstin_uin" class="form-control" pattern="^([0][1-9]|[1-2][0-9]|[3][0-7])([a-zA-Z]{5}[0-9]{4}[a-zA-Z]{1}[1-9a-zA-Z]{1}[zZ]{1}[0-9a-zA-Z]{1})+$" title="Invalid GST Number."></div>
                         </div>  
                         <div class="row container-fluid  p-2 m-0" id="trans">
                             <div class="col-sm-6 m-0 p-0"> <label for="">Is a Transporter</label></div>

@@ -14,68 +14,61 @@
             <div class="col-sm-6 m-0 p-0">
                 <h6  class="bg-info text-light p-2 m-0 text-left">TDS Deductor Details</h6>
                 
-                <form class="p-5" style="background-color:rgba(0,0,0,.4);" method="post" action="{% url 'create_tds' %}" autocomplete="off">
+                <form class="p-4" style="background-color:rgba(0,0,0,.4);" method="post" action="{% url 'create_tds' %}" autocomplete="off">
                     {% csrf_token %}
                     <h6  class=" text-light p-2 m-0 text-center">Company TDS Dedoctor Details</h6>
                     <div class="p-3">
                         
                         <div class="row container-fluid  p-2 m-0">
-                            <div class="col-sm-4 m-0 p-0"> <label for="">TAN Registratio Number</label></div>
+                            <div class="col-sm-6 m-0 p-0"> <label for="">TAN Registration Number</label></div>
                             <div class="col-sm-6 m-0 p-0"><input type="text" name="tan_reg_no" class="form-control" id="" placeholder=""></div>
-                            <div class="col-sm-4 m-0 p-0"></div>
                         </div>
                         <div class="row container-fluid  p-2 m-0">
-                            <div class="col-sm-4 m-0 p-0"> <label for="b">Tax Deduction and collection Account Number</label></div>
+                            <div class="col-sm-6 m-0 p-0"> <label for="b">Tax Deduction and collection Account Number</label></div>
                             <div class="col-sm-6 m-0 p-0"><input type="text" name="tax_ded_clctn" class="form-control" id="b" placeholder=""></div> 
-                            <div class="col-sm-7 m-0 p-0"></div>
                         </div>
                         <div class="row container-fluid  p-2 m-0">
-                            <div class="col-sm-4 m-0 p-0"> <label for="a">Deductor Type</label></div>
+                            <div class="col-sm-6 m-0 p-0"> <label for="a">Deductor Type</label></div>
                             <div class="col-sm-6 m-0 p-0">
                                 <select name="deductor_type" id="i" class="form-control">
                                     <option value="Company">Company</option>
                                     <option value="Individual/HUF">Individual/HUF</option>
                                 </select>
                             </div>
-                            <div class="col-sm-4 m-0 p-0"></div>
                         </div>
                         <div class="row container-fluid  p-2 m-0">
-                            <div class="col-sm-4 m-0 p-0"> <label for="a">Deductor branch / division</label></div>
+                            <div class="col-sm-6 m-0 p-0"> <label for="a">Deductor branch / division</label></div>
                             <div class="col-sm-6 m-0 p-0"><input type="text" name="ded_brachdevision" class="form-control" id="a" placeholder=""></div>
-                            <div class="col-sm-4 m-0 p-0"></div>
                         </div>
                         <div class="row container-fluid  p-2 m-0">
-                            <div class="col-sm-4 m-0 p-0"> <label for="b">Set / Alter details of person responsible</label></div>
+                            <div class="col-sm-6 m-0 p-0"> <label for="b">Set / Alter details of person responsible</label></div>
                             <div class="col-sm-6 m-0 p-0"> 
                                 <select name="person_res" id="person" class="form-control" onchange="showperson()">
                                     <option value="No">No</option>
                                     <option value="Yes">Yes</option>
                                 </select>
                             </div>
-                            <div class="col-sm-7 m-0 p-0"></div>
                         </div>
                         
                         <hr>
                         <h6  class=" text-light p-2 m-0 text-center" id="rate">Rate and Exemption Details</h6>
                         <div class="row container-fluid  p-2 m-0">
-                            <div class="col-sm-4 m-0 p-0"> <label for="b">Ignore IT exemption limit for TDS deduction</label></div>
+                            <div class="col-sm-6 m-0 p-0"> <label for="b">Ignore IT exemption limit for TDS deduction</label></div>
                             <div class="col-sm-6 m-0 p-0"> 
                                 <select name="ignore_it" id="i" class="form-control">
                                     <option value="No">No</option>
                                     <option value="Yes">Yes</option>
                                 </select>
                             </div>
-                            <div class="col-sm-7 m-0 p-0"></div>
                         </div>
                         <div class="row container-fluid  p-2 m-0">
-                            <div class="col-sm-4 m-0 p-0"> <label for="b">Activate TDS for syoxk items</label></div>
+                            <div class="col-sm-6 m-0 p-0"> <label for="b">Activate TDS for syoxk items</label></div>
                             <div class="col-sm-6 m-0 p-0"> 
                                 <select name="tds_stock_items" id="i" class="form-control">
                                     <option value="No">No</option>
                                     <option value="Yes">Yes</option>
                                 </select>
                             </div>
-                            <div class="col-sm-7 m-0 p-0"></div>
                         </div>
                     </div>
                     <div class="enter w-100 py-4"><button class="btn btn-info w-15">CREATE</button></div>  

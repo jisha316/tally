@@ -1,4 +1,3 @@
-from email import charset
 from django.db import models
 
 # Create your models here.
@@ -196,19 +195,20 @@ class gst_taxability(models.Model):
 
 class tally_ledger(models.Model):
     name = models.CharField(max_length=255)
-    alias = models.CharField(max_length=255)
+    alias = models.CharField(max_length=255,null=True)
     under = models.CharField(max_length=255)
     grp = models.ForeignKey(tally_group,on_delete = models.CASCADE,null = True)
-    mname = models.CharField(max_length=255)
-    address = models.CharField(max_length=255)
-    state = models.CharField(max_length=255)
-    country = models.CharField(max_length=255)
-    pincode = models.IntegerField()
+    mname = models.CharField(max_length=255,null=True)
+    address = models.CharField(max_length=255,null=True)
+    state = models.CharField(max_length=255,null=True)
+    country = models.CharField(max_length=255,null=True)
+    pincode = models.CharField(max_length=6,null=True)
     bank_details = models.CharField(max_length=20,null=True)
-    pan_no = models.CharField(max_length=100)
-    registration_type = models.CharField(max_length=100)
-    gst_uin = models.CharField(max_length=100)
-    opening_blnc = models.IntegerField()
+    pan_no = models.CharField(max_length=100,null=True)
+    registration_type = models.CharField(max_length=100,null=True)
+    gst_uin = models.CharField(max_length=100,null=True)
+    set_alter_gstdetails = models.CharField(max_length=100,null=True)
+    opening_blnc = models.IntegerField(null=True)
 
     set_odl = models.CharField(max_length=255,null=True)
     ac_holder_nm = models.CharField(max_length=255,null=True)
@@ -220,6 +220,29 @@ class tally_ledger(models.Model):
     SA_cheque_bk = models.CharField(max_length=20,null=True)
     Echeque_p = models.CharField(max_length=20,null=True)
     SA_chequeP_con = models.CharField(max_length=20,null=True)
+    
+    type_of_ledger = models.CharField(max_length=100,null=True)
+    rounding_method = models.CharField(max_length=100,null=True)
+    rounding_limit = models.IntegerField(blank=True, null=True, default=None)
+
+    type_duty_tax = models.CharField(max_length=100,null=True)
+    tax_type = models.CharField(max_length=100,null=True)
+    valuation_type = models.CharField(max_length=100,null=True)
+    rate_per_unit = models.IntegerField(blank=True, null=True, default=None)
+    percentage_of_calcution = models.CharField(max_length=100,null=True)
+    rond_method = models.CharField(max_length=100,null=True)
+    rond_limit = models.IntegerField(blank=True, null=True, default=None)
+
+    gst_applicable = models.CharField(max_length=100,null=True)
+    setalter_gstdetails = models.CharField(max_length=20,null=True)
+    type_of_supply = models.CharField(max_length=100,null=True)
+    assessable_value = models.CharField(max_length=100,null=True)
+    appropriate_to = models.CharField(max_length=100,null=True)
+    method_of_calculation = models.CharField(max_length=100,null=True)
+
+    balance_billbybill = models.CharField(max_length=100,null=True)
+    credit_period = models.CharField(max_length=100,null=True)
+    creditdays_voucher = models.CharField(max_length=100,null=True)
 
 class ledger_cheque_demension(models.Model):
     cheque_width = models.IntegerField(null=True)

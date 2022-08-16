@@ -85,7 +85,7 @@
                                 {% endfor %}
                             </select>
                         </div>
-                        <div class="row container-fluid hide p-2" id="assets">
+                        <div class="row container-fluid hide p-2 m-0" id="assets">
                             <div class="col-sm-6 m-0 p-0"></div>
                             <div class="col-sm-6 m-0 p-0">&nbsp;&nbsp;&nbsp;&nbsp;<label for=""><i>(Current Assets)</i></label></div>
                         </div>
@@ -104,7 +104,7 @@
                         <div class="row container-fluid p-2 m-0 hide" id="bankod_a/c">
                             <div class="col-sm-6 m-0 p-0"> <label for="pan">Set OD limit</label></div>
                             <div class="col-sm-6 m-0 p-0">
-                                <input type="text" value="{{cmp.name}}" class="form-control" id="odlimit" placeholder="" name="set_odl">
+                                <input type="text" value="{{cmp.name}}" class="form-control" id="odlimit" name="set_odl">
                             </div>  
                         </div>
                     </div>
@@ -121,19 +121,20 @@
                         <div class="row container-fluid  p-2 m-0">
                             <div class="col-sm-6 m-0 p-0"> <label for="pan">A/c No.</label></div>
                             <div class="col-sm-6 m-0 p-0">
-                                <input type="text" class="form-control" id="acno" placeholder="" name="acc_no">
+                                <input type="text" class="form-control" id="acno" pattern="^\d{9,18}$" name="acc_no">
                             </div>   
                         </div>
                         <div class="row container-fluid  p-2 m-0">
                             <div class="col-sm-6 m-0 p-0"> <label for="pan">IFS Code</label></div>
                             <div class="col-sm-6 m-0 p-0">
-                                <input type="text" class="form-control" id="ifs" placeholder="" name="ifsc_code">
+                                <input type="text" class="form-control" id="ifs" pattern="^[A-Za-z]{4}[a-zA-Z0-9]{7}$" name="ifsc_code">
                             </div> 
                         </div>
                         <div class="row container-fluid  p-2 m-0">
                             <div class="col-sm-6 m-0 p-0"> <label for="pan">SWIFT Code</label></div>
                             <div class="col-sm-6 m-0 p-0">
-                                <input type="text" class="form-control" id="swift" placeholder="" name="swift_code">
+                                <input type="text" class="form-control" id="swift" name="swift_code" maxlength="11" 
+                                pattern="^[a-zA-Z]{4}[a-zA-Z]{2}[0-9a-zA-Z]{2}[0-9a-zA-Z]{3}$" title="Please fill valid format">
                             </div>  
                         </div>
                         <div class="row container-fluid   p-2 m-0">
@@ -163,13 +164,13 @@
                         <div class="row container-fluid   p-2 m-0">
                             <div class="col-sm-6 m-0 p-0"> <label for="rgtype" >Enable Cheque printing</label></div>
                             <div class="col-sm-6 m-0 p-0">
-                                <select name="Echeque_p" id="chqprnt" class="form-control">
-                                    <option value="No">No</option>
-                                    <option value="Yes" selected>Yes</option>   
+                                <select name="Echeque_p" id="chqprnt" class="form-control" onchange="chequeprint()">
+                                    <option value="Yes">Yes</option>   
+                                    <option value="No">No</option>  
                                 </select>
                             </div>
                         </div>
-                        <div class="row container-fluid   p-2 m-0">
+                        <div class="row container-fluid p-2 m-0" id="setalt_chequep">
                             <div class="col-sm-6 m-0 p-0"> <label for="rgtype" >Set/Alter Cheque Printing Configuration</label></div>
                             <div class="col-sm-6 m-0 p-0">
                                 <select name="SA_chequeP_con" id="ch_config" class="form-control" onchange="chequedimension()">
@@ -184,7 +185,7 @@
                         <div class="row container-fluid  p-2" id="">
                             <div class="col-sm-6 m-0 p-0"> <label for="c">Type of Ledger</label></div>
                             <div class="col-sm-6 m-0 p-0">
-                                <select name="" id="typledger" class="form-control" onchange="typ_ledger()">
+                                <select name="type_of_ledger" id="typledger" class="form-control" onchange="typ_ledger()">
                                     <option value=""></option>
                                     <option value="Not_Applicable">Not Applicable</option>
                                     <option value="Discount">Discount</option>
@@ -196,7 +197,7 @@
                             <div class="row container-fluid  p-2" >
                                 <div class="col-sm-6 m-0 p-0"><label for="c">Rounding Method</label></div>
                                 <div class="col-sm-6 m-0 p-0">
-                                    <select name="" id="" class="form-control">
+                                    <select name="rounding_method" id="" class="form-control">
                                         <option value="Downward_Rounding">Downward Rounding</option>
                                         <option value="Normal_Rounding">Normal Rounding</option>
                                         <option value="Upward_Rounding">Upward Rounding</option>
@@ -206,7 +207,7 @@
                             <div class="row container-fluid p-2" id="">
                                 <div class="col-sm-6 m-0 p-0"><label for="c">Rounding Limit</label></div>
                                 <div class="col-sm-6 m-0 p-0">
-                                    <input type="text" class="form-control" id="" name="" value="1">
+                                    <input type="number" class="form-control" id="" name="rounding_limit" value="1">
                                 </div>
                             </div> 
                         </div>    
@@ -216,7 +217,7 @@
                         <div class="row container-fluid  p-2" id="">
                             <div class="col-sm-6 m-0 p-0"> <label for="c">Type of duty / tax</label></div>
                             <div class="col-sm-6 m-0 p-0">
-                                <select name="" id="type_duty_tax" class="form-control" onchange="typ_dttax()">
+                                <select name="type_duty_tax" id="type_duty_tax" class="form-control" onchange="typ_dttax()">
                                     <option value="null"></option>
                                     <option value="Others">Others</option>
                                     <option value="GST">GST</option>
@@ -226,7 +227,7 @@
                         <div class="row container-fluid hide p-2" id="tax_type">
                             <div class="col-sm-6 m-0 p-0"> <label for="c">Tax Type</label></div>
                             <div class="col-sm-6 m-0 p-0">
-                                <select name="" id="taxtype" class="form-control" onchange="tax_type0()">
+                                <select name="tax_type" id="taxtype" class="form-control" onchange="tax_type0()">
                                     <option value=""></option>
                                     <option value="Central_Tax">Central Tax</option>
                                     <option value="Cess">Cess</option>
@@ -238,7 +239,7 @@
                         <div class="row container-fluid hide p-2" id="val_type">
                             <div class="col-sm-6 m-0 p-0"><label for="c">Valuation Type</label></div>
                             <div class="col-sm-6 m-0 p-0">
-                                <select name="" id="valtype" class="form-control" onchange="valtype0()">
+                                <select name="valuation_type" id="valtype" class="form-control" onchange="valtype0()">
                                     <option value="Any">Any</option>
                                     <option value="Based_on_Quantity">Based on Quantity</option>
                                     <option value="Based_on_Value">Based on Value</option>
@@ -248,13 +249,13 @@
                         <div class="row container-fluid hide p-2" id="rate_per_unit">
                             <div class="col-sm-6 m-0 p-0"> <label for="c">Rate Per unit</label></div>
                             <div class="col-sm-6 m-0 p-0">
-                                <input type="text" class="form-control" id="" name="" value="0">
+                                <input type="number" class="form-control" id="" name="rate_per_unit" value="0">
                             </div>
                         </div> 
                         <div class="row container-fluid hide p-2" id="perc_calc">
                             <div class="col-sm-6 m-0 p-0"> <label for="c">Percentage of calcution</label></div>
                             <div class="col-sm-6 m-0 p-0">
-                                <input type="text" class="form-control" id="" name="" value="0%">
+                                <input type="text" class="form-control" id="" name="percentage_of_calcution" value="0%">
                             </div>
                         </div> 
                     </div>
@@ -263,7 +264,7 @@
                         <div class="row container-fluid  p-2" >
                             <div class="col-sm-6 m-0 p-0"> <label for="c">Rounding Method</label></div>
                             <div class="col-sm-6 m-0 p-0">
-                                <select name="" id="rond_met" class="form-control" onchange="round_mthd()">
+                                <select name="rond_method" id="rond_met" class="form-control" onchange="round_mthd()">
                                     <option value="Not_Applicable">Not Applicable</option>
                                     <option value="Downward_Rounding">Downward Rounding</option>
                                     <option value="Normal_Rounding">Normal Rounding</option>
@@ -274,7 +275,7 @@
                         <div class="row container-fluid hide p-2" id="rounding_limit">
                             <div class="col-sm-6 m-0 p-0"><label for="c">Rounding Limit</label></div>
                             <div class="col-sm-6 m-0 p-0">
-                                <input type="text" class="form-control" id="" name="" value="0">
+                                <input type="number" class="form-control" id="" name="rond_limit" value="0">
                             </div>
                         </div> 
                     </div>    
@@ -284,7 +285,7 @@
                         <div class="row container-fluid p-2 m-0 hide" id="sd_1">
                             <div class="col-sm-6 m-0 p-0"><label for="">Is GST Applicable</label></div>
                             <div class="col-sm-6 m-0 p-0">
-                                <select name="" id="gst_applicable" class="form-control" onchange="showgstA()">
+                                <select name="gst_applicable" id="gst_applicable" class="form-control" onchange="showgstA()">
                                     <option value=""></option>
                                     <option value="Not_Applicable">Not Applicable</option>
                                     <option value="Applicable">Applicable</option>     
@@ -295,7 +296,7 @@
                         <div class="row container-fluid p-2 m-0 hide" id="sd_2">
                             <div class="col-sm-6 m-0 p-0"><label for="">Set / Alter GST Details</label></div>
                             <div class="col-sm-6 m-0 p-0">
-                                <select name="" id="lgst" class="form-control" onchange="ledgergst()">
+                                <select name="setalter_gstdetails" id="lgst" class="form-control" onchange="ledgergst()">
                                     <option value="No">No</option>
                                     <option value="Yes">Yes</option>     
                                 </select>
@@ -304,7 +305,7 @@
                         <div class="row container-fluid p-2 m-0 hide" id="sd_3">
                             <div class="col-sm-6 m-0 p-0"><label for="">Type of Supply</label></div>
                             <div class="col-sm-6 m-0 p-0">
-                                <select name="" id="" class="form-control">
+                                <select name="type_of_supply" id="" class="form-control">
                                     <option value="Good">Good</option>
                                     <option value="Service" selected>Service</option>     
                                 </select>
@@ -314,7 +315,7 @@
                         <div class="row container-fluid p-2 m-0 hide" id="sd_4">
                             <div class="col-sm-6 m-0 p-0"><label for="">Include assessable value calculations for </label></div>
                             <div class="col-sm-6 m-0 p-0">
-                                <select name="" id="call_gst" class="form-control" onchange="showAssets()">
+                                <select name="assessable_value" id="call_gst" class="form-control" onchange="showAssets()">
                                     <option value="Not_Applicable">Not Applicable</option>
                                     <option value="GST">GST</option>     
                                 </select>
@@ -325,7 +326,7 @@
                         <div class="row container-fluid p-2 m-0 hide" id="appropriate_to">
                             <div class="col-sm-6 m-0 p-0"> <label for="" >Appropriate to</label></div>
                             <div class="col-sm-6 m-0 p-0">
-                                <select name="" id="appropriate" class="form-control" onchange="showbased()">
+                                <select name="appropriate_to" id="appropriate" class="form-control" onchange="showbased()">
                                     <option value="Both">Both</option>
                                     <option value="Goods">Goods</option>
                                     <option value="Services">Services</option>      
@@ -335,7 +336,7 @@
                         <div class="row container-fluid  p-2 m-0 hide" id="method_of_calculation">
                             <div class="col-sm-6 m-0 p-0 "> <label for="">Method of Calculation</label></div>
                             <div class="col-sm-6 m-0 p-0">
-                                <select name="" id="" class="form-control">
+                                <select name="method_of_calculation" id="" class="form-control">
                                     <option value="Based_on_Value" >Based on value</option>
                                     <option value="Based_on_Quntity" id="qlty">Based on quantity</option>    
                                 </select>
@@ -347,7 +348,7 @@
                         <div class="row container-fluid  p-2" id="">
                             <div class="col-sm-6 m-0 p-0"> <label for="c">Maintain balance Bill by Bill</label></div>
                             <div class="col-sm-6 m-0 p-0">
-                                <select name="" id="billbybill" class="form-control" onchange="bill()">
+                                <select name="balance_billbybill" id="billbybill" class="form-control" onchange="bill()">
                                     <option value="option"></option>
                                     <option value="Yes">Yes</option>
                                     <option value="No">No</option>
@@ -357,13 +358,13 @@
                         <div class="row container-fluid hide p-2" id="credit_period">
                             <div class="col-sm-6 m-0 p-0"> <label for="c">Default credit period</label></div>
                             <div class="col-sm-6 m-0 p-0">
-                                <input type="text" class="form-control" id="" placeholder="" name="" value="">
+                                <input type="text" class="form-control" name="credit_period" value="">
                             </div>
                         </div> 
                         <div class="row container-fluid hide p-2" id="voucher_enter">
                             <div class="col-sm-6 m-0 p-0"> <label for="c">Check for credit days during voucher enter</label></div>
                             <div class="col-sm-6 m-0 p-0">
-                                <select name="" id="" class="form-control">
+                                <select name="creditdays_voucher" id="" class="form-control">
                                     <option value="No">No</option>
                                     <option value="Yes">Yes</option>
                                 </select>
@@ -403,7 +404,8 @@
                         </div>
                         <div class="row container-fluid  p-2 m-0">
                             <div class="col-sm-6 m-0 p-0"> <label for="d">Pin Code</label></div>
-                            <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" name="pincode"></div>
+                            <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" name="pincode" maxlength="6"
+                                pattern="^[1-9][0-9]{5}$" title="Please enter valid pincode"></div>
                         </div>
                     </div>
                     
@@ -424,7 +426,8 @@
                         <h5>Tax Registration Details</h5>
                         <div class="row container-fluid  p-2 m-0">
                             <div class="col-sm-6 m-0 p-0"> <label for="e">PAN / IT No.</label></div>
-                            <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" name="pan_no" id="c"></div>
+                            <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" name="pan_no" 
+                                maxlength="10" pattern="[a-zA-Z]{5}[0-9]{4}[a-zA-Z]{1}" title="Please enter valid PAN number. E.g. AAAAA9999A" required></div>
                         </div>
                         <div class="row container-fluid  p-2 m-0">
                             <div class="col-sm-6 m-0 p-0"> <label for="e">Registration Type</label></div>
@@ -441,13 +444,13 @@
                         <div class="row container-fluid  p-2 m-0">
                             <div class="col-sm-6 m-0 p-0"> <label for="e">GSTIN / UIN</label></div>
                             <div class="col-sm-6 m-0 p-0">
-                                <input type="text" class="form-control" name="gst_uin" id="c" placeholder="">
+                                <input type="text" class="form-control" name="gst_uin" pattern="^([0][1-9]|[1-2][0-9]|[3][0-7])([a-zA-Z]{5}[0-9]{4}[a-zA-Z]{1}[1-9a-zA-Z]{1}[zZ]{1}[0-9a-zA-Z]{1})+$" title="Please enter valid GST Number." required>
                             </div>
                         </div>
                         <div class="row container-fluid  p-2 m-0">
                             <div class="col-sm-6 m-0 p-0"> <label for="e">Set / Alter GST Details</label></div>
                             <div class="col-sm-6 m-0 p-0">
-                                <select name="registration_type" id="sa_gst" class="form-control">
+                                <select name="set_alter_gstdetails" id="sa_gst" class="form-control">
                                     <option value="No">No</option> 
                                     <option value="Yes">Yes</option>
                                 </select>
@@ -478,6 +481,18 @@
             var name = document.getElementById("name");
             var mailingname = name.value;
             document.getElementById("mailingname").value= mailingname;
+        }
+        function chequeprint(){      
+            var status = document.getElementById("chqprnt");
+            var a = status.value;
+            console.log(a);
+            if( a == "Yes" ){
+                console.log(a);
+                document.getElementById("setalt_chequep").style.display = "flex";
+            }
+            else{
+                document.getElementById("setalt_chequep").style.display = "none";
+            }
         }
 
         function showunder(){

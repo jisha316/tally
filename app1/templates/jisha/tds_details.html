@@ -15,58 +15,50 @@
                 <h6  class="bg-info text-light p-2 m-0 text-left"><a href="javascript:history.go(-2);" class="close">&times;</a>
                     Person Responsible Details
                 </h6>
-                <form class="p-5" style="background-color:rgba(0,0,0,.4);" method="post" action="{% url 'person_tds' %}" autocomplete="off">
+                <form class="p-4" style="background-color:rgba(0,0,0,.4);" method="post" action="{% url 'person_tds' %}" autocomplete="off">
                     {% csrf_token %}
                     <h6  class=" text-light p-2 m-0 text-center">Person Responsible Details</h6>
                     <div class="p-3">
                         
                         <div class="row container-fluid  p-2 m-0">
-                            <div class="col-sm-4 m-0 p-0"> <label for="a">Name</label></div>
+                            <div class="col-sm-6 m-0 p-0"> <label for="a">Name</label></div>
                             <div class="col-sm-6 m-0 p-0"><input type="text" name="name" class="form-control" id="a" placeholder=""></div>
-                            <div class="col-sm-4 m-0 p-0"></div>
                         </div>
                         <div class="row container-fluid  p-2 m-0">
-                            <div class="col-sm-4 m-0 p-0"> <label for="b">Son / Daughter of</label></div>
+                            <div class="col-sm-6 m-0 p-0"> <label for="b">Son / Daughter of</label></div>
                             <div class="col-sm-6 m-0 p-0"><input type="text" name="son_daughter" class="form-control" id="b" placeholder=""></div> 
-                            <div class="col-sm-7 m-0 p-0"></div>
                         </div>
                         <div class="row container-fluid  p-2 m-0">
-                            <div class="col-sm-4 m-0 p-0"> <label for="b">Designation</label></div>
+                            <div class="col-sm-6 m-0 p-0"> <label for="b">Designation</label></div>
                             <div class="col-sm-6 m-0 p-0"><input type="text" name="designation" class="form-control" id="b" placeholder=""></div> 
-                            <div class="col-sm-7 m-0 p-0"></div>
                         </div>
                         <div class="row container-fluid  p-2 m-0">
-                            <div class="col-sm-4 m-0 p-0"> <label for="a">PAN</label></div>
+                            <div class="col-sm-6 m-0 p-0"> <label for="a">PAN</label></div>
                             <div class="col-sm-6 m-0 p-0"><input type="text" name="pan" class="form-control" id="a" placeholder="" value=""></div>
-                            <div class="col-sm-4 m-0 p-0"></div>
                         </div><br>
                         <div class="row container-fluid  p-2 m-0">
-                            <div class="col-sm-4 m-0 p-0"> <label for="a">Flat No.</label></div>
+                            <div class="col-sm-6 m-0 p-0"> <label for="a">Flat No.</label></div>
                             <div class="col-sm-6 m-0 p-0"><input type="text" name="flat_no" class="form-control" id="a" placeholder="" value=""></div>
-                            <div class="col-sm-4 m-0 p-0"></div>
                         </div>
                         <div class="row container-fluid  p-2 m-0">
-                            <div class="col-sm-4 m-0 p-0"> <label for="a">Name of the primises / building</label></div>
+                            <div class="col-sm-6 m-0 p-0"> <label for="a">Name of the primises / building</label></div>
                             <div class="col-sm-6 m-0 p-0"><input type="text" name="premise_name" class="form-control" id="a" placeholder=""></div>
-                            <div class="col-sm-4 m-0 p-0"></div>
                         </div>
                         <div class="row container-fluid  p-2 m-0">
-                            <div class="col-sm-4 m-0 p-0"> <label for="a">Road/Street/Lane</label></div>
+                            <div class="col-sm-6 m-0 p-0"> <label for="a">Road/Street/Lane</label></div>
                             <div class="col-sm-6 m-0 p-0"><input type="text" name="street" class="form-control" id="a" placeholder="" value=""></div>
-                            <div class="col-sm-4 m-0 p-0"></div>
                         </div>
                         <div class="row container-fluid  p-2 m-0">
-                            <div class="col-sm-4 m-0 p-0"> <label for="a">Area/Location</label></div>
+                            <div class="col-sm-6 m-0 p-0"> <label for="a">Area/Location</label></div>
                             <div class="col-sm-6 m-0 p-0"><input type="text" name="area" class="form-control" id="a" placeholder="" value=""></div>
-                            <div class="col-sm-4 m-0 p-0"></div>
                         </div>
                         <div class="row container-fluid  p-2 m-0">
-                            <div class="col-sm-4 m-0 p-0"> <label for="a">Town/City/District</label></div>
+                            <div class="col-sm-6 m-0 p-0"> <label for="a">Town/City/District</label></div>
                             <div class="col-sm-6 m-0 p-0"><input type="text" name="city" class="form-control" id="a" placeholder="" value=""></div>
                             <div class="col-sm-4 m-0 p-0"></div>
                         </div>
                         <div class="row container-fluid  p-2 m-0">
-                            <div class="col-sm-4 m-0 p-0"> <label for="b">State</label></div>
+                            <div class="col-sm-6 m-0 p-0"> <label for="b">State</label></div>
                             <div class="col-sm-6 m-0 p-0"> 
                                 <select name="state" id="" class="form-control">
                                     <option value="">Not Applicable</option>
@@ -111,32 +103,27 @@
                             <div class="col-sm-7 m-0 p-0"></div>
                         </div>
                         <div class="row container-fluid  p-2 m-0">
-                            <div class="col-sm-4 m-0 p-0"> <label for="a">Pincode</label></div>
+                            <div class="col-sm-6 m-0 p-0"> <label for="a">Pincode</label></div>
                             <div class="col-sm-6 m-0 p-0"><input type="text" name="pincode" class="form-control" id="a" placeholder=""></div>
-                            <div class="col-sm-4 m-0 p-0"></div>
                         </div><br>
                         <div class="row container-fluid  p-2 m-0">
-                            <div class="col-sm-4 m-0 p-0"> <label for="a">Mobile No.</label></div>
+                            <div class="col-sm-6 m-0 p-0"> <label for="a">Mobile No.</label></div>
                             <div class="col-sm-6 m-0 p-0"><input type="text" name="mobile_no" class="form-control" id="a" placeholder=""></div>
-                            <div class="col-sm-4 m-0 p-0"></div>
                         </div>
                         <div class="row container-fluid  p-2 m-0">
-                            <div class="col-sm-4 m-0 p-0"> <label for="a">STD Code</label></div>
+                            <div class="col-sm-6 m-0 p-0"> <label for="a">STD Code</label></div>
                             <div class="col-sm-6 m-0 p-0"><input type="text" name="std_code" class="form-control" id="a" placeholder=""></div>
-                            <div class="col-sm-4 m-0 p-0"></div>
                         </div>
                         <div class="row container-fluid  p-2 m-0">
-                            <div class="col-sm-4 m-0 p-0"> <label for="a">Telephone</label></div>
+                            <div class="col-sm-6 m-0 p-0"> <label for="a">Telephone</label></div>
                             <div class="col-sm-6 m-0 p-0"><input type="text" name="telephone" class="form-control" id="a" placeholder=""></div>
-                            <div class="col-sm-4 m-0 p-0"></div>
                         </div>
                         <div class="row container-fluid  p-2 m-0">
-                            <div class="col-sm-4 m-0 p-0"> <label for="a">Email ID</label></div>
+                            <div class="col-sm-6 m-0 p-0"> <label for="a">Email ID</label></div>
                             <div class="col-sm-6 m-0 p-0"><input type="email" name="email" class="form-control" id="a" placeholder=""></div>
-                            <div class="col-sm-4 m-0 p-0"></div>
                             <br><br><br>  
                         </div>
-                        <p>(Note : All the above details will used in Challan,Forms,Returns)</p>
+                        <center><p>(Note : All the above details will used in Challan,Forms,Returns)</p></center>
                     </div>
                     <div class="enter w-100 py-4"><button class="btn btn-info w-15">CREATE</button></div>  
                 </form>

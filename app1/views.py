@@ -490,14 +490,42 @@ def create_ledger(request):
         sacbk=request.POST.get('SA_cheque_bk')
         ecp=request.POST.get('Echeque_p')
         sacpc=request.POST.get('SA_chequeP_con')
+
+        typofled=request.POST.get('type_of_ledger')
+        rometh=request.POST.get('rounding_method')
+        rolmt=request.POST.get('rounding_limit')
+
+        typdutytax=request.POST.get('type_duty_tax')
+        taxtyp=request.POST.get('tax_type')
+        valtype=request.POST.get('valuation_type')
+        rateperu=request.POST.get('rate_per_unit')
+        percalc=request.POST.get('percentage_of_calcution')
+        rondmethod=request.POST.get('rond_method')
+        roimlit=request.POST.get('rond_limit')
+
+        gstapplicbl=request.POST.get('gst_applicable')
+        sagatdet=request.POST.get('setalter_gstdetails')
+        typsupply=request.POST.get('type_of_supply')
+        asseval=request.POST.get('assessable_value')
+        appropto=request.POST.get('appropriate_to')
+        methcalcu=request.POST.get('method_of_calculation')
+
+        balbillbybill=request.POST.get('balance_billbybill')
+        credperiod=request.POST.get('credit_period')
+        creditdaysvouch=request.POST.get('creditdays_voucher')
         
         ldr=tally_ledger(name=nm,alias=als,under=under,mname=mname,address=adr,state=st,country=cntry,
 						pincode=pin,pan_no=pno,bank_details=bdetls,registration_type=rtype,gst_uin=gst_uin,
 						opening_blnc=opnbn,set_odl=spdl,ac_holder_nm=achnm,acc_no=acno,ifsc_code=ifsc,swift_code=scode,
-						bank_name=bn,branch=brnch,SA_cheque_bk=sacbk,Echeque_p=ecp,SA_chequeP_con=sacpc)
+						bank_name=bn,branch=brnch,SA_cheque_bk=sacbk,Echeque_p=ecp,SA_chequeP_con=sacpc,
+						type_of_ledger=typofled,rounding_method=rometh,rounding_limit=rolmt,type_duty_tax=typdutytax,tax_type=taxtyp,
+						valuation_type=valtype,rate_per_unit=rateperu,percentage_of_calcution=percalc,rond_method=rondmethod,rond_limit=roimlit,
+						gst_applicable=gstapplicbl,setalter_gstdetails=sagatdet,type_of_supply=typsupply,assessable_value=asseval,
+						appropriate_to=appropto,method_of_calculation=methcalcu,balance_billbybill=balbillbybill,credit_period=credperiod,
+						creditdays_voucher=creditdaysvouch)
 		
         ldr.save()
-        return render(request,'jisha/ledgers.html',{'ldr':ldr})
+        return render(request,'jisha/ledgers.html')
 
 def create_ledgerdimension(request):
 	if request.method == 'POST':

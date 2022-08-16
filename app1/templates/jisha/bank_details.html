@@ -23,7 +23,11 @@
             <div class="col-sm-6 m-0 p-0">
                 <h6  class="bg-info text-light p-2 m-0 text-left">Bank Details<a href="javascript:history.go(-2);" class="close">&times;</a></h6>
                 <h6  class=" text-light p-2 m-0 text-center" style="background-color:rgba(0,0,0,.4);">Bank Details For</h6> 
-                <input type="text" class="form-control inp" id="nm"> 
+                <div class="row container-fluid  p-2 m-0" style="background-color: rgba(0,0,0,.4);">
+                    <div class="col-sm-4 m-0 p-0"></div>  
+                    <div class="col-sm-4 m-0 p-0"><input type="text" class="form-control inp" id="nm"> </div>
+                    <div class="col-sm-4 m-0 p-0"></div>
+                </div>
                 <form class="p-2" style="background-color:rgba(0,0,0,.4);" method="post" action="{% url 'create_bankdetails' %}" autocomplete="off">
                     {% csrf_token %}
                     
