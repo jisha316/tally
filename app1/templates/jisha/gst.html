@@ -10,7 +10,7 @@
         .hide{
             display: none;
         }
-        .card {
+        .modal-body {
             color: #fff;
             background-color: #213b52;
             max-width: 400px;
@@ -125,16 +125,14 @@
                         <div class="modal-dialog">
                             <div class="modal-content" >
                                 <div class="modal-body"><br>
-                                    <div class="card"><br>
-                                        <p class="price">You have the changed the registration type from Regular to 
-                                            Composition Need help to know what next?
-                                        </p><br><br><br>
-                                        <div>
-                                            <a href="https://help.tallysolutions.com/tally-prime/india-gst-composition/setup-tallyprime-for-gst-composition/">
-                                                <span style="color: #fff;">Yes </span><span style="color: #000;"> Or </span> </a>
-                                            <a href="" style="color: #fff;" data-dismiss="modal"> No</a> 
-                                            <br><br>
-                                        </div>
+                                    <p class="price">You have the changed the registration type from Regular to 
+                                        Composition Need help to know what next?
+                                    </p><br><br>
+                                    <div>
+                                        <a href="https://help.tallysolutions.com/tally-prime/india-gst-composition/setup-tallyprime-for-gst-composition/">
+                                            <span style="color: #fff;">Yes </span><span style="color: #000;"> Or </span> </a>
+                                        <a href="" style="color: #fff;" data-dismiss="modal"> No</a> 
+                                        <br><br>
                                     </div>
                                 </div>
                             </div>
@@ -157,7 +155,10 @@
                     </div>
                     <div class="row container-fluid  p-2">
                         <div class="col-sm-6 m-0 p-0"> <label for="e">GSTIN / UIN</label></div>
-                        <div class="col-sm-6 m-0 p-0"><input type="text" name="gstin_uin" class="form-control" id="c" placeholder=""></div>
+                        <div class="col-sm-6 m-0 p-0"><input type="text" name="gstin_uin" class="form-control" id="c" placeholder=""
+                            pattern="^([0][1-9]|[1-2][0-9]|[3][0-7])([a-zA-Z]{5}[0-9]{4}[a-zA-Z]{1}[1-9a-zA-Z]{1}[zZ]{1}[0-9a-zA-Z]{1})+$"
+                            title="Please enter valid GST Number." required>
+                        </div>
                     </div>
                     <div class="row container-fluid  p-2" id="gstr1">
                         <div class="col-sm-6 m-0 p-0"> <label for="d">Periodicity Of GSTR1</label></div>

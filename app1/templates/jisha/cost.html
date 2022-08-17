@@ -13,22 +13,24 @@
             <div class="col-sm-3 m-0 p-0"></div>  
             <div class="col-sm-6 m-0 p-0">
                 <h6  class="bg-info text-light p-2 m-0 text-center">Cost Centre Creation</h6>
-                <form class="p-5" style="background-color:rgba(0,0,0,.4);" method="post" action="{% url 'load_centre' %}" autocomplete="off">
+                <form class="p-3" style="background-color:rgba(0,0,0,.4);" method="post" action="{% url 'load_centre' %}" autocomplete="off">
                     {% csrf_token %}
                     <div class="p-3">
                         <div class="row container-fluid  p-2 m-0">
-                            <div class="col-sm-4 m-0 p-0"> <label for="a">Name</label></div>
-                            <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" name="cst_name" id="" placeholder=""></div>
-                            <div class="col-sm-4 m-0 p-0"></div>
+                            <div class="col-sm-2 m-0 p-0"></div>
+                            <div class="col-sm-3 m-0 p-0"> <label for="a">Name</label></div>
+                            <div class="col-sm-5 m-0 p-0"><input type="text" class="form-control" name="cst_name" id="" placeholder=""></div>
+                            
                         </div>
                         <div class="row container-fluid  p-2 m-0">
-                            <div class="col-sm-4 m-0 p-0"> <label for="b">Alias</label></div>
-                            <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" name="alias" id="b" placeholder=""></div> 
-                            <div class="col-sm-7 m-0 p-0"></div>
+                            <div class="col-sm-2 m-0 p-0"></div>
+                            <div class="col-sm-3 m-0 p-0"> <label for="b">Alias</label></div>
+                            <div class="col-sm-5 m-0 p-0"><input type="text" class="form-control" name="alias" id="b" placeholder=""></div> 
                         </div>
                         <div class="row container-fluid  p-2 m-0">
-                            <div class="col-sm-4 m-0 p-0"> <label for="b">Under</label></div>
-                            <div class="col-sm-6 m-0 p-0"> 
+                            <div class="col-sm-2 m-0 p-0"></div>
+                            <div class="col-sm-3 m-0 p-0"> <label for="b">Under</label></div>
+                            <div class="col-sm-5 m-0 p-0"> 
                                 <select name="c_under" id="i" class="form-control">
                                     <option value="Primary">Primary</option>
                                     {% for cost_centre in costt %}
@@ -36,10 +38,9 @@
                                     {% endfor %}
                                 </select>
                             </div>
-                            <div class="col-sm-7 m-0 p-0"></div>
                         </div>
                     </div>
-                    <div class="enter w-100 py-4"><button class="btn btn-info w-15">CREATE</button></div>  
+                    <div class="enter w-100 py-1"><button class="btn btn-info w-15">CREATE</button></div>  
                 </form>
             </div>
         <div class="col-sm-5 m-0 p-0"></div>

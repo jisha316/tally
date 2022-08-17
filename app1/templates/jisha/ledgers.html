@@ -134,7 +134,7 @@
                             <div class="col-sm-6 m-0 p-0"> <label for="pan">SWIFT Code</label></div>
                             <div class="col-sm-6 m-0 p-0">
                                 <input type="text" class="form-control" id="swift" name="swift_code" maxlength="11" 
-                                pattern="^[a-zA-Z]{4}[a-zA-Z]{2}[0-9a-zA-Z]{2}[0-9a-zA-Z]{3}$" title="Please fill valid format">
+                                pattern="^[a-zA-Z]{6}[0-9a-zA-Z]{5}$" title="Please fill valid format">
                             </div>  
                         </div>
                         <div class="row container-fluid   p-2 m-0">
@@ -408,7 +408,6 @@
                                 pattern="^[1-9][0-9]{5}$" title="Please enter valid pincode"></div>
                         </div>
                     </div>
-                    
 
                     <div class="row container-fluid  p-0" id="bank_details">
                         <h5 class="text-center">Banking Details</h5>
@@ -443,14 +442,15 @@
                         </div>
                         <div class="row container-fluid  p-2 m-0">
                             <div class="col-sm-6 m-0 p-0"> <label for="e">GSTIN / UIN</label></div>
-                            <div class="col-sm-6 m-0 p-0">
-                                <input type="text" class="form-control" name="gst_uin" pattern="^([0][1-9]|[1-2][0-9]|[3][0-7])([a-zA-Z]{5}[0-9]{4}[a-zA-Z]{1}[1-9a-zA-Z]{1}[zZ]{1}[0-9a-zA-Z]{1})+$" title="Please enter valid GST Number." required>
+                            <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" name="gst_uin" placeholder="" id=""
+                                pattern="^([0][1-9]|[1-2][0-9]|[3][0-7])([a-zA-Z]{5}[0-9]{4}[a-zA-Z]{1}[1-9a-zA-Z]{1}[zZ]{1}[0-9a-zA-Z]{1})+$"
+                                title="Please enter valid GST Number." required>
                             </div>
                         </div>
                         <div class="row container-fluid  p-2 m-0">
                             <div class="col-sm-6 m-0 p-0"> <label for="e">Set / Alter GST Details</label></div>
                             <div class="col-sm-6 m-0 p-0">
-                                <select name="set_alter_gstdetails" id="sa_gst" class="form-control">
+                                <select name="set_alter_gstdetails" id="ledtaxgst" class="form-control" onchange="ledger_taxgst()">
                                     <option value="No">No</option> 
                                     <option value="Yes">Yes</option>
                                 </select>
@@ -1141,6 +1141,15 @@
             if(a=="Yes"){
 
                 window.location.href="{% url 'ledger_gst' %}"
+            }
+        }
+
+        function ledger_taxgst(){
+            var status = document.getElementById("ledtaxgst");
+            var a = status.value;
+            if(a=="Yes"){
+
+                window.location.href="{% url 'ledger_taxgst' %}"
             }
         }
 

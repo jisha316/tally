@@ -67,7 +67,7 @@ def cost(request):
 	return render(request,'jisha/cost.html',context)
 
 def rates(request):
-	ccr=tally_currency.objects.all()
+	ccr=crt_currency.objects.all()
 	context={'ccr' : ccr}
 	return render(request,'jisha/rates.html',context)
 
@@ -84,7 +84,9 @@ def gst_details(request):
     return render(request, 'jisha/gst_details.html')
 
 def select_c(request):
-    return render(request, 'jisha/select_c.html')
+	sel = create_company.objects.all()
+	context={'sel' : sel}
+	return render(request,'jisha/select_c.html',context)
 
 def features(request):
 	return render(request, 'jisha/features.html')
@@ -168,7 +170,7 @@ def create_currency(request):
 		spc=request.POST['add_space']
 		wrd=request.POST['word_rep']
 		ndcml=request.POST['no_decimal']
-		crny=tally_currency(c_symbol=smbl,
+		crny=crt_currency(c_symbol=smbl,
                         formal_name = fname,
                         iso_Ccode = isoc,
                         decimal_place = dcml,

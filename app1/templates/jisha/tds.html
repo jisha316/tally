@@ -21,11 +21,13 @@
                         
                         <div class="row container-fluid  p-2 m-0">
                             <div class="col-sm-6 m-0 p-0"> <label for="">TAN Registration Number</label></div>
-                            <div class="col-sm-6 m-0 p-0"><input type="text" name="tan_reg_no" class="form-control" id="" placeholder=""></div>
+                            <div class="col-sm-6 m-0 p-0"><input type="text" name="tan_reg_no" class="form-control"></div>
                         </div>
                         <div class="row container-fluid  p-2 m-0">
                             <div class="col-sm-6 m-0 p-0"> <label for="b">Tax Deduction and collection Account Number</label></div>
-                            <div class="col-sm-6 m-0 p-0"><input type="text" name="tax_ded_clctn" class="form-control" id="b" placeholder=""></div> 
+                            <div class="col-sm-6 m-0 p-0"><input type="text" name="tax_ded_clctn" class="form-control" maxlength="10" 
+                                pattern="[a-zA-Z]{4}[0-9]{5}[a-zA-Z]{1}" title="Invalid TAN Structure. E.g. AAAA12345A">
+                            </div> 
                         </div>
                         <div class="row container-fluid  p-2 m-0">
                             <div class="col-sm-6 m-0 p-0"> <label for="a">Deductor Type</label></div>

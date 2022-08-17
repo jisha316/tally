@@ -52,8 +52,12 @@
                         
                         <tbody>
                             <tr>
-                                <td><input type="number" class="form-control" name="from_number" id="w"></span></td>
-                                <td><input type="number" class="form-control" name="to_number" id="l"></td>
+                                <td><input type="text" class="form-control" name="from_number" id="w" maxlength="9" pattern="^\d{6,9}$" 
+                                    title="Cheque Number atleast 6 digit long">
+                                </td>
+                                <td><input type="text" class="form-control" name="to_number" id="l" maxlength="9" pattern="^\d{6,9}$" 
+                                    title="Cheque Number atleast 6 digit long and ">
+                                </td>
                                 <td><input type="number" class="form-control" name="number_cheques" onclick="f()" id="p"></td>
                                 <td><input type="text" class="form-control" name="name_chequebk"></td>
                                 <td><button class="btn btn-info">Enter</button></td>
