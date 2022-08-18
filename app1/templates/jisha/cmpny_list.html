@@ -18,6 +18,7 @@
         }
         .btns_prnt{
             width: 100%;
+            color: #fff;
             text-align: end;
             background-color: rgba(240, 248, 255, 0);
             border: none;
@@ -34,6 +35,19 @@
         <a href="create_cmpny"><button  class="btns_prnt" id="create"><h6>Create Company</h6></button></a>
         <a href="select_c"><button  class="btns_prnt" id="create"><h6>Select Company</h6></button></a>
         <a href="shut_cmpny"><button  class="btns_prnt" id="create"><h6>Shut Company</h6></button></a>
-        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+        <hr>
+        {% for c in com %}
+            <a href="{% url 'dashboard' c.id %}">
+                <button  class="btns_prnt" id="create">
+                    <div class="row">
+                        <div class="col-md-4">{{c.company_name}}</div>
+                        <div class="col-md-7">({{c.id}})</div>
+                    
+                    </div>
+                </button>
+            </a>
+        {% endfor %}
+
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
     </div>   
 {% endblock %}

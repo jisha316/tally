@@ -18,6 +18,7 @@ class create_company(models.Model):
     fin_begin = models.DateField()
     books_begin = models.DateField()
     fin_end = models.DateField()
+    status=models.BooleanField(default=False)
 
 class company_features(models.Model):
     maintain_account = models.CharField(max_length=10)

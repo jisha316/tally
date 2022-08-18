@@ -38,6 +38,25 @@ def vouchpage(request):
     return render(request, 'vouchpage.html')
 
 #......................jisha........................
+
+def home(request):
+    com=create_company.objects.all()
+    for i in com:
+        i.status=False
+        i.save()
+    comp1=create_company.objects.first()
+    comp1.status=True
+   
+    comp1.save()
+    return render(request,'jisha/home.html',{'comp1':comp1})
+
+def dashboard(request,pk):
+    comp=create_company.objects.get(id=pk)
+    comp.status=True
+    comp.save()
+    com=create_company.objects.filter(status=True)  
+    return render(request,'jisha/home.html',{'comp1':comp,'com1':com})
+
 def ledgers(request):
 	grp=tally_group.objects.all()
 	context={'grp' : grp}
@@ -72,7 +91,8 @@ def rates(request):
 	return render(request,'jisha/rates.html',context)
 
 def cmpny_list(request):
-    return render(request, 'jisha/cmpny_list.html')
+	com=create_company.objects.filter(status=True) 
+	return render(request, 'jisha/cmpny_list.html',{'com':com})
 
 def create_cmpny(request):
     return render(request, 'jisha/create_cmpny.html')
@@ -104,7 +124,16 @@ def bank_details(request):
 	return render(request,'jisha/bank_details.html')
 
 def shut_cmpny(request):
-    return render(request, 'jisha/shut_cmpny.html')
+	com=create_company.objects.filter(status=True) 
+	return render(request, 'jisha/shut_cmpny.html',{'com':com})
+
+def shut(request,pk):
+    com=create_company.objects.get(id=pk)
+    com.status=False
+    com.save()
+    comp1=create_company.objects.first()
+    com=create_company.objects.filter(status=True) 
+    return render(request,'jisha/home.html',{'com1':com,'comp1':comp1})
 
 def shut_msg(request):
     return render(request, 'jisha/shut_msg.html')
@@ -129,7 +158,6 @@ def gst_1(request):
 
 def ledger_taxgst(request):
     return render(request, 'jisha/ledger_taxgst.html')
-
 
 def cn(request):
     return render(request, 'jisha/cn.html')

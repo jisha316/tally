@@ -16,6 +16,10 @@ urlpatterns = [
     path('vouchpage',views.vouchpage,name='vouchpage'),
 
 #.........................jisha..........................
+    path('home',views.home,name='home'),
+
+    path('dashboard/<int:pk>',views.dashboard,name="dashboard"),
+
     path('ledgers',views.ledgers,name='ledgers'),
 
     path('vouchers',views.vouchers,name='vouchers'),
@@ -51,6 +55,8 @@ urlpatterns = [
     path('bank_details',views.bank_details,name='bank_details'),
 
     path('shut_cmpny',views.shut_cmpny,name='shut_cmpny'),
+
+    path('shut/<int:pk>',views.shut,name='shut'),
 
     path('shut_msg',views.shut_msg,name='shut_msg'),
 

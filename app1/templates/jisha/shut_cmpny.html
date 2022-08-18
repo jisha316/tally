@@ -30,6 +30,7 @@
             text-decoration: none;
         }
         .btns_prnt{
+            color: #fff;
             width: 100%;
             text-align: end;
             background-color: rgba(240, 248, 255, 0);
@@ -50,31 +51,17 @@
                     <h6  class="bg-info text-light p-0 m-0 text-left">Shut Company</h6>
                     <h6  class="text-light p-1 m-0 text-center">List of Companies</h6>
                     <hr>
-                    <a href="" data-toggle="modal" data-target="#myModal">
-                        <button  class="btns_prnt" id="create">
-                            <div class="row">
-                                <div class="col-md-4" style="color: white;">d pvt ltd</div>
-                                <div class="col-md-7" style="color: white;">(10001)</div>
-                            </div>
-                        </button>
-                    </a>
-                    <div class="modal fade" id="myModal" role="dialog" >
-                        <div class="modal-dialog">
-                            <div class="modal-content" >
-                                <div class="modal-body"><br>
-                                    <p class="price">They will close all the open reports , Vouchers and masters, without saving changes you 
-                                        might have made. Do you want shut the company ?
-                                    </p><br>
-                                    <div>
-                                        <a href="" data-dismiss="modal"><span style="color: #fff;">Yes</a></span><span style="color: #000;">Or</span>
-                                        <a href="" data-dismiss="modal">No</a>
-                                        <br><br>
-                                    </div> 
+                    {% for c in com %}
+                        <a href="{% url 'shut' c.id %}">
+                            <button  class="btns_prnt" id="create">
+                                <div class="row">
+                                    <div class="col-md-4">{{c.company_name}}</div>
+                                    <div class="col-md-7">({{c.id}})</div>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                            </button>
+                        </a>
+                    {% endfor %}   
+                    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
                 </div>   
             </div>   
         </form>
