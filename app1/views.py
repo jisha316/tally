@@ -38,38 +38,67 @@ def vouchpage(request):
     return render(request, 'vouchpage.html')
 
 #......................jisha........................
-
-def home(request):
-    com=create_company.objects.all()
+def dashboard(request):
+    com=create_companies.objects.all()
     for i in com:
         i.status=False
         i.save()
-    comp1=create_company.objects.first()
+    comp1=create_companies.objects.first()
     comp1.status=True
    
     comp1.save()
     return render(request,'jisha/home.html',{'comp1':comp1})
 
-def dashboard(request,pk):
-    comp=create_company.objects.get(id=pk)
+def dash_board(request,pk):
+    comp=create_companies.objects.get(id=pk)
     comp.status=True
     comp.save()
-    com=create_company.objects.filter(status=True)  
+    com=create_companies.objects.filter(status=True)  
     return render(request,'jisha/home.html',{'comp1':comp,'com1':com})
+
+def company_list(request):
+    com=create_companies.objects.all()
+    return render(request,'jisha/company_list.html',{'comp':com})    
+
+def change_company(request):
+	com=create_companies.objects.filter(status=True) 
+	return render(request, 'jisha/change_company.html',{'com':com})
+
+def select_c(request):
+	comp = create_companies.objects.all()
+	return render(request,'jisha/select_c.html',{'comp1':comp})
+
+def shut_cmpny(request):
+	com=create_companies.objects.filter(status=True) 
+	return render(request, 'jisha/shut_cmpny.html',{'com':com})
+
+def shut(request,pk):
+    com=create_companies.objects.get(id=pk)
+    com.status=False
+    com.save()
+    comp1=create_companies.objects.first()
+    com=create_companies.objects.filter(status=True) 
+    return render(request,'jisha/home.html',{'com1':com,'comp1':comp1})
+
+def shut_msg(request):
+    return render(request, 'jisha/shut_msg.html')
 
 def ledgers(request):
 	grp=tally_group.objects.all()
-	context={'grp' : grp}
-	return render(request,'jisha/ledgers.html',context)
+	com=create_companies.objects.filter(status=True) 
+	return render(request,'jisha/ledgers.html',{'grp' : grp,'com':com})
 
 def ledg(request):
     return render(request, 'jisha/ledg.html')
 
 def vouchers(request):
-    return render(request, 'jisha/vouchers.html')
+	com=create_companies.objects.filter(status=True) 
+	return render(request, 'jisha/vouchers.html',{'com':com})
 
 def groups(request):
-    return render(request, 'jisha/groups.html')
+	com=create_companies.objects.filter(status=True) 
+	return render(request, 'jisha/groups.html',{'com':com})
+
 
 def currency(request):
     return render(request, 'jisha/currency.html')
@@ -90,10 +119,6 @@ def rates(request):
 	context={'ccr' : ccr}
 	return render(request,'jisha/rates.html',context)
 
-def cmpny_list(request):
-	com=create_company.objects.filter(status=True) 
-	return render(request, 'jisha/cmpny_list.html',{'com':com})
-
 def create_cmpny(request):
     return render(request, 'jisha/create_cmpny.html')
 
@@ -102,11 +127,6 @@ def gst(request):
 
 def gst_details(request):
     return render(request, 'jisha/gst_details.html')
-
-def select_c(request):
-	sel = create_company.objects.all()
-	context={'sel' : sel}
-	return render(request,'jisha/select_c.html',context)
 
 def features(request):
 	return render(request, 'jisha/features.html')
@@ -122,21 +142,6 @@ def c_rates(request):
 
 def bank_details(request):
 	return render(request,'jisha/bank_details.html')
-
-def shut_cmpny(request):
-	com=create_company.objects.filter(status=True) 
-	return render(request, 'jisha/shut_cmpny.html',{'com':com})
-
-def shut(request,pk):
-    com=create_company.objects.get(id=pk)
-    com.status=False
-    com.save()
-    comp1=create_company.objects.first()
-    com=create_company.objects.filter(status=True) 
-    return render(request,'jisha/home.html',{'com1':com,'comp1':comp1})
-
-def shut_msg(request):
-    return render(request, 'jisha/shut_msg.html')
 
 def lut_bond(request):
     return render(request, 'jisha/lut_bond.html')
@@ -622,7 +627,7 @@ def company_create(request):
 		crny_symbol=request.POST['currency']
 		frml_name=request.POST['formal']
 
-		ccmp=create_company.objects.filter(company_name=name)
+		ccmp=create_companies.objects.filter(company_name=name)
 		out=datetime.datetime.strptime (fin_begin,'%Y-%m-%d')+timedelta (days=364) 
 		a=out.date()
 		
@@ -631,7 +636,7 @@ def company_create(request):
 			messages.info(request,'Company name already exists!!')
 			return redirect('create_cmpny')
 		else:
-			cmp=create_company(company_name=name,mailing_name=mname,address=addr,state=st,country=cntry,
+			cmp=create_companies(company_name=name,mailing_name=mname,address=addr,state=st,country=cntry,
                 pincode=pncd,telephone=tlphn,mobile_no=mbl,fax=fax,email=email,website=wbsit,fin_begin=fin_begin,
                 books_begin=bk_begin,currency_symbol=crny_symbol,formal_name=frml_name,fin_end=a)
 			cmp.save()
@@ -639,7 +644,7 @@ def company_create(request):
 			return render(request,'jisha/features.html',{'cmp':cmp})
 
 def company_feature(request,cf):
-	id=create_company.objects.get(id=cf)
+	id=create_companies.objects.get(id=cf)
 	if request.method=="POST":
 		ma=request.POST['maintain_account']
 		be=request.POST['billwise_entry']

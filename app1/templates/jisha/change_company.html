@@ -37,11 +37,11 @@
         <a href="shut_cmpny"><button  class="btns_prnt" id="create"><h6>Shut Company</h6></button></a>
         <hr>
         {% for c in com %}
-            <a href="{% url 'dashboard' c.id %}">
+            <a href="{% url 'dash_board' c.id %}">
                 <button  class="btns_prnt" id="create">
                     <div class="row">
-                        <div class="col-md-4">{{c.company_name}}</div>
-                        <div class="col-md-7">({{c.id}})</div>
+                        <div class="col-md-6">{{c.company_name}}</div>
+                        <div class="col-md-5">({{c.id}})</div>
                     
                     </div>
                 </button>

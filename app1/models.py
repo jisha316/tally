@@ -1,6 +1,25 @@
 from django.db import models
 
 # Create your models here.
+class create_companies(models.Model):
+    company_name = models.CharField(max_length=255)
+    mailing_name = models.CharField(max_length=255)
+    address = models.CharField(max_length=255)
+    state = models.CharField(max_length=255)
+    country = models.CharField(max_length=255)
+    pincode = models.CharField(max_length=10,null=True)
+    telephone = models.CharField(max_length=20,null=True)
+    mobile_no = models.CharField(max_length=15,null=True)
+    fax = models.CharField(max_length=15,null=True)
+    email = models.EmailField(null=True)
+    website = models.CharField(max_length=100,null=True)
+    currency_symbol = models.CharField(max_length=20)
+    formal_name = models.CharField(max_length=20)
+    fin_begin = models.DateField()
+    books_begin = models.DateField()
+    fin_end = models.DateField()
+    status=models.BooleanField(default=False)
+
 class create_company(models.Model):
     company_name = models.CharField(max_length=255)
     mailing_name = models.CharField(max_length=255)
@@ -44,9 +63,83 @@ class company_features(models.Model):
     payroll = models.CharField(max_length=10)
     multiple_address = models.CharField(max_length=10)
     mark_modified = models.CharField(max_length=10)
-    company=models.ForeignKey(create_company,on_delete = models.CASCADE,null = True)
+    company=models.ForeignKey(create_companies,on_delete = models.CASCADE,null = True)
 
+class tally_gst(models.Model):
+    state = models.CharField(max_length=255,null=True)
+    registration_type = models.CharField(max_length=50,null=True)
+    assessee_territory = models.CharField(max_length=50,null=True)
+    gst_applicable = models.DateField(null=True)
+    gstin_uin = models.CharField(max_length=100,null=True)
+    periodicity = models.CharField(max_length=50,null=True)
+    kerala_fca = models.CharField(max_length=20,null=True)
+    applicable_from = models.DateField(null=True)
+    gst_rate_details = models.CharField(max_length=20,null=True)
+    tl_advanceR = models.CharField(max_length=20,null=True)
+    tl_reverseC = models.CharField(max_length=20,null=True)
+    gst_classification = models.CharField(max_length=20,null=True)
+    lut_bond = models.CharField(max_length=20,null=True)
+    tax_rate = models.CharField(max_length=20,null=True)
+    tax_calculation = models.CharField(max_length=100,null=True)
+    tax_purchase = models.CharField(max_length=20,null=True)
+    
+    e_waybillA = models.CharField(max_length=20,null=True)
+    applicable_f = models.DateField(null=True)
+    thresholdlimit_include = models.CharField(max_length=255,null=True)
+    threshold_limit = models.IntegerField(null=True)
+    intrastate = models.CharField(max_length=20,null=True)
+    ithreshold_limit = models.IntegerField(null=True)
+    print_eway = models.CharField(max_length=20,null=True)
 
+    e_invoiceA = models.CharField(max_length=20,null=True)
+    app_from = models.DateField(null=True)
+    billfrom_place = models.CharField(max_length=50,null=True)
+    period_einvoiceR = models.CharField(max_length=50,null=True)
+    send_eW_details_einvoice = models.CharField(max_length=50,null=True)
+    
+
+class gst_lutbond(models.Model):
+    lut_bond_No = models.CharField(max_length=50)
+    validity_from = models.DateField()
+    validity_to = models.DateField()
+    
+
+class gst_taxability(models.Model):
+    taxability = models.CharField(max_length=50)
+    applicable_dt = models.DateField(null=True)
+    integrated_tax = models.CharField(max_length=50)
+    cess = models.CharField(max_length=50)
+    flood_cess = models.CharField(max_length=50)
+    
+
+class tally_tds(models.Model):
+    tan_reg_no = models.CharField(max_length=40)
+    tax_ded_clctn = models.CharField(max_length=40)
+    deductor_type = models.CharField(max_length=100)
+    ded_brachdevision = models.CharField(max_length=255)
+    person_res = models.CharField(max_length=255)
+    ignore_it = models.CharField(max_length=40)
+    tds_stock_items = models.CharField(max_length=40)
+    
+
+class person_res_details(models.Model):
+    tds = models.ForeignKey(tally_tds,on_delete = models.CASCADE,null = True)
+    name = models.CharField(max_length=255,null=True)
+    son_daughter = models.CharField(max_length=255,null=True)
+    designation = models.CharField(max_length=255,null=True)
+    pan = models.CharField(max_length=255,null=True)
+    flat_no = models.CharField(max_length=10,null=True)
+    premise_name = models.CharField(max_length=255,null=True)
+    street = models.CharField(max_length=100,null=True)
+    area = models.CharField(max_length=100,null=True)
+    city = models.CharField(max_length=100,null=True)
+    state = models.CharField(max_length=255,null=True)
+    pincode = models.CharField(max_length=10,null=True)
+    mobile_no = models.CharField(max_length=15,null=True)
+    std_code = models.CharField(max_length=10,null=True)
+    telephone = models.CharField(max_length=10,null=True)
+    email = models.EmailField(null=True)
+    
 
 class tally_group(models.Model):
     group_name = models.CharField(max_length=255)
@@ -93,33 +186,6 @@ class cost_centre(models.Model):
     centre_alias = models.CharField(max_length=255)
     centre_under = models.CharField(max_length=255)
 
-class tally_tds(models.Model):
-    tan_reg_no = models.CharField(max_length=40)
-    tax_ded_clctn = models.CharField(max_length=40)
-    deductor_type = models.CharField(max_length=100)
-    ded_brachdevision = models.CharField(max_length=255)
-    person_res = models.CharField(max_length=255)
-    ignore_it = models.CharField(max_length=40)
-    tds_stock_items = models.CharField(max_length=40)
-
-class person_res_details(models.Model):
-    tds = models.ForeignKey(tally_tds,on_delete = models.CASCADE,null = True)
-    name = models.CharField(max_length=255,null=True)
-    son_daughter = models.CharField(max_length=255,null=True)
-    designation = models.CharField(max_length=255,null=True)
-    pan = models.CharField(max_length=255,null=True)
-    flat_no = models.CharField(max_length=10,null=True)
-    premise_name = models.CharField(max_length=255,null=True)
-    street = models.CharField(max_length=100,null=True)
-    area = models.CharField(max_length=100,null=True)
-    city = models.CharField(max_length=100,null=True)
-    state = models.CharField(max_length=255,null=True)
-    pincode = models.CharField(max_length=10,null=True)
-    mobile_no = models.CharField(max_length=15,null=True)
-    std_code = models.CharField(max_length=10,null=True)
-    telephone = models.CharField(max_length=10,null=True)
-    email = models.EmailField(null=True)
-
 class tally_vouchers(models.Model):
     voucher_name = models.CharField(max_length=255,null=True)
     alias = models.CharField(max_length=255,null=True)
@@ -148,51 +214,7 @@ class tally_vouchers(models.Model):
     default_bank = models.CharField(max_length=255,null=True)
     name_class = models.CharField(max_length=255,null=True)
     
-class tally_gst(models.Model):
-    state = models.CharField(max_length=255,null=True)
-    registration_type = models.CharField(max_length=50,null=True)
-    assessee_territory = models.CharField(max_length=50,null=True)
-    gst_applicable = models.DateField(null=True)
-    gstin_uin = models.CharField(max_length=100,null=True)
-    periodicity = models.CharField(max_length=50,null=True)
-    kerala_fca = models.CharField(max_length=20,null=True)
-    applicable_from = models.DateField(null=True)
-    gst_rate_details = models.CharField(max_length=20,null=True)
-    tl_advanceR = models.CharField(max_length=20,null=True)
-    tl_reverseC = models.CharField(max_length=20,null=True)
-    gst_classification = models.CharField(max_length=20,null=True)
-    lut_bond = models.CharField(max_length=20,null=True)
-    tax_rate = models.CharField(max_length=20,null=True)
-    tax_calculation = models.CharField(max_length=100,null=True)
-    tax_purchase = models.CharField(max_length=20,null=True)
-    
-    e_waybillA = models.CharField(max_length=20,null=True)
-    applicable_f = models.DateField(null=True)
-    thresholdlimit_include = models.CharField(max_length=255,null=True)
-    threshold_limit = models.IntegerField(null=True)
-    intrastate = models.CharField(max_length=20,null=True)
-    ithreshold_limit = models.IntegerField(null=True)
-    print_eway = models.CharField(max_length=20,null=True)
 
-    e_invoiceA = models.CharField(max_length=20,null=True)
-    app_from = models.DateField(null=True)
-    billfrom_place = models.CharField(max_length=50,null=True)
-    period_einvoiceR = models.CharField(max_length=50,null=True)
-    send_eW_details_einvoice = models.CharField(max_length=50,null=True)
-
-class gst_lutbond(models.Model):
-    # gst = models.ForeignKey(tally_gst,on_delete = models.CASCADE,null = True)
-    lut_bond_No = models.CharField(max_length=50)
-    validity_from = models.DateField()
-    validity_to = models.DateField()
-
-class gst_taxability(models.Model):
-    # gst2 = models.ForeignKey(tally_gst,on_delete = models.CASCADE,null = True)
-    taxability = models.CharField(max_length=50)
-    applicable_dt = models.DateField(null=True)
-    integrated_tax = models.CharField(max_length=50)
-    cess = models.CharField(max_length=50)
-    flood_cess = models.CharField(max_length=50)
 
 class tally_ledger(models.Model):
     name = models.CharField(max_length=255)

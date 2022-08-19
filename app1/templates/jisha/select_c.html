@@ -42,27 +42,19 @@
                         <div class="col-md-2">Period</div>
                     </div><br>
                     <a href="create_cmpny"><button  class="btns_prnt" id="create"><h6>Create Company</h6></button></a><br>
-                    <!-- <a href="select_c"><button  class="btns_prnt" id="create"><h6>Shut Company</h6></button></a><br> -->
-                    <a href="">
-                        {% for create_company in sel %}
+
+                    {% for c in comp1 %}
+                        <a href="{% url 'dash_board' c.id %}">
                             <button  class="btns_prnt" id="create">
                                 <div class="row">
-                                    <div class="col-md-3" style="color: white;">{{ create_company.company_name }}</div>
-                                    <div class="col-md-3" style="color: white;">(10000)</div>
-                                    <div class="col-md-6" style="color: white;">{{ create_company.fin_begin }} to {{ create_company.fin_end }}</div>
+                                    <div class="col-md-3" style="color: white;">{{c.company_name}}</div>
+                                    <div class="col-md-3" style="color: white;">({{c.id}})</div>
+                                    <div class="col-md-6" style="color: white;">{{c.fin_begin}} to {{c.fin_end}} </div>
                                 </div>
-                            </button>           
-                        {% endfor %}    
-                    </a> 
-                    <!-- <a href="">
-                        <button  class="btns_prnt" id="create">
-                            <div class="row">
-                                <div class="col-md-3" style="color: white;">def pvt ltd</div>
-                                <div class="col-md-3" style="color: white;">(10001)</div>
-                                <div class="col-md-6" style="color: white;">1-Apr-22 to 31-Mar-23</div>
-                            </div>
-                        </button>
-                    </a> -->
+                            </button>
+                        </a>
+                    {% endfor %}
+                    
                     <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br><br>
                 </div>    
             </div>   

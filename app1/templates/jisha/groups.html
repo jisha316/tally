@@ -16,7 +16,12 @@
         <div class="row container-fluid  p-2 m-0">
             <div class="col-sm-3 m-0 p-0"></div>  
             <div class="col-sm-6 m-0 p-0">
-                <h6  class="bg-info text-light p-2 m-0 text-center">Group Creation</h6>
+                <h6  class="bg-info text-light p-2 m-0 text-le">Group Creation</h6>
+                <!-- <h6  class="text-light p-2 m-0 text-center" style="background-color: rgba(0,0,0,.4);"><u>
+                    {% for c in com %}
+                        {{c.company_name}}
+                    {% endfor %}
+                </u></h6> -->
                 <form class="p-5" style="background-color:rgba(0,0,0,.4);" method="post" action="{% url 'create_group' %}" autocomplete="off">
                     {% csrf_token %}
                     <div class="p-3">

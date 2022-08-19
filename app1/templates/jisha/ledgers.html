@@ -15,9 +15,14 @@
     <!-- <script src="{% static 'js/ledger.js' %}"></script> -->
 
   <div class="m-2">
-        <h6 class="bg-info text-light p-2 m-0 text-center"><a href="javascript:history.go(-1);" class="close">&times;</a>
+        <h6 class="bg-info text-light p-2 m-0 text-left"><a href="javascript:history.go(-1);" class="close">&times;</a>
             Ledger Creation
         </h6>
+        <!-- <h6  class="text-light p-2 m-0 text-center" style="background-color: rgba(0,0,0,.4);"><u>
+            {% for c in com %}
+                        {{c.company_name}}
+            {% endfor %}
+        </u></h6> -->
         <form class="p-2" style="background-color:rgba(0,0,0,.4);" method="post" action="{% url 'create_ledger' %}" autocomplete="off">
             {% csrf_token %}
             <div class="p-0">

@@ -26,7 +26,12 @@
     <script src="{% static 'js/vouchers.js' %}"></script>
     
     <div class="m-2">
-        <h6  class="bg-info text-light p-2 m-0 text-center">Voucher Type Creation</h6>
+        <h6  class="bg-info text-light p-2 m-0 text-left">Voucher Type Creation</h6>
+        <!-- <h6  class="text-light p-2 m-0 text-center" style="background-color: rgba(0,0,0,.4);"><u>
+            {% for c in com %}
+                        {{c.company_name}}
+            {% endfor %}
+        </u></h6> -->
         <form class="p-5" style="background-color:rgba(0,0,0,.4);" method="post" action="{% url 'create_voucher' %}" autocomplete="off">
             {% csrf_token %}
             <div class="p-3">

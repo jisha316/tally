@@ -16,9 +16,9 @@ urlpatterns = [
     path('vouchpage',views.vouchpage,name='vouchpage'),
 
 #.........................jisha..........................
-    path('home',views.home,name='home'),
+    path('dashboard',views.dashboard,name='dashboard'),
 
-    path('dashboard/<int:pk>',views.dashboard,name="dashboard"),
+    path('dash_board/<int:pk>',views.dash_board,name="dash_board"),
 
     path('ledgers',views.ledgers,name='ledgers'),
 
@@ -36,7 +36,9 @@ urlpatterns = [
     
     path('rates',views.rates,name='rates'),
 
-    path('cmpny_list',views.cmpny_list,name='cmpny_list'),
+    path('change_company',views.change_company,name='change_company'),
+
+    path('company_list',views.company_list,name='company_list'),
 
     path('create_cmpny',views.create_cmpny,name='create_cmpny'),
 
