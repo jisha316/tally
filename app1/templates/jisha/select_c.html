@@ -42,18 +42,28 @@
                         <div class="col-md-2">Period</div>
                     </div><br>
                     <a href="create_cmpny"><button  class="btns_prnt" id="create"><h6>Create Company</h6></button></a><br>
-
-                    {% for c in comp1 %}
-                        <a href="{% url 'dash_board' c.id %}">
-                            <button  class="btns_prnt" id="create">
-                                <div class="row">
-                                    <div class="col-md-3" style="color: white;">{{c.company_name}}</div>
-                                    <div class="col-md-3" style="color: white;">({{c.id}})</div>
-                                    <div class="col-md-6" style="color: white;">{{c.fin_begin}} to {{c.fin_end}} </div>
-                                </div>
-                            </button>
-                        </a>
-                    {% endfor %}
+                    
+                    <table>
+                        {% for i in com %}
+                        <tr>
+                            <div style="margin-left:10px;">
+                                <a href="{% url 'enable' i.id %}">
+                                    <div class="row">
+                                        <div class="col-md-3" style="color: white;">{{i.company_name}}</div>
+                                        <div class="col-md-3" style="color: white;">({{i.id}})</div>
+                                        <div class="col-md-6" style="color: white;">{{i.fin_begin}} to {{i.fin_end}}&nbsp;&nbsp; </div>
+                                    </div>
+                                
+                                 
+                                </a>
+                            </div>
+                         </tr>
+                        {% endfor %}
+                    </table>
+                    
+                    
+                    
+                    
                     
                     <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br><br>
                 </div>    

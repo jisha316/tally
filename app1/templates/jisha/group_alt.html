@@ -11,12 +11,15 @@
 			display: none;
     	}
     </style>
-
+    <script>
+        
+    </script>
+    
     <div class="m-0">
         <div class="row container-fluid  p-2 m-0">
             <div class="col-sm-3 m-0 p-0"></div>  
             <div class="col-sm-6 m-0 p-0">
-                <h6  class="bg-info text-light p-2 m-0 text-le">Group Creation</h6>
+                <h6  class="bg-info text-light p-2 m-0 text-le">Group Creation (Secondary)</h6>
                 <form class="p-4" style="background-color:rgba(0,0,0,.4);" method="post" action="{% url 'create_group' %}" autocomplete="off">
                     {% csrf_token %}
                     <div class="p-3">
@@ -33,8 +36,7 @@
                         <div class="row container-fluid  p-2 m-0" id="form1">
                             <div class="col-sm-4 m-0 p-0"><label for="b">Under</label></div>
                             <div class="col-sm-6 m-0 p-0" > 
-                                <select name="group" id="under" class="form-control" onchange="showunder()"  required>
-                                    
+                                <select name="group" id="under" class="form-control" onchange="showunder()" required>
                                     <option value="Add" style="text-align: end;">Create</option>
                                     <option value="Primary">Primary</option>
                                     <option value="BankAccount1">BankAccounts</option>
@@ -168,7 +170,7 @@
                 </form>
             </div>
         <div class="col-sm-5 m-0 p-0"></div>
-
+    </div> 
     
     <script>
         document.getElementById("cmpnam").value = localStorage.getItem("status");
@@ -194,9 +196,6 @@
         }
         
         function showunder(){
-
-            
-
             var status = document.getElementById("under");
             var a = status.value;
             console.log(a);

@@ -19,25 +19,7 @@ class create_companies(models.Model):
     books_begin = models.DateField()
     fin_end = models.DateField()
     status=models.BooleanField(default=False)
-
-class create_company(models.Model):
-    company_name = models.CharField(max_length=255)
-    mailing_name = models.CharField(max_length=255)
-    address = models.CharField(max_length=255)
-    state = models.CharField(max_length=255)
-    country = models.CharField(max_length=255)
-    pincode = models.CharField(max_length=10,null=True)
-    telephone = models.CharField(max_length=20,null=True)
-    mobile_no = models.CharField(max_length=15,null=True)
-    fax = models.CharField(max_length=15,null=True)
-    email = models.EmailField(null=True)
-    website = models.CharField(max_length=100,null=True)
-    currency_symbol = models.CharField(max_length=20)
-    formal_name = models.CharField(max_length=20)
-    fin_begin = models.DateField()
-    books_begin = models.DateField()
-    fin_end = models.DateField()
-    status=models.BooleanField(default=False)
+    active=models.BooleanField(default=True)
 
 class company_features(models.Model):
     maintain_account = models.CharField(max_length=10)
@@ -151,6 +133,7 @@ class tally_group(models.Model):
     debit_credit = models.CharField(max_length=255)
     calculation = models.CharField(max_length=255)
     invoice = models.CharField(max_length=255)
+    company=models.ForeignKey(create_companies,on_delete = models.CASCADE,null = True)
 
 class crt_currency(models.Model):
     c_symbol = models.CharField(max_length=255)
@@ -166,9 +149,9 @@ class crt_currency(models.Model):
 class currency_ROE(models.Model):
     date_ROE = models.DateField()
     currency_name =models.CharField(max_length=20,null=True)
-    std_rate = models.IntegerField(null=True)
-    selling_SR = models.IntegerField(null=True)
-    buying_SR = models.IntegerField(null=True)
+    std_rate = models.CharField(max_length=100, null=True)
+    selling_SR = models.CharField(max_length=100, null=True)
+    buying_SR = models.CharField(max_length=100, null=True)
 
 class alt_currency(models.Model):
     c_symbol = models.CharField(max_length=255)
@@ -185,6 +168,7 @@ class cost_centre(models.Model):
     centre_name=models.CharField(max_length=255)
     centre_alias = models.CharField(max_length=255)
     centre_under = models.CharField(max_length=255)
+    company=models.ForeignKey(create_companies,on_delete = models.CASCADE,null = True)
 
 class tally_vouchers(models.Model):
     voucher_name = models.CharField(max_length=255,null=True)
@@ -307,6 +291,9 @@ class ledger_bankdetails(models.Model):
     acc_no = models.CharField(max_length=100)
     ifsc_code = models.CharField(max_length=100)
     bank_name = models.CharField(max_length=100)
+
+class bank_name(models.Model):
+    bankname = models.CharField(max_length=100,null=True)
 
 class ledger_chequebook(models.Model):
     from_number = models.IntegerField()

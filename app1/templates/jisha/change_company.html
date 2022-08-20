@@ -36,17 +36,17 @@
         <a href="select_c"><button  class="btns_prnt" id="create"><h6>Select Company</h6></button></a>
         <a href="shut_cmpny"><button  class="btns_prnt" id="create"><h6>Shut Company</h6></button></a>
         <hr>
-        {% for c in com %}
-            <a href="{% url 'dash_board' c.id %}">
+        {% for c in comp %}
+            <a href="{% url 'company_feature' c.id %}">
                 <button  class="btns_prnt" id="create">
-                    <div class="row">
-                        <div class="col-md-6">{{c.company_name}}</div>
-                        <div class="col-md-5">({{c.id}})</div>
-                    
-                    </div>
+                <div class="row">
+                    <div class="col-md-6" style="color: #fff;">{{c.company_name}}</div>
+                    <div class="col-md-5" style="color: #fff;">({{c.id}})</div>
+                </div>
                 </button>
             </a>
         {% endfor %}
+        
 
         <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
     </div>   

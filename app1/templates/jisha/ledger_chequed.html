@@ -12,7 +12,7 @@
     	}
         .inp{
             text-align: center;
-            /* background-color: rgba(0,0,0,.4); */
+            background-color: rgba(0,0,0,.4);
             border: none;
         }
     </style>
@@ -25,7 +25,7 @@
         </h6>
         <h6 class="text-light p-2 m-0 text-center" style="background-color:rgba(0,0,0,.4);">Cheque Printing Configuration for
         <p><i>(All Dimensions in mm only)</i></p>   </h6> 
-        <!-- <input type="text" class="form-control inp" id="nm"> -->
+        <input type="text" class="form-control inp" id="ledname">
             
         
         <form class="p-2" style="background-color:rgba(0,0,0,.4);" method="post" action="{% url 'create_ledgerdimension' %}" autocomplete="off">
@@ -168,7 +168,7 @@
                     <h5 class="p-3 text-center">Company Signatory Details</h5> 
                     <div class="row container-fluid p-2" id="">
                         <div class="col-sm-6 m-0 p-0"> <label for="l">Company Name on Cheque</label></div>
-                        <div class="col-sm-6 m-0 p-0"><input type="text" name="company_name" class="form-control"></div>
+                        <div class="col-sm-6 m-0 p-0"><input type="text" id="cname" name="company_name" class="form-control"></div>
                     </div>
                     <div class="row container-fluid  p-2">
                         <div class="col-sm-6 m-0 p-0"> <label for=""></label>Print Company Name on Cheque</div>
@@ -210,4 +210,8 @@
         </form>
     </div>
     
+    <script>
+        document.getElementById("ledname").value = localStorage.getItem("status");
+        document.getElementById("cname").value = localStorage.getItem("status");
+    </script>
 {% endblock %}

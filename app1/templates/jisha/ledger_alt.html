@@ -48,7 +48,6 @@
                         <div class="col-sm-6 m-0 p-0"> <label for="c">Under</label></div>
                         <div class="col-sm-6 m-0 p-0">
                             <select name="under" id="under" class="form-control" onchange="showunder()" required>
-                                <option value="Add" style="text-align: end;">Create</option>
                                 <option value="Bank_Accounts">Bank Accounts</option>
                                 <option value="Bank_OCC_AC">Bank OCC A/c</option>
                                 <option value="Bank_OD_A/c">Bank OD A/c</option>
@@ -503,9 +502,6 @@
             var status = document.getElementById("under");
             var a = status.value;
             console.log(a);
-            if(a=="Add"){
-                window.location.href="{% url 'group_alt' %}"
-            }
             if( a == "Bank_Accounts" ){
                 console.log(a);
                 

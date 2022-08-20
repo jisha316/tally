@@ -38,47 +38,34 @@ def vouchpage(request):
     return render(request, 'vouchpage.html')
 
 #......................jisha........................
-def dashboard(request):
-    com=create_companies.objects.all()
-    for i in com:
-        i.status=False
-        i.save()
-    comp1=create_companies.objects.first()
-    comp1.status=True
-   
-    comp1.save()
-    return render(request,'jisha/home.html',{'comp1':comp1})
-
-def dash_board(request,pk):
-    comp=create_companies.objects.get(id=pk)
-    comp.status=True
-    comp.save()
-    com=create_companies.objects.filter(status=True)  
-    return render(request,'jisha/home.html',{'comp1':comp,'com1':com})
 
 def company_list(request):
     com=create_companies.objects.all()
     return render(request,'jisha/company_list.html',{'comp':com})    
 
 def change_company(request):
-	com=create_companies.objects.filter(status=True) 
-	return render(request, 'jisha/change_company.html',{'com':com})
+	com=create_companies.objects.all()
+	return render(request, 'jisha/change_company.html',{'comp':com})
 
 def select_c(request):
-	comp = create_companies.objects.all()
-	return render(request,'jisha/select_c.html',{'comp1':comp})
+	com = create_companies.objects.all()
+	return render(request,'jisha/select_c.html',{'com':com})
 
 def shut_cmpny(request):
-	com=create_companies.objects.filter(status=True) 
+	com=create_companies.objects.all() 
 	return render(request, 'jisha/shut_cmpny.html',{'com':com})
 
 def shut(request,pk):
-    com=create_companies.objects.get(id=pk)
-    com.status=False
-    com.save()
-    comp1=create_companies.objects.first()
-    com=create_companies.objects.filter(status=True) 
-    return render(request,'jisha/home.html',{'com1':com,'comp1':comp1})
+    c=create_companies.objects.get(id=pk)
+    c.active=False
+    c.save()
+    return redirect('shut_cmpny') 
+
+def enable(request,pk):
+    c=create_companies.objects.get(id=pk)
+    c.active=True
+    c.save()
+    return redirect('shut_cmpny')
 
 def shut_msg(request):
     return render(request, 'jisha/shut_msg.html')
@@ -99,6 +86,11 @@ def groups(request):
 	com=create_companies.objects.filter(status=True) 
 	return render(request, 'jisha/groups.html',{'com':com})
 
+def group_alt(request):
+    return render(request, 'jisha/group_alt.html')
+
+def ledger_alt(request):
+    return render(request, 'jisha/ledger_alt.html')
 
 def currency(request):
     return render(request, 'jisha/currency.html')
@@ -111,8 +103,11 @@ def c_alter(request):
 
 def cost(request):
 	costt=cost_centre.objects.all()
-	context={'costt' : costt}
-	return render(request,'jisha/cost.html',context)
+	return render(request,'jisha/cost.html',{'costt' : costt})
+
+def cost_alt(request):
+	costt=cost_centre.objects.all()
+	return render(request, 'jisha/cost_alt.html',{'costt' : costt})
 
 def rates(request):
 	ccr=crt_currency.objects.all()
@@ -141,7 +136,8 @@ def c_rates(request):
     return render(request, 'jisha/c_rates.html')
 
 def bank_details(request):
-	return render(request,'jisha/bank_details.html')
+	bn = bank_name.objects.all()
+	return render(request,'jisha/bank_details.html',{'bn' : bn})
 
 def lut_bond(request):
     return render(request, 'jisha/lut_bond.html')
@@ -165,7 +161,8 @@ def ledger_taxgst(request):
     return render(request, 'jisha/ledger_taxgst.html')
 
 def cn(request):
-    return render(request, 'jisha/cn.html')
+	comp=create_companies.objects.all()
+	return render(request,'jisha/cn.html',{'comp':comp})
 
 def create_group(request):
 	if request.method=='POST':
@@ -266,7 +263,8 @@ def load_centre(request):
                         centre_under = unr)          
 		cost.save()
 		print("added")
-		return redirect('/')
+		return render(request,'jisha/cost.html')
+		
 
 def create_tds(request):
 	if request.method=='POST':
@@ -690,11 +688,21 @@ def create_bankdetails(request):
                         cross_using = acp,
                         acc_no = acc_no,      
                         ifsc_code = ifsc_code,      
-                        bank_name =bank_name )      
+                        bank_name =bank_name)      
 		lbd.save() 
 		print("Added")
 		return redirect('bank_details')
 	return render(request,'jisha/bank_details.html')
+
+
+def bankname(request):
+	if request.method=='POST':
+		bn = request.POST['bank_name']
+		bnn=bank_name(bankname = bn)
+		bnn.save()
+		return redirect('bankname')
+	return render(request,'jisha/cn.html')
+
 
 def create_chequebk(request):
 	if request.method=='POST':

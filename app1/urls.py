@@ -16,15 +16,19 @@ urlpatterns = [
     path('vouchpage',views.vouchpage,name='vouchpage'),
 
 #.........................jisha..........................
-    path('dashboard',views.dashboard,name='dashboard'),
-
-    path('dash_board/<int:pk>',views.dash_board,name="dash_board"),
+    
 
     path('ledgers',views.ledgers,name='ledgers'),
 
     path('vouchers',views.vouchers,name='vouchers'),
 
     path('groups',views.groups,name='groups'),
+
+    path('group_alt',views.group_alt,name='group_alt'),
+
+    path('ledger_alt',views.ledger_alt,name='ledger_alt'),
+
+    path('cost_alt',views.cost_alt,name='cost_alt'),
 
     path('currency',views.currency,name='currency'),
 
@@ -56,9 +60,13 @@ urlpatterns = [
 
     path('bank_details',views.bank_details,name='bank_details'),
 
+    path('bankname',views.bankname,name='bankname'),
+
     path('shut_cmpny',views.shut_cmpny,name='shut_cmpny'),
 
     path('shut/<int:pk>',views.shut,name='shut'),
+
+    path('enable/<int:pk>',views.enable,name='enable'),
 
     path('shut_msg',views.shut_msg,name='shut_msg'),
 

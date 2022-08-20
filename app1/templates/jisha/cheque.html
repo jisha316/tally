@@ -11,17 +11,7 @@
             border: none;
         } 
     </style>
-    <script>
-        document.getElementById("nm").value = localStorage.getItem("status");
-
-        function f(){
-            var j=document.getElementById("w").value;
-            var k=document.getElementById("l").value;
-            var n=k-j;
-            document.getElementById("p").value=n;
-        }
     
-    </script>
     <div class="m-2">
         <h6  class="bg-info text-light p-2 m-0 text-left">Cheque Book Management<a href="javascript:history.go(-2);" class="close">&times;</a></h6>
         <form class="p-1" style="background-color:rgba(0,0,0,.4);" method="post" action="{% url 'create_chequebk' %}" autocomplete="off">
@@ -32,7 +22,7 @@
                     <div class="col-sm-6 m-0 p-0">
                         <div class="row container-fluid p-2 m-0" >
                             <div class="col-sm-6 m-0 p-0"> <label for="pan">Cheque Range For : </label></div>
-                            <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control inp" id="nm"></div>    
+                            <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control inp" id="ledgernm"></div>    
                         </div>
                     </div>
                 </div> 
@@ -68,4 +58,16 @@
             </div>
         </form>
     </div>
+
+    <script>
+        document.getElementById("ledgernm").value = localStorage.getItem("status");
+
+        function f(){
+            var j=document.getElementById("w").value;
+            var k=document.getElementById("l").value;
+            var n=k-j;
+            document.getElementById("p").value=n;
+        }
+    
+    </script>
 {% endblock %}

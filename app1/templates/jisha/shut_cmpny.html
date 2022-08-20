@@ -51,19 +51,35 @@
                     <h6  class="bg-info text-light p-0 m-0 text-left">Shut Company</h6>
                     <h6  class="text-light p-1 m-0 text-center">List of Companies</h6>
                     <hr>
-                    {% for c in com %}
-                        <a href="{% url 'shut' c.id %}">
-                            <button  class="btns_prnt" id="create">
-                                <div class="row">
-                                    <div class="col-md-6">{{c.company_name}}</div>
-                                    <div class="col-md-5">({{c.id}})</div>
-                                </div>
-                            </button>
-                        </a>
-                    {% endfor %}   
+
+                    <table>
+                        {% for i in com %}
+                        {% if i.active == 0 %}
+         
+                        {% else %}
+                        <tr>
+                            <a href="{% url 'shut' i.id %}"  >
+                                    <div class="row">
+                                        <div class="col-md-6">{{i.company_name}}</div>
+                                        <div class="col-md-5">({{i.id}})</div>
+                                    </div>
+    
+                                
+                            </a>
+                        </tr>
+                         {% endif %}
+                        {% endfor %}
+                    </table>
+                    
+                        
                     <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
                 </div>   
             </div>   
         </form>
-    </div>      
+    </div>  
+    <script>
+        function conform() {
+          alert("Are you sure you want to shut this company??");
+        }
+        </script>    
 {% endblock %}
