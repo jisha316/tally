@@ -5,15 +5,6 @@ from.import views
 urlpatterns = [
 
     path('',views.base,name='base'),
-    path('index',views.index,name='index'),
-    path('group',views.group,name='group'),
-    path('branch',views.branch,name='branch'),
-    path('ledger',views.ledger,name='ledger'),
-    path('primary',views.primary,name='primary'),
-    path('costcat',views.costcat,name='costcat'),
-    path('costcentr',views.costcentr,name='costcentr'),
-    path('voucher',views.voucher,name='voucher'),
-    path('vouchpage',views.vouchpage,name='vouchpage'),
 
 #.........................jisha..........................
     
@@ -25,8 +16,6 @@ urlpatterns = [
     path('groups',views.groups,name='groups'),
 
     path('group_alt',views.group_alt,name='group_alt'),
-
-    path('ledger_alt',views.ledger_alt,name='ledger_alt'),
 
     path('cost_alt',views.cost_alt,name='cost_alt'),
 
@@ -44,19 +33,31 @@ urlpatterns = [
 
     path('company_list',views.company_list,name='company_list'),
 
-    path('create_cmpny',views.create_cmpny,name='create_cmpny'),
-
-    path('gst',views.gst,name='gst'),
-
     path('select_c',views.select_c,name='select_c'),
+
+    path('create_cmpny',views.create_cmpny,name='create_cmpny'),
     
     path('features',views.features,name='features'),
 
-    path('gst_details',views.gst_details,name='gst_details'),
+    path('tally_gst/<int:pk>',views.tally_gst,name='tally_gst'),
 
-    path('tds',views.tds,name='tds'),
+    path('create_gst/<int:pk>',views.create_gst,name='create_gst'),
 
-    path('tds_details',views.tds_details,name='tds_details'),
+    path('gst_tax/<int:pk>',views.gst_tax,name='gst_tax'),
+
+    path('lut_bond',views.lut_bond,name='lut_bond'),
+
+    path('create_gsttax/<int:pk>',views.create_gsttax,name='create_gsttax'),
+
+    path('create_lutbond',views.create_lutbond,name='create_lutbond'),
+
+    path('tds/<int:pk>',views.tds,name='tds'),
+
+    path('create_tds/<int:pk>',views.create_tds,name='create_tds'),
+
+    path('person_tds/<int:pk>',views.person_tds,name='person_tds'),
+
+    path('person/<int:pk>',views.person,name='person'),
 
     path('bank_details',views.bank_details,name='bank_details'),
 
@@ -68,15 +69,9 @@ urlpatterns = [
 
     path('enable/<int:pk>',views.enable,name='enable'),
 
-    path('shut_msg',views.shut_msg,name='shut_msg'),
-
     path('c_rates',views.c_rates,name='c_rates'),
 
-    path('lut_bond',views.lut_bond,name='lut_bond'),
-
-    path('cn',views.cn,name='cn'),
-
-    path('gst_1',views.gst_1,name='gst_1'),
+    path('b_name',views.b_name,name='b_name'),
 
     path('cheque',views.cheque,name='cheque'),
 
@@ -94,21 +89,11 @@ urlpatterns = [
 
     path('load_centre',views.load_centre,name='load_centre'),
 
-    path('create_tds',views.create_tds,name='create_tds'),
-
-    path('person_tds',views.person_tds,name='person_tds'),
-
     path('ledger_taxgst',views.ledger_taxgst,name='ledger_taxgst'),
 
     path('create_voucher',views.create_voucher,name='create_voucher'),
 
-    path('create_gstdetails',views.create_gstdetails,name='create_gstdetails'),
-
-    path('create_lutbond',views.create_lutbond,name='create_lutbond'),
-
     path('create_ROE',views.create_ROE,name='create_ROE'),
-
-    path('create_gst',views.create_gst,name='create_gst'),
 
     path('create_ledger',views.create_ledger,name='create_ledger'),
 

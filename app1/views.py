@@ -9,160 +9,124 @@ from .models import *
 def base(request):
     return render(request, 'base.html')
 
-def index(request):
-    return render(request, 'home.html')
-
-def group(request):
-    return render(request, 'groups.html')
-
-def branch(request):
-    return render(request, 'branch.html')
-
-def ledger(request):
-    return render(request, 'ledger.html')
-
-def primary(request):
-    return render(request, 'primarycost.html')
-
-def costcat(request):
-    return render(request, 'costcat.html')
-
-def costcentr(request):
-    return render(request, 'costcentr.html')
-
-
-def voucher(request):
-    return render(request, 'voucher.html')
-
-def vouchpage(request):
-    return render(request, 'vouchpage.html')
-
 #......................jisha........................
 
 def company_list(request):
-    com=create_companies.objects.all()
-    return render(request,'jisha/company_list.html',{'comp':com})    
+    com=Companies.objects.all()
+    return render(request,'company_list.html',{'comp':com})    
 
 def change_company(request):
-	com=create_companies.objects.all()
-	return render(request, 'jisha/change_company.html',{'comp':com})
+	com=Companies.objects.all()
+	return render(request, 'change_company.html',{'comp':com})
 
 def select_c(request):
-	com = create_companies.objects.all()
-	return render(request,'jisha/select_c.html',{'com':com})
+	com = Companies.objects.all()
+	return render(request,'select_c.html',{'com':com})
 
 def shut_cmpny(request):
-	com=create_companies.objects.all() 
-	return render(request, 'jisha/shut_cmpny.html',{'com':com})
+	com=Companies.objects.all() 
+	return render(request, 'shut_cmpny.html',{'com':com})
 
 def shut(request,pk):
-    c=create_companies.objects.get(id=pk)
-    c.active=False
+    c=Companies.objects.get(id=pk)
+    c.status=False
     c.save()
     return redirect('shut_cmpny') 
 
 def enable(request,pk):
-    c=create_companies.objects.get(id=pk)
-    c.active=True
+    c=Companies.objects.get(id=pk)
+    c.status=True
     c.save()
     return redirect('shut_cmpny')
 
-def shut_msg(request):
-    return render(request, 'jisha/shut_msg.html')
-
 def ledgers(request):
 	grp=tally_group.objects.all()
-	com=create_companies.objects.filter(status=True) 
-	return render(request,'jisha/ledgers.html',{'grp' : grp,'com':com})
-
-def ledg(request):
-    return render(request, 'jisha/ledg.html')
+	com=Companies.objects.filter(status=True) 
+	return render(request,'ledgers.html',{'grp' : grp,'com':com})
 
 def vouchers(request):
-	com=create_companies.objects.filter(status=True) 
-	return render(request, 'jisha/vouchers.html',{'com':com})
+	com=Companies.objects.filter(status=True) 
+	return render(request, 'vouchers.html',{'com':com})
 
 def groups(request):
-	com=create_companies.objects.filter(status=True) 
-	return render(request, 'jisha/groups.html',{'com':com})
+	com=Companies.objects.filter(status=True) 
+	return render(request, 'group.html',{'com':com})
 
 def group_alt(request):
-    return render(request, 'jisha/group_alt.html')
-
-def ledger_alt(request):
-    return render(request, 'jisha/ledger_alt.html')
+    return render(request, 'group_alt.html')
 
 def currency(request):
-    return render(request, 'jisha/currency.html')
+    return render(request, 'currency.html')
 
 def c_create(request):
-    return render(request, 'jisha/c_create.html')
+    return render(request, 'c_create.html')
 
 def c_alter(request):
-    return render(request, 'jisha/c_alter.html')
+    return render(request, 'c_alter.html')
 
 def cost(request):
 	costt=cost_centre.objects.all()
-	return render(request,'jisha/cost.html',{'costt' : costt})
+	return render(request,'cost.html',{'costt' : costt})
 
 def cost_alt(request):
 	costt=cost_centre.objects.all()
-	return render(request, 'jisha/cost_alt.html',{'costt' : costt})
+	return render(request, 'cost_alt.html',{'costt' : costt})
 
 def rates(request):
-	ccr=crt_currency.objects.all()
+	ccr=currencyAlteration.objects.all()
 	context={'ccr' : ccr}
-	return render(request,'jisha/rates.html',context)
+	return render(request,'rates.html',context)
 
 def create_cmpny(request):
-    return render(request, 'jisha/create_cmpny.html')
+    return render(request, 'create_cmpny.html')
 
-def gst(request):
-    return render(request, 'jisha/gst.html')
+def tally_gst(request,pk):
+	company=Companies.objects.get(id=pk)
+	return render(request, 'gst.html',{'company':company})
 
-def gst_details(request):
-    return render(request, 'jisha/gst_details.html')
+def gst_tax(request,pk):
+	company=Companies.objects.get(id=pk)
+	return render(request, 'gst_tax.html',{'company':company})
 
 def features(request):
-	return render(request, 'jisha/features.html')
+	return render(request, 'features.html')
 
-def tds(request):
-    return render(request, 'jisha/tds.html')
+def tds(request,pk):
+	comp=Companies.objects.get(id=pk)
+	return render(request, 'tds.html',{'company':comp})    
 
-def tds_details(request):
-    return render(request, 'jisha/tds_details.html')
-
+def person(request,pk):
+	comp=Companies.objects.get(id=pk)
+	return render(request, 'tds_person.html',{'company':comp})
+    
 def c_rates(request):
-    return render(request, 'jisha/c_rates.html')
+    return render(request, 'c_rates.html')
 
 def bank_details(request):
 	bn = bank_name.objects.all()
-	return render(request,'jisha/bank_details.html',{'bn' : bn})
+	return render(request,'bank_details.html',{'bn' : bn})
 
 def lut_bond(request):
-    return render(request, 'jisha/lut_bond.html')
+    return render(request, 'lut_bond.html')
 
 def cheque(request):
-    return render(request, 'jisha/cheque.html')
+    return render(request, 'cheque.html')
 
 def ledger_gst(request):
-    return render(request, 'jisha/ledger_gst.html')
+    return render(request, 'ledger_gst.html')
 
 def ledger_chequed(request):
-    return render(request, 'jisha/ledger_chequed.html')
+    return render(request, 'ledger_chequed.html')
 
 def vouch_advance(request):
-    return render(request, 'jisha/vouch_advance.html')
-
-def gst_1(request):
-    return render(request, 'jisha/gst_1.html')
+    return render(request, 'vouch_advance.html')
 
 def ledger_taxgst(request):
-    return render(request, 'jisha/ledger_taxgst.html')
+    return render(request, 'ledger_taxgst.html')
 
-def cn(request):
-	comp=create_companies.objects.all()
-	return render(request,'jisha/cn.html',{'comp':comp})
+def b_name(request):
+	comp=Companies.objects.all()
+	return render(request,'bankname.html',{'comp':comp})
 
 def create_group(request):
 	if request.method=='POST':
@@ -200,15 +164,15 @@ def create_currency(request):
 		spc=request.POST['add_space']
 		wrd=request.POST['word_rep']
 		ndcml=request.POST['no_decimal']
-		crny=crt_currency(c_symbol=smbl,
-                        formal_name = fname,
-                        iso_Ccode = isoc,
-                        decimal_place = dcml,
-                        show_amtM = amt,
-                        suffix_smblA = sfx,
-                        add_space = spc,
-                        word_rep = wrd,
-                        no_decimal = ndcml)          
+		crny=currencyAlteration(Symbol=smbl,
+                        FormalName = fname,
+                        ISOCurrency = isoc,
+                        DecimalPlace = dcml,
+                        showAmount = amt,
+                        suffixSymbol = sfx,
+                        AddSpace = spc,
+                        wordRep = wrd,
+                        DecimalWords = ndcml)          
 		crny.save()
 		print("added")
 		return redirect('/')
@@ -218,13 +182,17 @@ def create_ROE(request):
 		dt=request.POST['dt']
 		crname=request.POST['curname']
 		stdr=request.POST['stdr']
+		lv=request.POST['lvr']
 		ssr=request.POST['ssr']
+		lv1=request.POST['lvr2']
 		bsr=request.POST['bsr']
-		croe=currency_ROE(date_ROE=dt,
-                        currency_name = crname,
+		croe=rateofexchange(date_ROE=dt,
+                        currencyName = crname,
                         std_rate = stdr,
-                        selling_SR = ssr,
-                        buying_SR = bsr)          
+                        sell_voucher_rate = lv,
+                        sell_specified_rate = ssr,
+						buy_specified_rate = lv1,
+                        buy_voucher_rate = bsr)          
 		croe.save()
 		return redirect('/')
 	return render(request,'rates.html')
@@ -240,7 +208,7 @@ def alter_currency(request):
 		spc=request.POST['add_space']
 		wrd=request.POST['word_rep']
 		ndcml=request.POST['no_decimal']
-		crny=alt_currency(c_symbol=smbl,
+		crny=company_alt_currency(c_symbol=smbl,
                         formal_name = fname,
                         iso_Ccode = isoc,
                         decimal_place = dcml,
@@ -258,15 +226,16 @@ def load_centre(request):
 		nm=request.POST['cst_name']
 		als=request.POST['alias']
 		unr=request.POST['c_under']
-		cost=cost_centre(centre_name=nm,
-                        centre_alias = als,
-                        centre_under = unr)          
+		cost=cost_centre(cname=nm,
+                        cost_alias = als,
+                        under = unr)          
 		cost.save()
 		print("added")
-		return render(request,'jisha/cost.html')
+		return render(request,'cost.html')
 		
 
-def create_tds(request):
+def create_tds(request,pk):
+	id=Companies.objects.get(id=pk)
 	if request.method=='POST':
 		t_reg = request.POST['tan_reg_no']
 		tax_clct = request.POST['tax_ded_clctn']
@@ -276,19 +245,21 @@ def create_tds(request):
 		ignr = request.POST['ignore_it']
 		st_itm = request.POST['tds_stock_items']
 		
-		ctds=tally_tds(tan_reg_no=t_reg,
-                        tax_ded_clctn = tax_clct,
+		ctds=Tds_Details(tan_regno=t_reg,
+                        tan = tax_clct,
                         deductor_type = ded_type,
-                        ded_brachdevision = ded_bd,
-                        person_res = prsn_res,
+                        deductor_branch = ded_bd,
+                        person_details = prsn_res,
                         ignore_it = ignr,
-                        tds_stock_items = st_itm)          
+                        active_tds = st_itm,
+						company = id)          
 		ctds.save()
 		print("added")
 		return redirect('/')
-	return render(request,'jisha/tds.html')
+	return render(request,'tds.html')
 
-def person_tds(request):
+def person_tds(request,pk):
+	id=Companies.objects.get(id=pk)
 	if request.method=='POST':
 		name = request.POST['name']
 		sd = request.POST['son_daughter']
@@ -306,25 +277,26 @@ def person_tds(request):
 		tph = request.POST['telephone']
 		emal = request.POST['email']
 	    
-		prs=person_res_details(name=name,
+		prs=tds_person(name=name,
                         son_daughter = sd,
                         designation = des,
                         pan = pan,
                         flat_no = ftno,
-                        premise_name = pnm,
+                        building = pnm,
                         street = str,
                         area = are,
-                        city = city,
+                        town = city,
                         state = st,
                         pincode = pcd,
-                        mobile_no = m_no,
-                        std_code = std,
+                        mobile = m_no,
+                        std = std,
                         telephone = tph,
-                        email = emal)          
+                        email = emal,
+						company = id)          
 		prs.save()
 		print("added")
-		return redirect('person_tds')
-	return render(request,'jisha/tds_details.html')
+		return redirect('/')
+	return render(request,'tds_person.html')
 
 def create_voucher(request):
 	if request.method=='POST':
@@ -355,19 +327,19 @@ def create_voucher(request):
 		dbank=request.POST['default_bank']
 		nc=request.POST['name_class']
 
-		vhr=tally_vouchers(voucher_name=nm,
+		vhr=Voucher(voucher_name=nm,
                     alias = als,
                     voucher_type = vtp,
-                    Abbreviation = abbr,
-                    activate_Vtype = actp,
-                    method_Vno = mvno,
-                    prevent = prnt,
+                    abbreviation = abbr,
+                    voucherActivate = actp,
+                    voucherNumber = mvno,
+                    preventDuplicate = prnt,
                     advance_con = acn,
-                    use_EDV = use,
-                    zero_val = zero,
-                    mVoptional_defualt = mvd,
-                    allow_nar = anar,
-                    provide_L = prvdl,
+                    voucherEffective = use,
+                    transaction = zero,
+                    make_optional = mvd,
+                    voucherNarration = anar,
+                    provideNarration = prvdl,
                     manu_jrnl = jrnl,
                     track_purchase = track,
                     enable_acc = enbl,
@@ -385,39 +357,10 @@ def create_voucher(request):
 		print("Added")
 		return redirect('/')
 
-def create_gstdetails(request):
-	if request.method=='POST':
-		txb=request.POST['taxability']
-		af=request.POST['appicable_from']
-		it=request.POST['integrated_tax']
-		ces=request.POST['cess']
-		fc=request.POST['flood_cess']
-		
-		cost=gst_taxability(taxability=txb,
-                        applicable_dt = af,
-                        integrated_tax = it,      
-                        cess = ces,      
-                        flood_cess = fc)          
-		cost.save()
-		print("Added")
-		return redirect('gst_details')
-	return render(request,'jisha/gst_details')
 
-def create_lutbond(request):
-	if request.method=='POST':
-		lbno=request.POST['lut_bondNo']
-		afrom=request.POST['application_from']
-		ato=request.POST['application_to']
-		# u=tally_gst.objects.get('')  
-		lb=gst_lutbond(lut_bond_No=lbno,
-                        validity_from = afrom,
-                        validity_to = ato)      
-		lb.save() 
-		print("Added")
-		return redirect('lut_bond')
-	return render(request,'jisha/lut_bond')
 
-def create_gst(request):
+def create_gst(request,pk):
+	id=Companies.objects.get(id=pk)
 	if request.method=='POST':
 		st = request.POST['state']
 		rt = request.POST['registration_type']
@@ -460,42 +403,76 @@ def create_gst(request):
 		peir = request.POST['period_einvoiceR']
 		sewdei = request.POST['send_eW_details_einvoice']
         
-		gstd=tally_gst(state=st,
-						registration_type=rt,
-						assessee_territory=at,
+		gstd=GST(state=st,
+						reg_type=rt,
+						assessee=at,
 						gst_applicable=gsta,
-						gstin_uin=gstuin,
+						gstin=gstuin,
 						periodicity=prd,
 					# ........regular.......
-						kerala_fca=kfca,
+						flood_cess=kfca,
 						applicable_from=af,
 						gst_rate_details=gstrd,
-						tl_advanceR=tla,
-						tl_reverseC=tlr,
+						advance_receipts=tla,
+						reverse_charge=tlr,
 						gst_classification=gstc,
-						lut_bond=lb,	
+						bond_details=lb,	
 					# ........composition.......
 						tax_rate=tr,		
-						tax_calculation=tc,		
+						tax_calc=tc,		
 						tax_purchase=tp,
 					# ........e-Way bill applicable.......
-						e_waybillA=ea,
-						applicable_f=aaf,
-						thresholdlimit_include=tli,
+						eway_bill=ea,
+						applicable_form=aaf,
+						threshold_includes=tli,
 						threshold_limit=tl,
 						intrastate=intr,
-						ithreshold_limit=itl,
+						threshold_limit2=itl,
 						print_eway=pnw,
 					# ........e-Invoice applicable.......
-						e_invoiceA=einva,
+						e_invoice=einva,
 						app_from=appf,
 						billfrom_place=bfp,
-						period_einvoiceR=peir,
-						send_eW_details_einvoice=sewdei)
+						dperiod=peir,
+						send_ewaybill=sewdei,
+						company=id)
 		gstd.save()
 		print("Added")
 		return redirect('/')
+	return render(request,'gst.html')
+
+def create_gsttax(request,pk):
+	id=Companies.objects.get(id=pk)
+	if request.method=='POST':
+		txb=request.POST['taxability']
+		af=request.POST['appicable_from']
+		it=request.POST['integrated_tax']
+		ces=request.POST['cess']
+		fc=request.POST['flood_cess']
 		
+		cost=gst_taxability(taxability=txb,
+                        applicable_dt = af,
+                        integrated_tax = it,      
+                        cess = ces,      
+                        flood_cess = fc,
+						company = id)          
+		cost.save()
+		print("Added")
+		return redirect('/')
+	return render(request,'gst_tax.html')
+
+def create_lutbond(request):
+	if request.method=='POST':
+		lbno=request.POST['lut_bondNo']
+		afrom=request.POST['application_from']
+		ato=request.POST['application_to']
+		lb=gst_lutbond(lutbond=lbno,
+                        validity_from = afrom,
+                        validity_to = ato)      
+		lb.save() 
+		print("Added")
+		return redirect('lut_bond')
+	return render(request,'lut_bond')
 
 def create_ledger(request):
     if request.method=='POST':
@@ -558,7 +535,7 @@ def create_ledger(request):
 						creditdays_voucher=creditdaysvouch)
 		
         ldr.save()
-        return render(request,'jisha/ledgers.html')
+        return render(request,'ledgers.html')
 
 def create_ledgerdimension(request):
 	if request.method == 'POST':
@@ -605,7 +582,7 @@ def create_ledgerdimension(request):
 
 		cld.save()
 		return redirect('/')
-	return render(request,'jisha/ledger_chequed.html')
+	return render(request,'ledger_chequed.html')
 
 def company_create(request):
 	if request.method=="POST":
@@ -625,7 +602,7 @@ def company_create(request):
 		crny_symbol=request.POST['currency']
 		frml_name=request.POST['formal']
 
-		ccmp=create_companies.objects.filter(company_name=name)
+		ccmp=Companies.objects.filter(name=name)
 		out=datetime.datetime.strptime (fin_begin,'%Y-%m-%d')+timedelta (days=364) 
 		a=out.date()
 		
@@ -634,15 +611,15 @@ def company_create(request):
 			messages.info(request,'Company name already exists!!')
 			return redirect('create_cmpny')
 		else:
-			cmp=create_companies(company_name=name,mailing_name=mname,address=addr,state=st,country=cntry,
-                pincode=pncd,telephone=tlphn,mobile_no=mbl,fax=fax,email=email,website=wbsit,fin_begin=fin_begin,
+			cmp=Companies(name=name,mailing_name=mname,address=addr,state=st,country=cntry,
+                pincode=pncd,telephone=tlphn,mobile=mbl,fax=fax,email=email,website=wbsit,fin_begin=fin_begin,
                 books_begin=bk_begin,currency_symbol=crny_symbol,formal_name=frml_name,fin_end=a)
 			cmp.save()
 			messages.info(request,'Company created successfully(Enable the features as per your business needs)')
-			return render(request,'jisha/features.html',{'cmp':cmp})
+			return render(request,'features.html',{'cmp':cmp})
 
 def company_feature(request,cf):
-	id=create_companies.objects.get(id=cf)
+	id=Companies.objects.get(id=cf)
 	if request.method=="POST":
 		ma=request.POST['maintain_account']
 		be=request.POST['billwise_entry']
@@ -668,14 +645,14 @@ def company_feature(request,cf):
 		maddr=request.POST['multiple_address']
 		mark_mod=request.POST['mark_modified']
 
-		cmp_fet=company_features(maintain_account=ma,billwise_entry=be,cost_centre=cc,interest_calculation=ic,maintain_inventry=mi,
-		account_inventry=ai,multiple_pricelevel=mpl,enable_batches=eb,expiry_date=edt,job_order_procress=jop,cost_tracking=ct,job_costing=jc,discount_column=dc,
-		seperte_actual=sa,gst=gst,tds=tds,tcs=tcs,vat=vat,excise=excise,service_tax=st,payroll=prl,multiple_address=maddr,
-		mark_modified=mark_mod,company=id)
+		cmp_fet=Features(maintain_accounts=ma,bill_wise_entry=be,cost_centres=cc,interest_calc=ic,maintain_inventory=mi,
+		integrate_accounts=ai,multiple_price_level=mpl,batches=eb,expirydate_batches=edt,joborder_processing=jop,cost_tracking=ct,job_costing=jc,discount_invoices=dc,
+		Billed_Quantity=sa,gst=gst,tds=tds,tcs=tcs,vat=vat,excise=excise,servicetax=st,payroll=prl,multiple_addrss=maddr,
+		vouchers=mark_mod,company=id)
 
 		cmp_fet.save()
 		return redirect('/')
-	return render(request,'jisha/features.html',{'cmp':id})
+	return render(request,'features.html',{'cmp':id})
 
 def create_bankdetails(request):
 	if request.method=='POST':
@@ -692,7 +669,7 @@ def create_bankdetails(request):
 		lbd.save() 
 		print("Added")
 		return redirect('bank_details')
-	return render(request,'jisha/bank_details.html')
+	return render(request,'bank_details.html')
 
 
 def bankname(request):
@@ -701,7 +678,7 @@ def bankname(request):
 		bnn=bank_name(bankname = bn)
 		bnn.save()
 		return redirect('bankname')
-	return render(request,'jisha/cn.html')
+	return render(request,'bankname.html')
 
 
 def create_chequebk(request):
@@ -717,7 +694,7 @@ def create_chequebk(request):
 		lcb.save() 
 		print("Added")
 		return redirect('cheque')
-	return render(request,'jisha/cheque.html')
+	return render(request,'cheque.html')
 
 def create_ledger_gst(request):
 	if request.method=='POST':
@@ -736,7 +713,7 @@ def create_ledger_gst(request):
 		lgst.save()  
 		print("Added")
 		return redirect('ledger_gst')
-	return render(request,'jisha/ledger_gst.html')
+	return render(request,'ledger_gst.html')
 
 def create_voucher_advance(request):
 	if request.method=='POST':
@@ -764,7 +741,7 @@ def create_voucher_advance(request):
 		cva.save()  
 		print("Added")
 		return redirect('vouch_advance')
-	return render(request,'jisha/vouch_advance.html')
+	return render(request,'vouch_advance.html')
 
 def create_ledger_taxgst(request):
 	if request.method=='POST':
@@ -788,5 +765,5 @@ def create_ledger_taxgst(request):
 		lgt.save()  
 		print("Added")
 		return redirect('ledger_taxgst')
-	return render(request,'jisha/ledger_taxgst.html')
+	return render(request,'ledger_taxgst.html')
 
