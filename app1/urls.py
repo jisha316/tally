@@ -6,8 +6,7 @@ urlpatterns = [
 
     path('',views.base,name='base'),
 
-#.........................jisha..........................
-    
+#.........................jisha..........................   
 
     path('ledgers',views.ledgers,name='ledgers'),
 
@@ -69,8 +68,6 @@ urlpatterns = [
 
     path('enable/<int:pk>',views.enable,name='enable'),
 
-    path('c_rates',views.c_rates,name='c_rates'),
-
     path('b_name',views.b_name,name='b_name'),
 
     path('cheque',views.cheque,name='cheque'),
@@ -112,6 +109,5 @@ urlpatterns = [
     path('create_voucher_advance',views.create_voucher_advance,name='create_voucher_advance'),
 
     path('create_ledger_taxgst',views.create_ledger_taxgst,name='create_ledger_taxgst'),
-
     
 ]

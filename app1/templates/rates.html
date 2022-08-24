@@ -1,62 +1,110 @@
 {% extends 'base.html' %}
-    {% block body %}
+{% block body %}
     {% load static %}
     <style>
-        .enter{
+        .flexy{
             display: flex;
             align-items: center;
-            justify-content: center;   
-        }  
-    </style>
+            justify-content: center;
+        }
+    .form1{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        
+    }
+    form{
+        padding:30px;
+    }
+    .close {
+        position: absolute;
+        top: 3px;
+        right: 8px;
+        font-size: 25px;
+        color: rgb(255, 255, 255);
+        transform: rotate(45deg);
+        cursor: pointer;
+        text-decoration: none;
+        
+    }
+    .back{
+        background-color:rgba(0,0,0,0.4);
+        color: white;
 
+    }
+    btns:hover{
+        background-color:rgba(225,225,225,0.4);
+        color:black;
+    }
+    button{
+        background-color:rgb(103, 175, 220) ;
+        color:white;
+        padding:10px 20px;
+    }
+    input{
+        background-color:white;
+    }
+</style>
     <div class="m-3">
-        <h6  class="bg-info text-light p-2 m-0 text-left">Multi-Currency Alteration</h6>
-        <form class="p-2" style="background-color:rgba(0,0,0,.4);" method="post" action="{% url 'create_ROE' %}" autocomplete="off">
-            {% csrf_token %}
-            <div class="p-3">
-                <div class="row container-fluid  p-2 m-0">
-                    <div class="col-sm-2 m-0 p-0"><label for="a">Date for rate of exchange : </label></div>
-                    <div class="col-sm-3 m-0 p-0"><input type="date" data-date-format="DD/MM/YYYY" value="2022-04-01" class="form-control" name="dt" ></div>
-                    <div class="col-sm-7 m-0 p-0"></div>
-                </div>
-                <div class="table-responsive-sm">
-                    <Table class="w-100 table text-center" border="1">
-                        <thead>
-                            <tr>
-                                <th rowspan="2">Sl.no</th>
-                                <th rowspan="2">currency</th>
-                                <th rowspan="2">Std.rate</th>
-                                <th colspan="2">Selling rate</th>
-                                <th colspan="2">Buying rate</th>
-                                <th rowspan="2">Action</th>
-                            </tr>
-                            <tr>
-                                <th>last voucher rate</th>
-                                <th>Specified rate</th>
-                                <th>last voucher rate</th>
-                                <th>Specified rate</th>
-                            </tr>
-                        </thead>
-                        
-                        <tbody>
-                            {% for cr in ccr %}
-                                <tr>
-                                    <td> {{ forloop.counter }} </td>
-                                    <td> 
-                                        <input type="text" name="curname" id="" value="{{ cr.Symbol }} ({{ cr.FormalName }})" class="form-control" >
-                                    </td>
-                                    <td><input type="text" class="form-control" value="" name="stdr"></td>
-                                    <td><input type="text" class="form-control" value="" name="lvr"></td>
-                                    <td><input type="text" class="form-control" value="" name="ssr"></td>
-                                    <td><input type="text" class="form-control" value="" name="lvr2"></td>
-                                    <td><input type="text" class="form-control" value="" name="bsr"></td>
-                                    <td> <button class="btn btn-info">Enter</button></td> 
-                                </tr>
-                            {% endfor %}
-                        </tbody>
-                    </Table>
-               </div>  
+        <h6 class="bg-info text-light m-0 p-2">Multi Currency Alteration</h6>
+        <div class="p-3" style="background-color:rgba(0,0,0,.4);">
+            <div class="row container-fluid  p-2 m-0">
+                <div class="col-sm-2 m-0 p-0"><label for="a">Date for rate of exchange : </label></div>
+                <div class="col-sm-3 m-0 p-0"><input type="date" class="form-control" name="dt" ></div>
+                <div class="col-sm-7 m-0 p-0"></div>
             </div>
-        </form>
-    </div>
+            <div class="table-responsive-sm" style="background-color:rgba(0,0,0,0.4);">
+                <Table class="w-100 table text-center" border="1">
+                    <tr>
+                        <th rowspan="2">Sl.no</th>
+                        <th rowspan="2">currency</th>
+                        <th rowspan="2">Std.rate</th>
+                        <th colspan="2">Selling rate</th>
+                        <th colspan="2">Buying rate</th>
+                        <th rowspan="2">Action</th>
+        
+                    </tr>
+                    <tr>
+        
+                        <th>last voucher rate</th>
+                        <th>Specified rate</th>
+                        <th>last voucher rate</th>
+                        <th>Specified rate</th>
+        
+                    </tr>
+                    {% for p in curcc %}
+                    <tr>
+                       
+                           
+                      <td> {{ forloop.counter }} </td>
+                      <form action="create_ROE" method="post" autocomplete="off">
+                            
+                        {% csrf_token %}
+                      <td> 
+                            <input type="text" name="curname" id="" value="{{ p.Symbol }} ({{ p.FormalName }})" class="form-control" >
+                        </td>
+                      <td> <input type="text" class="w-100 form-control" value="{{ p.std_rate }}" name="stdr"></td>
+                      <td> </td>
+                      <td> <input type="text" class="w-100 form-control" value="{{ p.sell_specified_rate }}" name="sr"></td>
+                      <td> </td>
+                      <td> <input type="text" class="w-100 form-control" value="{{ p.uy_specified_rate }}" name="sr2"></td>
+                      
+                      <td> <button class="btn btn-info">Enter</button></td> 
+                    </form>
+                    </tr>
+                    {% endfor %}
+                    
+                    
+                </Table>
+            </div>
+            
+        </div>
+     
+   
+    </div> 
+    
+   
+
 {% endblock %}

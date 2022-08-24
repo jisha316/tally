@@ -72,11 +72,6 @@ def cost_alt(request):
 	costt=cost_centre.objects.all()
 	return render(request, 'cost_alt.html',{'costt' : costt})
 
-def rates(request):
-	ccr=currencyAlteration.objects.all()
-	context={'ccr' : ccr}
-	return render(request,'rates.html',context)
-
 def create_cmpny(request):
     return render(request, 'create_cmpny.html')
 
@@ -98,9 +93,6 @@ def tds(request,pk):
 def person(request,pk):
 	comp=Companies.objects.get(id=pk)
 	return render(request, 'tds_person.html',{'company':comp})
-    
-def c_rates(request):
-    return render(request, 'c_rates.html')
 
 def bank_details(request):
 	bn = bank_name.objects.all()
@@ -177,25 +169,52 @@ def create_currency(request):
 		print("added")
 		return redirect('/')
 
+def rates(request):
+	curcc = currencyAlteration.objects.all()
+	return render(request,'rates.html',{'curcc':curcc})
+
 def create_ROE(request):
-	if request.method=='POST':
-		dt=request.POST['dt']
-		crname=request.POST['curname']
-		stdr=request.POST['stdr']
-		lv=request.POST['lvr']
-		ssr=request.POST['ssr']
-		lv1=request.POST['lvr2']
-		bsr=request.POST['bsr']
-		croe=rateofexchange(date_ROE=dt,
-                        currencyName = crname,
-                        std_rate = stdr,
-                        sell_voucher_rate = lv,
-                        sell_specified_rate = ssr,
-						buy_specified_rate = lv1,
-                        buy_voucher_rate = bsr)          
-		croe.save()
-		return redirect('/')
-	return render(request,'rates.html')
+    if request.method=='POST':
+        curncy=request.POST['curname']
+        cstdrate=request.POST['stdr']
+        
+        csrate=request.POST['sr']
+        
+        bsrate=request.POST['sr2']
+        raex=rateofexchange(
+                        
+                          std_rate=cstdrate,
+                        
+                          sell_specified_rate=csrate,
+                        
+                          buy_specified_rate=bsrate,
+                          currencyName=curncy,
+						  )
+        raex.save()
+        print("added")
+        return redirect('rates')
+    return render(request,'rates.html')
+
+# def create_ROE(request):
+# 	if request.method=='POST':
+# 		dt=request.POST['dt']
+# 		crname=request.POST['curname']
+# 		stdr=request.POST['stdr']
+# 		lv=request.POST['lvr']
+# 		ssr=request.POST['ssr']
+# 		lv1=request.POST['lvr2']
+# 		bsr=request.POST['bsr']
+# 		croe=rateofexchange(date_ROE=dt,
+#                         currencyName = crname,
+#                         std_rate = stdr,
+#                         sell_voucher_rate = lv,
+#                         sell_specified_rate = ssr,
+# 						buy_specified_rate = lv1,
+#                         buy_voucher_rate = bsr)          
+# 		croe.save()
+# 		print("added")
+# 		return redirect('/')
+# 	return render(request,'rates.html')
 
 def alter_currency(request):
 	if request.method=='POST':

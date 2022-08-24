@@ -108,13 +108,13 @@
                     <div class="row container-fluid  p-2">
                         <div class="col-sm-6 m-0 p-0"> <label for="d">Mobile</label></div>
                         <div class="col-sm-6 m-0 p-0"><input type="text" name="mobile" class="form-control" id="d" placeholder=""
-                            maxlength="10" pattern="[6-9]{1}[0-9]{9}" title="Please enter valid phone number">
+                            maxlength="10" pattern="[6-9]{1}[0-9]{9}" title="Please enter valid phone number, start with 6,7,8,9.">
                         </div>
                     </div>
                     <div class="row container-fluid  p-2">
                         <div class="col-sm-6 m-0 p-0"> <label for="d">Fax</label></div>
-                        <div class="col-sm-6 m-0 p-0"><input type="text" name="fax" class="form-control"
-                            pattern="^\+?[0-9]{3,}$"></div>
+                        <div class="col-sm-6 m-0 p-0"><input type="text" name="fax" class="form-control" maxlength="10"
+                            pattern="(^+?[0-9]{3,}$)" title="Please enter valid fax number eg:+123456789"></div>
                     </div>
                     <div class="row container-fluid  p-2">
                         <div class="col-sm-6 m-0 p-0"> <label for="d">E-Mail</label></div>
@@ -122,7 +122,8 @@
                     </div>
                     <div class="row container-fluid  p-2">
                         <div class="col-sm-6 m-0 p-0"> <label for="d">Website</label></div>
-                        <div class="col-sm-6 m-0 p-0"><input type="url" name="website" class="form-control" id="d" placeholder=""></div>
+                        <div class="col-sm-6 m-0 p-0"><input type="text" name="website" pattern="^((https?|ftp|smtp):\/\/)?(www.)?[a-z0-9]+\.[a-z]+(\/[a-zA-Z0-9#]+\/?)*$"
+                             placeholder="" class="form-control"></div>
                     </div>
                 </div>
                 
