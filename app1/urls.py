@@ -6,8 +6,6 @@ urlpatterns = [
 
     path('',views.base,name='base'),
 
-#.........................jisha..........................   
-
     path('ledgers',views.ledgers,name='ledgers'),
 
     path('vouchers',views.vouchers,name='vouchers'),
@@ -110,4 +108,33 @@ urlpatterns = [
 
     path('create_ledger_taxgst',views.create_ledger_taxgst,name='create_ledger_taxgst'),
     
+#=======================================Aswathy (app urls)========================================
+
+    path('load_stock_group',views.load_stock_group,name='load_stock_group'),
+    path('stock_group',views.stock_group,name='stock_group'),
+    path('load_stock_catagory',views.load_stock_catagory,name='load_stock_catagory'),
+    path('stock_catagory',views.stock_catagory,name='stock_catagory'),
+    path('load_unit_creation',views.load_unit_creation,name='load_unit_creation'),
+    path('unit_sim',views.unit_sim,name='unit_sim'),
+    path('load_unit_compound',views.load_unit_compound,name='load_unit_compound'),
+    path('unit_com',views.unit_com,name='unit_com'),
+    
+    path('load_stock_item_creation',views.load_stock_item_creation,name='load_stock_item_creation'),
+    path('stock_items',views.stock_items,name='stock_items'),
+    path('load_company_price',views.load_company_price,name='load_company_price'),
+    path('price_levels',views.price_levels,name='price_levels'),
+
+    path('load_pan_cin',views.load_pan_cin,name='load_pan_cin'),
+    path('pan_cin',views.pan_cin,name='pan_cin'),
+    path('godown_creation',views.godown_creation,name='godown_creation'),
+    path('godown',views.godown,name='godown'),
+
+    path('load_rev',views.load_rev,name='load_rev'),
+    path('revised',views.revised,name='revised'),
+    path('load_rev_c',views.load_rev_c,name='load_rev_c'),
+    path('revised_composition',views.revised_composition,name='revised_composition'),
+    path('gst_stock_item',views.gst_stock_item,name='gst_stock_item'),
+    path('gst_stock',views.gst_stock,name='gst_stock'),
+
 ]
+

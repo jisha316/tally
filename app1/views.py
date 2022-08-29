@@ -786,3 +786,193 @@ def create_ledger_taxgst(request):
 		return redirect('ledger_taxgst')
 	return render(request,'ledger_taxgst.html')
 
+#================================ Aswathy Work (app views) ================================
+
+def load_stock_group(request):
+    return render(request,'stock_group.html')
+
+def stock_group(request):
+    und=stockgroupcreation.objects.all()
+    if request.method=='POST':
+        name=request.POST['name']
+        alias=request.POST['alias']
+        under_name=request.POST['under_name']
+        quantities=request.POST['quantities']
+        stockgrp=stockgroupcreation(name=name,alias=alias,under=under_name,quantities=quantities)
+        stockgrp.save()
+        return redirect('stock_group')
+    return render(request,'stock_group.html',{'und':und})
+
+
+def load_stock_catagory(request):
+    return render(request,'stock_catagory.html')
+
+def stock_catagory(request):
+    cagy=stockcatagorycreation.objects.all()
+    if request.method=='POST':
+        name=request.POST['name']
+        alias=request.POST['alias']
+        under_name=request.POST['under_name']
+        
+        stockcagy=stockcatagorycreation(name=name,alias=alias,under=under_name)
+        stockcagy.save()
+        return redirect('stock_catagory')
+    return render(request,'stock_catagory.html',{'cagy':cagy})
+
+
+
+def load_unit_creation(request):
+    return render(request,'unit_creation.html')
+
+def unit_sim(request):
+    simple=unit_simple.objects.all()
+    if request.method=='POST':
+        typ=request.POST['type']
+        sym=request.POST['symb']
+        formal_name=request.POST['fname']
+        uqc=request.POST['uqc']
+        decimal=request.POST['decimal']
+        sim=unit_simple(type=typ,symbol=sym,formal_name=formal_name,uqc=uqc,decimal=decimal)
+        sim.save()
+        return redirect('unit_sim')
+    return render(request,'unit_creation.html')
+
+def load_unit_compound(request):
+    c=unit_simple.objects.all()
+    return render(request,'unit_compound.html',{'c':c})
+
+
+def unit_com(request):
+    com=unit_compound.objects.all()
+    if request.method=='POST':
+        typ=request.POST['compound']
+        con=request.POST['conversion']
+        secondu=request.POST['sunit']
+        funit1=request.POST['funit']
+        
+        e1=unit_simple.objects.get(id=funit1)
+        comp=unit_compound(typ=typ,conversion=con,unit_simple=e1,s_unit=secondu)
+        comp.save()
+        return redirect('unit_com')
+    return render(request,'unit_compound.html',{'com':com})
+
+
+
+
+def load_stock_item_creation(request):
+    grp=stockgroupcreation.objects.all()
+    unt=unit_compound.objects.all()
+    u=unit_simple.objects.all()
+    return render(request,'stock_item_creation.html',{'grp':grp,'unt':unt,'u':u})
+
+
+
+def stock_items(request):
+   
+    grp=stockgroupcreation.objects.all()
+    unt=unit_compound.objects.all()
+    u=unit_simple.objects.all()
+    if request.method=='POST':
+        name1=request.POST['name1']
+        alias=request.POST['alias']
+        gst_applicable=request.POST['gst_applicable']
+        set_alter=request.POST['set_alter']
+        typ_sply=request.POST['typ_sply']
+        rate_of_duty=request.POST['rate_of_duty']
+        quantity=request.POST['quantity']
+        rate=request.POST['rate']
+        per=request.POST['per']
+        value=request.POST['value']
+        funit2=request.POST['funit']
+        
+        e2=unit_compound.objects.get(id=funit2)
+        gr=request.POST['name']
+        e3=stockgroupcreation.objects.get(id=gr)
+        crt=stock_item(name1=name1,alias=alias,typ_sply=typ_sply,gst_applicable=gst_applicable,set_alter=set_alter,
+                           rate_of_duty=rate_of_duty,quantity=quantity,rate=rate,per=per,value=value,unit_compound=e2,stockgroupcreation=e3)
+        crt.save()
+        return redirect('stock_items')
+    return render(request,'stock_item_creation.html',{'grp':grp,'unt':unt,'u':u})
+
+def load_company_price(request):
+    return render(request,'company_price.html')
+
+def price_levels(request):
+    price=Price_level.objects.all()
+    if request.method=="POST":
+        number=request.POST['number']
+        crt=Price_level(number=number)
+        crt.save()
+        return redirect('price_levels')
+    return render(request,'company_price.html')
+
+
+def load_pan_cin(request):
+    return render(request,'pan_cin.html')
+
+
+def pan_cin(request):
+    pc=pancin.objects.all()
+    if request.method=='POST':
+        pan=request.POST['pan']
+        cin=request.POST['cin']
+        crt=pancin(pan=pan,cin=cin)
+        crt.save()
+   
+    return render(request,'pan_cin.html')
+
+def godown_creation(request):
+    return render(request,'godown.html')
+
+
+def godown(request):
+    gd=CreateGodown.objects.all()
+    if request.method=='POST':
+        name=request.POST['name']
+        alias=request.POST['alias']
+        under_name=request.POST['under_name']
+        gdcrt=CreateGodown(name=name,alias=alias,under_name=under_name)
+        gdcrt.save()
+        return redirect('godown')
+    return render(request,'godown.html',{'gd':gd})
+
+def load_rev(request):
+    return render(request,'revised.html')
+
+def revised(request):
+    rev=revised_applicability.objects.all()
+    if request.method=='POST':
+        appl_from=request.POST['appl_from']
+        r=revised_applicability(appl_from=appl_from)
+        r.save()
+        return redirect('revised')
+    return render(request,'revised.html')
+
+def load_rev_c(request):
+    return render(request,'revised_composition.html')
+
+def revised_composition(request):
+    rev=revised_applicability_composition.objects.all()
+    if request.method=='POST':
+        appl_from_composition=request.POST['appl_from_composition']
+        re=revised_applicability_composition(appl_from_c=appl_from_composition)
+        re.save()
+        return redirect('revised_composition')
+    return render(request,'revised_composition.html')
+
+
+def gst_stock_item(request):
+    return render(request,'gst_stock_item.html')
+
+
+def gst_stock(request):
+    gst=gst_stockitem.objects.all()
+    if request.method=='POST':
+        calc_typ=request.POST['calc_typ']
+        taxability=request.POST['taxability']
+        tax=request.POST['tax']
+        cess=request.POST['cess']
+        g=gst_stockitem(taxability=taxability,tax=tax,cess=cess,calc_typ=calc_typ)
+        g.save()
+        return redirect('gst_stock')
+    return render(request,'gst_stock_item.html')

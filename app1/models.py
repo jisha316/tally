@@ -326,3 +326,69 @@ class ledger_taxreggst(models.Model):
     gstin_uin = models.CharField(max_length=100)
     transporter = models.CharField(max_length=10)
     transporter_id = models.CharField(max_length=100,null=True)
+
+#============================ Aswathy Work ===================================
+
+class revised_applicability(models.Model):
+    appl_from=models.CharField(max_length=100)
+
+class revised_applicability_composition(models.Model):
+    appl_from_c=models.CharField(max_length=100)
+
+class stockgroupcreation(models.Model):
+    name=models.CharField(max_length=100)
+    alias=models.CharField(max_length=100)
+    under=models.CharField(max_length=100)
+    quantities=models.CharField(max_length=100)
+    
+class stockcatagorycreation(models.Model):
+    name=models.CharField(max_length=100)
+    alias=models.CharField(max_length=100)
+    under=models.CharField(max_length=100)
+
+class CreateGodown(models.Model):
+    name=models.CharField(max_length=100)
+    alias=models.CharField(max_length=100)
+    under_name=models.CharField(max_length=50)
+
+class Price_level(models.Model):
+    number=models.IntegerField()
+
+class pancin(models.Model):
+    pan=models.CharField(max_length=30)
+    cin=models.CharField(max_length=30)
+
+class unit_simple(models.Model):
+    type=models.CharField(max_length=100)
+    symbol=models.CharField(max_length=100)
+    formal_name=models.CharField(max_length=100)
+    uqc=models.CharField(max_length=100)
+    decimal=models.IntegerField()
+
+class unit_compound(models.Model):
+    unit_simple=models.ForeignKey(unit_simple,on_delete=models.CASCADE,null=True)
+    typ=models.CharField(max_length=100)
+    conversion=models.IntegerField()
+    s_unit=models.IntegerField(null=True)
+
+class stock_item(models.Model):
+    stockgroupcreation=models.ForeignKey(stockgroupcreation,on_delete=models.CASCADE,null=True)
+    unit_compound=models.ForeignKey(unit_compound,on_delete=models.CASCADE,null=True)
+    name1=models.CharField(max_length=100,null=True)
+    alias=models.CharField(max_length=100,null=True)
+    gst_applicable=models.CharField(max_length=100)
+    typ_sply=models.CharField(max_length=100)
+    set_alter=models.CharField(max_length=100)
+    rate_of_duty=models.IntegerField()
+    quantity=models.CharField(max_length=100,null=True)
+    rate=models.CharField(max_length=100,null=True)
+    per=models.CharField(max_length=100,null=True)
+    value=models.CharField(max_length=100,null=True)
+    
+class gst_stockitem(models.Model):
+    calc_typ=models.CharField(max_length=100)
+    taxability=models.CharField(max_length=100)
+    tax=models.CharField(max_length=100)
+    cess=models.CharField(max_length=100)
+
+
