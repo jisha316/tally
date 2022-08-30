@@ -108,7 +108,14 @@ urlpatterns = [
 
     path('create_ledger_taxgst',views.create_ledger_taxgst,name='create_ledger_taxgst'),
     
-#=======================================Aswathy (app urls)========================================
+#======================================= Aswathy Work (app urls) ========================================
+    path('godown_alt',views.godown_alt,name='godown_alt'),
+
+    path('stockgroup_alt',views.stockgroup_alt,name='stockgroup_alt'),
+
+    path('stockcate_alt',views.stockcate_alt,name='stockcate_alt'),
+
+    path('unitcreate_alt',views.unitcreate_alt,name='unitcreate_alt'),
 
     path('load_stock_group',views.load_stock_group,name='load_stock_group'),
     path('stock_group',views.stock_group,name='stock_group'),
@@ -136,5 +143,16 @@ urlpatterns = [
     path('gst_stock_item',views.gst_stock_item,name='gst_stock_item'),
     path('gst_stock',views.gst_stock,name='gst_stock'),
 
+    path('load_gst_d',views.load_gst_d,name='load_gst_d'),
+    path('gst_d',views.gst_d,name='gst_d'),
+    path('load_lut_bond',views.load_lut_bond,name='load_lut_bond'),
+    path('lut_bond',views.lut_bond,name='lut_bond'),
+    path('load_gst_details_c',views.load_gst_details_c,name='load_gst_details_c'),
+    path('gst_details_c',views.gst_details_c,name='gst_details_c'),
+
+    path('load_tds',views.load_tds,name='load_tds'),
+    path('tds_d',views.tds_d,name='tds_d'),
+    path('load_person_res',views.load_person_res,name='load_person_res'),
+    path('person_res',views.person_res,name='person_res'),
 ]
 

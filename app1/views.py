@@ -788,6 +788,18 @@ def create_ledger_taxgst(request):
 
 #================================ Aswathy Work (app views) ================================
 
+def godown_alt(request):
+    return render(request,'godown_alt.html')
+
+def stockgroup_alt(request):
+    return render(request,'stockgroup_alt.html')
+
+def stockcate_alt(request):
+    return render(request,'stockcate_alt.html')
+
+def unitcreate_alt(request):
+    return render(request,'unitcreate_alt.html')
+
 def load_stock_group(request):
     return render(request,'stock_group.html')
 
@@ -822,7 +834,7 @@ def stock_catagory(request):
 
 
 def load_unit_creation(request):
-    return render(request,'unit_creation.html')
+	return render(request,'unit_creation.html')
 
 def unit_sim(request):
     simple=unit_simple.objects.all()
@@ -832,6 +844,7 @@ def unit_sim(request):
         formal_name=request.POST['fname']
         uqc=request.POST['uqc']
         decimal=request.POST['decimal']
+		
         sim=unit_simple(type=typ,symbol=sym,formal_name=formal_name,uqc=uqc,decimal=decimal)
         sim.save()
         return redirect('unit_sim')
@@ -849,15 +862,11 @@ def unit_com(request):
         con=request.POST['conversion']
         secondu=request.POST['sunit']
         funit1=request.POST['funit']
-        
         e1=unit_simple.objects.get(id=funit1)
         comp=unit_compound(typ=typ,conversion=con,unit_simple=e1,s_unit=secondu)
         comp.save()
         return redirect('unit_com')
     return render(request,'unit_compound.html',{'com':com})
-
-
-
 
 def load_stock_item_creation(request):
     grp=stockgroupcreation.objects.all()
@@ -865,10 +874,7 @@ def load_stock_item_creation(request):
     u=unit_simple.objects.all()
     return render(request,'stock_item_creation.html',{'grp':grp,'unt':unt,'u':u})
 
-
-
 def stock_items(request):
-   
     grp=stockgroupcreation.objects.all()
     unt=unit_compound.objects.all()
     u=unit_simple.objects.all()
@@ -906,10 +912,8 @@ def price_levels(request):
         return redirect('price_levels')
     return render(request,'company_price.html')
 
-
 def load_pan_cin(request):
     return render(request,'pan_cin.html')
-
 
 def pan_cin(request):
     pc=pancin.objects.all()
@@ -918,12 +922,10 @@ def pan_cin(request):
         cin=request.POST['cin']
         crt=pancin(pan=pan,cin=cin)
         crt.save()
-   
     return render(request,'pan_cin.html')
 
 def godown_creation(request):
     return render(request,'godown.html')
-
 
 def godown(request):
     gd=CreateGodown.objects.all()
@@ -976,3 +978,119 @@ def gst_stock(request):
         g.save()
         return redirect('gst_stock')
     return render(request,'gst_stock_item.html')
+
+def load_tds(request):
+    return render(request,'tds_details.html')
+
+def tds_d(request):
+    tds=Tds_Details.objects.all()
+    if request.method=='POST':
+        tan_reg_no=request.POST['tan_reg_no']
+        acc_no=request.POST['acc_no']
+        d_typ=request.POST['d_typ']
+        d_branch=request.POST['d_branch']
+        set_alter=request.POST['set_alter']
+        it_tds=request.POST['it_tds']
+        act_tds=request.POST['act_tds']
+        t=Tds_Details(tan_regno=tan_reg_no,tan=acc_no,deductor_type=d_typ,deductor_branch=d_branch,person_details=set_alter,ignore_it=it_tds,active_tds=act_tds)
+        t.save()
+        return redirect('tds')
+    return render(request,'tds_details.html')
+
+def load_person_res(request):
+    return render(request,'person_res.html')
+
+def person_res(request):
+    person=tds_person.objects.all()
+    if request.method=='POST':
+        name=request.POST['name']
+        son=request.POST['son']
+        designation=request.POST['designation']
+        pan=request.POST['pan']
+        flat_no=request.POST['flat_no']
+        name_bul=request.POST['name_bul']
+        road=request.POST['road']
+        location=request.POST['location']
+        city=request.POST['city']
+        state=request.POST['state']
+        pincode=request.POST['pincode']
+        mob_no=request.POST['mob_no']
+        std=request.POST['std']
+        tele_phn=request.POST['tele_phn']
+        email=request.POST['email']
+        p=tds_person(name=name,son_daughter=son,designation=designation,pan=pan,flat_no=flat_no,building=name_bul,street=road,area=location,town=city,
+        state=state,pincode=pincode,mobile=mob_no,std=std,telephone=tele_phn,email=email)
+        p.save()
+        return redirect('person_res')
+    return render(request,'person_res.html')
+
+def load_gst_d(request):
+    return render(request,'gst_d.html')
+
+def gst_d(request):
+    gst=GST.objects.all()
+    if request.method=='POST':
+        state=request.POST['state']
+        reg_typ=request.POST['reg_typ']
+        assess_of_teritory=request.POST['assess_of_teritory']
+        gst_application=request.POST['gst_application']
+        uin=request.POST['uin']
+        periodicity=request.POST['periodicity']
+        flood_access=request.POST['flood_access']
+        applicable_from=request.POST['applicable_from']
+        set_alter=request.POST['set_alter']
+        tax_liability_advance=request.POST['tax_liability_advance']
+        tax_liability_reverse=request.POST['tax_liability_reverse']
+        gst_clss=request.POST['gst_clss']
+        lut_but=request.POST['lut_but']
+        tax_cal=request.POST['tax_cal']
+        tax_rate_turnover=request.POST['tax_rate_turnover']
+        tax_rate_purchase=request.POST['tax_rate_purchase']
+        e_way_bill=request.POST['e_way_bill']
+        appl_from=request.POST['appl_from']
+        th_limlit_in=request.POST['th_limlit_in']
+        th_limit=request.POST['th_limit']
+        appl_intrastate=request.POST['appl_intrastate']
+        thr_limit=request.POST['thr_limit']
+        p_e_way=request.POST['p_e_way']
+        e_invoice=request.POST['e_invoice']
+        appli_frm=request.POST['appli_frm']
+        bill_from_place=request.POST['bill_from_place']
+        period_report=request.POST['period_report']
+        send_eway_bill=request.POST['send_eway_bill']
+        g=GST(state=state,reg_type=reg_typ,assessee=assess_of_teritory,gst_applicable=gst_application,gstin=uin,periodicity=periodicity,flood_cess=flood_access,
+        applicable_from=applicable_from,gst_rate_details=set_alter, advance_receipts= tax_liability_advance,reverse_charge=tax_liability_reverse,
+        gst_classification=gst_clss,bond_details=lut_but,tax_calc=tax_cal,tax_rate=tax_rate_turnover,tax_purchase=tax_rate_purchase, eway_bill=e_way_bill,
+        applicable_form=appl_from,threshold_includes=th_limlit_in,threshold_limit=th_limit,intrastate=appl_intrastate,threshold_limit2=thr_limit, print_eway= p_e_way,e_invoice=e_invoice,
+        app_from=appli_frm,billfrom_place=bill_from_place,dperiod=period_report,send_ewaybill=send_eway_bill)
+        g.save()
+        return redirect('gst_d')
+    return render(request,'gst_d.html')
+
+def load_lut_bond(request):
+    return render(request,'lut_bond A.html')
+
+def lut_bond(request):
+    lut=gst_lutbond.objects.all()
+    if request.method=='POST':
+        lut_no=request.POST['lut_no']
+        appl_from=request.POST['appl_frm']
+        appl_to=request.POST['appl_to']
+        l=gst_lutbond(lutbond=lut_no,validity_from=appl_from,validity_to=appl_to)
+        l.save()
+        return redirect('lut_bond')
+    return render(request,'lut_bond A.html')
+
+def load_gst_details_c(request):
+    return render(request,'gst_details_c.html')
+
+def gst_details_c(request):
+    gst=gst_taxability.objects.all()
+    if request.method=='POST':
+        taxability=request.POST['taxability']
+        tax=request.POST['tax']
+        cess=request.POST['cess']
+        g=gst_taxability(taxability=taxability,integrated_tax=tax,cess=cess)
+        g.save()
+        return redirect('gst_details_c')
+    return render(request,'gst_details_c.html')

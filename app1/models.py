@@ -67,9 +67,9 @@ class GST(models.Model):
     eway_bill = models.CharField(max_length=20,null=True)
     applicable_form = models.CharField(max_length=50,null=True)
     threshold_includes = models.CharField(max_length=255,null=True)
-    threshold_limit = models.IntegerField(null=True)
+    threshold_limit = models.CharField(max_length=100,null=True)
     intrastate = models.CharField(max_length=20,null=True)
-    threshold_limit2 = models.IntegerField(null=True)
+    threshold_limit2 = models.CharField(max_length=100,null=True)
     print_eway = models.CharField(max_length=20,null=True)
 
     e_invoice = models.CharField(max_length=20,null=True)

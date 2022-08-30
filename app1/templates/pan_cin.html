@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% block body %}
+{% load static %}
+    <style>
+        .container{
+            display: flex;
+            height:25vh;
+            align-items: center;
+            justify-content: center;
+        }
+    .form1{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        
+    }
+    form{
+        padding:30px;
+    }
+    .close {
+        position: absolute;
+        top: 3px;
+        right: 8px;
+        font-size: 25px;
+        color: rgb(255, 255, 255);
+        transform: rotate(45deg);
+        cursor: pointer;
+        text-decoration: none;
+        
+    }
+    button{
+        background-color:rgb(103, 175, 220) ;
+        color:white;
+        padding:10px 20px;
+    }
+</style>
+<script>  
+function validateform(){  
+var cin=document.myform.cin.value;  
+var pan=document.myform.pan.value;  
+  
+if (cin==null || cin==""){  
+  alert("CIN can't be blank");            
+  return false;  
+}else if(pan.length<10){  
+  alert("Invalid PAN structure.Format should be 5 alpha in uppercase 4 numeric and 1 alpha in uppercase (eg:AADAS1234D)");  
+  return false;  
+  }  
+}  
+</script>  
+<div class="container">
+    <div class="form1"style=" background-color:rgba(0,0,0,0.3);">
+        <a href="javascript:history.go(-1);" class="close">+</a>
+        <h5 style="background-color:rgb(103, 175, 220) ; color:white; text-align: center; padding: 5px 0; width:100%;">PAN/CIN Details</h5>
+        <form name="myform" action="{% url 'pan_cin' %}" method="post" onsubmit="return validateform()">
+            {% csrf_token %}
+
+<!-- <div class="container">
+<div class="form1">
+    <a href="javascript:history.go(-1);" class="close">+</a>
+    <h5 style="background-color:rgb(103, 175, 220) ; color:white; text-align: center; padding: 5px 0; width:100%;">Group Alteration(Secondary)</h5>
+    <form action="" method="post"> -->
+    
+        
+        
+        <div><p>PAN/Income tax no.</p></div>
+        <input type="text" class="form-control" name="pan" >
+        <div><p>Corporate Identity No.(CIN)</p></div>
+        <input type="text" class="form-control" name="cin"><br><br>
+        
+        
+        
+        <button type="submit"><h5>Accept</h5></button>
+    </form>
+</div>
+</div>
+{% endblock %}
+
+
+
+ 

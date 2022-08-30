@@ -1,0 +1,277 @@
+{% extends 'base.html' %}
+    {% block body %}
+    {% load static %}
+    <style>
+        .enter{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            
+        }
+    </style>
+    <script>
+        
+        $(document).ready(function() {
+            $("#id_l").change(function() {
+            if ($(this).val() === "Not Applicable") {
+                $('#l_p').hide();
+              
+            } else if($(this).val() === "Applicable") {
+                $('#l_p').hide();
+              
+            } else {
+                $('#l_p').show();
+               
+
+            }
+            });
+            $("#id_l").trigger("change")
+        })
+    </script>
+    <script>
+        function showgststock(){
+            var status = document.getElementById("stock");
+            var a = status.value;
+            if(a=="Yes"){
+    
+                window.location.href="{% url 'gst_stock_item' %}"
+            }
+            else{
+                document.getElementById('rate').style.display="flex";
+            }
+        }
+    </script>
+    <script>
+        function showcrt(){
+            var status = document.getElementById("crt");
+            var a = status.value;
+            if(a=="create"){
+    
+                window.location.href="{% url 'load_stock_group' %}"
+            }
+            else{
+                document.getElementById('rate').style.display="flex";
+            }
+        }
+    </script>
+
+  <div class="m-0">
+    <h6 class="bg-info text-light p-2 m-0 text-center">Stock Item Creation</h6>
+            <form class="p-5" style="background-color:rgba(0,0,0,.4);" action="{% url 'stock_items' %}" method="post">
+                {% csrf_token %}
+                
+                <div class="p-3">
+                <div class="row container-fluid  p-2 m-0">
+                    <div class="col-sm-2 m-0 p-0"> <label for="a">Name</label></div>
+                    <div class="col-sm-3 m-0 p-0"><input type="text" class="form-control" id="a" placeholder="" name="name1"></div>
+                    <div class="col-sm-7 m-0 p-0"></div>
+                </div>
+                <div class="row container-fluid  p-2 m-0">
+                    <div class="col-sm-2 m-0 p-0"> <label for="b">Alias</label></div>
+                    <div class="col-sm-3 m-0 p-0"> 
+                    <input type="text" class="form-control" id="b" placeholder="" name="alias"></div>
+                    <div class="col-sm-7 m-0 p-0"></div>
+                </div>
+            </div>
+
+                
+                    
+                   
+                <div class="row container-fluid  p-0 m-0" style=" border: 1px solid rgba(128, 128, 128, 0.6);">
+                    <div class="col-sm-5 m-0 p-4" style=" border-right: 1px solid rgba(128, 128, 128, 0.6);">
+                        <h5 class="text-center">General</h5>
+                        <div class="row container-fluid  p-0">
+                            <div class="col-sm-6 m-0 p-0"></div>
+                            <div class="col-sm-6 m-0 p-0"></div>
+                        </div>
+
+                       
+                        <div class="row container-fluid  p-2">
+                            <div class="col-sm-6 m-0 p-0"> <label for="e">Under</label></div>
+                            <div class="col-sm-6 m-0 p-0">
+                                <select name="name" class="form-control" onchange="showcrt()" id="crt">
+                                    <option value="create"><b>Create</b></option>
+                                    <option value="Primary"><b>Primary</b></option>
+                                    {% for co in grp %}
+                                    <option value="{{ co.id }}">{{ co.name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row container-fluid  p-2">
+                            <div class="col-sm-6 m-0 p-0"> <label for="e">Units</label></div>
+                            <div class="col-sm-6 m-0 p-0">
+                                <select name="funit" class="form-control">
+                                    
+                                    {% for un in u %}
+                                    <option value="{{ un.id }}">{{ un.symbol }} of {{ un.conversion }} ({{ un.formal_name }} )</option>
+                                    {% endfor %}
+                                  
+                                </select>
+                            </div>
+                        </div>
+
+                       
+                        
+
+                    </div>
+                    <div class="col-sm-4 m-0 p-4" style=" border-right: 1px solid rgba(128, 128, 128, 0.6);">
+                        <h5 class="text-center">statutory Details</h5>
+                        <div class="row container-fluid  p-2" id="l">
+                            <div class="col-sm-6 m-0 p-0"> <label for="l">GST Applicable</label></div>
+                            <div class="col-sm-6 m-0 p-0">
+                                <select name="gst_applicable" id="id_l" class="form-control">
+                                    <option value="Not Applicable">Not Applicable</option>
+                                    <option value="Applicable">Applicable</option>
+                                    <option value="Undefined">Undefined</option>
+                                   
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row container-fluid  p-2" id="l_p">
+                            <div class="row container-fluid  p-2">
+                            <div class="col-sm-6 m-0 p-0"> <label for="l">Type of supply</label></div>
+                            <div class="col-sm-6 m-0 p-0">
+                                <select name="typ_sply" id="l" class="form-control" >
+                                    <option value="Goods">Goods</option>
+                                    <option value="Services">Services</option>
+                                   
+                                </select>
+                            </div>
+                        </div>
+                        </div>
+                        <div class="row container-fluid  p-2">
+                            <div class="col-sm-6 m-0 p-0"> <label for="l">Set/Alter GST details</label></div>
+                            <div class="col-sm-6 m-0 p-0">
+                                <select name="set_alter" id="stock" class="form-control" onchange="showgststock()">
+                                    <option value="Yes">Yes</option>
+                                    <option value="no">No</option>
+                                    </select>
+                                   
+                                    
+                            </div>
+                        </div>
+                        <div class="row container-fluid  p-2">
+                            <div class="col-sm-6 m-0 p-0"> <label for="l">Rate of duty(eg 5)</label></div>
+                            <div class="col-sm-6 m-0 p-0">
+                                <input type="number" id="l" class="form-control" name="rate_of_duty">
+                                    
+                            </div>
+                        </div>
+                        
+                       
+                        
+                    </div>
+                   
+                </div><br>
+                <h5><u><b>Opening Balance</b></u></h5>
+                <div class="row container-fluid  p-2 m-0">
+                    <div class="col-sm-2 m-0 p-0"> <label for="">Quantity</label></div>
+                    <div class="col-sm-3 m-0 p-0"> 
+                        <input type="text" class="form-control" id="quantity" placeholder="" name="quantity"
+                        onblur="passquantity()"> </div>
+                    <div class="col-sm-7 m-0 p-0"></div>
+                </div>
+                <div class="row container-fluid  p-2 m-0">
+                    <div class="col-sm-2 m-0 p-0"> <label for="">Rate</label></div>
+                    <div class="col-sm-3 m-0 p-0"> 
+                        <input type="text" class="form-control" id="rate" placeholder="" name="rate"
+                        onblur="passrate()"> </div>
+                    <div class="col-sm-7 m-0 p-0"></div>
+                </div>
+                <div class="row container-fluid  p-2 m-0">
+                    <div class="col-sm-2 m-0 p-0"> <label for="">Per</label></div>
+                    <div class="col-sm-3 m-0 p-0"> 
+                        <input type="text" class="form-control" id="per" placeholder="" name="per"> </div>
+                    <div class="col-sm-7 m-0 p-0"></div>
+                </div>
+                <div class="row container-fluid  p-2 m-0">
+                    <div class="col-sm-2 m-0 p-0"> <label for="">Value</label></div>
+                    <div class="col-sm-3 m-0 p-0"> 
+                        <input type="text" class="form-control" id="value" placeholder="" name="value"> </div>
+                    <div class="col-sm-7 m-0 p-0"></div>
+                </div>
+        
+                
+              
+                
+            
+                <div class="enter"><button class="btn btn-info" type="submit">CREATE</button></div>   
+                
+            </form>
+        </div>
+    
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+
+
+        <script>
+            document.getElementById("value").value = localStorage.getItem("amount");
+        
+            function checker(){
+                    var result =confirm('Are you sure?');
+                    if (result==false){
+                        event.preventDefault();
+                    }
+                }
+            
+        
+            function passvalues()
+                {
+                var name=document.getElementById("a").value;
+                localStorage.setItem("name", name);
+                var a=localStorage.getItem("name");                         
+                }
+        
+            function passquantity()
+                {
+                var quantity=document.getElementById("quantity").value;
+                localStorage.setItem("quantity", quantity);
+                var qua=localStorage.getItem("quantity");                         
+                }
+            
+            
+        
+                // list showgroup
+                function showGroup() {
+                    document.getElementById("list-group").style.visibility = "visible";
+                }
+                function hideGroup(valueDIv) {
+                    document.getElementById("group").value=valueDIv;
+                    document.getElementById("list-group").style.visibility = "hidden";
+                }
+                // list Show Category
+        
+                function showCategory() {
+                    document.getElementById("list-categ").style.visibility = "visible";
+                }
+                function hideCateg(valueDIv) {
+                    document.getElementById("categ").value=valueDIv;
+                    document.getElementById("list-categ").style.visibility = "hidden";
+                }
+        
+                // list show Units
+        
+                function showUnits() {
+                    document.getElementById("list-units").style.visibility = "visible";
+                }
+                function hideUnits(valueDIv) {
+                    document.getElementById("unit").value=valueDIv;
+                    document.getElementById("list-units").style.visibility = "hidden";
+                }
+        
+                $('#quantity, #rate').on('input',function(){
+                    var quantity = parseFloat($('#quantity').val()) || 0;
+                    var rate = parseFloat($('#rate').val()) || 0;
+        
+                    $('#value').val(quantity * rate);    
+                });
+                
+        
+        </script>
+        
+            
+        
+        
+        
+    {% endblock %}

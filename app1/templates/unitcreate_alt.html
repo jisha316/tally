@@ -1,0 +1,121 @@
+{% extends 'base.html' %}
+{% block body %}
+{% load static %}
+    <style>
+        .enter{
+            display: flex;
+            align-items: center;
+            justify-content: center;        
+        }
+        .hide{
+            display: none;
+        }
+    </style>
+    <script>
+        function showcom(){
+            var status = document.getElementById("unit");
+            var a = status.value;
+            if(a=="Compound"){
+
+                window.location.href="{% url 'load_unit_compound' %}"
+            }
+            else{
+                document.getElementById('rate').style.display="flex";
+            }
+        }
+    </script>
+    
+    <div class="m-0">
+        <div class="row container-fluid p-2 m-0">
+            <div class="col-sm-3 m-0 p-0"></div>  
+            <div class="col-sm-6 m-0 p-0">
+                <h6  class="bg-info text-light p-2 m-0 text-left">Unit Creation (Secondary)</h6>
+                <form class="p-3" style="background-color:rgba(0,0,0,.4);" method="post" action="{% url 'unit_sim' %}" autocomplete="off">
+                    {% csrf_token %}
+                    <div class="p-3">
+                        <div class="row container-fluid p-2 m-0">
+                            <div class="col-sm-1 m-0 p-0"></div> 
+                            <div class="col-sm-5 m-0 p-0"> <label for="a">Type</label></div>
+                            <div class="col-sm-5 m-0 p-0">
+                                <select name="type" class="form-control" id="unit" onchange="showcom()">
+                                    <option value="Simple">Simple</option>
+                                    <option value="Compound">Compound</option>
+                                </select>
+                            </div> 
+                            <div class="col-sm-1 m-0 p-0"></div>    
+                        </div>
+                        <div class="row container-fluid  p-2 m-0">
+                            <div class="col-sm-1 m-0 p-0"></div> 
+                            <div class="col-sm-5 m-0 p-0"><label for="b">Symbol</label></div>
+                            <div class="col-sm-5 m-0 p-0"><input type="text" class="form-control" name="symb"></div>
+                            <div class="col-sm-1 m-0 p-0"></div> 
+                        </div>
+                        <div class="row container-fluid  p-2 m-0">
+                            <div class="col-sm-1 m-0 p-0"></div> 
+                            <div class="col-sm-5 m-0 p-0"> <label for="b">Formal Name</label></div>
+                            <div class="col-sm-5 m-0 p-0"><input type="text" class="form-control" name="fname"></div> 
+                            <div class="col-sm-1 m-0 p-0"></div> 
+                        </div>
+                        <div class="row container-fluid  p-2 m-0">
+                            <div class="col-sm-1 m-0 p-0"></div> 
+                            <div class="col-sm-5 m-0 p-0"> <label for="b">Unit Quantity Code (UQC)</label></div>
+                            <div class="col-sm-5 m-0 p-0"> 
+                                <select name="uqc" id="" class="form-control">
+                                    <option value="Not applicable">Not applicable</option>
+                                    <option value="BAG-BAGS">BAG-BAGS</option>
+                                    <option value="BAL-BALE">BAL-BALE</option>
+                                    <option value="BDL-BUNDLES">BDL-BUNDLES</option>
+                                    <option value="BKL-BUCKLES">BKL-BUCKLES</option>
+                                    <option value="BOU-BILLION OF UNITS">BOU-BILLION OF UNITS</option>
+                                    <option value="BOX-BOX">BOX-BOX</option>
+                                    <option value="BTL-BOTTLES">BTL-BOTTLES</option>
+                                    <option value="BUN-BUNCHES">BUN-BUNCHES</option>
+                                    <option value="CAN-CANS">CAN-CANS</option>
+                                    <option value="CBM-CUBIC METERS">CBM-CUBIC METERS</option>
+                                    <option value="CCM-CUBIC CENTIMETERS">CCM-CUBIC CENTIMETERS</option>
+                                    <option value="CMS-CENTIMETERS">CMS-CENTIMETERS</option>
+                                    <option value="CTN-CARTONS">CTN-CARTONS</option>
+                                    <option value="DOZ-DOZEN">DOZ-DOZEN</option>
+                                    <option value="DRM-DRUMS">DRM-DRUMS</option>
+                                    <option value="GGK-GREAT GROSS">GGK-GREAT GROSS</option>
+                                    <option value="GYD-GROSS-YARDS">GYD-GROSS-YARDS</option>
+                                    <option value="KGS-KILOGRAMS">KGS-KILOGRAMS</option>
+                                    <option value="KLR-KILOLITER">KLR-KILOLITER</option>
+                                    <option value="KME-KILOMETER">KME-KILOMETER</option>
+                                    <option value="MLT-MILLILITRE">MLT-MILLILITRE</option>
+                                    <option value="MTR-METERS">MTR-METERS</option>
+                                    <option value="MTS-METRIC TONES">MTS-METRIC TONES</option>
+                                    <option value="NOS-NUMBERS">NOS-NUMBERS</option>
+                                    <option value="OTH-OTHERS">OTH-OTHERS</option>
+                                    <option value="PAC-PACKS">PAC-PACKS</option>
+                                    <option value="PCS-PICES">PCS-PICES</option>
+                                    <option value="PRS-PAIRS">PRS-PAIRS</option>
+                                    <option value="QTL-QUINTEL">QTL-QUINTEL</option>
+                                    <option value="ROL-ROLLS">ROL-ROLLS</option>
+                                    <option value="SET-SETS">SET-SETS</option>
+                                    <option value="SQF-SQUAREFEET">SQF-SQUAREFEET</option>
+                                    <option value="SQM-SQUARE METER">SQM-SQUARE METER</option>
+                                    <option value="SQY-SQUARE YARDS">SQY-SQUARE YARDS</option>
+                                    <option value="TBS-TABLETS">TBS-TABLETS</option>
+                                    <option value="TGM-TEN GROSS">TGM-TEN GROSS</option>
+                                    <option value="THD-THOUSANDS">THD-THOUSANDS</option>
+                                    <option value="TON-TONNES">TON-TONNES</option>
+                                    <option value="TUB-TUBES">TUB-TUBES</option>
+                                    <option value="UNIT-UNITS">UNIT-UNITS</option>
+                                    <option value="YDS-YARDS">YDS-YARDS</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-1 m-0 p-0"></div> 
+                        </div>
+                        <div class="row container-fluid  p-2 m-0">
+                            <div class="col-sm-1 m-0 p-0"></div> 
+                            <div class="col-sm-5 m-0 p-0"><label for="b"> Number of decimal places</label></div>
+                            <div class="col-sm-5 m-0 p-0"><input type="number" class="form-control" name="decimal"></div>
+                            <div class="col-sm-1 m-0 p-0"></div> 
+                        </div>
+                    <div class="enter w-100 py-4"><button class="btn btn-info w-15">CREATE</button></div>  
+                </form>
+            </div>
+        <div class="col-sm-5 m-0 p-0"></div>
+    </div> 
+{% endblock %}
