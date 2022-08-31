@@ -9,6 +9,10 @@ from .models import *
 def base(request):
     return render(request, 'base.html')
 
+def demo(request):
+    return render(request, 'demo.html')
+
+
 #......................jisha........................
 
 def company_list(request):
@@ -789,55 +793,57 @@ def create_ledger_taxgst(request):
 #================================ Aswathy Work (app views) ================================
 
 def godown_alt(request):
-    return render(request,'godown_alt.html')
+	gd=CreateGodown.objects.all()
+	return render(request,'godown_alt.html',{'gd':gd})
 
 def stockgroup_alt(request):
-    return render(request,'stockgroup_alt.html')
+	und=stockgroupcreation.objects.all()
+	return render(request,'stockgroup_alt.html',{'und':und})
 
 def stockcate_alt(request):
-    return render(request,'stockcate_alt.html')
+	cagy=stockgroupcreation.objects.all()
+	return render(request,'stockcate_alt.html',{'cagy':cagy})
 
 def unitcreate_alt(request):
     return render(request,'unitcreate_alt.html')
 
 def load_stock_group(request):
-    return render(request,'stock_group.html')
+	und=stockgroupcreation.objects.all()
+	return render(request,'stock_group.html',{'und':und})
 
 def stock_group(request):
-    und=stockgroupcreation.objects.all()
-    if request.method=='POST':
-        name=request.POST['name']
-        alias=request.POST['alias']
-        under_name=request.POST['under_name']
-        quantities=request.POST['quantities']
-        stockgrp=stockgroupcreation(name=name,alias=alias,under=under_name,quantities=quantities)
-        stockgrp.save()
-        return redirect('stock_group')
-    return render(request,'stock_group.html',{'und':und})
-
+	und=stockgroupcreation.objects.all()
+	if request.method=='POST':
+		name=request.POST['name']
+		alias=request.POST['alias']
+		under_name=request.POST['under_name']
+		quantities=request.POST['quantities']
+		stockgrp=stockgroupcreation(name=name,alias=alias,under=under_name,quantities=quantities)
+		stockgrp.save()
+		return redirect('stock_group')
+	return render(request,'stock_group.html',{'und':und})
 
 def load_stock_catagory(request):
-    return render(request,'stock_catagory.html')
+	cagy=stockcatagorycreation.objects.all()
+	return render(request,'stock_catagory.html',{'cagy':cagy})
 
 def stock_catagory(request):
-    cagy=stockcatagorycreation.objects.all()
-    if request.method=='POST':
-        name=request.POST['name']
-        alias=request.POST['alias']
-        under_name=request.POST['under_name']
-        
-        stockcagy=stockcatagorycreation(name=name,alias=alias,under=under_name)
-        stockcagy.save()
-        return redirect('stock_catagory')
-    return render(request,'stock_catagory.html',{'cagy':cagy})
+	cagy=stockcatagorycreation.objects.all()
+	if request.method=='POST':
+		name=request.POST['name']
+		alias=request.POST['alias']
+		under_name=request.POST['under_name']
 
-
+		stockcagy=stockcatagorycreation(name=name,alias=alias,under=under_name)
+		stockcagy.save()
+		return redirect('stock_catagory')
+	return render(request,'stock_catagory.html',{'cagy':cagy})
 
 def load_unit_creation(request):
-	return render(request,'unit_creation.html')
+	u=uqcs.objects.all()
+	return render(request,'unit_creation.html',{'u': u})
 
 def unit_sim(request):
-    simple=unit_simple.objects.all()
     if request.method=='POST':
         typ=request.POST['type']
         sym=request.POST['symb']
@@ -850,23 +856,29 @@ def unit_sim(request):
         return redirect('unit_sim')
     return render(request,'unit_creation.html')
 
+def new_uqcs(request):
+	if request.method=='POST':
+		uqc = request.POST['uqc_name']
+		uq=uqcs(uqc_name = uqc)
+		uq.save()
+		return redirect('new_uqcs')
+	return render(request,'unit_uqc.html')
+
 def load_unit_compound(request):
     c=unit_simple.objects.all()
     return render(request,'unit_compound.html',{'c':c})
 
-
 def unit_com(request):
-    com=unit_compound.objects.all()
+    c=unit_simple.objects.all()
     if request.method=='POST':
         typ=request.POST['compound']
         con=request.POST['conversion']
-        secondu=request.POST['sunit']
-        funit1=request.POST['funit']
-        e1=unit_simple.objects.get(id=funit1)
-        comp=unit_compound(typ=typ,conversion=con,unit_simple=e1,s_unit=secondu)
+        sunit=request.POST['s_unit']
+        funit=request.POST['f_unit']
+        comp=unit_compound(typ=typ,f_unit=funit,conversion=con,s_unit=sunit)
         comp.save()
         return redirect('unit_com')
-    return render(request,'unit_compound.html',{'com':com})
+    return render(request,'unit_compound.html',{'c':c})
 
 def load_stock_item_creation(request):
     grp=stockgroupcreation.objects.all()
@@ -925,10 +937,10 @@ def pan_cin(request):
     return render(request,'pan_cin.html')
 
 def godown_creation(request):
-    return render(request,'godown.html')
+	gd=CreateGodown.objects.all()
+	return render(request,'godown.html',{'gd':gd})
 
 def godown(request):
-    gd=CreateGodown.objects.all()
     if request.method=='POST':
         name=request.POST['name']
         alias=request.POST['alias']
@@ -936,7 +948,7 @@ def godown(request):
         gdcrt=CreateGodown(name=name,alias=alias,under_name=under_name)
         gdcrt.save()
         return redirect('godown')
-    return render(request,'godown.html',{'gd':gd})
+    return render(request,'godown.html')
 
 def load_rev(request):
     return render(request,'revised.html')

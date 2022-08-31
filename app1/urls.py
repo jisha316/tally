@@ -5,6 +5,9 @@ from.import views
 urlpatterns = [
 
     path('',views.base,name='base'),
+    path('demo',views.demo,name='demo'),
+
+#...........................................................
 
     path('ledgers',views.ledgers,name='ledgers'),
 
@@ -116,6 +119,8 @@ urlpatterns = [
     path('stockcate_alt',views.stockcate_alt,name='stockcate_alt'),
 
     path('unitcreate_alt',views.unitcreate_alt,name='unitcreate_alt'),
+
+    path('new_uqcs',views.new_uqcs,name='new_uqcs'),
 
     path('load_stock_group',views.load_stock_group,name='load_stock_group'),
     path('stock_group',views.stock_group,name='stock_group'),

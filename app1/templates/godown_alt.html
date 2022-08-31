@@ -45,12 +45,12 @@
         .btns_prnt{
             color: #fff;
             width: 100%;
-            text-align: left;
+            cursor: pointer;
             background-color: rgba(240, 248, 255, 0);
             border: none;
         }
         .btns_prnt:hover{
-            background-color:orange;
+            background-color:#5bc9e4;
             color: rgb(15, 14, 14);
         }
         .bt{
@@ -98,12 +98,11 @@
             <div>
                 <table>
                     <tr>
-                        <a onclick="setPrimary()" style="cursor:pointer" class="btn btns_prnt" role="button">&nbsp;&nbsp;Primary</a><br>
-                        <a onclick="setmain()" class="btn btns_prnt" role="button" style="cursor:pointer">&nbsp;&nbsp;Main Location</a><br>
+                        <option onclick="setPrimary()" class="btns_prnt">&nbsp;&nbsp;Primary</option>
+                        <option onclick="setmain()" class="tns_prnt">&nbsp;&nbsp;Main Location</option>
+                        
                         {% for l in gd %}
-                            <a onclick="setvalue('{{l.name}}','{{l.id}}')" class="content btn btns_prnt" role="button"
-                                style="cursor:pointer">&nbsp;&nbsp;{{l.name}}
-                            </a><br>
+                            <option onclick="setvalue('{{l.name}}','{{l.id}}')" class="btns_prnt">&nbsp;&nbsp;{{l.name}}</option>
                         {% endfor %}
                     </tr>
                 </table>
@@ -122,15 +121,15 @@
         }
         function setPrimary(){
             document.getElementById('under').value= 'Primary';
-            document.getElementById('underForm').style.visibility= "hidden";
+            document.getElementById('underForm').style.visibility= "block";
         }
         function setmain(){
             document.getElementById('under').value= 'Main Location';
-            document.getElementById('underForm').style.visibility= "hidden";
+            document.getElementById('underForm').style.visibility= "block";
         }
         function setvalue(under,underId){
             document.getElementById('under').value= under;
-            document.getElementById('underForm').style.visibility= "hidden";
+            document.getElementById('underForm').style.visibility= "block";
             document.getElementsByName('underhidden').value= underId;
         }
     </script>

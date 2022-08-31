@@ -45,18 +45,35 @@
         .btns_prnt{
             color: #fff;
             width: 100%;
-            text-align: left;
+            cursor: pointer;
             background-color: rgba(240, 248, 255, 0);
             border: none;
         }
         .btns_prnt:hover{
-            background-color:orange;
+            background-color:#5bc9e4;
             color: rgb(15, 14, 14);
         }
         .bt{
             text-align: end;
         }
     </style>
+    <script>
+        function closeForm() {
+            document.getElementById("underForm").style.display = "none";
+        }
+        function showform(){
+            document.getElementById('underForm').style.display= "block";
+        }
+        function setPrimary(){
+            document.getElementById('under').value= 'Primary';
+            document.getElementById('underForm').style.visibility= "block";
+        }
+        function setvalue(under,underId){
+            document.getElementById('under').value= under;
+            document.getElementById('underForm').style.visibility= "block";
+            document.getElementsByName('underhidden').value= underId;
+        }
+    </script>
 
     <div class="m-0">
         <div class="row container-fluid p-2 m-0">
@@ -98,12 +115,10 @@
             <div>
                 <table>
                     <tr>
-                        <a onclick="setPrimary()" style="cursor:pointer" class="btn btns_prnt" role="button">&nbsp;&nbsp;Primary</a><br>
+                        <option onclick="setPrimary()" class="btns_prnt">&nbsp;&nbsp;Primary</option>
                   
                         {% for l in cagy %}
-                            <a onclick="setvalue('{{l.name}}','{{l.id}}')" class="content btn btns_prnt" role="button"
-                                style="cursor:pointer">&nbsp;&nbsp;{{l.name}}
-                            </a><br>
+                            <option onclick="setvalue('{{l.name}}','{{l.id}}')" class="btns_prnt">&nbsp;&nbsp;{{l.name}}</option>
                         {% endfor %}
                     </tr>
                 </table>
@@ -112,22 +127,4 @@
         </form>
         <button type="button" class="btn cancel close" onclick="closeForm()">X</button>
     </div>
-
-    <script>
-        function closeForm() {
-            document.getElementById("underForm").style.display = "none";
-        }
-        function showform(){
-            document.getElementById('underForm').style.display= "block";
-        }
-        function setPrimary(){
-            document.getElementById('under').value= 'Primary';
-            document.getElementById('underForm').style.visibility= "hidden";
-        }
-        function setvalue(under,underId){
-            document.getElementById('under').value= under;
-            document.getElementById('underForm').style.visibility= "hidden";
-            document.getElementsByName('underhidden').value= underId;
-        }
-    </script>
 {% endblock %}

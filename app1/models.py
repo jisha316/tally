@@ -1,3 +1,4 @@
+from pyexpat import model
 from django.db import models
 
 # Create your models here.
@@ -364,12 +365,15 @@ class unit_simple(models.Model):
     formal_name=models.CharField(max_length=100)
     uqc=models.CharField(max_length=100)
     decimal=models.IntegerField()
-
+    
 class unit_compound(models.Model):
-    unit_simple=models.ForeignKey(unit_simple,on_delete=models.CASCADE,null=True)
     typ=models.CharField(max_length=100)
+    f_unit=models.CharField(max_length=100,null=True)
     conversion=models.IntegerField()
-    s_unit=models.IntegerField(null=True)
+    s_unit=models.CharField(max_length=100,null=True)
+
+class uqcs(models.Model):
+    uqc_name=models.CharField(max_length=100)
 
 class stock_item(models.Model):
     stockgroupcreation=models.ForeignKey(stockgroupcreation,on_delete=models.CASCADE,null=True)
