@@ -73,6 +73,14 @@
                 window.location.href="{% url 'unitcreate_alt' %}"
             }
         }
+        function showsim(){
+            var status = document.getElementById("sim");
+            var a = status.value;
+            if(a=="Simple"){
+    
+                window.location.href="{% url 'load_unit_creation' %}"
+            }
+        }
     </script>
     
     <div class="m-0">
@@ -87,7 +95,10 @@
                             <div class="col-sm-1 m-0 p-0"></div> 
                             <div class="col-sm-5 m-0 p-0"> <label for="a">Type</label></div>
                             <div class="col-sm-5 m-0 p-0">
-                                <input type="text" value="Compound" class="form-control" name="compound">
+                                <select name="compound" id="sim" class="form-control" onclick="showsim();">
+                                    <option value="Compound">Compound</option>
+                                    <option value="Simple">Simple</option>
+                                </select>
                             </div> 
                             <div class="col-sm-1 m-0 p-0"></div>    
                         </div>
@@ -153,7 +164,7 @@
                     <tr>
                         {% for c in c %}
                             <option onclick="setvalue1('{{c.symbol}} ({{ c.formal_name }})','{{c.id}}')" class="btns_prnt">&nbsp;&nbsp;
-                                {{ c.symbol }}  ({{ c.formal_name }} )
+                                {{ c.symbol }}  ( {{ c.formal_name }} )
                             </option>
                             <option onclick="setvalue1('{{c.symbol}} of ({{c.symbol}})','{{c.id}}')" class="btns_prnt">&nbsp;&nbsp;
                                 {{ c.symbol }} of {{ conversion }} {{ c.symbol }}

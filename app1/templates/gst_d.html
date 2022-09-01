@@ -7,9 +7,20 @@
             align-items: center;
             justify-content: center;   
         }
+        .hide{
+            display: none;
+        }
+        .modal-body {
+            color: #fff;
+            background-color: #213b52;
+            max-width: 400px;
+            margin: auto;
+            text-align: center;
+            font-family: arial;
+        }
         .modal-content{
-            margin-top: 300px;
-            background-color: #eee7e7;
+            margin-top: 250px;
+            background-color: #213b52;
         }
     </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -35,81 +46,10 @@
             });
             $("#id_e_way").trigger("change")
         })
-
-        $(document).ready(function() {
-            $("#id_a_t").change(function() {
-            if ($(this).val() === "No") {
-                $('#a_t_applicable').hide();
-            } else {
-                $('#a_t_applicable').show();
-            }
-            });
-            $("#id_a_t").trigger("change")
-        })
-
-        $(document).ready(function() {
-            $("#id_e").change(function() {
-            if ($(this).val() === "regular") {
-                $('#e_p').hide();
-                $('#g').show();
-                $('#h').show();
-                $('#e_invoice').show();
-            } else {
-                $('#e_p').show();
-                $('#a_t_applicable').hide();
-                $('#g').hide();
-                $('#h').hide();
-                $('#e_invoice').hide();
-                $('#e-Invoice_applicable').hide();
-               
-
-            }
-            });
-            $("#id_e").trigger("change")
-        })
-    </script>
-    <script>
-        function showgstc(){
-            var status = document.getElementById("gst");
-            var a = status.value;
-            if(a=="Yes"){
-    
-                window.location.href="{% url 'load_gst_details_c' %}"
-            }
-            else{
-                document.getElementById('rate').style.display="flex";
-            }
-        }
-    </script>
-    <script>
-        function showtax(){
-            var status = document.getElementById("tax");
-            var a = status.value;
-            if(a=="Taxable"){
-    
-                window.location.href="{% url 'load_rev_c' %}"
-            }
-            else{
-                document.getElementById('rate').style.display="flex";
-            }
-        }
-    </script>
-    <script>
-        function showlut(){
-            var status = document.getElementById("lut");
-            var a = status.value;
-            if(a=="Yes"){
-    
-                window.location.href="{% url 'load_lut_bond' %}"
-            }
-            else{
-                document.getElementById('rate').style.display="flex";
-            }
-        }
     </script>
     <div class="m-0">
         <h6  class="bg-info text-light p-2 m-0 text-left">Company GST Details</h6>
-        <form class="p-5" style="background-color:rgba(0,0,0,.4);" action="{% url 'gst_d' %}" method="post">
+        <form class="p-5" style="background-color:rgba(0,0,0,.4);" method="post" action="{% url 'gst_d' %}" autocomplete="off">
             {% csrf_token %}
             <div class="p-3">
                 <h5  class="bg-trasparent text-light p-2 m-0 text-center">GST Details</h5>
@@ -120,60 +60,59 @@
                     <div class="row container-fluid  p-2">
                         <div class="col-sm-6 m-0 p-0"> <label for="c">State</label></div>
                         <div class="col-sm-6 m-0 p-0">
-                            <select name="state" id="i" class="form-control">
-                                <option value="">Not Applicable</option>
-                                <option value="">Andaman & Nicobar Islands</option> 
-                                <option value="">Andhra Pradesh</option>
-                                <option value="">Arunachal Pradesh</option>
-                                <option value="">Assam</option> 
-                                <option value="">Bihar</option> 
-                                <option value="">Chandigarh</option> 
-                                <option value="">Chhattisgarh</option> 
-                                <option value="">Dadra & Nagar Haveli and Daman & Diu</option> 
-                                <option value="">Delhi</option> 
-                                <option value="">Goa</option> 
-                                <option value="">Gujarat</option> 
-                                <option value="">Haryana</option> 
-                                <option value="">Himachal Pradesh</option> 
-                                <option value="">Jammu & Kashmir</option> 
-                                <option value="">Jharkhand</option> 
-                                <option value="">Karnataka</option> 
-                                <option value="" selected>Kerala</option> 
-                                <option value="">Ladakh</option> 
-                                <option value="">Lakshadweep</option> 
-                                <option value="">Madhya Pradesh</option> 
-                                <option value="">Maharashtra</option>
-                                <option value="">Manipur</option> 
-                                <option value="">Meghalaya</option> 
-                                <option value="">Mizoram</option> 
-                                <option value="">Nagaland</option> 
-                                <option value="">Odisha</option> 
-                                <option value="">Puducherry</option> 
-                                <option value="">Punjab</option> 
-                                <option value="">Rajasthan</option> 
-                                <option value="">Sikkim</option> 
-                                <option value="">Tamil Nadu</option> 
-                                <option value="">Telangana</option> 
-                                <option value="">Tripura</option> 
-                                <option value="">Uttarakhand</option> 
-                                <option value="">Uttarakhand</option> 
-                                <option value="">West Bengal</option> 
+                            <select name="state" id="" class="form-control">
+                                <option value="Andhra Pradesh">Andhra Pradesh</option>
+                                <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
+                                <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                                <option value="Assam">Assam</option>
+                                <option value="Bihar">Bihar</option>
+                                <option value="Chandigarh">Chandigarh</option>
+                                <option value="Chhattisgarh">Chhattisgarh</option>
+                                <option value="Dadar and Nagar Haveli">Dadar and Nagar Haveli</option>
+                                <option value="Daman and Diu">Daman and Diu</option>
+                                <option value="Delhi">Delhi</option>
+                                <option value="Lakshadweep">Lakshadweep</option>
+                                <option value="Puducherry">Puducherry</option>
+                                <option value="Goa">Goa</option>
+                                <option value="Gujarat">Gujarat</option>
+                                <option value="Haryana">Haryana</option>
+                                <option value="Himachal Pradesh">Himachal Pradesh</option>
+                                <option value="Jammu and Kashmir">Jammu and Kashmir</option>
+                                <option value="Jharkhand">Jharkhand</option>
+                                <option value="Karnataka">Karnataka</option>
+                                <option value="Kerala" selected>Kerala</option> 
+                                <option value="Madhya Pradesh">Madhya Pradesh</option>
+                                <option value="Maharashtra">Maharashtra</option>
+                                <option value="Manipur">Manipur</option>
+                                <option value="Meghalaya">Meghalaya</option>
+                                <option value="Mizoram">Mizoram</option>
+                                <option value="Nagaland">Nagaland</option>
+                                <option value="Odisha">Odisha</option>
+                                <option value="Punjab">Punjab</option>
+                                <option value="Rajasthan">Rajasthan</option>
+                                <option value="Sikkim">Sikkim</option>
+                                <option value="Tamil Nadu">Tamil Nadu</option>
+                                <option value="Telangana">Telangana</option>
+                                <option value="Tripura">Tripura</option>
+                                <option value="Uttar Pradesh">Uttar Pradesh</option>
+                                <option value="Uttarakhand">Uttarakhand</option>
+                                <option value="West Bengal">West Bengal</option>    
                             </select>
                         </div>
                     </div>
-                    <div class="row container-fluid  p-2" id="e">
+                    <div class="row container-fluid  p-2" id="regtype">
                         <div class="col-sm-6 m-0 p-0"> <label for="d">Registration Type</label></div>
                         <div class="col-sm-6 m-0 p-0">
-                            <select name="reg_typ" id="id_e" class="form-control">
-                                <option value="Composition">Composition</option>
-                                <option value="regular" selected>Regular</option> 
-                            </select>
+                            <select name="reg_typ" id="regtype0" class="form-control" onchange="showregtype()">
+                                <option value="Composition" >Composition</option> 
+                                <option value="Regular" selected>Regular</option>       
+                            </select>    
                         </div>
                     </div>
-                    
+
                     <script>
                         $(document).ready(function(){ 
-                            $('#id_e').change(function() 
+                            $('#regtype0').change(function() 
                             { 
                                 var opval = $(this).val(); 
                                 if(opval=="Composition"){ 
@@ -186,142 +125,146 @@
                         <div class="modal-dialog">
                             <div class="modal-content" >
                                 <div class="modal-body"><br>
-                                    <div class="card"><br>
-                                        <p class="price">You have the changed the registration type from Regular to 
-                                            Composition Need help to know what next ?
-                                        </p><br><br><br>
-                                        <div>
-                                            <a href="https://help.tallysolutions.com/tally-prime/india-gst-composition/setup-tallyprime-for-gst-composition/"><span style="color: #131363;">Yes </span><span style="color: #000;"> Or </span> </a>
-                                            <a href="" style="color: #131363;" data-dismiss="modal">No</a> 
-                                            <br><br>
-                                        </div>
+                                    <p class="price">You have the changed the registration type from Regular to 
+                                        Composition Need help to know what next?
+                                    </p><br><br>
+                                    <div>
+                                        <a href="https://help.tallysolutions.com/tally-prime/india-gst-composition/setup-tallyprime-for-gst-composition/">
+                                            <span style="color: #fff;">Yes </span><span style="color: #000;"> Or </span> </a>
+                                        <a href="" style="color: #fff;" data-dismiss="modal"> No</a> 
+                                        <br><br>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="row container-fluid  p-2" id="a_t">
-                        <div class="col-sm-6 m-0 p-0"> <label for="d">Assessee of other Territory</label></div>
+                    
+                    <div class="row container-fluid  p-2" id="aot1">
+                        <div class="col-sm-6 m-0 p-0"> <label for="d">Assessee of Teritory</label></div>
                         <div class="col-sm-6 m-0 p-0">
-                            <select name="assess_of_teritory" id="id_a_t" class="form-control">
-                                <option value="Yes">Yes</option>
-                                <option value="No" selected>No</option> 
-                            </select>
+                            <select name="assess_of_teritory" id="aot" class="form-control" onchange="showaot()">
+                                <option value="No">No</option> 
+                                <option value="Yes">Yes</option>       
+                            </select>    
                         </div>
                     </div>
                     <div class="row container-fluid  p-2">
                         <div class="col-sm-6 m-0 p-0"> <label for="d">GST Application From</label></div>
-                        <div class="col-sm-6 m-0 p-0">
-                           
-                            <input type="text" value="1-Apr-2021" class="form-control" name="gst_application">
-                           
-                        </div>
+                        <div class="col-sm-6 m-0 p-0"><input type="date" name="gst_application" class="form-control"></div>
                     </div>
                     <div class="row container-fluid  p-2">
                         <div class="col-sm-6 m-0 p-0"> <label for="e">GSTIN / UIN</label></div>
-                        <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" id="c" placeholder="" name="uin"></div>
+                        <div class="col-sm-6 m-0 p-0"><input type="text" name="uin" class="form-control" id="c" placeholder=""
+                            pattern="^([0][1-9]|[1-2][0-9]|[3][0-7])([a-zA-Z]{5}[0-9]{4}[a-zA-Z]{1}[1-9a-zA-Z]{1}[zZ]{1}[0-9a-zA-Z]{1})+$"
+                            title="Please enter required gst NUMBER format 22AAAAA1234A1ZA ." required>
+                        </div>
                     </div>
-                    <div class="row container-fluid  p-2" id="h">
+                    <div class="row container-fluid  p-2" id="gstr1">
                         <div class="col-sm-6 m-0 p-0"> <label for="d">Periodicity Of GSTR1</label></div>
                         <div class="col-sm-6 m-0 p-0">
-                            <select name="periodicity"  class="form-control">
-                                <option >Monthly</option>
-                                <option>Quarterly</option> 
+                            <select name="periodicity" id="e" class="form-control">
+                                <option value="Monthly">Monthly</option>
+                                <option value="Quarterly" selected>Quarterly</option> 
                             </select>
                         </div>
                     </div><br>
                     <h5 class="text-left">Additional Features</h5>
-                    <div class="row container-fluid  p-2" id="e_p">
-                    <div class="row container-fluid  p-2">
-                        <div class="col-sm-6 m-0 p-0"> <label for="c">Basis for tax calculation</label></div>
-                        <div class="col-sm-6 m-0 p-0">
-                            <select name="tax_cal" id="tax" class="form-control" onchange="showtax()">
-                                <option value="Taxablevalue">Taxable value</option>
-                                <option value="Taxable">Taxable,Exempt and Nill Rated values</option> 
-                            </select>
+                    <div class="row container-fluid p-0" id="regular">
+                        <div class="row container-fluid p-2 m-0" id="fldces">
+                            <div class="col-sm-6 m-0 p-0"> <label for="c">Kerala Flood Cess Application</label></div>
+                            <div class="col-sm-6 m-0 p-0">
+                                <select name="flood_access" id="flood_cess" class="form-control" onchange="showfloodcess()">
+                                    <option value="No">No</option>
+                                    <option value="Yes">Yes</option> 
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row container-fluid hide p-2 m-0" id="appform">
+                            <div class="col-sm-6 m-0 p-0"> <label for="">&nbsp;&nbsp;&nbsp;&nbsp;Applicable Form</label></div>
+                            <div class="col-sm-6 m-0 p-0"><input type="date" name="applicable_from" class="form-control">
+                            </div> 
+                        </div>
+                        <div class="row container-fluid  p-2 m-0">
+                            <div class="col-sm-6 m-0 p-0"> <label for="c">Set / Alter GST rate details</label></div>
+                            <div class="col-sm-6 m-0 p-0">
+                                <select name="set_alter" id="gst" class="form-control" onchange="showgstc()">
+                                    <option value="No">No</option>
+                                    <option value="Yes">Yes</option> 
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row container-fluid  p-2 m-0">
+                            <div class="col-sm-6 m-0 p-0"> <label for="c">Enable tax liability on advance receipts</label></div>
+                            <div class="col-sm-6 m-0 p-0">
+                                <select name="tax_liability_advance" id="e" class="form-control">
+                                    <option value="No">No</option>
+                                    <option value="Yes">Yes</option> 
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row container-fluid  p-2 m-0">
+                            <div class="col-sm-6 m-0 p-0"> <label for="c">Enable tax liability on reverse charge
+                                <br><p><i>&nbsp;&nbsp;&nbsp;&nbsp;(Purchase from unregistered dealer)</i></p></label>
+                            </div>
+                            <div class="col-sm-6 m-0 p-0">
+                                <select name="tax_liability_reverse" id="e" class="form-control">
+                                    <option value="No">No</option>
+                                    <option value="Yes">Yes</option> 
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row container-fluid  p-2 m-0">
+                            <div class="col-sm-6 m-0 p-0"> <label for="c">Enable GST classifications</label></div>
+                            <div class="col-sm-6 m-0 p-0">
+                                <select name="gst_clss" id="e" class="form-control">
+                                    <option value="No">No</option>
+                                    <option value="Yes">Yes</option> 
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row container-fluid  p-2 m-0">
+                            <div class="col-sm-6 m-0 p-0"> <label for="c">Provide LUT/Bond details</label></div>
+                            <div class="col-sm-6 m-0 p-0">
+                                <select name="lut_but" id="lut" class="form-control" onchange="showlut()">
+                                    <option value="No">No</option>
+                                    <option value="Yes">Yes</option> 
+                                </select>
+                            </div>
                         </div>
                     </div>
-                    <div class="row container-fluid  p-2">
-                        <div class="col-sm-6 m-0 p-0"> <label for="c">Tax Rate for taxable turnover</label></div>
-                        <div class="col-sm-6 m-0 p-0">
-                            <input type="text" value="1%" class="form-control" name="tax_rate_turnover">
+                    
+                    <div class="row container-fluid hide p-0" id="composition">
+                        <div class="row container-fluid  p-2 m-0">
+                            <div class="col-sm-6 m-0 p-0"><label for="">Tax rate for taxable turnover
+                                <br><p><i>&nbsp;&nbsp;&nbsp;&nbsp;(From 1-Apr-22)</i></p>
+                            </label></div>
+                            <div class="col-sm-6 m-0 p-0"><input type="text" name="tax_rate_turnover" class="form-control" id="" value="1%"></div> 
                         </div>
-                    </div>
-                    <div class="row container-fluid  p-2">
-                        <div class="col-sm-6 m-0 p-0"> <label for="c">Enable tax rate for purchase</label></div>
-                        <div class="col-sm-6 m-0 p-0">
-                            <select name="tax_rate_purchase" id="e" class="form-control">
-                                <option>Yes</option>
-                                <option>No</option> 
-                            </select>
+                        <div class="row container-fluid  p-2 m-0">
+                            <div class="col-sm-6 m-0 p-0"> 
+                                <label for="c">Basic tax calculation
+                                    <br><p><i>&nbsp;&nbsp;&nbsp;&nbsp;(Applicable for GST CMP-08)</i></p>        
+                                </label>
+                            </div>
+                            <div class="col-sm-6 m-0 p-0">
+                                <select name="tax_cal" id="tax" class="form-control" onchange="showtax()">
+                                    <option value="Taxable value">Taxable value</option> 
+                                    <option value="Taxable Nil rated values">Taxable, Exempt and Nil rated values</option>
+                                </select>
+                            </div>
                         </div>
-                    </div>
-                    </div>
-                    <div class="container-fluid p-2" id="a_t_applicable">
-                    <div class="row container-fluid  p-2">
-                        <div class="col-sm-6 m-0 p-0"> <label for="c">Kerala Flood Cess Application</label></div>
-                        <div class="col-sm-6 m-0 p-0">
-                            <select name="flood_access" id="e" class="form-control" >
-                                <option value="No">No</option>
-                                <option value="Yes">Yes</option> 
-                            </select>
-                        </div>
-                    </div>
-                    <div class="row container-fluid  p-2" id="">
-                        <div class="col-sm-6 m-0 p-0"> <label for="">&nbsp;&nbsp;&nbsp;&nbsp;Applicable Form</label></div>
-                        <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" id="" placeholder="" name="applicable_from"></div> 
-                    </div>
-                    </div>
-                    <div class="row container-fluid  p-2" id="g">
-                    <div class="row container-fluid  p-2">
-                        <div class="col-sm-6 m-0 p-0"> <label for="c">Set / Alter GST rate details</label></div>
-                        <div class="col-sm-6 m-0 p-0">
-                            <select name="set_alter" id="gst" class="form-control" onchange="showgstc()">
-                                <option value="No">No</option>
-                                <option value="Yes">Yes</option> 
-                            </select>
-                        </div>
-                    </div>
-                    <div class="row container-fluid  p-2">
-                        <div class="col-sm-6 m-0 p-0"> <label for="c" id="rate">Enable tax liability on advance receipts</label></div>
-                        <div class="col-sm-6 m-0 p-0">
-                            <select name="tax_liability_advance" id="e" class="form-control">
-                                <option >No</option>
-                                <option >Yes</option> 
-                            </select>
-                        </div>
-                    </div>
-                    <div class="row container-fluid  p-2">
-                        <div class="col-sm-6 m-0 p-0"> <label for="c">Enable tax liability on reverse charge
-                            <br><p><i>&nbsp;&nbsp;&nbsp;&nbsp;(Purchase from unregistered dealer)</i></p></label>
-                        </div>
-                        <div class="col-sm-6 m-0 p-0">
-                            <select name="tax_liability_reverse" id="e" class="form-control">
-                                <option >No</option>
-                                <option >Yes</option> 
-                            </select>
-                        </div>
-                    </div>
-                    <div class="row container-fluid  p-2">
-                        <div class="col-sm-6 m-0 p-0"> <label for="c">Enable GST classifications</label></div>
-                        <div class="col-sm-6 m-0 p-0">
-                            <select name="gst_clss" id="e" class="form-control">
-                                <option >No</option>
-                                <option >Yes</option> 
-                            </select>
-                        </div>
-                    </div>
-                    <div class="row container-fluid  p-2">
-                        <div class="col-sm-6 m-0 p-0"> <label for="c">Provide LUT/Bond details</label></div>
-                        <div class="col-sm-6 m-0 p-0">
-                            <select name="lut_but" id="lut" class="form-control" onchange="showlut()">
-                                <option value="No">No</option>
-                                <option value="Yes">Yes</option> 
-                            </select>
-                        </div>
-                    </div>
-                    </div>
+                        <div class="row container-fluid  p-2 m-0">
+                            <div class="col-sm-6 m-0 p-0"> <label for="c">Enable tax rate for purchase</label></div>
+                            <div class="col-sm-6 m-0 p-0">
+                                <select name="tax_rate_purchase" id="e" class="form-control">
+                                    <option value="No">No</option>
+                                    <option value="Yes">Yes</option> 
+                                </select>
+                            </div>
+                        </div>    
+                    </div>    
                 </div>
+                
                 <div class="col-sm-6 m-0 p-4" style=" border-right: 1px solid rgba(128, 128, 128, 0.6);">
                     <h5 class="text-left">Invoice Featurs</h5>
                     <div class="row container-fluid  p-0">
@@ -338,10 +281,10 @@
                         </div>
                     </div>
                     
-                    <div class="container-fluid  p-2" id="e-way_bill">
+                    <div class="container-fluid  p-0" id="e-way_bill">
                         <div class="row container-fluid  p-2">
                             <div class="col-sm-6 m-0 p-0"> <label for="d">&nbsp;&nbsp;&nbsp;&nbsp;Applicable Form</label></div>
-                            <div class="col-sm-6 m-0 p-0"><input type="date" class="form-control" id="d" placeholder="" name="appl_from"></div>
+                            <div class="col-sm-6 m-0 p-0"><input type="date" name="appl_from" class="form-control"></div>
                         </div>
                         
 
@@ -349,43 +292,42 @@
                             <div class="col-sm-6 m-0 p-0"> <label for="d">&nbsp;&nbsp;&nbsp;&nbsp;Threshold limit include</label></div>
                             <div class="col-sm-6 m-0 p-0">
                                 <select name="th_limlit_in" id="e" class="form-control">
-                                    <option >Invoice Value</option>
-                                    <option >Taxable and exempt goods value</option> 
-                                    <option >Taxable goods value</option> 
+                                    <option value="Invoice Value">Invoice Value</option>
+                                    <option value="Taxable and exempt goods value">Taxable and exempt goods value</option> 
+                                    <option value="Taxable goods value">Taxable goods value</option> 
                                 </select>
                             </div>
                         </div>
 
                         <div class="row container-fluid  p-2">
                             <div class="col-sm-6 m-0 p-0"> <label for="d">&nbsp;&nbsp;&nbsp;&nbsp;Threshold limit</label></div>
-                            <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" id="d" placeholder="" value="50,000" name="th_limit"></div>
+                            <div class="col-sm-6 m-0 p-0"><input type="text" name="th_limit" class="form-control" value="50000"></div>
                         </div>
 
                         <div class="row container-fluid  p-2">
                             <div class="col-sm-6 m-0 p-0"> <label for="d">&nbsp;&nbsp;&nbsp;&nbsp;Applicable for intrastate</label></div>
                             <div class="col-sm-6 m-0 p-0">
                                 <select name="appl_intrastate" id="e" class="form-control">
-                                    <option >Yes</option>
-                                    <option >No</option> 
+                                    <option value="Yes">Yes</option>
+                                    <option value="No">No</option> 
                                 </select>
                             </div>
                         </div>
 
                         <div class="row container-fluid  p-2">
                             <div class="col-sm-6 m-0 p-0"> <label for="d">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Threshold Limit</label></div>
-                            <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" id="d" placeholder="" value="50,000" name="thr_limit"></div>
+                            <div class="col-sm-6 m-0 p-0"><input type="text" name="thr_limit" class="form-control" id="d" placeholder="" value="50000"></div>
                         </div>
 
                         <div class="row container-fluid  p-2">
                             <div class="col-sm-6 m-0 p-0"> <label for="d">&nbsp;&nbsp;&nbsp;&nbsp;Print e-Way Bill with invoice</label></div>
                             <div class="col-sm-6 m-0 p-0">
                                 <select name="p_e_way" id="e" class="form-control">
-                                    <option >No</option>
-                                    <option >Yes</option> 
+                                    <option value="No">No</option>
+                                    <option value="Yes">Yes</option> 
                                 </select>
                             </div>
                         </div>
-
                     </div>
                     
                     <div class="row container-fluid  p-2" id="e_invoice">
@@ -397,42 +339,106 @@
                             </select>
                         </div>
                     </div>
-
                     
-                    <div class="container-fluid p-2" id="e-Invoice_applicable">
+                    <div class="container-fluid p-0" id="e-Invoice_applicable">
                         <div class="row container-fluid  p-2" id="">
                             <div class="col-sm-6 m-0 p-0"> <label for="">&nbsp;&nbsp;&nbsp;&nbsp;Applicable Form</label></div>
-                            <div class="col-sm-6 m-0 p-0"><input type="date" class="form-control" id="" placeholder="" name="appli_frm"></div> <br><br>
+                            <div class="col-sm-6 m-0 p-0"><input type="date" name="appli_frm" class="form-control"></div> <br><br>
                         </div>
                         <div class="row container-fluid  p-2" id="">
                             <div class="col-sm-6 m-0 p-0"> <label for="d">&nbsp;&nbsp;&nbsp;&nbsp;Bill From Place</label></div>
-                            <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" id="d" placeholder="" name="bill_from_place"></div>
+                            <div class="col-sm-6 m-0 p-0"><input type="text" name="bill_from_place" class="form-control"></div>
                         </div>
 
                         <div class="row container-fluid  p-2" id="">
                             <div class="col-sm-6 m-0 p-0"> <label for="d">&nbsp;&nbsp;&nbsp;&nbsp;Default period for the e-Invoice report</label></div>
-                            <div class="col-sm-6 m-0 p-0"><input type="text" class="form-control" id="d" placeholder="" value="3 days" name="period_report"></div>
+                            <div class="col-sm-6 m-0 p-0"><input type="text" name="period_report" class="form-control" value="3 days"></div>
                         </div>
 
                         <div class="row container-fluid  p-2" id="">
                             <div class="col-sm-6 m-0 p-0"> <label for="c">&nbsp;&nbsp;&nbsp;&nbsp;Send e-Way bill details with e-invoice
                                 <br><p><i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(Applicable for sales transactions)</i></p></label>
                             </div>
-                            <div class="col-sm-6 m-0 p-0" id="e-Invoice_applicable">
+                            <div class="col-sm-6 m-0 p-0" id="">
                                 <select name="send_eway_bill" id="e" class="form-control">
-                                    <option >Yes</option>
-                                    <option >No</option> 
+                                    <option value="Yes">Yes</option>
+                                    <option value="No">No</option> 
                                 </select>
                             </div>
-                        </div>
-                        
-                    </div>
-                    
-                    
-                    
+                        </div>    
+                    </div>    
                 </div>
             </div>
-            <div class="enter w-100 py-4"><button class="btn btn-info w-15" type="submit">CREATE</button></div>       
+            <div class="enter w-100 py-4"><button class="btn btn-info w-15">CREATE</button></div>       
         </form>
-    </div>     
+    </div> 
+    
+    <script>
+        function showregtype(){
+            var status =document.getElementById("regtype0");
+            var a= status.value;
+            console.log(a);
+            if( a== "Regular"){
+                console.log(a);
+
+                document.getElementById('regular').style.display ="flex";
+                document.getElementById('composition').style.display ="none";
+            }
+            else{
+                document.getElementById('composition').style.display ="flex";
+                document.getElementById('regular').style.display="none";
+            }
+        }
+        function showfloodcess(){
+            var status =document.getElementById("flood_cess");
+            var a= status.value;
+            console.log(a);
+            if( a== "Yes"){
+                console.log(a);
+                document.getElementById('appform').style.display ="flex";
+            }
+            else{
+                document.getElementById('appform').style.display ="none";
+            }
+        }
+        function showaot(){
+            var status =document.getElementById("aot");
+            var a= status.value;
+            console.log(a);
+            if( a == "Yes"){
+                console.log(a);
+                document.getElementById('fldces').style.display ="none";
+                document.getElementById('appform').style.display ="none";
+            }
+            else{
+                document.getElementById('fldces').style.display ="flex";
+            }
+        }
+
+        function showgstc(){
+            var status = document.getElementById("gst");
+            var a = status.value;
+            if(a=="Yes"){
+    
+                window.location.href="{% url 'load_gst_details_c' %}"
+            }
+        }
+        function showlut(){
+            var status = document.getElementById("lut");
+            var a = status.value;
+            if(a=="Yes"){
+    
+                window.location.href="{% url 'load_lut_bond' %}"
+            }
+        }
+        function showtax(){
+            var status = document.getElementById("tax");
+            var a = status.value;
+            if(a=="Taxable Nil rated values"){
+    
+                window.location.href="{% url 'load_rev_c' %}"
+            }
+        }
+    </script>
+
 {% endblock %}

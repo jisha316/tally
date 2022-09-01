@@ -98,10 +98,6 @@ def person(request,pk):
 	comp=Companies.objects.get(id=pk)
 	return render(request, 'tds_person.html',{'company':comp})
 
-def bank_details(request):
-	bn = bank_name.objects.all()
-	return render(request,'bank_details.html',{'bn' : bn})
-
 def lut_bond(request):
     return render(request, 'lut_bond.html')
 
@@ -245,6 +241,7 @@ def alter_currency(request):
 		return redirect('/')
 
 def load_centre(request):
+	costt=cost_centre.objects.all()
 	if request.method=='POST':
 		nm=request.POST['cst_name']
 		als=request.POST['alias']
@@ -254,7 +251,8 @@ def load_centre(request):
                         under = unr)          
 		cost.save()
 		print("added")
-		return render(request,'cost.html')
+		return redirect('load_centre')
+	return render(request,'cost.html',{'costt':costt})
 		
 
 def create_tds(request,pk):
@@ -677,6 +675,10 @@ def company_feature(request,cf):
 		return redirect('/')
 	return render(request,'features.html',{'cmp':id})
 
+def bank_details(request):
+	bn = bank_name.objects.all()
+	return render(request,'bank_details.html',{'bn' : bn})
+	
 def create_bankdetails(request):
 	if request.method=='POST':
 		transaction_type=request.POST['transaction_type']
@@ -844,17 +846,17 @@ def load_unit_creation(request):
 	return render(request,'unit_creation.html',{'u': u})
 
 def unit_sim(request):
-    if request.method=='POST':
-        typ=request.POST['type']
-        sym=request.POST['symb']
-        formal_name=request.POST['fname']
-        uqc=request.POST['uqc']
-        decimal=request.POST['decimal']
-		
-        sim=unit_simple(type=typ,symbol=sym,formal_name=formal_name,uqc=uqc,decimal=decimal)
-        sim.save()
-        return redirect('unit_sim')
-    return render(request,'unit_creation.html')
+	u=uqcs.objects.all()
+	if request.method=='POST':
+		typ=request.POST['type']
+		sym=request.POST['symb']
+		formal_name=request.POST['fname']
+		uqc=request.POST['uqc']
+		decimal=request.POST['decimal']
+		sim=unit_simple(type=typ,symbol=sym,formal_name=formal_name,uqc=uqc,decimal=decimal)
+		sim.save()
+		return redirect('unit_sim')
+	return render(request,'unit_creation.html',{'u': u})
 
 def new_uqcs(request):
 	if request.method=='POST':
@@ -941,14 +943,15 @@ def godown_creation(request):
 	return render(request,'godown.html',{'gd':gd})
 
 def godown(request):
-    if request.method=='POST':
-        name=request.POST['name']
-        alias=request.POST['alias']
-        under_name=request.POST['under_name']
-        gdcrt=CreateGodown(name=name,alias=alias,under_name=under_name)
-        gdcrt.save()
-        return redirect('godown')
-    return render(request,'godown.html')
+	gd=CreateGodown.objects.all()
+	if request.method=='POST':
+		name=request.POST['name']
+		alias=request.POST['alias']
+		under_name=request.POST['under_name']
+		gdcrt=CreateGodown(name=name,alias=alias,under_name=under_name)
+		gdcrt.save()
+		return redirect('godown')
+	return render(request,'godown.html',{'gd':gd})
 
 def load_rev(request):
     return render(request,'revised.html')
@@ -984,9 +987,7 @@ def gst_stock(request):
     if request.method=='POST':
         calc_typ=request.POST['calc_typ']
         taxability=request.POST['taxability']
-        tax=request.POST['tax']
-        cess=request.POST['cess']
-        g=gst_stockitem(taxability=taxability,tax=tax,cess=cess,calc_typ=calc_typ)
+        g=gst_stockitem(taxability=taxability,calc_typ=calc_typ)
         g.save()
         return redirect('gst_stock')
     return render(request,'gst_stock_item.html')
@@ -1006,7 +1007,7 @@ def tds_d(request):
         act_tds=request.POST['act_tds']
         t=Tds_Details(tan_regno=tan_reg_no,tan=acc_no,deductor_type=d_typ,deductor_branch=d_branch,person_details=set_alter,ignore_it=it_tds,active_tds=act_tds)
         t.save()
-        return redirect('tds')
+        return redirect('tds_d')
     return render(request,'tds_details.html')
 
 def load_person_res(request):
@@ -1082,7 +1083,7 @@ def gst_d(request):
 def load_lut_bond(request):
     return render(request,'lut_bond A.html')
 
-def lut_bond(request):
+def lutbond(request):
     lut=gst_lutbond.objects.all()
     if request.method=='POST':
         lut_no=request.POST['lut_no']
@@ -1090,19 +1091,20 @@ def lut_bond(request):
         appl_to=request.POST['appl_to']
         l=gst_lutbond(lutbond=lut_no,validity_from=appl_from,validity_to=appl_to)
         l.save()
-        return redirect('lut_bond')
+        return redirect('lutbond')
     return render(request,'lut_bond A.html')
 
 def load_gst_details_c(request):
     return render(request,'gst_details_c.html')
 
 def gst_details_c(request):
-    gst=gst_taxability.objects.all()
-    if request.method=='POST':
-        taxability=request.POST['taxability']
-        tax=request.POST['tax']
-        cess=request.POST['cess']
-        g=gst_taxability(taxability=taxability,integrated_tax=tax,cess=cess)
-        g.save()
-        return redirect('gst_details_c')
-    return render(request,'gst_details_c.html')
+	gst=gst_taxability.objects.all()
+	if request.method=='POST':
+		taxability=request.POST['taxability']
+		tax=request.POST['tax']
+		cess=request.POST['cess']
+		kerela_fc=request.POST['flood_cess']
+		g=gst_taxability(taxability=taxability,integrated_tax=tax,cess=cess,flood_cess=kerela_fc)
+		g.save()
+		return redirect('gst_details_c')
+	return render(request,'gst_details_c.html')

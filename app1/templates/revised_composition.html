@@ -1,105 +1,30 @@
 {% extends 'base.html' %}
-{% block body %}
-{% load static %}
+    {% block body %}
+    {% load static %}
     <style>
-        .container{
-            display: flex;
-            height:25vh;
-            align-items: center;
-            justify-content: center;
-        }
-    .form1{
+      .enter{
         display: flex;
-        flex-direction: column;
         align-items: center;
-        justify-content: center;
-        position: absolute;
-        
-    }
-    form{
-        padding:30px;
-    }
-    .close {
-        position: absolute;
-        top: 3px;
-        right: 8px;
-        font-size: 25px;
-        color: rgb(255, 255, 255);
-        transform: rotate(45deg);
-        cursor: pointer;
-        text-decoration: none;
-        
-    }
-    button{
-        background-color:rgb(103, 175, 220) ;
-        color:white;
-        padding:10px 20px;
-    }
-</style>
-<div class="container">
-    <div class="form1"style=" background-color:rgba(0,0,0,0.3);">
-        <a href="javascript:history.go(-1);" class="close">+</a>
-        <h5 style="background-color:rgb(103, 175, 220) ; color:white; text-align: center; padding: 5px 0; width:100%;">Revised Applicability</h5>
-        <form action="{% url 'revised_composition' %}" method="post">
-            {% csrf_token %}
+        justify-content: center;        
+        }
+    </style>
 
-<!-- <div class="container">
-<div class="form1">
-    <a href="javascript:history.go(-1);" class="close">+</a>
-    <h5 style="background-color:rgb(103, 175, 220) ; color:white; text-align: center; padding: 5px 0; width:100%;">Group Alteration(Secondary)</h5>
-    <form action="" method="post"> -->
-    
-        
-        
-        <div><p>Application from</p></div>
-        <input type="text" class="form-control" value="1-Apr-22" name="appl_from_composition"><br>
-        
-        
-        
-        <button type="submit"><h5>Accept</h5></button>
-    </form>
-</div>
-</div>
+    <div class="m-0">
+        <div class="row container-fluid p-2 m-0">
+            <div class="col-sm-3 m-0 p-0"></div>  
+            <div class="col-sm-6 m-0 p-0">
+                <h6  class="bg-info text-light p-2 m-0 text-left">Revised Applicability</h6>
+                <form class="p-3" style="background-color:rgba(0,0,0,.4);" method="post" action="{% url 'revised_composition' %}" autocomplete="off">
+                    {% csrf_token %}
+                    <div class="p-3">
+                        <div class="row container-fluid  p-2 m-0">
+                            <div class="col-sm-2 m-0 p-0"></div>
+                            <div class="col-sm-3 m-0 p-0"> <label for="a">Applicable from</label></div>
+                            <div class="col-sm-5 m-0 p-0"><input type="date" class="form-control" name="appl_from_composition" required></div>
+                        </div>
+                    <div class="enter w-100 py-4"><button class="btn btn-info w-15">CREATE</button></div>  
+                </form>
+            </div>
+        <div class="col-sm-5 m-0 p-0"></div>
+    </div>  
 {% endblock %}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

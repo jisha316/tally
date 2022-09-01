@@ -151,7 +151,7 @@ urlpatterns = [
     path('load_gst_d',views.load_gst_d,name='load_gst_d'),
     path('gst_d',views.gst_d,name='gst_d'),
     path('load_lut_bond',views.load_lut_bond,name='load_lut_bond'),
-    path('lut_bond',views.lut_bond,name='lut_bond'),
+    path('lutbond',views.lutbond,name='lutbond'),
     path('load_gst_details_c',views.load_gst_details_c,name='load_gst_details_c'),
     path('gst_details_c',views.gst_details_c,name='gst_details_c'),
 

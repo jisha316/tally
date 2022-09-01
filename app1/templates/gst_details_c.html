@@ -1,132 +1,81 @@
 {% extends 'base.html' %}
-{% block body %}
-{% load static %}
+    {% block body %}
+    {% load static %}
     <style>
-        .container{
+        .enter{
             display: flex;
-            height:37vh;
             align-items: center;
-            justify-content: center;
+            justify-content: center;        
         }
-    .form1{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        position: absolute;
-        
-    }
-    form{
-        padding:30px;
-    }
-    .close {
-        position: absolute;
-        top: 3px;
-        right: 8px;
-        font-size: 25px;
-        color: rgb(255, 255, 255);
-        transform: rotate(45deg);
-        cursor: pointer;
-        text-decoration: none;
-        
-    }
-    button{
-        background-color:rgb(103, 175, 220) ;
-        color:white;
-        padding:10px 20px;
-    }
-</style>
-<script>
-    function showgst(){
-        var status = document.getElementById("primary");
-        var a = status.value;
-        if(a=="Exempt"){
+    </style>
+    <div class="m-0">
+        <div class="row container-fluid  p-2 m-0">
+            <div class="col-sm-3 m-0 p-0"></div>  
+            <div class="col-sm-6 m-0 p-0">
+                <h6  class="bg-info text-light p-2 m-0 text-left">GST Details</h6>
+                <h6  class=" text-light p-2 m-0 text-center" style="background-color: rgba(0,0,0,.4);">GST Details for Company</h6>
+                <form class="p-5" style="background-color:rgba(0,0,0,.4);" method="post" action="{% url 'gst_details_c' %}" autocomplete="off">
+                    {% csrf_token %}
+                    <h6  class="bg-trasparent text-light p-2 m-0 text-left">Tax Details <br><i><p>Apr-01-22 <!-- {{company.fin_begin}} --></p></i></h6> 
+                    <div class="p-3">
+                        <div class="row container-fluid  p-2 m-0">
+                            <div class="col-sm-4 m-0 p-0"> <label for="a">Taxability</label></div>
+                            <div class="col-sm-6 m-0 p-0">
+                                <select name="taxability" id="primary" class="form-control" onchange="showgst()">
+                                    <option value="Unknown">Unknown</option>
+                                    <option value="Exempt">Exempt</option>
+                                    <option value="Nill Rated">Nill Rated</option>
+                                    <option value="Taxable">Taxable</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-4 m-0 p-0"></div>
+                        </div>
 
-            window.location.href="{% url 'load_rev' %}"
-        }
-        else if(a=="Nillrated"){
+                        <div class="row container-fluid  p-0 m-0 hide" id="tax">
+                            <div class="row container-fluid  p-2 m-0" id="">
+                                <div class="col-sm-4 m-0 p-0"> <label for="a"><b>Tax Type</b></label></div>
+                                <div class="col-sm-6 m-0 p-0"><label for="a"><b>Rate</b></label></div>
+                                <div class="col-sm-4 m-0 p-0"></div>
+                            </div>
+                            <div class="row container-fluid  p-2 m-0">
+                                <div class="col-sm-4 m-0 p-0"> <label for="a">Integrated Tax</label></div>
+                                <div class="col-sm-6 m-0 p-0"><input type="text" name="tax" class="form-control" value="0%"></div>
+                                <div class="col-sm-4 m-0 p-0"></div>
+                            </div>
+                            <div class="row container-fluid  p-2 m-0">
+                                <div class="col-sm-4 m-0 p-0"> <label for="a">Cess</label></div>
+                                <div class="col-sm-6 m-0 p-0"><input type="text" name="cess" class="form-control" value="0%"></div>
+                                <div class="col-sm-4 m-0 p-0"></div>
+                            </div>
+                            <div class="row container-fluid  p-2 m-0">
+                                <div class="col-sm-4 m-0 p-0"> <label for="a">Kerala Flood Cess</label></div>
+                                <div class="col-sm-6 m-0 p-0"><input type="text" name="flood_cess" class="form-control" value="0%"></div>
+                                <div class="col-sm-4 m-0 p-0"></div>
+                            </div>   
+                        </div>
+                        
+                    </div>
+                    <div class="enter w-100 py-4"><button class="btn btn-info w-15">CREATE</button></div>  
+                </form>
+            </div>
+        <div class="col-sm-5 m-0 p-0"></div>
+    </div>  
 
-            window.location.href="{% url 'load_rev' %}"
-        }
-        else{
-            document.getElementById('rate').style.display="flex";
-        }
-    }
-</script>
-<div class="container">
-    <div class="form1"style=" background-color:rgba(0,0,0,0.3);">
-        <a href="javascript:history.go(-1);" class="close">+</a>
-        <h5 style="background-color:rgb(103, 175, 220) ; color:white; text-align: center; padding: 5px 0; width:100%;">GST Details for company</h5>
-        <form action="{% url 'gst_details_c' %}" method="post">
-            {% csrf_token %}
-
-<!-- <div class="container">
-<div class="form1">
-    <a href="javascript:history.go(-1);" class="close">+</a>
-    <h5 style="background-color:rgb(103, 175, 220) ; color:white; text-align: center; padding: 5px 0; width:100%;">Group Alteration(Secondary)</h5>
-    <form action="" method="post"> -->
+    <script>
+        function showgst(){
+            var status = document.getElementById("primary");
+            var a = status.value;
+            if(a=="Exempt"){
     
-        <div><h5>Tax details</h5>
-            <div><p>Taxability</p></div>
-            <select name="taxability" id="primary" class="form-control" onchange="showgst()">
-                <option value="Unknown">Unknown</option>
-                <option value="Exempt">Exempt</option>
-                <option value="Nillrated">Nil Rated</option>
-                <option value="Taxable">Taxable</option>
-            </select><br><br>
-        <div><h5>Tax type  Rate</h5></div>
-        <div><p>Integrated tax</p></div>
-        <input type="text" class="form-control" value="0 %" name="tax">
-        <div><p>Cess</p></div>
-        <input type="text" class="form-control" value="0 %" name="cess"><br>
-        
-        
-        
-        
-<button type="submit"><h5>Accept</h5></button>
-    </form>
-</div>
-</div>
+                window.location.href="{% url 'load_rev' %}"
+            }
+            else if(a=="Nill Rated"){
+    
+                window.location.href="{% url 'load_rev' %}"
+            }
+            else{
+                document.getElementById('rate').style.display="flex";
+            }
+        }
+    </script>
 {% endblock %}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

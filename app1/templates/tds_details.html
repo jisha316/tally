@@ -1,144 +1,92 @@
 {% extends 'base.html' %}
-{% block body %}
-{% load static %}
+    {% block body %}
+    {% load static %}
     <style>
-        .container{
+        .enter{
             display: flex;
-            height:37vh;
             align-items: center;
-            justify-content: center;
+            justify-content: center;        
         }
-    .form1{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        position: absolute;
-        
-    }
-    form{
-        padding:30px;
-    }
-    .close {
-        position: absolute;
-        top: 3px;
-        right: 8px;
-        font-size: 25px;
-        color: rgb(255, 255, 255);
-        transform: rotate(45deg);
-        cursor: pointer;
-        text-decoration: none;
-        
-    }
-    button{
-        background-color:rgb(103, 175, 220) ;
-        color:white;
-        padding:10px 20px;
-    }
-</style>
-<div class="container">
-    <div class="form1"style=" background-color:rgba(0,0,0,0.3);">
-        <a href="javascript:history.go(-1);" class="close">+</a>
-        <h5 style="background-color:rgb(103, 175, 220) ; color:white; text-align: center; padding: 5px 0; width:100%;">Company TDS Deductor Details</h5>
-        <form action="{% url 'tds' %}" method="post">
-            {% csrf_token %}
+    </style>
+    <div class="m-0">
+        <div class="row container-fluid  p-2 m-0">
+            <div class="col-sm-3 m-0 p-0"></div>  
+            <div class="col-sm-6 m-0 p-0">
+                <h6  class="bg-info text-light p-2 m-0 text-left">TDS Deductor Details</h6>
+                
+                <form class="p-4" style="background-color:rgba(0,0,0,.4);" method="post" action="{% url 'tds_d' %}" autocomplete="off">
+                    {% csrf_token %}
+                    <h6  class=" text-light p-2 m-0 text-center">Company TDS Dedoctor Details</h6>
+                    <div class="p-3">
+                        
+                        <div class="row container-fluid  p-2 m-0">
+                            <div class="col-sm-6 m-0 p-0"> <label for="">TAN Registration Number</label></div>
+                            <div class="col-sm-6 m-0 p-0"><input type="text" name="tan_reg_no" class="form-control"></div>
+                        </div>
+                        <div class="row container-fluid  p-2 m-0">
+                            <div class="col-sm-6 m-0 p-0"> <label for="b">Tax Deduction and collection Account Number</label></div>
+                            <div class="col-sm-6 m-0 p-0"><input type="text" name="acc_no" class="form-control" maxlength="10" 
+                                pattern="[a-zA-Z]{4}[0-9]{5}[a-zA-Z]{1}" title="Invalid TAN Structure. E.g. AAAA12345A">
+                            </div> 
+                        </div>
+                        <div class="row container-fluid  p-2 m-0">
+                            <div class="col-sm-6 m-0 p-0"> <label for="a">Deductor Type</label></div>
+                            <div class="col-sm-6 m-0 p-0">
+                                <select name="d_typ" id="i" class="form-control">
+                                    <option value="Company">Company</option>
+                                    <option value="Individual/HUF">Individual/HUF</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row container-fluid  p-2 m-0">
+                            <div class="col-sm-6 m-0 p-0"> <label for="a">Deductor branch / division</label></div>
+                            <div class="col-sm-6 m-0 p-0"><input type="text" name="d_branch" class="form-control" id="a" placeholder=""></div>
+                        </div>
+                        <div class="row container-fluid  p-2 m-0">
+                            <div class="col-sm-6 m-0 p-0"> <label for="b">Set / Alter details of person responsible</label></div>
+                            <div class="col-sm-6 m-0 p-0"> 
+                                <select name="set_alter" id="person" class="form-control" onchange="showperson()">
+                                    <option value="No">No</option>
+                                    <option value="Yes">Yes</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <hr>
+                        <h6  class=" text-light p-2 m-0 text-center" id="rate">Rate and Exemption Details</h6>
+                        <div class="row container-fluid  p-2 m-0">
+                            <div class="col-sm-6 m-0 p-0"> <label for="b">Ignore IT exemption limit for TDS deduction</label></div>
+                            <div class="col-sm-6 m-0 p-0"> 
+                                <select name="it_tds" id="i" class="form-control">
+                                    <option value="No">No</option>
+                                    <option value="Yes">Yes</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row container-fluid  p-2 m-0">
+                            <div class="col-sm-6 m-0 p-0"> <label for="b">Activate TDS for syoxk items</label></div>
+                            <div class="col-sm-6 m-0 p-0"> 
+                                <select name="act_tds" id="i" class="form-control">
+                                    <option value="No">No</option>
+                                    <option value="Yes">Yes</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="enter w-100 py-4"><button class="btn btn-info w-15">CREATE</button></div>  
+                </form>
+            </div>
+        <div class="col-sm-5 m-0 p-0"></div>
+    </div>  
 
-<!-- <div class="container">
-<div class="form1">
-    <a href="javascript:history.go(-1);" class="close">+</a>
-    <h5 style="background-color:rgb(103, 175, 220) ; color:white; text-align: center; padding: 5px 0; width:100%;">Group Alteration(Secondary)</h5>
-    <form action="" method="post"> -->
-    
-        
-        <div><p>TAN registration number</p></div>
-        <input type="text" class="form-control" name="tan_reg_no">
-        <div><p>Tax deduction and collection Account Number(TAN)</p></div>
-        <input type="text" class="form-control" name="acc_no">
-        <div><p>Deductor Type</p></div>
-        <select name="d_typ" id="primary" class="form-control">
-            <option value="Company">Company</option>
-            <option value="Individual/HUF">Individual/HUF</option>
-        </select>
-        <div><p>Deductor branch/division</p></div>
-        <input type="text" class="form-control" name="d_branch">
-        <div><p>Set/alter details of person responsible</p></div>
-        <select name="set_alter" id="person" class="form-control" onchange="showperson()">
-            <option value="Yes">yes</option>
-            <option value="No">No</option>
-        </select>
-        <hr>
-        <h5 id="rate">Rate & exemption details</h5>
-        <div><p>Ignore IT exemption limit for TDS deduction</p></div>
-        <select name="it_tds" id="primary" class="form-control">
-            <option value="Yes">yes</option>
-            <option value="No">No</option>
-        </select>
-        <div><p>Active TDS for stock items</p></div>
-        <select name="act_tds" id="primary" class="form-control">
-            <option value="Yes">yes</option>
-            <option value="no">No</option>
-        </select><br>
+    <script>
+        function showperson(){
+            var status = document.getElementById("person");
+            var a = status.value;
+            if(a=="Yes"){
 
-
-        
-        
-<button type="submit"><h5>Accept</h5></button>
-    </form>
-</div>
-</div>
-<script>
-    function showperson(){
-        var status = document.getElementById("person");
-        var a = status.value;
-        if(a=="Yes"){
-
-            window.location.href="{% url 'load_person_res' %}"
+                window.location.href="{% url 'load_person_res' %}"
+            }
         }
-        else{
-            document.getElementById('rate').style.display="flex";
-        }
-    }
-</script>
+    </script>
 {% endblock %}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
