@@ -134,7 +134,7 @@
 
     <div class="form-popup ScrollStyle" id="underForm" style="background-color: #213b52" >
         <form action="" class="form-container1">
-            <h6 style="background-color:rgb(17, 169, 240) ;color:white text">List of Godowns</h6>
+            <h6 style="background-color:rgb(17, 169, 240) ;color:white text">Units</h6>
             <button type="button" class="btn cancel close" onclick="closeForm()">X</button>
             <a href="{% url 'unitcreate_alt' %}" style="cursor:pointer" class="btn bt btns_prnt" role="button">Create</a>  
             <hr>
@@ -142,7 +142,7 @@
                 <table>
                     <tr>
                         {% for co in c %}
-                        <option onclick="setvalue('{{co.symbol}} ({{ co.formal_name }})','{{co.id}}')" class="btns_prnt">&nbsp;&nbsp;{{ co.symbol }}  ({{ co.formal_name }})</option>
+                        <option onclick="setvalue('{{co.symbol}}','{{co.id}}')" class="btns_prnt">&nbsp;&nbsp;{{ co.symbol }}  ({{ co.formal_name }})</option>
                             <!-- <a onclick="setvalue('{{co.symbol}} ({{ co.formal_name }})','{{co.id}}')" class="content btn btns_prnt" role="button"
                                 style="cursor:pointer">&nbsp;&nbsp;{{ co.symbol }}  ({{ co.formal_name }})
                             </a><br> -->
@@ -155,7 +155,7 @@
     </div>
     <div class="form-popup ScrollStyle" id="underForm1" style="background-color: #213b52" >
         <form action="" class="form-container1">
-            <h6 style="background-color:rgb(17, 169, 240) ;color:white text">List of Godowns</h6>
+            <h6 style="background-color:rgb(17, 169, 240) ;color:white text">Units</h6>
             <button type="button" class="btn cancel close" onclick="closeForm1()">X</button>
             <a href="{% url 'unitcreate_alt' %}" style="cursor:pointer" class="btn bt btns_prnt" role="button">Create</a>  
             <hr>
@@ -163,10 +163,10 @@
                 <table>
                     <tr>
                         {% for c in c %}
-                            <option onclick="setvalue1('{{c.symbol}} ({{ c.formal_name }})','{{c.id}}')" class="btns_prnt">&nbsp;&nbsp;
+                            <option onclick="setvalue1('{{c.symbol}}','{{c.id}}')" class="btns_prnt">&nbsp;&nbsp;
                                 {{ c.symbol }}  ( {{ c.formal_name }} )
                             </option>
-                            <option onclick="setvalue1('{{c.symbol}} of ({{c.symbol}})','{{c.id}}')" class="btns_prnt">&nbsp;&nbsp;
+                            <option onclick="setvalue1('{{c.symbol}}','{{c.id}}')" class="btns_prnt">&nbsp;&nbsp;
                                 {{ c.symbol }} of {{ conversion }} {{ c.symbol }}
                             </option>
                             <!-- <a onclick="setvalue1('{{c.symbol}} ({{ c.formal_name }})','{{c.id}}')" class="content btn btns_prnt" role="button"

@@ -1,104 +1,57 @@
 {% extends 'base.html' %}
-{% block body %}
-{% load static %}
+    {% block body %}
+    {% load static %}
     <style>
-        .container{
+        .enter{
             display: flex;
-            height:20vh;
             align-items: center;
-            justify-content: center;
+            justify-content: center;    
         }
-    .form1{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        position: absolute;
-        
-    }
-    form{
-        padding:30px;
-    }
-    .close {
-        position: absolute;
-        top: 3px;
-        right: 8px;
-        font-size: 25px;
-        color: rgb(255, 255, 255);
-        transform: rotate(45deg);
-        cursor: pointer;
-        text-decoration: none;
-        
-    }
-    button{
-        background-color:rgb(103, 175, 220) ;
-        color:white;
-        padding:10px 20px;
-    }
-</style>
-<div class="container">
-    <div class="form1"style=" background-color:rgba(0,0,0,0.3);">
-        <a href="javascript:history.go(-1);" class="close">+</a>
-        <h5 style="background-color:rgb(103, 175, 220) ; color:white; text-align: center; padding: 5px 0; width:100%;">Company Price Levals</h5>
-        <form action="price_levels" method="post">
-            {% csrf_token %}
-
-<!-- <div class="container">
-<div class="form1">
-    <a href="javascript:history.go(-1);" class="close">+</a>
-    <h5 style="background-color:rgb(103, 175, 220) ; color:white; text-align: center; padding: 5px 0; width:100%;">Group Alteration(Secondary)</h5>
-    <form action="" method="post"> -->
+    </style>
+    <div class="m-3">
+        <div class="row container-fluid  p-2 m-0">
+            <div class="col-sm-3 m-0 p-0"></div>  
+            <div class="col-sm-6 m-0 p-0">
+                <h6  class="bg-info text-light p-2 m-0 text-left" style="background-color: rgba(0,0,0,.4);">Price Levals<a href="javascript:history.go(-2);" class="close">&times;</a></h6>
+                <form class="p-4" style="background-color:rgba(0,0,0,.4);" method="post" action="{% url 'price_levels' %}" autocomplete="off">
+                    {% csrf_token %}
+                    <h6  class="bg-trasparent text-light p-2 m-0 text-center">Company Price Levals</h6>
+                    <div class="p-2">
+                        <center>
+                            <div class="col-sm-6 m-0 p-0">
+                                <input type="text" class="form-control" name="number" id="num" placeholder="" value=""> 
+                            </div> 
+                            <div class="enter w-100 py-4"><button class="btn btn-info w-15">CREATE</button></div>    
+                        </center>
+                        <!-- <center>
+                            <div class="table-responsive-sm" style="background-color:rgba(0,0,0,0.4);">
+                                <table class="w-100 table text-center" border="1">
+                                    <thead>
+                                        <tr>
+                                            <th>Sl.No</th>  
+                                            <th>Price Levels</th>
+                                             <th>Action</th> 
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for p in pr %}
+                                            <tr>
+                                                <td> {{ forloop.counter }} </td>
+                                                <form action="price_levels" method="post" autocomplete="off">
+                                                    {% csrf_token %}
+                                                    <td><input type="text" name="number" id="number" value=" {{ p.number }} " onchange="showval()" class="form-control"></td>
+                                                    <td><button class="btn btn-info">Accept</button></td>
+                                                </form>    
+                                            </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </center> -->
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
     
-        
-        
-       
-       <div><input type="number" name=number class="form-control"></div><br><br>
-       <button type="submit">submit</button>
-        
-        
-    </form>
-</div>
-</div>
-{% endblock %}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+{% endblock %} 

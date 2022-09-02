@@ -7,19 +7,68 @@
             align-items: center;
             justify-content: center;   
         }
+        .close {
+            position: absolute;
+            top: 3px;
+            right: 8px;
+            font-size: 17px;
+            color: rgb(255, 255, 255);
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .form-popup {
+            display: none;
+            position: fixed;
+            top: 150px;
+            right: 30px;
+            border: 1px solid #f1f1f1;
+            z-index: 9;
+            width: 300px;
+            height: 200px;
+        }
+        .content a:hover {
+            background-color: rgb(238, 167, 75);
+        }
+        .form-container1 {
+            max-width: 350px;
+            height: 300px;
+            padding: 2px; 
+        }
+        body{
+            overflow: hidden;
+        }
+        .btns_prnt{
+            color: #fff;
+            width: 100%;
+            cursor:pointer;
+            background-color: rgba(240, 248, 255, 0);
+            border: none;
+        }
+        .btns_prnt:hover{
+            background-color:#5bc9e4;
+            color: rgb(15, 14, 14);
+        }
+        .bt{
+            text-align: end;
+        }
+        .ScrollStyle{
+            /* max-height: 200px; */
+            overflow-y: scroll;
+        }
+        .hide{
+            display: none;
+        }
     </style>
 
     <div class="m-2">
-        <h6 class="bg-info text-light p-2 m-0 text-left"><a href="javascript:history.go(-1);" class="close">&times;</a>
-            Stock Item Creation
-        </h6>
+        <h6 class="bg-info text-light p-2 m-0 text-left">Stock Item Creation</h6>
         <form class="p-2" style="background-color:rgba(0,0,0,.4);" method="post" action="{% url 'stock_items' %}" autocomplete="off">
             {% csrf_token %}
 
             <div class="p-3">
                 <div class="row container-fluid  p-2 m-0">
                     <div class="col-sm-2 m-0 p-0"> <label for="a">Name</label></div>
-                    <div class="col-sm-3 m-0 p-0"><input type="text" name="vname" class="form-control" id=""></div>
+                    <div class="col-sm-3 m-0 p-0"><input type="text" name="name" class="form-control" required></div>
                     <div class="col-sm-7 m-0 p-0"></div>
                 </div>
                 <div class="row container-fluid  p-2 m-0">
@@ -37,25 +86,40 @@
                         <div class="col-sm-6 m-0 p-0"></div>
                     </div>
                     <div class="row container-fluid  p-2">
-                        <div class="col-sm-6 m-0 p-0"> <label for="e">Under</label></div>
+                        <div class="col-sm-6 m-0 p-0"><label for="e">Under</label></div>
                         <div class="col-sm-6 m-0 p-0">
-                            <select name="name" class="form-control" onchange="showcrt()" id="crt">
-                                <option value="create"><b>Create</b></option>
-                                <option value="Primary"><b>Primary</b></option>
-                                {% for co in grp %}
-                                <option value="{{ co.id }}">{{ co.name }}</option>
-                                {% endfor %}
-                            </select>
+                            <input type="text" name="under" id="under" value="Primary" class="form-control" onclick="showform();">
                         </div>
                     </div>
                     <div class="row container-fluid  p-2">
                         <div class="col-sm-6 m-0 p-0"> <label for="e">Units</label></div>
                         <div class="col-sm-6 m-0 p-0">
-                            <select name="funit" class="form-control">
-                                {% for un in u %}
-                                <option value="{{ un.id }}">{{ un.symbol }} of {{ un.conversion }} ({{ un.formal_name }} )</option>
-                                {% endfor %} 
-                            </select>
+                            <input type="text" id="units" value="Not Available" name="units" class="form-control" onclick="showform1();">
+                        </div>
+                    </div>
+                    <div class="row container-fluid hide p-2 m-0" id="additional">
+                        <h5 class="text-center">Additional Details</h5>
+                        <div class="row container-fluid  p-0">
+                            <div class="col-sm-6 m-0 p-0"></div>
+                            <div class="col-sm-6 m-0 p-0"></div>
+                        </div>
+                        <div class="row container-fluid p-2">
+                            <div class="col-sm-6 m-0 p-0"><label for="e">Maintain in Batches</label></div>
+                            <div class="col-sm-6 m-0 p-0">
+                                <select name="batches" id="" class="form-control">
+                                    <option value="No">No</option>
+                                    <option value="Yes">Yes</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row container-fluid p-2">
+                            <div class="col-sm-6 m-0 p-0"><label for="e">Enable Cost Tracking</label></div>
+                            <div class="col-sm-6 m-0 p-0">
+                                <select name="cost_tracking" id="" class="form-control">
+                                    <option value="No">No</option>
+                                    <option value="Yes">Yes</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
                 </div> 
@@ -132,6 +196,103 @@
             <div class="enter w-100 py-4"><button class="btn btn-info w-15">CREATE</button></div>       
         </form>
     </div>
+
+    <div class="form-popup ScrollStyle" id="underForm" style="background-color: #213b52" >
+        <form action="" class="form-container1">
+            <h6 style="background-color:rgb(17, 169, 240) ;color:white text">List of Groups</h6>
+            <button type="button" class="btn cancel close" onclick="closeForm()">X</button>
+            <a href="{% url 'stockgroup_alt' %}" style="cursor:pointer" class="btn bt btns_prnt" role="button">Create</a>  
+            <hr>
+            <div>
+                <table>
+                    <tr>
+                        <option onclick="setPrimary()" class="btns_prnt">&nbsp;&nbsp;Primary</option>
+
+                        {% for co in grp %}
+                        <option onclick="setvalue(' {{co.name}} ','{{co.id}}')" class="btns_prnt">&nbsp;&nbsp;{{ co.name }}</option>
+                        {% endfor %}
+                    </tr>
+                </table>
+            </div>
+            <input type="text" name="underhidden" hidden value="{{co.id}}">
+        </form>    
+    </div>
+    <div class="form-popup ScrollStyle" id="underForm1" style="background-color: #213b52" >
+        <form action="" class="form-container1">
+            <h6 style="background-color:rgb(17, 169, 240) ;color:white text">Units</h6>
+            <button type="button" class="btn cancel close" onclick="closeForm1()">X</button>
+            <a href="{% url 'unitcreate_alt' %}" style="cursor:pointer" class="btn bt btns_prnt" role="button">Create</a>  
+            <hr>
+            <div>
+                <table>
+                    <tr>
+                        <option onclick="setAvailable('Not Available')" class="btns_prnt" value="Not Available">&nbsp;&nbsp;&nbsp;Not Available</option>
+
+                        {% for un in u %}
+                        <option onclick="setvalue1 ('{{un.symbol}} ({{un.formal_name}})','{{un.id}}')"  class="btns_prnt">&nbsp;&nbsp;
+                            {{ un.symbol }} ( {{ un.formal_name }} )
+                        </option>
+                            
+                        {% endfor %}
+
+                        {% for u in unt %}
+                            <option onclick="setvalue1 ('{{ u.f_unit }} of {{ u.conversion }} {{ u.s_unit }}','{{u.id}}')"  class="btns_prnt">&nbsp;&nbsp;
+                                {{ u.f_unit }} of {{ u.conversion }} {{ u.s_unit }}
+                            </option>
+                            
+                        {% endfor %}
+                    </tr>
+                </table>
+            </div>
+            <input type="text" name="underhidden1" hidden value="{{un.id}},{{u.id}}">
+        </form>    
+    </div>
+
+    <script>
+        function setPrimary(){
+            document.getElementById('under').value= 'Primary';
+            document.getElementById('underForm').style.visibility= "hidden";
+        }
+        function setAvailable(p){
+            document.getElementById('units').value= p;
+            var status = document.getElementById("units");
+            var a = status.value
+            console.log(a);
+            if( a == "Not Available" ){
+                console.log(a);
+                document.getElementById('additional').style.display = "none";
+            }
+        }
+        function setvalue1(units,unitsId,gr){
+            document.getElementById('units').value= units,gr;
+            document.getElementById('underForm1').style.visibility= "block";
+            document.getElementsByName('underhidden1').value= unitsId;
+            document.getElementById('additional').style.display = "flex";
+        }
+        function closeForm() {
+            document.getElementById("underForm").style.display = "none";
+        }
+        function showform(){
+            document.getElementById('underForm').style.display= "block";
+        }
+        function setvalue(under,underId){
+            document.getElementById('under').value= under;
+            document.getElementById('underForm').style.visibility= "hidden";
+            document.getElementsByName('underhidden').value= underId;
+        }
+        function closeForm1() {
+            document.getElementById("underForm1").style.display = "none";
+        }
+        function showform1(){
+            document.getElementById('underForm1').style.display= "block";
+        }
+        // function setvalue1(units,unitsId){
+        //     document.getElementById('units').value= units;
+        //     document.getElementById('addtional').style.visibility= "flex";
+        //     document.getElementById('underForm1').style.visibility= "hidden";
+        //     document.getElementsByName('underhidden1').value= unitsId;
+        // }
+    </script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
     <script>

@@ -889,12 +889,13 @@ def load_stock_item_creation(request):
     return render(request,'stock_item_creation.html',{'grp':grp,'unt':unt,'u':u})
 
 def stock_items(request):
-    grp=stockgroupcreation.objects.all()
-    unt=unit_compound.objects.all()
-    u=unit_simple.objects.all()
     if request.method=='POST':
-        name1=request.POST['name1']
+        nm=request.POST['name']
         alias=request.POST['alias']
+        under=request.POST['under']
+        units=request.POST['units']
+        batches=request.POST['batches']
+        cost_tracking=request.POST['cost_tracking']
         gst_applicable=request.POST['gst_applicable']
         set_alter=request.POST['set_alter']
         typ_sply=request.POST['typ_sply']
@@ -903,28 +904,25 @@ def stock_items(request):
         rate=request.POST['rate']
         per=request.POST['per']
         value=request.POST['value']
-        funit2=request.POST['funit']
         
-        e2=unit_compound.objects.get(id=funit2)
-        gr=request.POST['name']
-        e3=stockgroupcreation.objects.get(id=gr)
-        crt=stock_item(name1=name1,alias=alias,typ_sply=typ_sply,gst_applicable=gst_applicable,set_alter=set_alter,
-                           rate_of_duty=rate_of_duty,quantity=quantity,rate=rate,per=per,value=value,unit_compound=e2,stockgroupcreation=e3)
+        crt=stock_item(name=nm,alias=alias,under=under,units=units,batches=batches,cost_tracking=cost_tracking,typ_sply=typ_sply,
+		gst_applicable=gst_applicable,set_alter=set_alter,rate_of_duty=rate_of_duty,quantity=quantity,rate=rate,per=per,value=value)
         crt.save()
         return redirect('stock_items')
-    return render(request,'stock_item_creation.html',{'grp':grp,'unt':unt,'u':u})
+    return render(request,'stock_item_creation.html')
 
 def load_company_price(request):
-    return render(request,'company_price.html')
+	pr=Price_level.objects.all()
+	return render(request,'company_price.html',{'pr':pr})
 
 def price_levels(request):
-    price=Price_level.objects.all()
+    pr=Price_level.objects.all()
     if request.method=="POST":
         number=request.POST['number']
         crt=Price_level(number=number)
         crt.save()
         return redirect('price_levels')
-    return render(request,'company_price.html')
+    return render(request,'company_price.html',{'pr':pr})
 
 def load_pan_cin(request):
     return render(request,'pan_cin.html')

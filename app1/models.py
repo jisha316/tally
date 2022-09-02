@@ -353,7 +353,7 @@ class CreateGodown(models.Model):
     under_name=models.CharField(max_length=50)
 
 class Price_level(models.Model):
-    number=models.IntegerField()
+    number=models.CharField(max_length=255,null=True)
 
 class pancin(models.Model):
     pan=models.CharField(max_length=30)
@@ -376,11 +376,13 @@ class uqcs(models.Model):
     uqc_name=models.CharField(max_length=100)
 
 class stock_item(models.Model):
-    stockgroupcreation=models.ForeignKey(stockgroupcreation,on_delete=models.CASCADE,null=True)
-    unit_compound=models.ForeignKey(unit_compound,on_delete=models.CASCADE,null=True)
-    name1=models.CharField(max_length=100,null=True)
+    name=models.CharField(max_length=100,null=True)
     alias=models.CharField(max_length=100,null=True)
-    gst_applicable=models.CharField(max_length=100)
+    under=models.CharField(max_length=100,null=True)
+    units=models.CharField(max_length=100,null=True)
+    batches=models.CharField(max_length=10,null=True)
+    cost_tracking=models.CharField(max_length=10,null=True)
+    gst_applicable=models.CharField(max_length=100,null=True)
     typ_sply=models.CharField(max_length=100)
     set_alter=models.CharField(max_length=100)
     rate_of_duty=models.IntegerField()
