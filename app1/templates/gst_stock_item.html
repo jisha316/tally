@@ -7,13 +7,28 @@
             align-items: center;
             justify-content: center;        
         }
+        .inp{
+            border: none;
+            color: #fff;
+            background-color: rgba(0,0,0,.001);
+        }
     </style>
     <div class="m-0">
         <div class="row container-fluid  p-2 m-0">
             <div class="col-sm-3 m-0 p-0"></div>  
             <div class="col-sm-6 m-0 p-0">
                 <h6  class="bg-info text-light p-2 m-0 text-left">GST Details</h6>
-                <h6  class=" text-light p-2 m-0 text-center" style="background-color: rgba(0,0,0,.4);">GST Details for Company</h6>
+                <h6  class=" text-light p-2 m-0 text-center" style="background-color: rgba(0,0,0,.4);">GST Details for Company
+                    <center>
+                        <!-- <input type="text" class="form-control inp" id="stock_name"> -->
+                        <div class="row container-fluid  p-2 m-0">
+                            <div class="col-sm-4 m-0 p-0"></div>
+                            <div class="col-sm-4 m-0 p-0"><input type="text" class="inp text-center" id="stock_name"></div>
+                            <div class="col-sm-5 m-0 p-0"></div>
+                        </div>
+                    </center>
+                </h6>
+                
                 <form class="p-3" style="background-color:rgba(0,0,0,.4);" method="post" action="{% url 'gst_stock' %}" autocomplete="off">
                     {% csrf_token %}
                     <div class="row container-fluid  p-2 m-0">
@@ -47,6 +62,8 @@
     </div>  
 
     <script>
+        document.getElementById("stock_name").value = localStorage.getItem("status");
+
         function showgst(){
             var status = document.getElementById("primary");
             var a = status.value;
@@ -60,45 +77,3 @@
         }
     </script>
 {% endblock %}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

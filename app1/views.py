@@ -10,7 +10,8 @@ def base(request):
     return render(request, 'base.html')
 
 def demo(request):
-    return render(request, 'demo.html')
+	gd=CreateGodown.objects.all()
+	return render(request, 'demo.html',{'gd':gd})
 
 
 #......................jisha........................

@@ -34,9 +34,9 @@
             height: 300px;
             padding: 2px; 
         }
-        body{
+        /* body{
             overflow: hidden;
-        }
+        } */
         .btns_prnt{
             color: #fff;
             width: 100%;
@@ -68,7 +68,7 @@
             <div class="p-3">
                 <div class="row container-fluid  p-2 m-0">
                     <div class="col-sm-2 m-0 p-0"> <label for="a">Name</label></div>
-                    <div class="col-sm-3 m-0 p-0"><input type="text" name="name" class="form-control" required></div>
+                    <div class="col-sm-3 m-0 p-0"><input type="text" name="name" class="form-control" id="name" onblur="passvalue()" required></div>
                     <div class="col-sm-7 m-0 p-0"></div>
                 </div>
                 <div class="row container-fluid  p-2 m-0">
@@ -94,7 +94,7 @@
                     <div class="row container-fluid  p-2">
                         <div class="col-sm-6 m-0 p-0"> <label for="e">Units</label></div>
                         <div class="col-sm-6 m-0 p-0">
-                            <input type="text" id="units" value="Not Available" name="units" class="form-control" onclick="showform1();">
+                            <input type="text"  id="units" onblur="showunits()" name="units" class="form-control" onclick="showform1();">
                         </div>
                     </div>
                     <div class="row container-fluid hide p-2 m-0" id="additional">
@@ -106,7 +106,7 @@
                         <div class="row container-fluid p-2">
                             <div class="col-sm-6 m-0 p-0"><label for="e">Maintain in Batches</label></div>
                             <div class="col-sm-6 m-0 p-0">
-                                <select name="batches" id="" class="form-control">
+                                <select name="batches" id="bt" class="form-control" onchange="showbats();">
                                     <option value="No">No</option>
                                     <option value="Yes">Yes</option>
                                 </select>
@@ -140,7 +140,7 @@
                         <div class="col-sm-6 m-0 p-0"> <label for="l">Set/Alter GST details</label></div>
                         <div class="col-sm-6 m-0 p-0">
                             <select name="set_alter" id="stock" class="form-control" onchange="showgststock()">
-                                <option value="no">No</option>
+                                <option value="No">No</option>
                                 <option value="Yes">Yes</option>
                             </select>        
                         </div>
@@ -166,22 +166,22 @@
                 <div class="p-3">
                     <div class="row container-fluid  p-2 m-0">
                         <div class="col-sm-2 m-0 p-0"><label for="">Quantity</label></div>
-                        <div class="col-sm-3 m-0 p-0"><input type="text" class="form-control" id="quantity" placeholder="" name="quantity"
-                            onblur="passquantity()">
+                        <div class="col-sm-3 m-0 p-0"><input type="text" class="form-control"  placeholder="" name="quantity"
+                            id="quantity" onblur="passquantity()">
                         </div>
                         <div class="col-sm-7 m-0 p-0"></div>
                     </div>
                     <div class="row container-fluid  p-2 m-0">
                         <div class="col-sm-2 m-0 p-0"><label for="">Rate</label></div>
                         <div class="col-sm-3 m-0 p-0"><input type="text" class="form-control" id="rate" placeholder="" name="rate"
-                            onblur="passrate()">
+                            id="rate" onblur="passrate()">
                         </div>
                         <div class="col-sm-7 m-0 p-0"></div>
                     </div>
                     <div class="row container-fluid p-2 m-0">
                         <div class="col-sm-2 m-0 p-0"><label for="">Per</label></div>
                         <div class="col-sm-3 m-0 p-0"> 
-                            <input type="text" class="form-control" id="per" placeholder="" name="per"> </div>
+                            <input type="text" class="form-control" id="per" onblur="passunits()" placeholder="" name="per"> </div>
                         <div class="col-sm-7 m-0 p-0"></div>
                     </div>
                     <div class="row container-fluid p-2 m-0">
@@ -229,7 +229,7 @@
                         <option onclick="setAvailable('Not Available')" class="btns_prnt" value="Not Available">&nbsp;&nbsp;&nbsp;Not Available</option>
 
                         {% for un in u %}
-                        <option onclick="setvalue1 ('{{un.symbol}} ({{un.formal_name}})','{{un.id}}')"  class="btns_prnt">&nbsp;&nbsp;
+                        <option onclick="setvalue1 ('{{un.symbol}} ({{un.formal_name}})','{{un.id}}')" id="un" class="btns_prnt">&nbsp;&nbsp;
                             {{ un.symbol }} ( {{ un.formal_name }} )
                         </option>
                             
@@ -249,6 +249,8 @@
     </div>
 
     <script>
+        localStorage.setItem("p", "per");
+
         function setPrimary(){
             document.getElementById('under').value= 'Primary';
             document.getElementById('underForm').style.visibility= "hidden";
@@ -286,12 +288,6 @@
         function showform1(){
             document.getElementById('underForm1').style.display= "block";
         }
-        // function setvalue1(units,unitsId){
-        //     document.getElementById('units').value= units;
-        //     document.getElementById('addtional').style.visibility= "flex";
-        //     document.getElementById('underForm1').style.visibility= "hidden";
-        //     document.getElementsByName('underhidden1').value= unitsId;
-        // }
     </script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
@@ -336,6 +332,11 @@
             var quantity=document.getElementById("quantity").value;
             localStorage.setItem("quantity", quantity);
             var qua=localStorage.getItem("quantity");                         
+        }
+        function passunits(){
+            var units=document.getElementById("per").value;
+            localStorage.setItem("per", units);
+            var qua=localStorage.getItem("per");                         
         }
         // list showgroup
         function showGroup() {
@@ -387,6 +388,34 @@
                 document.getElementById('setalt').style.display = "none";
             }
         }
+        function passvalue(){
+            var status = document.getElementById('name').value;
+            console.log(status);
+
+            localStorage.setItem("status",status);
+            var a = localStorage.getItem('status');
+            console.log(a);
+        }
+        function passunits(){
+            var units = document.getElementById('units').value;
+            console.log(units);
+
+            localStorage.setItem("units",units);
+            var a = localStorage.getItem('units');
+            console.log(a);
+        }
+        function showbats(){
+            var status = document.getElementById("bt");
+            var a = status.value;
+            if(a=="Yes"){
+    
+                window.location.href="{% url 'demo' %}"
+            }
+        }
+        // document.getElementById("quantity").value = localStorage.getItem("quantity");
+        document.getElementById("rate").value = localStorage.getItem("rate");
+        document.getElementById("per").value = localStorage.getItem("per");
+        document.getElementById("value").value = localStorage.getItem("value");
     </script>
         
 {% endblock %}
